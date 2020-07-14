@@ -1,27 +1,33 @@
 <template>
   <div>
-    <h1>Events</h1>
+    <h1>{{ category.title }}</h1>
 
-    <EventCard
-      v-for="(event, index) in events"
+    <CategoryCard
+      v-for="(category, index) in categories"
       :key="index"
-      :event="event"
       :data-index="index"
+      :category="category"
     />
+    <!--    <EventCard-->
+    <!--      v-for="(event, index) in events"-->
+    <!--      :key="index"-->
+    <!--      :event="event"-->
+    <!--      :data-index="index"-->
+    <!--    />-->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import EventCard from '@/components/EventCard'
+import CategoryCard from '@/components/CategoryCard'
 
 export default {
   components: {
-    EventCard,
+    CategoryCard,
   },
   async fetch({ store, error }) {
     try {
-      await store.dispatch('events/fetchEvents')
+      await store.dispatch('category/fetchCategories')
     } catch (e) {
       error({
         statusCode: 503,
@@ -30,7 +36,8 @@ export default {
     }
   },
   computed: mapState({
-    events: (state) => state.events.events,
+    category: (state) => state.category.category,
+    categories: (state) => state.category.categories,
   }),
   head() {
     return {
