@@ -8,12 +8,6 @@
       :data-index="index"
       :category="category"
     />
-    <!--    <EventCard-->
-    <!--      v-for="(event, index) in events"-->
-    <!--      :key="index"-->
-    <!--      :event="event"-->
-    <!--      :data-index="index"-->
-    <!--    />-->
   </div>
 </template>
 

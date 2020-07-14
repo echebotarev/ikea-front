@@ -1,5 +1,8 @@
 <template>
-  <p>{{ category.title }}</p>
+  <div>
+    <p v-if="category.title">{{ category.title }}</p>
+    <img v-if="category.title === null" :src="category.image" />
+  </div>
 </template>
 <script>
 export default {
