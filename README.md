@@ -1,4 +1,4 @@
-# real-world-nuxt
+# ikea-front
 
 ## Build Setup
 
