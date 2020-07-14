@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-main>
     <h1>{{ category.title }}</h1>
 
     <CategoryCard
@@ -8,7 +8,7 @@
       :data-index="index"
       :category="category"
     />
-  </div>
+  </v-main>
 </template>
 
 <script>
