@@ -1,19 +1,17 @@
 <template>
   <v-app-bar app color="transparent" elevation="0">
-    <nuxt-link to="/" class="brand">
-      <v-toolbar-title>
-        Real World Events
-      </v-toolbar-title>
-    </nuxt-link>
+    <v-toolbar-title>
+      <nuxt-link to="/" class="brand">Ikea</nuxt-link>
+    </v-toolbar-title>
     <v-spacer></v-spacer>
     <nav>
-      <nuxt-link to="/">
-        <v-btn text rounded>List</v-btn>
-      </nuxt-link>
+      <v-btn text>
+        <nuxt-link to="/">List</nuxt-link>
+      </v-btn>
       |
-      <nuxt-link to="/event/create">
-        <v-btn text rounded>Create</v-btn>
-      </nuxt-link>
+      <v-btn text>
+        <nuxt-link to="/event/create">Create</nuxt-link>
+      </v-btn>
     </nav>
   </v-app-bar>
 </template>
