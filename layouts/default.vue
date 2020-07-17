@@ -2,7 +2,9 @@
   <v-app id="app">
     <NavBar :links="links" />
     <v-main>
-      <Nuxt />
+      <v-container>
+        <Nuxt />
+      </v-container>
     </v-main>
     <Footer />
   </v-app>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <p v-if="category.title">{{ category.title }}</p>
-    <img v-if="category.title === null" :src="category.image" />
+    <v-img v-if="category.title === null" :src="category.image"></v-img>
   </div>
 </template>
 <script>

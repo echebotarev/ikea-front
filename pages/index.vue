@@ -2,12 +2,16 @@
   <v-main>
     <h1>{{ category.title }}</h1>
 
-    <CategoryCard
-      v-for="(category, index) in categories"
-      :key="index"
-      :data-index="index"
-      :category="category"
-    />
+    <v-row>
+      <v-col cols="3" v-for="col in cols" :key="col[0].title">
+        <CategoryCard
+          v-for="(category, index) in col"
+          :key="index"
+          :data-index="index"
+          :category="category"
+        />
+      </v-col>
+    </v-row>
   </v-main>
 </template>
 
@@ -32,6 +36,22 @@ export default {
   computed: mapState({
     category: (state) => state.category.category,
     categories: (state) => state.category.categories,
+    cols: (state) => {
+      const cols = {}
+      let prevColName
+      let colName = 0
+      state.category.categories.forEach((category) => {
+        if (category.title === null) {
+          cols[colName] = []
+          prevColName = colName
+          colName++
+        }
+
+        cols[prevColName].push(category)
+      })
+
+      return cols
+    },
   }),
   head() {
     return {
