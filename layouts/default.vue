@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <NavBar />
+    <NavBar :links="links" />
     <v-main>
       <Nuxt />
     </v-main>
@@ -9,9 +9,13 @@
 
 <script>
 import NavBar from '~/components/NavBar.vue'
+import links from '~/assets/data/links'
 export default {
   components: {
     NavBar,
+  },
+  computed: {
+    links: () => links,
   },
   head() {
     return {
