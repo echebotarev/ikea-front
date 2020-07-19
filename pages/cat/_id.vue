@@ -1,10 +1,6 @@
 <template>
   <v-main>
-    <v-breadcrumbs :items="breadcrumbs">
-      <template v-slot:divider>
-        <v-icon>mdi-chevron-right</v-icon>
-      </template>
-    </v-breadcrumbs>
+    <Breadcrumbs :breadcrumbs="breadcrumbs" />
     <h1>{{ category.title }}</h1>
 
     <v-row>
@@ -22,9 +18,10 @@
 <script>
 import { mapState } from 'vuex'
 import InnerCategoryCard from '@/components/InnerCategoryCard'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 export default {
-  components: { InnerCategoryCard },
+  components: { InnerCategoryCard, Breadcrumbs },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('category/fetchCategories', params.id)
