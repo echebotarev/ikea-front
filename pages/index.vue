@@ -4,7 +4,7 @@
 
     <v-row>
       <v-col v-for="col in cols" :key="col[0].title" cols="3">
-        <CategoryCard
+        <MainCategoryCard
           v-for="(category, index) in col"
           :key="index"
           :data-index="index"
@@ -17,11 +17,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import CategoryCard from '@/components/CategoryCard'
+import MainCategoryCard from '@/components/MainCategoryCard'
 
 export default {
   components: {
-    CategoryCard,
+    MainCategoryCard,
   },
   async fetch({ store, error }) {
     try {

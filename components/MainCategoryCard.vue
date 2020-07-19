@@ -1,3 +1,4 @@
+<!-- Используется на главной странице - "Товары" -->
 <template>
   <div>
     <nuxt-link :to="`/cat/${category.identifier}`">
@@ -8,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'CategoryCard',
+  name: 'MainCategoryCard',
   props: {
     // eslint-disable-next-line vue/require-default-prop
     category: Object,
