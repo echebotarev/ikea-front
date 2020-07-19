@@ -3,7 +3,7 @@
     <h1>{{ category.title }}</h1>
 
     <v-row>
-      <v-col cols="3" v-for="col in cols" :key="col[0].title">
+      <v-col v-for="col in cols" :key="col[0].title" cols="3">
         <CategoryCard
           v-for="(category, index) in col"
           :key="index"
@@ -40,22 +40,24 @@ export default {
       const cols = {}
       let prevColName
       let colName = 0
-      state.category.categories.forEach((category) => {
-        if (category.title === null) {
-          cols[colName] = []
-          prevColName = colName
-          colName++
-        }
+      try {
+        state.category.categories.forEach((category) => {
+          if (category.title === null) {
+            cols[colName] = []
+            prevColName = colName
+            colName++
+          }
 
-        cols[prevColName].push(category)
-      })
+          cols[prevColName].push(category)
+        })
+      } catch (e) {}
 
       return cols
     },
   }),
   head() {
     return {
-      title: 'Event Listening',
+      title: 'IKEA - Товары',
     }
   },
 }
