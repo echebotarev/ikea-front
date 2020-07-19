@@ -11,8 +11,7 @@
 export default {
   name: 'MainCategoryCard',
   props: {
-    // eslint-disable-next-line vue/require-default-prop
-    category: Object,
+    category: { type: Object, default: () => {} },
   },
 }
 </script>

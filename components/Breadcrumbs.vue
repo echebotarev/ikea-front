@@ -10,8 +10,7 @@
 export default {
   name: 'Breadcrumbs',
   props: {
-    // eslint-disable-next-line vue/require-default-prop
-    breadcrumbs: Array,
+    breadcrumbs: { type: Array, default: () => [] },
   },
 }
 </script>
