@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <div>
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
     <h1>{{ category.title }}</h1>
 
@@ -12,7 +12,7 @@
         <InnerCategoryCard :category="category" />
       </v-col>
     </v-row>
-  </v-main>
+  </div>
 </template>
 
 <script>

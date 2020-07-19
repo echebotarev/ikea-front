@@ -15,4 +15,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-breadcrumbs {
+  padding-left: 0;
+}
+</style>

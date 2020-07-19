@@ -64,19 +64,14 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  router: {
+    prefetchLinks: false,
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
 
-  generate: {
-    routes: () => {
-      return EventService.getEvents().then((response) => {
-        return response.data.map((event) => {
-          return '/event/' + event.id
-        })
-      })
-    },
-  },
+  generate: {},
 }
