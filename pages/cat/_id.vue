@@ -1,5 +1,10 @@
 <template>
   <v-main>
+    <v-breadcrumbs :items="breadcrumbs">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
     <h1>{{ category.title }}</h1>
 
     <v-row>
@@ -33,6 +38,7 @@ export default {
   computed: mapState({
     category: (state) => state.category.category,
     categories: (state) => state.category.categories,
+    breadcrumbs: (state) => state.page.breadcrumbs,
   }),
 }
 </script>
