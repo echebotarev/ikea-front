@@ -1,12 +1,18 @@
 import ApiService from '@/services/ApiService.js'
 export const state = () => ({
+  products: [],
   categories: [],
   category: {},
 })
 export const mutations = {
+  SET_PRODUCTS(state, products) {
+    state.products = products
+  },
+
   SET_CATEGORIES(state, categories) {
     state.categories = categories
   },
+
   SET_CATEGORY(state, category) {
     state.category = category
   },
@@ -21,6 +27,12 @@ export const actions = {
         commit('page/SET_BREADCRUMBS', response.data.breadcrumbs, {
           root: true,
         })
+    })
+  },
+
+  fetchProducts({ commit }, id) {
+    return ApiService.getProducts(id).then((response) => {
+      commit('SET_PRODUCTS', response.data.productWindow)
     })
   },
 }
