@@ -12,16 +12,27 @@
         <InnerCategoryCard :category="category" />
       </v-col>
     </v-row>
+
+    <v-row>
+      <v-col
+        v-for="product in products"
+        :key="`${product.id}-product`"
+        cols="3"
+      >
+        <ProductCard :product="product" />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import InnerCategoryCard from '@/components/InnerCategoryCard'
+import ProductCard from '@/components/ProductCard'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 export default {
-  components: { InnerCategoryCard, Breadcrumbs },
+  components: { InnerCategoryCard, Breadcrumbs, ProductCard },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('category/fetchCategories', params.id)
