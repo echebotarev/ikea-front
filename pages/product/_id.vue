@@ -43,7 +43,7 @@
           <v-banner v-if="product.information.productDetailsProps" single-line>
             {{ product.information.productDetailsProps.title }}
             <template v-slot:actions>
-              <v-btn icon>
+              <v-btn icon @click="toggleModal">
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
             </template>
@@ -55,7 +55,7 @@
               product.information.dimensionProps.subtitle
             }}</v-subheader>
             <template v-slot:actions>
-              <v-btn icon>
+              <v-btn icon @click="toggleModal">
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
             </template>
@@ -70,7 +70,7 @@
 
 <script>
 // TODO парсить fulldesc в скрапере
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Modal from '@/components/Modal'
 
@@ -89,6 +89,9 @@ export default {
   computed: mapState({
     product: (state) => state.products.product,
     breadcrumbs: (state) => state.page.breadcrumbs,
+  }),
+  methods: mapActions({
+    toggleModal: 'page/toggleModal',
   }),
 }
 </script>

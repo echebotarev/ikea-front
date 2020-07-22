@@ -1,9 +1,11 @@
 <template>
-  <portal v-if="modalShow" to="modal" class="modal-substrate">Hey</portal>
+  <portal v-if="isShow" to="modal">
+    <div class="modal-substrate" @click="toggleModal">Hey</div>
+  </portal>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Modal',
   props: {
@@ -13,7 +15,11 @@ export default {
     },
   },
   computed: mapState({
-    modalShow: (state) => state.page.modalShow,
+    isShow: (state) => state.page.modal.isShow,
+    data: (state) => state.page.modal.data,
+  }),
+  methods: mapActions({
+    toggleModal: 'page/toggleModal',
   }),
 }
 </script>
@@ -23,5 +29,6 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.15);
 }
 </style>

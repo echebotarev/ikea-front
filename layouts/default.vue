@@ -38,4 +38,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.vue-portal-target {
+  position: absolute;
+}
+</style>
