@@ -30,7 +30,7 @@ export const actions = {
     })
   },
 
-  fetchProducts({ commit }, id) {
+  fetchProductsByCategoryId({ commit }, id) {
     return ApiService.getProducts(id).then((response) => {
       commit('SET_PRODUCTS', response.data.productWindow)
     })

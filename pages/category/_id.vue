@@ -36,7 +36,7 @@ export default {
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('category/fetchCategories', params.id)
-      await store.dispatch('category/fetchProducts', params.id)
+      await store.dispatch('products/fetchProductsByCategoryId', params.id)
     } catch (e) {
       error({
         statusCode: 503,
@@ -47,7 +47,7 @@ export default {
   computed: mapState({
     category: (state) => state.category.category,
     categories: (state) => state.category.categories,
-    products: (state) => state.category.products,
+    products: (state) => state.products.products,
     breadcrumbs: (state) => state.page.breadcrumbs,
   }),
 }
