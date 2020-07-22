@@ -1,4 +1,3 @@
-import EventService from './services/EventService.js'
 export default {
   /*
    ** Nuxt rendering mode
@@ -58,6 +57,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    'portal-vue/nuxt',
   ],
   /*
    ** Axios module configuration

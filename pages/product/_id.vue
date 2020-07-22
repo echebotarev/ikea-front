@@ -29,15 +29,53 @@
         </v-row>
       </v-col>
     </v-row>
+
+    <v-row>
+      <v-col cols="7">
+        <div class="product-summary">
+          <p v-if="product.full_desc">{{ product.full_desc }}</p>
+          <span class="product-identifier">{{
+            product.display_identifier
+          }}</span>
+        </div>
+
+        <div class="product-information">
+          <v-banner v-if="product.information.productDetailsProps" single-line>
+            {{ product.information.productDetailsProps.title }}
+            <template v-slot:actions>
+              <v-btn icon>
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-btn>
+            </template>
+          </v-banner>
+
+          <v-banner v-if="product.information.dimensionProps" single-line>
+            {{ product.information.dimensionProps.title }}
+            <v-subheader>{{
+              product.information.dimensionProps.subtitle
+            }}</v-subheader>
+            <template v-slot:actions>
+              <v-btn icon>
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-btn>
+            </template>
+          </v-banner>
+        </div>
+      </v-col>
+    </v-row>
+
+    <Modal />
   </div>
 </template>
 
 <script>
+// TODO парсить fulldesc в скрапере
 import { mapState } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Modal from '@/components/Modal'
 
 export default {
-  components: { Breadcrumbs },
+  components: { Breadcrumbs, Modal },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('products/fetchProductById', params.id)
@@ -55,4 +93,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

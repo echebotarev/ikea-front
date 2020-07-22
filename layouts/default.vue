@@ -7,6 +7,7 @@
       </v-container>
     </v-main>
     <Footer />
+    <portal-target name="modal"></portal-target>
   </v-app>
 </template>
 

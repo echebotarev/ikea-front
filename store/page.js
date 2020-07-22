@@ -1,4 +1,5 @@
 export const state = () => ({
+  modalShow: false,
   breadcrumbs: [],
 })
 export const mutations = {
