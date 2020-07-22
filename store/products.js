@@ -19,5 +19,14 @@ export const actions = {
     })
   },
 
-  fetchProductById({ commit }, id) {},
+  fetchProductById({ commit }, id) {
+    return ApiService.getProduct(id).then((response) => {
+      commit('SET_PRODUCT', response.data)
+
+      response.data.breadcrumbs &&
+        commit('page/SET_BREADCRUMBS', response.data.breadcrumbs, {
+          root: true,
+        })
+    })
+  },
 }
