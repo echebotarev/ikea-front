@@ -1,7 +1,21 @@
 <template>
   <div>
-    <h1>Hi</h1>
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
+
+    <v-row>
+      <v-col cols="8">
+        <v-row>
+          <v-col
+            v-for="img in product.images.fullMediaList"
+            :key="img.content.url"
+            cols="6"
+          >
+            <v-img :src="img.content.url" :alt="img.content.alt"></v-img>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="4"></v-col>
+    </v-row>
   </div>
 </template>
 
