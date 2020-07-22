@@ -3,7 +3,7 @@
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
 
     <v-row>
-      <v-col cols="8">
+      <v-col cols="7">
         <v-row>
           <v-col
             v-for="img in product.images.fullMediaList"
@@ -14,7 +14,20 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="4"></v-col>
+      <v-col cols="5">
+        <v-row>
+          <v-col cols="9">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.short_desc }}</p>
+          </v-col>
+          <v-col cols="3">
+            <p>
+              {{ product.price.price.mainPriceProps.price.integer }}
+              {{ product.price.price.mainPriceProps.currencySymbol }}
+            </p>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-row>
   </div>
 </template>
