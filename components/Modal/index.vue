@@ -4,6 +4,10 @@
       <v-row no-gutters align="center">
         <v-col class="modal" cols="5" @click.stop="">
           <Details v-if="data.eventLabel === 'pip_details'" :data="data" />
+          <Dimensions
+            v-if="data.eventLabel === 'pip_dimensions'"
+            :data="data"
+          />
         </v-col>
       </v-row>
     </div>
@@ -13,23 +17,13 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Details from '~/components/Modal/Details'
+import Dimensions from '~/components/Modal/Dimensions'
 export default {
   name: 'Modal',
-  components: { Details },
+  components: { Details, Dimensions },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
     data: (state) => state.page.modal.data,
-    accordion: (state) => {
-      const acc = state.page.modal.data.accordionObject
-      const out = []
-      for (const key in acc) {
-        const item = acc[key]
-        if (item) {
-          out.push(item)
-        }
-      }
-      return out
-    },
   }),
   methods: mapActions({
     toggleModal: 'page/toggleModal',

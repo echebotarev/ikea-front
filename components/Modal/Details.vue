@@ -1,7 +1,7 @@
 <template>
   <v-row align="center">
     <v-spacer></v-spacer>
-    <v-col v-if="data.productDescriptionProps" cols="9">
+    <v-col v-if="data.productDescriptionProps" cols="10">
       <h2>{{ data.title }}</h2>
       <p
         v-for="(paragraph, index) in data.productDescriptionProps.paragraphs"
