@@ -78,7 +78,7 @@
 // TODO парсить fulldesc в скрапере
 import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import Modal from '@/components/Modal'
+import Modal from '~/components/Modal/index'
 
 export default {
   components: { Breadcrumbs, Modal },
