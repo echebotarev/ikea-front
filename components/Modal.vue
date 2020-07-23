@@ -8,12 +8,6 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Modal',
-  props: {
-    data: {
-      type: Object,
-      default: () => {},
-    },
-  },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
     data: (state) => state.page.modal.data,

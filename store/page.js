@@ -22,8 +22,9 @@ export const mutations = {
     state.breadcrumbs = items
   },
 
-  TOGGLE_MODAL(state) {
+  TOGGLE_MODAL(state, payload = {}) {
     state.modal.isShow = !state.modal.isShow
+    state.modal.data = payload
   },
 }
 export const actions = {

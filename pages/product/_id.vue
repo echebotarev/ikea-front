@@ -43,7 +43,10 @@
           <v-banner v-if="product.information.productDetailsProps" single-line>
             {{ product.information.productDetailsProps.title }}
             <template v-slot:actions>
-              <v-btn icon @click="toggleModal">
+              <v-btn
+                icon
+                @click="toggleModal(product.information.productDetailsProps)"
+              >
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
             </template>
@@ -55,7 +58,10 @@
               product.information.dimensionProps.subtitle
             }}</v-subheader>
             <template v-slot:actions>
-              <v-btn icon @click="toggleModal">
+              <v-btn
+                icon
+                @click="toggleModal(product.information.dimensionProps)"
+              >
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
             </template>
