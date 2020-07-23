@@ -1,8 +1,17 @@
 <template>
   <portal v-if="isShow" to="modal">
     <div class="modal-substrate" @click="toggleModal">
-      <v-row no-gutters align="center">
+      <v-row align="center">
         <v-col class="modal" cols="5" @click.stop="">
+          <v-row>
+            <v-spacer></v-spacer>
+            <v-col cols="2">
+              <v-btn icon @click="toggleModal">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+
           <Details v-if="data.eventLabel === 'pip_details'" :data="data" />
           <Dimensions
             v-if="data.eventLabel === 'pip_dimensions'"
