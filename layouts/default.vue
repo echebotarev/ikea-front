@@ -41,5 +41,6 @@ export default {
 <style>
 .vue-portal-target {
   position: absolute;
+  z-index: 10;
 }
 </style>
