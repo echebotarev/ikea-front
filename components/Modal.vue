@@ -37,7 +37,6 @@
                         v-for="(block, indexBlocks) in blocks"
                         :key="`${indexBlocks}-blocks`"
                       >
-                        {{ block }}
                         <!--Используется в "Материалы и уход"-->
                         <p
                           v-for="(material, indexMaterial) in block.materials"
@@ -60,16 +59,37 @@
                             accordionItem.id === 'product-details-packaging'
                           "
                         >
-                          <span class="product-detail-header">{{
-                            block.name
-                          }}</span>
-                          <span>{{ block.typeName }}</span>
-                          <span
-                            v-if="block.articleNumber"
-                            class="product-detail-identifier"
-                            >{{ block.articleNumber.label }}:
-                            {{ block.articleNumber.value }}</span
+                          <p>
+                            <span class="product-detail-header">{{
+                              block.name
+                            }}</span>
+                            <span>{{ block.typeName }}</span>
+                            <span
+                              v-if="block.articleNumber"
+                              class="product-detail-identifier"
+                              >{{ block.articleNumber.label }}:
+                              {{ block.articleNumber.value }}</span
+                            >
+                          </p>
+
+                          <p
+                            v-for="(measurement,
+                            indexMeasurement) in block.measurements"
+                            :key="`${indexMeasurement}-measurement`"
                           >
+                            <span
+                              v-for="(measurementValue,
+                              indexMeasurementValue) in measurement"
+                              :key="`${indexMeasurementValue}-measurement-value`"
+                            >
+                              {{ measurementValue.label }}:
+                              {{ measurementValue.value }}
+                            </span>
+                          </p>
+                          <span v-if="block.quantity">
+                            {{ block.quantity.label }}:
+                            {{ block.quantity.value }}
+                          </span>
                         </div>
                       </div>
                     </div>
