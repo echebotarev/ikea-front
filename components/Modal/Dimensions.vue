@@ -11,7 +11,17 @@
         <b>{{ dimension.name }}:</b> {{ dimension.measure }}
       </span>
 
-      <v-img :src="data.fallbackImage.url"></v-img>
+      <div v-if="data.images.length">
+        <v-img
+          v-for="(image, indexImg) in data.images"
+          :key="`${indexImg}-image`"
+          :src="image.url"
+        ></v-img>
+      </div>
+      <v-img
+        v-if="data.images.length === 0"
+        :src="data.fallbackImage.url"
+      ></v-img>
     </v-col>
     <v-spacer></v-spacer>
   </v-row>
