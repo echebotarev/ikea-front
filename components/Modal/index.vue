@@ -53,6 +53,7 @@ export default {
     right: 0;
     height: 100%;
     background: rgba(255, 255, 255, 1);
+    overflow: auto;
   }
 }
 </style>
