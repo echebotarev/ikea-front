@@ -157,9 +157,10 @@
                   }}
                 </div>
                 <div
-                  v-for="(attachment, indexAttachment) in data.accordionObject
-                    .assemblyAndDocuments.contentProps.attachments.assembly
-                    .attachments"
+                  v-for="(attachment, indexAttachment) in attachments(
+                    data.accordionObject.assemblyAndDocuments.contentProps
+                      .attachments.assembly.attachments
+                  )"
                   :key="`${indexAttachment}-attachment`"
                 >
                   <a :href="attachment.url" target="_blank">
@@ -182,9 +183,10 @@
                   }}
                 </div>
                 <div
-                  v-for="(attachment, indexAttachment) in data.accordionObject
-                    .assemblyAndDocuments.contentProps.attachments.software
-                    .attachments"
+                  v-for="(attachment, indexAttachment) in attachments(
+                    data.accordionObject.assemblyAndDocuments.contentProps
+                      .attachments.software.attachments
+                  )"
                   :key="`${indexAttachment}-attachment`"
                 >
                   <a :href="attachment.url" target="_blank">
@@ -207,9 +209,10 @@
                   }}
                 </div>
                 <div
-                  v-for="(attachment, indexAttachment) in data.accordionObject
-                    .assemblyAndDocuments.contentProps.attachments.other
-                    .attachments"
+                  v-for="(attachment, indexAttachment) in attachments(
+                    data.accordionObject.assemblyAndDocuments.contentProps
+                      .attachments.other.attachments
+                  )"
                   :key="`${indexAttachment}-attachment`"
                 >
                   <a :href="attachment.url" target="_blank">
@@ -232,9 +235,10 @@
                   }}
                 </div>
                 <div
-                  v-for="(attachment, indexAttachment) in data.accordionObject
-                    .assemblyAndDocuments.contentProps.attachments.disassembly
-                    .attachments"
+                  v-for="(attachment, indexAttachment) in attachments(
+                    data.accordionObject.assemblyAndDocuments.contentProps
+                      .attachments.disassembly.attachments
+                  )"
                   :key="`${indexAttachment}-attachment`"
                 >
                   <a :href="attachment.url" target="_blank">
@@ -270,16 +274,16 @@ export default {
     },
   },
   methods: {
-    accordion: (accObject) => {
-      const acc = accObject
-      const out = []
-      for (const key in acc) {
-        const item = acc[key]
-        if (item) {
-          out.push(item)
+    attachments: (atts) => {
+      const ids = []
+      return atts.filter((att) => {
+        if (ids.includes(att.id)) {
+          return false
         }
-      }
-      return out
+
+        ids.push(att.id)
+        return true
+      })
     },
   },
 }
