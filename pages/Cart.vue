@@ -63,10 +63,11 @@ export default {
     sum: (state) => {
       let sum = 0
       state.cart.products.forEach((product) => {
-        const price = product.price.price.mainPriceProps.price.integer.replace(
+        let price = product.price.price.mainPriceProps.price.integer.replace(
           / /g,
           ''
         )
+        price = price * product.qnt
         sum += parseInt(price)
       })
       return sum
