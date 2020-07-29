@@ -72,9 +72,16 @@ export default {
       return sum
     },
   }),
+  beforeMount() {
+    this.setProducts(
+      // eslint-disable-next-line no-undef
+      JSON.parse(globalThis.localStorage.getItem('cart') || '[]')
+    )
+  },
   methods: mapActions({
     addProduct: 'cart/addProduct',
     removeProduct: 'cart/removeProduct',
+    setProducts: 'cart/setProducts',
   }),
 }
 </script>

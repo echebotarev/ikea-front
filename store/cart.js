@@ -44,13 +44,27 @@ export const mutations = {
       },
     ])
   },
+
+  SET_PRODUCTS_FROM_STORAGE(state, payload) {
+    state.products = payload
+  },
+
+  SAVE_CART_TO_STORAGE(state) {
+    localStorage.setItem('cart', JSON.stringify(state.products))
+  },
 }
 export const actions = {
   addProduct({ commit }, payload) {
     commit('ADD_PRODUCT', payload)
+    commit('SAVE_CART_TO_STORAGE')
   },
 
   removeProduct({ commit }, payload) {
     commit('REMOVE_PRODUCT', payload)
+    commit('SAVE_CART_TO_STORAGE')
+  },
+
+  setProducts({ commit }, payload) {
+    commit('SET_PRODUCTS_FROM_STORAGE', payload)
   },
 }
