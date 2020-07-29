@@ -43,6 +43,13 @@
           </v-row>
         </v-col>
       </v-row>
+
+      <v-divider></v-divider>
+
+      <v-row class="cart-total">
+        <v-col>Сумма</v-col>
+        <v-col class="text-right">{{ sum }}</v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -53,6 +60,17 @@ export default {
   name: 'Cart',
   computed: mapState({
     products: (state) => state.cart.products,
+    sum: (state) => {
+      let sum = 0
+      state.cart.products.forEach((product) => {
+        const price = product.price.price.mainPriceProps.price.integer.replace(
+          / /g,
+          ''
+        )
+        sum += parseInt(price)
+      })
+      return sum
+    },
   }),
   methods: mapActions({
     addProduct: 'cart/addProduct',
