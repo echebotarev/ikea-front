@@ -1,4 +1,1 @@
-export default [
-  { label: 'List', url: '/' },
-  { label: 'Create', url: '/event/create' },
-]
+export default [{ label: 'Корзина', url: '/cart' }]
