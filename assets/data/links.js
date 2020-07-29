@@ -1,1 +1,4 @@
-export default [{ label: 'Корзина', url: '/cart' }]
+export default [
+  { label: 'Все товары', url: '/' },
+  { label: 'Корзина', url: '/cart' },
+]

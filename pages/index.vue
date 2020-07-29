@@ -6,7 +6,7 @@
       <v-col v-for="col in cols" :key="col[0].title" cols="3">
         <MainCategoryCard
           v-for="(category, index) in col"
-          :key="index"
+          :key="`${category.identifier}-${Math.random()}`"
           :data-index="index"
           :category="category"
         />

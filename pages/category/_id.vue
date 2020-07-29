@@ -6,7 +6,7 @@
     <v-row>
       <v-col
         v-for="category in categories"
-        :key="`${category.identifier}-col`"
+        :key="`${category.identifier}-${Math.random()}`"
         cols="3"
       >
         <InnerCategoryCard :category="category" />
