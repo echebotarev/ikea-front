@@ -27,6 +27,18 @@
             </p>
           </v-col>
         </v-row>
+        <v-row>
+          <v-btn
+            block
+            rounded
+            color="#0058a3"
+            dark
+            @click="addProduct(Object.assign(product, { qnt: 1 }))"
+          >
+            <v-icon>mdi-basket-plus-outline</v-icon>
+            Добавить в корзину
+          </v-btn>
+        </v-row>
       </v-col>
     </v-row>
 
@@ -95,9 +107,11 @@ export default {
   computed: mapState({
     product: (state) => state.products.product,
     breadcrumbs: (state) => state.page.breadcrumbs,
+    products: (state) => state.cart.products,
   }),
   methods: mapActions({
     toggleModal: 'page/toggleModal',
+    addProduct: 'cart/addProduct',
   }),
 }
 </script>
