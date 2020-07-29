@@ -13,7 +13,7 @@ export const mutations = {
       return (state.products = [
         ...state.products.filter((p) => p.identifier !== product.identifier),
         {
-          ...state.products.find((p) => p.identifier === product.identifier),
+          ...product,
           qnt,
         },
       ])
@@ -39,7 +39,7 @@ export const mutations = {
     return (state.products = [
       ...state.products.filter((p) => p.identifier !== product.identifier),
       {
-        ...state.products.find((p) => p.identifier === product.identifier),
+        ...product,
         qnt,
       },
     ])

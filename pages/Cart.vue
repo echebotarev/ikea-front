@@ -29,7 +29,7 @@
             <v-col cols="3"></v-col>
             <v-col cols="4"><b>Наличие</b></v-col>
             <v-col class="text-right">
-              <v-btn icon>
+              <v-btn icon @click="removeProduct({ product, qnt: product.qnt })">
                 <v-icon>mdi-trash-can-outline</v-icon>
               </v-btn>
               <v-btn icon @click="removeProduct({ product, qnt: 1 })">
