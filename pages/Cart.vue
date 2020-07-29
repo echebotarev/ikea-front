@@ -32,12 +32,12 @@
               <v-btn icon>
                 <v-icon>mdi-trash-can-outline</v-icon>
               </v-btn>
-              <v-btn icon>
-                <v-icon>mdi-plus</v-icon>
+              <v-btn icon @click="removeProduct({ product, qnt: 1 })">
+                <v-icon>mdi-minus</v-icon>
               </v-btn>
               <span class="amount">{{ product.qnt }}</span>
-              <v-btn icon>
-                <v-icon>mdi-minus</v-icon>
+              <v-btn icon @click="addProduct({ product, qnt: 1 })">
+                <v-icon>mdi-plus</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -48,11 +48,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'Cart',
   computed: mapState({
     products: (state) => state.cart.products,
+  }),
+  methods: mapActions({
+    addProduct: 'cart/addProduct',
+    removeProduct: 'cart/removeProduct',
   }),
 }
 </script>

@@ -33,7 +33,7 @@
             rounded
             color="#0058a3"
             dark
-            @click="addProduct(Object.assign(product, { qnt: 1 }))"
+            @click="addProduct({ product, qnt: 1 })"
           >
             <v-icon>mdi-basket-plus-outline</v-icon>
             Добавить в корзину

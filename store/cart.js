@@ -6,40 +6,40 @@ const getProductById = (products, id) =>
   products.find((product) => product.identifier === id)
 
 export const mutations = {
-  ADD_PRODUCT(state, payload = {}) {
-    const product = getProductById(state.products, payload.identifier)
-    if (product) {
-      const qnt = product.qnt + payload.qnt
+  ADD_PRODUCT(state, { product, qnt }) {
+    const statedProduct = getProductById(state.products, product.identifier)
+    if (statedProduct) {
+      qnt = statedProduct.qnt + qnt
       return (state.products = [
-        ...state.products.filter((p) => p.identifier !== payload.identifier),
+        ...state.products.filter((p) => p.identifier !== product.identifier),
         {
-          ...state.products.find((p) => p.identifier === payload.identifier),
+          ...state.products.find((p) => p.identifier === product.identifier),
           qnt,
         },
       ])
     }
 
-    state.products.push(payload)
+    state.products = [...state.products, { ...product, qnt }]
   },
 
-  REMOVE_PRODUCT(state, payload = {}) {
-    const product = getProductById(state.products, payload.identifier)
-    if (!product) {
+  REMOVE_PRODUCT(state, { product, qnt }) {
+    const statedProduct = getProductById(state.products, product.identifier)
+    if (!statedProduct) {
       return false
     }
 
-    const qnt = product.qnt - payload.qnt
+    qnt = statedProduct.qnt - qnt
 
     if (qnt <= 0) {
       return (state.products = state.products.filter(
-        (p) => p.identifier !== product.identifier
+        (p) => p.identifier !== statedProduct.identifier
       ))
     }
 
     return (state.products = [
-      ...state.products.filter((p) => p.identifier !== payload.identifier),
+      ...state.products.filter((p) => p.identifier !== product.identifier),
       {
-        ...state.products.find((p) => p.identifier === payload.identifier),
+        ...state.products.find((p) => p.identifier === product.identifier),
         qnt,
       },
     ])
