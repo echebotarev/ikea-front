@@ -19,13 +19,13 @@
 import Search from '@/components/Search'
 export default {
   name: 'NavBar',
+  components: { Search },
   props: {
     links: {
       type: Array,
       default: null,
     },
   },
-  components: { Search },
 }
 </script>
 
