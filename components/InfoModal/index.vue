@@ -25,10 +25,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Details from '~/components/InfoModal/Details'
-import Dimensions from '~/components/InfoModal/Dimensions'
+import Details from '@/components/InfoModal/Details'
+import Dimensions from '@/components/InfoModal/Dimensions'
 export default {
-  name: 'Modal',
+  name: 'InfoModal',
   components: { Details, Dimensions },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,

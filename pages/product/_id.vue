@@ -82,7 +82,7 @@
       </v-col>
     </v-row>
 
-    <Modal />
+    <InfoModal />
   </div>
 </template>
 
@@ -90,10 +90,10 @@
 // TODO парсить fulldesc в скрапере
 import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import Modal from '@/components/InfoModal/index'
+import InfoModal from '@/components/InfoModal/index'
 
 export default {
-  components: { Breadcrumbs, Modal },
+  components: { Breadcrumbs, InfoModal },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('products/fetchProductById', params.id)

@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import NavBar from '~/components/NavBar.vue'
-import Footer from '~/components/Footer.vue'
-import links from '~/assets/data/links'
+import NavBar from '@/components/NavBar.vue'
+import Footer from '@/components/Footer.vue'
+import links from '@/assets/data/links'
 export default {
   components: {
     NavBar,
