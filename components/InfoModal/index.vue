@@ -25,8 +25,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Details from '~/components/Modal/Details'
-import Dimensions from '~/components/Modal/Dimensions'
+import Details from '~/components/InfoModal/Details'
+import Dimensions from '~/components/InfoModal/Dimensions'
 export default {
   name: 'Modal',
   components: { Details, Dimensions },
