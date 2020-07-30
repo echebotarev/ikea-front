@@ -6,6 +6,7 @@
       </nuxt-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
+    <Search />
     <nav>
       <v-btn v-for="link in links" :key="`${link}-header-link`" text>
         <nuxt-link :to="link.url">{{ link.label }}</nuxt-link>
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+import Search from '@/components/Search'
 export default {
   name: 'NavBar',
   props: {
@@ -23,6 +25,7 @@ export default {
       default: null,
     },
   },
+  components: { Search },
 }
 </script>
 
