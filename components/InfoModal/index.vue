@@ -41,19 +41,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.modal-substrate {
-  position: fixed;
-  width: 100%;
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
   height: 100%;
-  background: rgba(0, 0, 0, 0.15);
-
-  .modal {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    background: rgba(255, 255, 255, 1);
-    overflow: auto;
-  }
+  background: rgba(255, 255, 255, 1);
+  overflow: auto;
 }
 </style>
