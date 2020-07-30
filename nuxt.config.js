@@ -55,9 +55,14 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     'portal-vue/nuxt',
+    [
+      'nuxt-vuex-localstorage',
+      {
+        localStorage: ['cart'],
+      },
+    ],
   ],
   /*
    ** Axios module configuration
