@@ -10,11 +10,13 @@
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </v-col>
+
             <v-col cols="11">
               <v-text-field
                 clearable
                 placeholder="Что вы ищете?"
                 append-icon="mdi-arrow-right"
+                @input="setValue"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -35,6 +37,7 @@ export default {
   }),
   methods: mapActions({
     hideModal: 'page/hideModal',
+    setValue: 'search/setValue',
   }),
 }
 </script>

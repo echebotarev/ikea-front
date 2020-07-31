@@ -1,14 +1,14 @@
 export const state = () => ({
-  isFocus: false,
+  value: '',
 })
 
 export const mutations = {
-  SET_FOCUS_VALUE(state, payload) {
-    state.isFocus = payload
+  SET_VALUE(state, payload) {
+    state.value = payload
   },
 }
 export const actions = {
-  setFocusValue({ commit }, payload) {
-    commit('SET_FOCUS_VALUE', payload)
+  setValue({ commit }, payload) {
+    commit('SET_VALUE', payload)
   },
 }
