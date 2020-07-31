@@ -1,12 +1,12 @@
 <template>
-  <portal v-if="isShow" to="modal">
-    <div class="modal-substrate" @click="toggleModal">
+  <portal v-if="isShow && data.type === 'info'" to="modal">
+    <div class="modal-substrate" @click="hideModal">
       <v-row align="center">
         <v-col class="modal" cols="5" @click.stop="">
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="2">
-              <v-btn icon @click="toggleModal">
+              <v-btn icon @click="hideModal">
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </v-col>
@@ -35,7 +35,7 @@ export default {
     data: (state) => state.page.modal.data,
   }),
   methods: mapActions({
-    toggleModal: 'page/toggleModal',
+    hideModal: 'page/hideModal',
   }),
 }
 </script>

@@ -22,13 +22,22 @@ export const mutations = {
     state.breadcrumbs = items
   },
 
-  TOGGLE_MODAL(state, payload = {}) {
-    state.modal.isShow = !state.modal.isShow
+  SHOW_MODAL(state, payload = {}) {
+    state.modal.isShow = true
+    state.modal.data = payload
+  },
+
+  HIDE_MODAL(state, payload = {}) {
+    state.modal.isShow = false
     state.modal.data = payload
   },
 }
 export const actions = {
-  toggleModal({ commit }, payload) {
-    commit('TOGGLE_MODAL', payload)
+  showModal({ commit }, payload) {
+    commit('SHOW_MODAL', payload)
+  },
+
+  hideModal({ commit }, payload) {
+    commit('HIDE_MODAL', payload)
   },
 }

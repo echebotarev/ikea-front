@@ -7,8 +7,7 @@
       filled
       prepend-inner-icon="mdi-magnify"
       full-width
-      @focus="setFocusValue(true)"
-      @blur="setFocusValue(false)"
+      @focus="showModal({ type: 'search' })"
     ></v-text-field>
     <SearchModal />
   </v-spacer>
@@ -24,7 +23,7 @@ export default {
     isFocus: (state) => state.search.isFocus,
   }),
   methods: mapActions({
-    setFocusValue: 'search/setFocusValue',
+    showModal: 'page/showModal',
   }),
 }
 </script>

@@ -57,7 +57,13 @@
             <template v-slot:actions>
               <v-btn
                 icon
-                @click="toggleModal(product.information.productDetailsProps)"
+                @click="
+                  showModal(
+                    Object.assign({}, product.information.productDetailsProps, {
+                      type: 'info',
+                    })
+                  )
+                "
               >
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
@@ -72,7 +78,13 @@
             <template v-slot:actions>
               <v-btn
                 icon
-                @click="toggleModal(product.information.dimensionProps)"
+                @click="
+                  showModal(
+                    Object.assign({}, product.information.dimensionProps, {
+                      type: 'info',
+                    })
+                  )
+                "
               >
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
@@ -110,7 +122,7 @@ export default {
     products: (state) => state.cart.products,
   }),
   methods: mapActions({
-    toggleModal: 'page/toggleModal',
+    showModal: 'page/showModal',
     addProduct: 'cart/addProduct',
   }),
 }
