@@ -1,12 +1,18 @@
 <template>
-  <h1>"{{ this.$route.query.q }}"</h1>
+  <div>
+    <h1>"{{ this.$route.query.q }}"</h1>
+    <ProductList :products="products" />
+  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 
+import ProductList from '@/components/ProductList'
+
 export default {
   name: 'Search',
+  components: { ProductList },
   async fetch({ store, error, query }) {
     try {
       await store.dispatch('products/fetchProductsByWord', query.q)
