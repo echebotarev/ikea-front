@@ -14,6 +14,7 @@
             <v-col cols="11">
               <v-text-field
                 clearable
+                autofocus
                 placeholder="Что вы ищете?"
                 append-icon="mdi-arrow-right"
                 @input="setValue"

@@ -21,4 +21,8 @@ export default {
   getProduct(id) {
     return apiClient.get(`/product/${id}`)
   },
+
+  getSearch(value) {
+    return apiClient.get(`/search/?q=${value}`)
+  },
 }
