@@ -35,9 +35,11 @@
                   </v-list-item-icon>
 
                   <v-list-item-content v-if="completion.label === 'Искать'">
-                    <v-list-item-title
-                      v-text="completion.completion.text"
-                    ></v-list-item-title>
+                    <nuxt-link :to="`/search/?q=${completion.completion.text}`">
+                      <v-list-item-title
+                        v-text="completion.completion.text"
+                      ></v-list-item-title>
+                    </nuxt-link>
                   </v-list-item-content>
                   <!-- /<Искать> -->
 
@@ -50,9 +52,11 @@
                     v-if="completion.label === 'Категория'"
                     two-line
                   >
-                    <v-list-item-title
-                      v-text="completion.category.name"
-                    ></v-list-item-title>
+                    <nuxt-link :to="`/category/${completion.category.key}`">
+                      <v-list-item-title
+                        v-text="completion.category.name"
+                      ></v-list-item-title>
+                    </nuxt-link>
 
                     <v-list-item-subtitle
                       v-text="'Категория'"
@@ -69,9 +73,11 @@
                     v-if="completion.label === 'Товар'"
                     two-line
                   >
-                    <v-list-item-title
-                      v-text="completion.product.name"
-                    ></v-list-item-title>
+                    <nuxt-link :to="completion.product.id">
+                      <v-list-item-title
+                        v-text="completion.product.name"
+                      ></v-list-item-title>
+                    </nuxt-link>
 
                     <v-list-item-subtitle
                       v-text="completion.product.typeName"
