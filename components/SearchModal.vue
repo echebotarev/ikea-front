@@ -23,7 +23,8 @@
           </v-row>
 
           <v-row>
-            <v-col cols="12">
+            <v-col cols="1"></v-col>
+            <v-col cols="11">
               <v-list>
                 <v-list-item
                   v-for="(completion, index) in universal"

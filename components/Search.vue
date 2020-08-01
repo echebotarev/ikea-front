@@ -5,6 +5,7 @@
       hide-details
       rounded
       filled
+      placeholder="Что вы ищете?"
       prepend-inner-icon="mdi-magnify"
       full-width
       @focus="showModal({ type: 'search' })"
