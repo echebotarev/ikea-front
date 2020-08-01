@@ -25,4 +25,8 @@ export default {
   getSearch(value) {
     return apiClient.get(`/search/?q=${value}`)
   },
+
+  getProductsByWord(value) {
+    return apiClient.get(`/search/products/?q=${value}`)
+  },
 }

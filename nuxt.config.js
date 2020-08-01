@@ -72,6 +72,7 @@ export default {
   router: {
     prefetchLinks: false,
   },
+  watchQuery: ['Search'],
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/

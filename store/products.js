@@ -19,6 +19,12 @@ export const actions = {
     })
   },
 
+  fetchProductsByWord({ commit }, payload) {
+    return ApiService.getProductsByWord(encodeURI(payload)).then((response) => {
+      commit('SET_PRODUCTS', response.data.searchResultPage.productWindow)
+    })
+  },
+
   fetchProductById({ commit }, id) {
     return ApiService.getProduct(id).then((response) => {
       commit('SET_PRODUCT', response.data)
