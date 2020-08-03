@@ -3,15 +3,12 @@
     <nuxt-link :to="`/product/${product.id}`">
       <v-img
         :src="product.mainImageUrl"
-        :lazy-src="product.mainImageUrl"
+        lazy-src="/images/placeholder.png"
         :alt="product.typeName"
       >
         <template v-slot:placeholder>
           <v-row class="fill-height ma-0" align="center" justify="center">
-            <v-progress-circular
-              indeterminate
-              color="grey lighten-5"
-            ></v-progress-circular>
+            <v-icon x-large>mdi-image-multiple-outline</v-icon>
           </v-row>
         </template>
       </v-img>

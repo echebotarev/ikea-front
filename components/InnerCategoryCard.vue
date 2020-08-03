@@ -5,14 +5,11 @@
       <v-img
         v-if="category.image"
         :src="category.image"
-        :lazy-src="category.image"
+        lazy-src="/images/placeholder-horizontal.png"
       >
         <template v-slot:placeholder>
           <v-row class="fill-height ma-0" align="center" justify="center">
-            <v-progress-circular
-              indeterminate
-              color="grey lighten-5"
-            ></v-progress-circular>
+            <v-icon x-large>mdi-image-multiple-outline</v-icon>
           </v-row>
         </template>
       </v-img>
