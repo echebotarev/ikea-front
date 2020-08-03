@@ -10,7 +10,17 @@
             :key="img.content.url"
             cols="6"
           >
-            <v-img :src="img.content.url" :alt="img.content.alt"></v-img>
+            <v-img
+              :src="img.content.url"
+              lazy-src="/image/placeholder.png"
+              :alt="img.content.alt"
+            >
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-icon x-large>mdi-image-multiple-outline</v-icon>
+                </v-row>
+              </template>
+            </v-img>
           </v-col>
         </v-row>
       </v-col>
