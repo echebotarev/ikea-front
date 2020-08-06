@@ -22,10 +22,6 @@ export const actions = {
       return commit('SET_AVAILABILITY_PRODUCT', state.identifier)
     }
 
-    // если данных нет, то устанавливаем пустой объект
-    // и запускаем поиск
-    commit('SET_AVAILABILITY_PRODUCT', {})
-
     return ApiService.getAvailabilityProduct(payload.url).then((response) => {
       // обновляем store, если даныне обновились
       if (
