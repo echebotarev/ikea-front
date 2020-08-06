@@ -251,13 +251,45 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
 
+        <!-- Экологическая информация -->
         <v-expansion-panel
           v-if="data.accordionObject.sustainabilityAndEnvironment"
         >
           <v-expansion-panel-header>{{
             data.accordionObject.sustainabilityAndEnvironment.title
           }}</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <div
+              v-if="
+                data.accordionObject.sustainabilityAndEnvironment.contentProps
+              "
+            >
+              <div
+                v-if="
+                  data.accordionObject.sustainabilityAndEnvironment.contentProps
+                    .environmentalData
+                "
+              >
+                <div
+                  v-for="(environmentalData, indexEnvironmentalData) in data
+                    .accordionObject.sustainabilityAndEnvironment.contentProps
+                    .environmentalData"
+                  :key="indexEnvironmentalData"
+                >
+                  <div v-if="environmentalData.texts">
+                    <p
+                      v-for="(text, indexText) in environmentalData.texts"
+                      :key="indexText"
+                    >
+                      {{ text }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </v-expansion-panel-content>
         </v-expansion-panel>
+        <!-- Экологическая информация -->
       </v-expansion-panels>
     </v-col>
     <v-spacer></v-spacer>
