@@ -29,4 +29,8 @@ export default {
   getProductsByWord(value) {
     return apiClient.get(`/search/products/?q=${value}`)
   },
+
+  getAvailabilityProduct(url) {
+    return apiClient.get(`/available?url=${url}`)
+  },
 }
