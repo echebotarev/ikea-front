@@ -26,14 +26,20 @@ export const actions = {
     // и запускаем поиск
     commit('SET_AVAILABILITY_PRODUCT', {})
 
-    ApiService.getAvailabilityProduct(payload.url).then((response) => {
-      commit(
-        'ADD_AVAILABILITY_PRODUCT',
-        Object.assign({}, payload, response.data)
-      )
+    return ApiService.getAvailabilityProduct(payload.url).then((response) => {
+      // обновляем store, если даныне обновились
+      if (
+        !state.products[payload.identifier] ||
+        state.products[payload.identifier].status !== response.data.status
+      ) {
+        commit(
+          'SET_AVAILABILITY_PRODUCT',
+          Object.assign({}, payload, response.data)
+        )
+      }
 
       commit(
-        'SET_AVAILABILITY_PRODUCT',
+        'ADD_AVAILABILITY_PRODUCT',
         Object.assign({}, payload, response.data)
       )
     })

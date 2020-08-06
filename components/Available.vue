@@ -21,10 +21,18 @@ export default {
     availabilityProduct: (state) => state.availability.availabilityProduct,
   }),
   mounted() {
-    this.fetchAvailabilityProduct({
-      url: this.url,
-      identifier: this.identifier,
-    })
+    const checkAvailability = () => {
+      this.fetchAvailabilityProduct({
+        url: this.url,
+        identifier: this.identifier,
+      }).then(() => {
+        // опрашиваем сервер каждые 5 секунд, пока данные не пришли
+        this.availabilityProduct.status !== 'success' &&
+          setTimeout(checkAvailability, 5000)
+      })
+    }
+
+    checkAvailability()
   },
   methods: {
     ...mapActions({
