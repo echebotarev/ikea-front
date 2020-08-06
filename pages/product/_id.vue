@@ -8,7 +8,7 @@
           <v-col
             v-for="img in product.images.fullMediaList"
             :key="img.content.url"
-            cols="6"
+            :cols="product.images.fullMediaList.length === 1 ? 12 : 6"
           >
             <v-img
               :src="img.content.url"
