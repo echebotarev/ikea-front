@@ -1,8 +1,15 @@
 <template>
-  <div v-if="availabilityProduct.status === 'success'" class="status">
-    <v-icon>mdi-store-outline</v-icon>
-    <div class="status-text">{{ availabilityProduct.data.statusText }}</div>
-    <div :class="`status-dot__${availabilityProduct.data.statusColor}`"></div>
+  <div>
+    <div v-if="availabilityProduct.status === 'success'" class="status">
+      <v-icon>mdi-store-outline</v-icon>
+      <div class="status-text">{{ availabilityProduct.data.statusText }}</div>
+      <div :class="`status-dot__${availabilityProduct.data.statusColor}`"></div>
+    </div>
+
+    <div v-if="availabilityProduct.status !== 'success'" class="status">
+      <v-icon>mdi-clock-time-three-outline</v-icon>
+      <div>Проверяем наличие</div>
+    </div>
   </div>
 </template>
 
@@ -65,5 +72,9 @@ export default {
 }
 .status-dot__green {
   background: #0a8a00;
+}
+/*Предполагаю, что отсутствие называется Red*/
+.status-dot__red {
+  background: red;
 }
 </style>
