@@ -37,6 +37,7 @@
             </p>
           </v-col>
         </v-row>
+
         <v-row>
           <v-btn
             block
@@ -48,6 +49,12 @@
             <v-icon>mdi-basket-plus-outline</v-icon>
             Добавить в корзину
           </v-btn>
+        </v-row>
+
+        <v-row>
+          <v-col>
+            <Available :url="product.url" :identifier="product.identifier" />
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -113,9 +120,10 @@
 import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import InfoModal from '@/components/InfoModal/index'
+import Available from '@/components/Available'
 
 export default {
-  components: { Breadcrumbs, InfoModal },
+  components: { Breadcrumbs, InfoModal, Available },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('products/fetchProductById', params.id)
