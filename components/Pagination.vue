@@ -1,8 +1,8 @@
 <template>
-  <div v-if="count && count > QTY_PRODUCTS" class="pagination text-center">
+  <div v-if="count && count > PER_PAGE" class="pagination text-center">
     <v-pagination
-      v-model="page"
-      :length="Math.ceil(count / QTY_PRODUCTS)"
+      v-model="currentPage"
+      :length="Math.ceil(count / PER_PAGE)"
       :total-visible="7"
       circle
       @input="input"
@@ -16,22 +16,31 @@ import { mapState } from 'vuex'
 export default {
   name: 'Pagination',
   props: {
-    count: {
-      type: Number,
-      default: () => 0,
+    categoryId: {
+      type: String,
+      default: () => '',
     },
     // eslint-disable-next-line vue/prop-name-casing
-    QTY_PRODUCTS: {
+    PER_PAGE: {
       type: Number,
       default: () => 24,
     },
   },
+  data() {
+    return {
+      currentPage: parseInt(this.$route.query.page || 1),
+    }
+  },
   computed: mapState({
-    page: (state) => 1,
+    count: (state) => state.products.productCount,
   }),
   methods: {
-    input(page) {
-      console.log(page)
+    async input(page) {
+      await this.$router.push({ query: { page } })
+      await this.$store.dispatch('products/fetchProductsByCategoryId', {
+        id: this.categoryId,
+        page,
+      })
     },
   },
 }

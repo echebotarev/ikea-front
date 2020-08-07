@@ -15,7 +15,7 @@
 
     <ProductList :products="products" />
 
-    <Pagination :count="productCount" />
+    <Pagination :category-id="category.identifier" />
   </div>
 </template>
 
@@ -28,10 +28,14 @@ import Pagination from '@/components/Pagination'
 
 export default {
   components: { InnerCategoryCard, Breadcrumbs, ProductList, Pagination },
-  async fetch({ store, error, params }) {
+  async fetch({ store, error, params, query }) {
+    const { page } = query
     try {
       await store.dispatch('category/fetchCategories', params.id)
-      await store.dispatch('products/fetchProductsByCategoryId', params.id)
+      await store.dispatch('products/fetchProductsByCategoryId', {
+        id: params.id,
+        page,
+      })
     } catch (e) {
       error({
         statusCode: 503,
