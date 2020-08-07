@@ -2,6 +2,7 @@ import ApiService from '@/services/ApiService.js'
 export const state = () => ({
   products: [],
   product: {},
+  productCount: 0,
 })
 export const mutations = {
   SET_PRODUCTS(state, products) {
@@ -11,10 +12,15 @@ export const mutations = {
   SET_PRODUCT(state, product) {
     state.product = product
   },
+
+  SET_PRODUCT_COUNT(state, count) {
+    state.productCount = count
+  },
 }
 export const actions = {
   fetchProductsByCategoryId({ commit }, id) {
     return ApiService.getProducts(id).then((response) => {
+      commit('SET_PRODUCT_COUNT', response.data.productCount)
       commit('SET_PRODUCTS', response.data.productWindow)
     })
   },

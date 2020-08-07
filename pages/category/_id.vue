@@ -39,7 +39,10 @@ export default {
   computed: mapState({
     category: (state) => state.category.category,
     categories: (state) => state.category.categories,
+
     products: (state) => state.products.products,
+    productCount: (state) => state.products.productCount,
+
     breadcrumbs: (state) => state.page.breadcrumbs,
   }),
 }
