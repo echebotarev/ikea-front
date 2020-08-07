@@ -14,6 +14,8 @@
     </v-row>
 
     <ProductList :products="products" />
+
+    <Pagination :count="productCount" />
   </div>
 </template>
 
@@ -22,9 +24,10 @@ import { mapState } from 'vuex'
 import InnerCategoryCard from '@/components/InnerCategoryCard'
 import ProductList from '@/components/ProductList'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Pagination from '@/components/Pagination'
 
 export default {
-  components: { InnerCategoryCard, Breadcrumbs, ProductList },
+  components: { InnerCategoryCard, Breadcrumbs, ProductList, Pagination },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('category/fetchCategories', params.id)
