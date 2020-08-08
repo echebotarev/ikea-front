@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// TODO собирать srcset scraper'ом
 // TODO заменить lazy-src на thumbnail этого изображения
 export default {
   name: 'ProductCard',

@@ -12,7 +12,7 @@
           >
             <v-img
               :src="img.content.url"
-              lazy-src="/image/placeholder.png"
+              lazy-src="/images/placeholder.png"
               :alt="img.content.alt"
             >
               <template v-slot:placeholder>
