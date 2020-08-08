@@ -2,7 +2,7 @@
   <div>
     <nuxt-link :to="`/product/${product.id}`">
       <v-img
-        :src="product.mainImageUrl"
+        :src="getImage(product.mainImageUrl, 4)"
         lazy-src="/images/placeholder.png"
         :alt="product.typeName"
       >
@@ -21,11 +21,14 @@
 
 <script>
 // TODO заменить lazy-src на thumbnail этого изображения
+import getImage from '@/assets/utils/getImage'
+
 export default {
   name: 'ProductCard',
   props: {
     product: { type: Object, default: () => {} },
   },
+  methods: { getImage },
 }
 </script>
 

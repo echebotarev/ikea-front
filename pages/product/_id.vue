@@ -11,7 +11,7 @@
             :cols="product.images.fullMediaList.length === 1 ? 12 : 6"
           >
             <v-img
-              :src="img.content.url"
+              :src="getImage(img.content.url, 4)"
               lazy-src="/images/placeholder.png"
               :alt="img.content.alt"
             >
@@ -122,6 +122,8 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import InfoModal from '@/components/InfoModal/index'
 import Available from '@/components/Available'
 
+import getImage from '@/assets/utils/getImage'
+
 export default {
   components: { Breadcrumbs, InfoModal, Available },
   async fetch({ store, error, params }) {
@@ -139,10 +141,13 @@ export default {
     breadcrumbs: (state) => state.page.breadcrumbs,
     products: (state) => state.cart.products,
   }),
-  methods: mapActions({
-    showModal: 'page/showModal',
-    addProduct: 'cart/addProduct',
-  }),
+  methods: {
+    ...mapActions({
+      showModal: 'page/showModal',
+      addProduct: 'cart/addProduct',
+    }),
+    getImage,
+  },
 }
 </script>
 
