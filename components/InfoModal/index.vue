@@ -13,10 +13,13 @@
           </v-row>
 
           <Details v-if="data.eventLabel === 'pip_details'" :data="data" />
+
           <Dimensions
             v-if="data.eventLabel === 'pip_dimensions'"
             :data="data"
           />
+
+          <Variations v-if="data.variations" :data="data" />
         </v-col>
       </v-row>
     </div>
@@ -27,9 +30,10 @@
 import { mapState, mapActions } from 'vuex'
 import Details from '@/components/InfoModal/Details'
 import Dimensions from '@/components/InfoModal/Dimensions'
+import Variations from '@/components/InfoModal/Variations'
 export default {
   name: 'InfoModal',
-  components: { Details, Dimensions },
+  components: { Details, Dimensions, Variations },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
     data: (state) => state.page.modal.data,
