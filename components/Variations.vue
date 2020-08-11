@@ -15,8 +15,9 @@
             icon
             @click="
               showModal(
-                Object.assign({}, product.variations, {
+                Object.assign({}, variation, {
                   type: 'info',
+                  identifier: product.identifier,
                 })
               )
             "
