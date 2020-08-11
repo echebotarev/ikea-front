@@ -11,7 +11,16 @@
           currentVariation(product.identifier, variation.options).title
         }}</v-subheader>
         <template v-slot:actions>
-          <v-btn icon @click="showModal()">
+          <v-btn
+            icon
+            @click="
+              showModal(
+                Object.assign({}, product.variations, {
+                  type: 'info',
+                })
+              )
+            "
+          >
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
         </template>
@@ -21,6 +30,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Variations',
   props: {
@@ -30,6 +41,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      showModal: 'page/showModal',
+    }),
     currentVariation(id, options) {
       return options.find((option) => option.linkId === id)
     },
