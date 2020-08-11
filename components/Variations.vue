@@ -8,7 +8,7 @@
       >
         {{ variation.title }}
         <v-subheader>{{
-          currentOption(product.identifier, variation.options).title
+          currentVariation(product.identifier, variation.options).title
         }}</v-subheader>
         <template v-slot:actions>
           <v-btn icon @click="showModal()">
@@ -30,7 +30,7 @@ export default {
     },
   },
   methods: {
-    currentOption(id, options) {
+    currentVariation(id, options) {
       return options.find((option) => option.linkId === id)
     },
   },
