@@ -2,14 +2,12 @@
   <v-row v-if="product.variations">
     <v-col class="product-variations">
       <v-banner
-        v-for="(variation, indexVariation) in product.variations.variations"
-        :key="indexVariation"
+        v-for="variation in product.variations.variations"
+        :key="variation.code"
         single-line
       >
         {{ variation.title }}
-        <v-subheader>{{
-          currentVariation(product.identifier, variation.options).title
-        }}</v-subheader>
+        <v-subheader>{{ variation.selectedOption }}</v-subheader>
         <template v-slot:actions>
           <v-btn
             icon
@@ -17,7 +15,10 @@
               showModal(
                 Object.assign({}, variation, {
                   type: 'info',
-                  identifier: product.identifier,
+                  currentVariation: currentVariation(
+                    product.identifier,
+                    variation.options
+                  ),
                 })
               )
             "
