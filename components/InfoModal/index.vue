@@ -2,7 +2,7 @@
   <portal v-if="isShow && data.type === 'info'" to="modal">
     <div class="modal-substrate" @click="hideModal">
       <v-row align="center">
-        <v-col class="modal" cols="5" @click.stop="">
+        <v-col class="modal" cols="6" @click.stop="">
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="2">
@@ -19,7 +19,7 @@
             :data="data"
           />
 
-          <Variations v-if="data.variations" :data="data" />
+          <Variations v-if="data.options" :data="data" />
         </v-col>
       </v-row>
     </div>
@@ -38,6 +38,9 @@ export default {
     isShow: (state) => state.page.modal.isShow,
     data: (state) => state.page.modal.data,
   }),
+  beforeDestroy() {
+    this.hideModal()
+  },
   methods: mapActions({
     hideModal: 'page/hideModal',
   }),
