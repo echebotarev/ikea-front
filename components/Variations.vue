@@ -1,5 +1,5 @@
 <template>
-  <v-row v-if="product.variations">
+  <v-row>
     <v-col class="product-variations">
       <v-banner
         v-for="variation in product.variations.variations"

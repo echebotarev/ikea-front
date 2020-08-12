@@ -38,7 +38,7 @@
           </v-col>
         </v-row>
 
-        <Variations :product="product" />
+        <Variations v-if="product.variations" :product="product" />
 
         <v-row>
           <v-btn
