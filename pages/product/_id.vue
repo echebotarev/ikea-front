@@ -6,7 +6,7 @@
       <v-col cols="7">
         <v-row>
           <v-col
-            v-for="img in product.images.fullMediaList"
+            v-for="img in fullMediaList"
             :key="img.content.url"
             :cols="product.images.fullMediaList.length === 1 ? 12 : 6"
           >
@@ -143,6 +143,11 @@ export default {
     product: (state) => state.products.product,
     breadcrumbs: (state) => state.page.breadcrumbs,
     products: (state) => state.cart.products,
+    // TODO: убрать, когда реализую отображение видео
+    fullMediaList: (state) =>
+      state.products.product.images.fullMediaList.filter(
+        (img) => img.type === 'image'
+      ),
   }),
   methods: {
     ...mapActions({
