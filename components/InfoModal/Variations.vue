@@ -10,7 +10,7 @@
       >
         <nuxt-link :to="`/product/${option.linkId}`">
           <v-row align="center">
-            <v-col cols="2">
+            <v-col v-if="option.image" cols="2">
               <v-avatar>
                 <v-img :src="getImage(option.image.url, 2)"></v-img>
               </v-avatar>
@@ -20,7 +20,7 @@
               <v-card-subtitle>{{ option.title }}</v-card-subtitle>
             </v-col>
 
-            <v-col>{{
+            <v-col v-if="data.currentVariation.priceProps">{{
               getPriceDifference(data.currentVariation, option)
             }}</v-col>
           </v-row>

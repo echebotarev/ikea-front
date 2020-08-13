@@ -15,10 +15,7 @@
               showModal(
                 Object.assign({}, variation, {
                   type: 'info',
-                  currentVariation: currentVariation(
-                    product.identifier,
-                    variation.options
-                  ),
+                  currentVariation: currentVariation(variation.options),
                 })
               )
             "
@@ -46,8 +43,8 @@ export default {
     ...mapActions({
       showModal: 'page/showModal',
     }),
-    currentVariation(id, options) {
-      return options.find((option) => option.linkId === id)
+    currentVariation(options) {
+      return options.find((option) => option.isSelected)
     },
   },
 }
