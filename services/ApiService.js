@@ -18,6 +18,10 @@ export default {
     return apiClient.get(`/products/${id}?page=${page}`)
   },
 
+  getProductsByIds(ids = []) {
+    return apiClient.get(`/products/?ids=${ids}`)
+  },
+
   getProduct(id) {
     return apiClient.get(`/product/${id}`)
   },
