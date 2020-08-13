@@ -43,6 +43,11 @@
 
         <Variations v-if="product.variations" :product="product" />
 
+        <DisplayVariations
+          v-if="product.display_variations"
+          :product="product"
+        />
+
         <v-row>
           <v-btn
             block
@@ -126,12 +131,19 @@ import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import InfoModal from '@/components/InfoModal/index'
 import Variations from '@/components/Variations'
+import DisplayVariations from '@/components/DisplayVariations'
 import Available from '@/components/Available'
 
 import getImage from '@/assets/utils/getImage'
 
 export default {
-  components: { Breadcrumbs, InfoModal, Available, Variations },
+  components: {
+    Breadcrumbs,
+    InfoModal,
+    Available,
+    Variations,
+    DisplayVariations,
+  },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('products/fetchProductById', params.id)
