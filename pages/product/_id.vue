@@ -27,8 +27,11 @@
       <v-col cols="5">
         <v-row>
           <v-col cols="9">
-            <h1>{{ product.name }}</h1>
-            <p>{{ product.short_desc }}</p>
+            <h2>{{ product.name }}</h2>
+            <p>
+              {{ product.price.productDescription }},
+              {{ product.price.measurementText }}
+            </p>
           </v-col>
           <v-col cols="3">
             <p>
