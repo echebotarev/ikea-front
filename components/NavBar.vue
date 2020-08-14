@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="transparent" elevation="0" hide-on-scroll>
+  <v-app-bar color="transparent" elevation="0" hide-on-scroll class="mt-5">
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
         <img src="~/assets/images/ikea-logo.svg" />
