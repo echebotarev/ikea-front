@@ -5,9 +5,7 @@
         <v-banner single-line>
           {{ product.display_variations.title }}
 
-          <v-subheader>{{
-            product.display_variations.selectedOption
-          }}</v-subheader>
+          <v-subheader>{{ subtitle }}</v-subheader>
 
           <template v-slot:actions>
             <v-btn
@@ -49,7 +47,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import getImage from '@/assets/utils/getImage'
 
 export default {
@@ -60,9 +58,16 @@ export default {
       default: () => {},
     },
   },
+  computed: mapState({
+    subtitle: (state) => state.displayVariations.subtitle,
+  }),
+  mounted() {
+    this.setSubtitle(this.product.display_variations.selectedOption)
+  },
   methods: {
     ...mapActions({
       showModal: 'page/showModal',
+      setSubtitle: 'displayVariations/setSubtitle',
     }),
     currentVariation(options) {
       return options.find((option) => option.isSelected)
