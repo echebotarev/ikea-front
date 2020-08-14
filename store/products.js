@@ -1,17 +1,12 @@
 import ApiService from '@/services/ApiService.js'
 export const state = () => ({
   products: [],
-  productVariations: [],
   product: {},
   productCount: 0,
 })
 export const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products
-  },
-
-  SET_PRODUCT_VARIATIONS(state, products) {
-    state.productVariations = products
   },
 
   SET_PRODUCT(state, product) {
@@ -45,12 +40,6 @@ export const actions = {
         commit('page/SET_BREADCRUMBS', response.data.breadcrumbs, {
           root: true,
         })
-    })
-  },
-
-  fetchProductVariations({ commit }, ids) {
-    return ApiService.getProductsByIds(ids).then((response) => {
-      commit('SET_PRODUCT_VARIATIONS', response.data)
     })
   },
 }
