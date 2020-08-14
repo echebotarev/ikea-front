@@ -1,22 +1,55 @@
 <template>
-  <v-row>
-    <v-col
-      v-for="productVariant in product.display_variations.options"
-      :key="productVariant.linkId"
-      cols="3"
-    >
-      <nuxt-link :to="`/product/${productVariant.linkId}`">
-        <v-img
-          :src="getImage(productVariant.image.url, 2)"
-          lazy-src="/images/placeholder.png"
-          :class="`selectable ${productVariant.isSelected ? 'selected' : ''}`"
-        ></v-img>
-      </nuxt-link>
-    </v-col>
-  </v-row>
+  <div>
+    <v-row>
+      <v-col>
+        <v-banner single-line>
+          {{ product.display_variations.title }}
+
+          <v-subheader>{{
+            product.display_variations.selectedOption
+          }}</v-subheader>
+
+          <template v-slot:actions>
+            <v-btn
+              icon
+              @click="
+                showModal(
+                  Object.assign({}, product.display_variations, {
+                    type: 'info',
+                    currentVariation: currentVariation(
+                      product.display_variations.allOptions
+                    ),
+                  })
+                )
+              "
+            >
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </template>
+        </v-banner>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col
+        v-for="productVariant in product.display_variations.options"
+        :key="productVariant.linkId"
+        cols="3"
+      >
+        <nuxt-link :to="`/product/${productVariant.linkId}`">
+          <v-img
+            :src="getImage(productVariant.image.url, 2)"
+            lazy-src="/images/placeholder.png"
+            :class="`selectable ${productVariant.isSelected ? 'selected' : ''}`"
+          ></v-img>
+        </nuxt-link>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import getImage from '@/assets/utils/getImage'
 
 export default {
@@ -28,6 +61,12 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      showModal: 'page/showModal',
+    }),
+    currentVariation(options) {
+      return options.find((option) => option.isSelected)
+    },
     getImage,
   },
 }

@@ -4,8 +4,8 @@
     <v-col cols="10">
       <h4>{{ data.title }}</h4>
       <v-card
-        v-for="(option, indexOption) in data.options"
-        :key="indexOption"
+        v-for="option in (data.allOptions ? data.allOptions : data.options)"
+        :key="option.linkId"
         outlined
       >
         <nuxt-link :to="`/product/${option.linkId}`">

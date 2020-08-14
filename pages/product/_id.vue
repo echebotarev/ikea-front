@@ -41,12 +41,12 @@
           </v-col>
         </v-row>
 
-        <Variations v-if="product.variations" :product="product" />
-
         <DisplayVariations
           v-if="product.display_variations"
           :product="product"
         />
+
+        <Variations v-if="product.variations" :product="product" />
 
         <v-row>
           <v-btn
