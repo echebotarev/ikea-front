@@ -39,6 +39,8 @@
             :src="getImage(productVariant.image.url, 2)"
             lazy-src="/images/placeholder.png"
             :class="`selectable ${productVariant.isSelected ? 'selected' : ''}`"
+            @mouseover="mouseOver(productVariant.title)"
+            @mouseleave="mouseLeave()"
           ></v-img>
         </nuxt-link>
       </v-col>
@@ -71,6 +73,12 @@ export default {
     }),
     currentVariation(options) {
       return options.find((option) => option.isSelected)
+    },
+    mouseOver(subtitle) {
+      this.setSubtitle(subtitle)
+    },
+    mouseLeave() {
+      this.setSubtitle(this.product.display_variations.selectedOption)
     },
     getImage,
   },
