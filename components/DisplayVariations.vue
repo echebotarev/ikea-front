@@ -1,16 +1,15 @@
 <template>
   <v-row>
     <v-col
-      v-for="productVariant in productVariations"
-      :key="productVariant.identifier"
+      v-for="productVariant in product.display_variations.options"
+      :key="productVariant.linkId"
       cols="3"
     >
-      <nuxt-link :to="`/product/${productVariant.identifier}`">
+      <nuxt-link :to="`/product/${productVariant.linkId}`">
         <v-img
-          :src="getImage(productVariant.images.fullMediaList[0].content.url, 2)"
-          :class="`selectable ${
-            productVariant.identifier === product.identifier ? 'selected' : ''
-          }`"
+          :src="getImage(productVariant.image.url, 2)"
+          lazy-src="/images/placeholder.png"
+          :class="`selectable ${productVariant.isSelected ? 'selected' : ''}`"
         ></v-img>
       </nuxt-link>
     </v-col>
@@ -18,8 +17,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 import getImage from '@/assets/utils/getImage'
 
 export default {
@@ -29,15 +26,6 @@ export default {
       type: Object,
       default: () => {},
     },
-  },
-  computed: mapState({
-    productVariations: (state) => state.products.productVariations,
-  }),
-  async mounted() {
-    await this.$store.dispatch(
-      'products/fetchProductVariations',
-      this.product.display_variations
-    )
   },
   methods: {
     getImage,
