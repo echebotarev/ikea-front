@@ -1,9 +1,13 @@
 <template>
-  <v-breadcrumbs :items="breadcrumbs">
-    <template v-slot:divider>
-      <v-icon>mdi-chevron-right</v-icon>
-    </template>
-  </v-breadcrumbs>
+  <div>
+    <v-breadcrumbs :items="breadcrumbs">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
+
+    <v-divider light></v-divider>
+  </div>
 </template>
 
 <script>
@@ -17,6 +21,6 @@ export default {
 
 <style scoped>
 .v-breadcrumbs {
-  padding-left: 0;
+  padding: 18px 0 10px;
 }
 </style>
