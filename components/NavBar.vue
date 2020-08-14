@@ -8,9 +8,13 @@
     <v-spacer></v-spacer>
     <Search />
     <nav>
-      <v-btn v-for="link in links" :key="`${link}-header-link`" text>
-        <nuxt-link :to="link.url">{{ link.label }}</nuxt-link>
-      </v-btn>
+      <nuxt-link
+        v-for="link in links"
+        :key="link"
+        :to="link.url"
+        class="ml-5"
+        >{{ link.label }}</nuxt-link
+      >
     </nav>
   </v-app-bar>
 </template>
