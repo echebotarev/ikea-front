@@ -79,44 +79,48 @@
         </div>
 
         <div class="product-information">
-          <v-banner v-if="product.information.productDetailsProps" single-line>
-            {{ product.information.productDetailsProps.title }}
-            <template v-slot:actions>
-              <v-btn
-                icon
-                @click="
-                  showModal(
-                    Object.assign({}, product.information.productDetailsProps, {
-                      type: 'info',
-                    })
-                  )
-                "
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </template>
-          </v-banner>
+          <a
+            v-if="product.information.productDetailsProps"
+            @click="
+              showModal(
+                Object.assign({}, product.information.productDetailsProps, {
+                  type: 'info',
+                })
+              )
+            "
+          >
+            <v-banner single-line>
+              {{ product.information.productDetailsProps.title }}
+              <template v-slot:actions>
+                <v-btn icon>
+                  <v-icon>mdi-chevron-right</v-icon>
+                </v-btn>
+              </template>
+            </v-banner>
+          </a>
 
-          <v-banner v-if="product.information.dimensionProps" single-line>
-            {{ product.information.dimensionProps.title }}
-            <v-subheader>{{
-              product.information.dimensionProps.subtitle
-            }}</v-subheader>
-            <template v-slot:actions>
-              <v-btn
-                icon
-                @click="
-                  showModal(
-                    Object.assign({}, product.information.dimensionProps, {
-                      type: 'info',
-                    })
-                  )
-                "
-              >
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </template>
-          </v-banner>
+          <a
+            v-if="product.information.dimensionProps"
+            @click="
+              showModal(
+                Object.assign({}, product.information.dimensionProps, {
+                  type: 'info',
+                })
+              )
+            "
+          >
+            <v-banner single-line>
+              {{ product.information.dimensionProps.title }}
+              <v-subheader>{{
+                product.information.dimensionProps.subtitle
+              }}</v-subheader>
+              <template v-slot:actions>
+                <v-btn icon>
+                  <v-icon>mdi-chevron-right</v-icon>
+                </v-btn>
+              </template>
+            </v-banner>
+          </a>
         </div>
       </v-col>
     </v-row>

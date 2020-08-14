@@ -1,29 +1,28 @@
 <template>
   <v-row>
     <v-col class="product-variations">
-      <v-banner
+      <a
         v-for="variation in product.variations.variations"
         :key="variation.code"
-        single-line
+        @click="
+          showModal(
+            Object.assign({}, variation, {
+              type: 'info',
+              currentVariation: currentVariation(variation.options),
+            })
+          )
+        "
       >
-        {{ variation.title }}
-        <v-subheader>{{ variation.selectedOption }}</v-subheader>
-        <template v-slot:actions>
-          <v-btn
-            icon
-            @click="
-              showModal(
-                Object.assign({}, variation, {
-                  type: 'info',
-                  currentVariation: currentVariation(variation.options),
-                })
-              )
-            "
-          >
-            <v-icon>mdi-chevron-right</v-icon>
-          </v-btn>
-        </template>
-      </v-banner>
+        <v-banner single-line>
+          {{ variation.title }}
+          <v-subheader>{{ variation.selectedOption }}</v-subheader>
+          <template v-slot:actions>
+            <v-btn icon>
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </template>
+        </v-banner>
+      </a>
     </v-col>
   </v-row>
 </template>

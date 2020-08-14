@@ -17,4 +17,14 @@
 	nav a {
 		font-weight: 700;
 	}
+
+	.product-variations, .product-information {
+		a:hover {
+			text-decoration: none;
+
+			.v-banner__text {
+				text-decoration: underline;
+			}
+		}
+	}
 }
