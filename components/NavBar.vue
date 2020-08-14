@@ -10,7 +10,7 @@
     <nav>
       <nuxt-link
         v-for="link in links"
-        :key="link"
+        :key="link.url"
         :to="link.url"
         class="ml-5"
         >{{ link.label }}</nuxt-link
