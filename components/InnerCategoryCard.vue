@@ -1,6 +1,6 @@
 <!-- Используется на внутренних страницах категорий -->
 <template>
-  <div>
+  <div class="card-category">
     <nuxt-link :to="`/category/${category.identifier}`">
       <v-img
         v-if="category.image"
