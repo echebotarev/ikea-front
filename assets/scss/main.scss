@@ -27,4 +27,9 @@
 			}
 		}
 	}
+
+	.v-banner__wrapper {
+		border-top: thin solid rgba(0, 0, 0, 0.12);
+		border-bottom: 0 !important;
+	}
 }

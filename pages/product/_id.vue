@@ -26,18 +26,18 @@
       </v-col>
       <v-col cols="5">
         <v-row>
-          <v-col cols="9">
-            <h2>{{ product.name }}</h2>
+          <v-col cols="8">
+            <h2 class="product-name">{{ product.name }}</h2>
             <p>
               {{ product.price.productDescription }},
               {{ product.price.measurementText }}
             </p>
           </v-col>
-          <v-col cols="3">
-            <p>
+          <v-col cols="4" class="text-right">
+            <span class="product-price">
               {{ product.price.price.mainPriceProps.price.integer }}
               {{ product.price.price.mainPriceProps.currencySymbol }}
-            </p>
+            </span>
           </v-col>
         </v-row>
 
@@ -178,4 +178,10 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.product-name,
+.product-price {
+  font-size: 22px;
+  font-weight: 500;
+}
+</style>
