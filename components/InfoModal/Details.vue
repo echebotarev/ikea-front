@@ -117,7 +117,9 @@
                   <div>{{ packageItem.typeName }}</div>
                   <div v-if="packageItem.articleNumber">
                     <div>{{ packageItem.articleNumber.label }}</div>
-                    <div>{{ packageItem.articleNumber.value }}</div>
+                    <span class="product-identifier">
+                      {{ packageItem.articleNumber.value }}
+                    </span>
                   </div>
                   <div v-if="packageItem.measurements">
                     <div
