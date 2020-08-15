@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card-product">
     <nuxt-link :to="`/product/${product.id}`">
       <v-img
         :src="getImage(product.mainImageUrl, 4)"
@@ -12,8 +12,8 @@
           </v-row>
         </template>
       </v-img>
-      <h4>{{ product.name }}</h4>
-      <p>
+      <h4 class="card-product-name">{{ product.name }}</h4>
+      <p class="card-product-description">
         {{ product.typeName
         }}{{
           product.itemMeasureReferenceText
@@ -21,7 +21,7 @@
             : ''
         }}
       </p>
-      <p>{{ product.priceNumeral }}</p>
+      <p class="card-product-price">{{ product.priceNumeral }}</p>
     </nuxt-link>
   </div>
 </template>
@@ -39,4 +39,23 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.card-product {
+  a:hover {
+    .card-product-name {
+      text-decoration: underline;
+    }
+  }
+}
+p {
+  &.card-product-description {
+    font-size: 14px;
+    color: #484848;
+  }
+
+  &.card-product-price {
+    font-size: 22px;
+    font-weight: 600;
+  }
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
-  <v-row>
-    <v-col v-for="product in products" :key="`${product.id}-product`" cols="3">
+  <v-row class="products">
+    <v-col v-for="product in products" :key="product.id" cols="3">
       <ProductCard :product="product" />
     </v-col>
   </v-row>
@@ -20,4 +20,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
