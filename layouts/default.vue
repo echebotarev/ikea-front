@@ -1,11 +1,13 @@
 <template>
   <v-app id="app">
-    <NavBar :links="links" />
-    <v-main>
-      <v-container>
-        <Nuxt />
-      </v-container>
-    </v-main>
+    <v-content>
+      <NavBar :links="links" />
+      <v-main>
+        <v-container>
+          <Nuxt />
+        </v-container>
+      </v-main>
+    </v-content>
     <Footer />
     <portal-target name="modal"></portal-target>
   </v-app>
