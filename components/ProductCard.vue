@@ -13,7 +13,14 @@
         </template>
       </v-img>
       <h4>{{ product.name }}</h4>
-      <p>{{ product.typeName }}</p>
+      <p>
+        {{ product.typeName
+        }}{{
+          product.itemMeasureReferenceText
+            ? `, ${product.itemMeasureReferenceText}`
+            : ''
+        }}
+      </p>
       <p>{{ product.priceNumeral }}</p>
     </nuxt-link>
   </div>
