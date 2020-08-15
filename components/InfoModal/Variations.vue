@@ -7,9 +7,11 @@
         v-for="option in (data.allOptions ? data.allOptions : data.options)"
         :key="option.linkId"
         outlined
+        hover
+        class="mb-5"
       >
         <nuxt-link :to="`/product/${option.linkId}`">
-          <v-row align="center">
+          <v-row align="center pl-3 pr-3">
             <v-col v-if="option.image" cols="2">
               <v-avatar>
                 <v-img :src="getImage(option.image.url, 2)"></v-img>
