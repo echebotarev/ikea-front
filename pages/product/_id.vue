@@ -53,7 +53,7 @@
             block
             rounded
             color="#0058a3"
-            min-height="56"
+            min-height="50"
             dark
             @click="addProduct({ product, qnt: 1 })"
           >

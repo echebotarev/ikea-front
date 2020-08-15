@@ -6,7 +6,7 @@
       </template>
     </v-breadcrumbs>
 
-    <v-divider light></v-divider>
+    <v-divider light class="mb-6"></v-divider>
   </div>
 </template>
 
