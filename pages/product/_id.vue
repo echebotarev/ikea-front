@@ -25,6 +25,13 @@
         </v-row>
       </v-col>
       <v-col cols="5">
+        <v-row
+          v-if="product.price.newProductText"
+          class="product-new"
+          no-gutters
+        >
+          <v-col>{{ product.price.newProductText }}</v-col>
+        </v-row>
         <v-row>
           <v-col cols="8">
             <h2 class="product-name">{{ product.name }}</h2>
@@ -187,5 +194,11 @@ export default {
 }
 .product-description {
   font-size: 14px;
+}
+.product-new {
+  padding-top: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ca5008;
 }
 </style>
