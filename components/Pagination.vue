@@ -1,5 +1,5 @@
 <template>
-  <div v-if="count && count > PER_PAGE" class="pagination text-center">
+  <div v-if="count && count > PER_PAGE" class="pagination text-center mt-5">
     <v-pagination
       v-model="currentPage"
       :length="Math.ceil(count / PER_PAGE)"
