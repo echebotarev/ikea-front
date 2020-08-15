@@ -7,7 +7,7 @@
       <v-col
         v-for="category in categories"
         :key="`${category.identifier}-${Math.random()}`"
-        cols="3"
+        :cols="getCols(categories.length)"
       >
         <InnerCategoryCard :category="category" />
       </v-col>
@@ -52,6 +52,19 @@ export default {
 
     breadcrumbs: (state) => state.page.breadcrumbs,
   }),
+  methods: {
+    getCols(length) {
+      switch (length) {
+        case 1:
+        case 2:
+        case 3:
+          return 4
+
+        default:
+          return 3
+      }
+    },
+  },
 }
 </script>
 
