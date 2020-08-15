@@ -46,6 +46,7 @@ export const mutations = {
     ])
   },
 }
+
 export const actions = {
   addProduct({ commit }, payload) {
     commit('ADD_PRODUCT', payload)
@@ -53,5 +54,13 @@ export const actions = {
 
   removeProduct({ commit }, payload) {
     commit('REMOVE_PRODUCT', payload)
+  },
+}
+
+export const getters = {
+  getCountCart(state) {
+    let count = 0
+    state.products.map((product) => (count += product.qnt))
+    return count
   },
 }
