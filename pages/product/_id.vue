@@ -28,7 +28,7 @@
         <v-row>
           <v-col cols="8">
             <h2 class="product-name">{{ product.name }}</h2>
-            <p>
+            <p class="product-description">
               {{ product.price.productDescription }},
               {{ product.price.measurementText }}
             </p>
@@ -183,5 +183,8 @@ export default {
 .product-price {
   font-size: 22px;
   font-weight: 500;
+}
+.product-description {
+  font-size: 14px;
 }
 </style>
