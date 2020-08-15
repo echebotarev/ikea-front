@@ -2,7 +2,7 @@
   <v-row>
     <v-spacer></v-spacer>
     <v-col cols="10">
-      <h4>{{ data.title }}</h4>
+      <h2>{{ data.title }}</h2>
       <v-card
         v-for="option in (data.allOptions ? data.allOptions : data.options)"
         :key="option.linkId"

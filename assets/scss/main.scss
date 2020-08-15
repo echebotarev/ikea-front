@@ -37,4 +37,22 @@
 			font-weight: 600;
 		}
 	}
+
+	.modal {
+		h2 {
+			margin-bottom: 1.875rem;
+		}
+
+		.product-details-content {
+			overflow: hidden;
+			height: auto;
+			transition: all 0.2s;
+			margin-bottom: 1.875rem;
+
+			p {
+				font-size: 14px;
+				color: #484848;
+			}
+		}
+	}
 }

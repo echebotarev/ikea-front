@@ -3,16 +3,25 @@
     <v-spacer></v-spacer>
     <v-col v-if="data.productDescriptionProps" cols="10">
       <h2>{{ data.title }}</h2>
-      <p
-        v-for="(paragraph, index) in data.productDescriptionProps.paragraphs"
-        :key="index"
+      <div
+        class="product-details-content"
+        :style="isOpenDetails === false ? 'height: 156px;' : ''"
       >
-        {{ paragraph }}
-      </p>
-      <p>
-        <b>{{ data.productDescriptionProps.designerLabel }}: </b>
-        {{ data.productDescriptionProps.designerName }}
-      </p>
+        <p
+          v-for="(paragraph, index) in data.productDescriptionProps.paragraphs"
+          :key="index"
+        >
+          {{ paragraph }}
+        </p>
+        <p>
+          <b>{{ data.productDescriptionProps.designerLabel }}: </b>
+          {{ data.productDescriptionProps.designerName }}
+        </p>
+      </div>
+
+      <a @click="toggleDetails(!isOpenDetails)">{{
+        isOpenDetails ? 'Скрыть' : 'Читать далее'
+      }}</a>
 
       <!-- Материалы и уход -->
       <v-expansion-panels v-if="data.accordionObject" accordion flat>
@@ -297,6 +306,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Details',
   props: {
@@ -304,8 +314,15 @@ export default {
       type: Object,
       default: () => {},
     },
+    isOpenDetails: {
+      type: Boolean,
+      default: () => false,
+    },
   },
   methods: {
+    ...mapActions({
+      toggleDetails: 'page/toggleDetails',
+    }),
     attachments: (atts) => {
       const ids = []
       return atts.filter((att) => {
@@ -321,4 +338,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+a {
+  font-size: 14px;
+  text-decoration: underline;
+}
+</style>

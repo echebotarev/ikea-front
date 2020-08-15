@@ -1,6 +1,7 @@
 export const state = () => ({
   modal: {
     isShow: false,
+    isOpenDetails: false,
     data: {},
   },
   breadcrumbs: [],
@@ -31,6 +32,10 @@ export const mutations = {
     state.modal.isShow = false
     state.modal.data = payload
   },
+
+  TOGGLE_DETAILS(state, payload) {
+    state.modal.isOpenDetails = payload
+  },
 }
 export const actions = {
   showModal({ commit }, payload) {
@@ -39,5 +44,9 @@ export const actions = {
 
   hideModal({ commit }, payload) {
     commit('HIDE_MODAL', payload)
+  },
+
+  toggleDetails({ commit }, payload) {
+    commit('TOGGLE_DETAILS', payload)
   },
 }

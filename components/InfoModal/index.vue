@@ -12,7 +12,11 @@
             </v-col>
           </v-row>
 
-          <Details v-if="data.eventLabel === 'pip_details'" :data="data" />
+          <Details
+            v-if="data.eventLabel === 'pip_details'"
+            :data="data"
+            :isOpenDetails="isOpenDetails"
+          />
 
           <Dimensions
             v-if="data.eventLabel === 'pip_dimensions'"
@@ -36,13 +40,16 @@ export default {
   components: { Details, Dimensions, Variations },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
+    isOpenDetails: (state) => state.page.modal.isOpenDetails,
     data: (state) => state.page.modal.data,
   }),
   beforeDestroy() {
     this.hideModal()
+    this.toggleDetails(false)
   },
   methods: mapActions({
     hideModal: 'page/hideModal',
+    toggleDetails: 'page/toggleDetails',
   }),
 }
 </script>
