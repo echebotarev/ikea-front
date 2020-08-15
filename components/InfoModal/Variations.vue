@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="modal-product-variations">
     <v-spacer></v-spacer>
     <v-col cols="10">
       <h2>{{ data.title }}</h2>
@@ -8,7 +8,7 @@
         :key="option.linkId"
         outlined
         hover
-        class="mb-5"
+        :class="`mb-5${option.isSelected ? ' selected' : ''}`"
       >
         <nuxt-link :to="`/product/${option.linkId}`">
           <v-row align="center pl-3 pr-3">
@@ -78,4 +78,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.v-card {
+  &.selected {
+    border: 2px solid #0058a3;
+  }
+}
+</style>
