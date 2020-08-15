@@ -1,6 +1,6 @@
 <!-- Используется на главной странице - "Товары" -->
 <template>
-  <div>
+  <div class="card-category">
     <nuxt-link :to="`/category/${category.identifier}`">
       <p v-if="category.title">{{ category.title }}</p>
       <v-img v-if="category.title === null" :src="category.image"></v-img>
