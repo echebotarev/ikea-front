@@ -1,5 +1,5 @@
 <template>
-  <v-row align="center">
+  <v-row align="center product-dimensions">
     <v-spacer></v-spacer>
     <v-col cols="10">
       <h2>{{ data.title }}</h2>
@@ -15,12 +15,12 @@
         <v-img
           v-for="(image, indexImg) in data.images"
           :key="`${indexImg}-image`"
-          :src="image.url"
+          :src="getImage(image.url, 4)"
         ></v-img>
       </div>
       <v-img
         v-if="data.images.length === 0"
-        :src="data.fallbackImage.url"
+        :src="getImage(data.fallbackImage.url, 4)"
       ></v-img>
     </v-col>
     <v-spacer></v-spacer>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import getImage from '~/assets/utils/getImage'
 export default {
   name: 'Dimensions',
   props: {
@@ -36,7 +37,16 @@ export default {
       default: () => {},
     },
   },
+  methods: {
+    getImage,
+  },
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.product-dimensions {
+  span {
+    display: block;
+  }
+}
+</style>
