@@ -53,10 +53,11 @@
             block
             rounded
             color="#0058a3"
+            min-height="56"
             dark
             @click="addProduct({ product, qnt: 1 })"
           >
-            <v-icon>mdi-basket-plus-outline</v-icon>
+            <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
             Добавить в корзину
           </v-btn>
         </v-row>
