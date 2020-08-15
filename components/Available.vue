@@ -54,8 +54,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.status div {
-  display: inline-block;
+.status {
+  font-size: 14px;
+
+  div {
+    display: inline-block;
+  }
 }
 [class^='status-dot'] {
   position: relative;
