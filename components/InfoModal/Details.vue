@@ -340,7 +340,9 @@ export default {
 
 <style scoped>
 a {
+  display: inline-block;
   font-size: 14px;
   text-decoration: underline;
+  margin-bottom: 1.875rem;
 }
 </style>
