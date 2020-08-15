@@ -15,7 +15,7 @@
           <Details
             v-if="data.eventLabel === 'pip_details'"
             :data="data"
-            :isOpenDetails="isOpenDetails"
+            :is-open-details="isOpenDetails"
           />
 
           <Dimensions
