@@ -39,6 +39,9 @@
               {{ product.price.productDescription }},
               {{ product.price.measurementText }}
             </p>
+            <p v-if="product.price.isLastChance" class="text-weight-500">
+              Выходит из ассортимента
+            </p>
           </v-col>
           <v-col cols="4" class="text-right">
             <Price :price="product.price.price.mainPriceProps.price.integer" />

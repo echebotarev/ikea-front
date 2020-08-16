@@ -18,21 +18,18 @@ export const mutations = {
 export const actions = {
   fetchAvailabilityProduct({ commit, state }, payload) {
     // если данные уже есть сразу отдаем
-    if (state.identifier) {
-      return commit('SET_AVAILABILITY_PRODUCT', state.identifier)
+    if (state.products[state.identifier]) {
+      return commit(
+        'SET_AVAILABILITY_PRODUCT',
+        state.products[state.identifier]
+      )
     }
 
     return ApiService.getAvailabilityProduct(payload).then((response) => {
-      // обновляем store, если даныне обновились
-      if (
-        !state.products[payload.identifier] ||
-        state.products[payload.identifier].status !== response.data.status
-      ) {
-        commit(
-          'SET_AVAILABILITY_PRODUCT',
-          Object.assign({}, payload, response.data)
-        )
-      }
+      commit(
+        'SET_AVAILABILITY_PRODUCT',
+        Object.assign({}, payload, response.data)
+      )
 
       commit(
         'ADD_AVAILABILITY_PRODUCT',
