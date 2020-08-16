@@ -20,6 +20,13 @@
           "
           >Нет в наличии</span
         >
+        <span
+          v-if="
+            availabilityProduct.StockAvailability.RetailItemAvailability
+              .InStockProbabilityCode.$ === 'MEDIUM'
+          "
+          >Заканчивается</span
+        >
       </div>
     </div>
 
@@ -83,7 +90,7 @@ export default {
   left: 5px;
   flex-shrink: 0;
 }
-.status-dot__orange:before {
+.status-dot__MEDIUM:before {
   background: #ffa524;
 }
 .status-dot__HIGH:before {
