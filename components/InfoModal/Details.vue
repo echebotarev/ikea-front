@@ -108,6 +108,7 @@
                   data.accordionObject.packaging.contentProps
                     .totalNoOfPackagesText
                 "
+                class="font-weight-bold mb-5"
               >
                 {{
                   data.accordionObject.packaging.contentProps
@@ -119,10 +120,11 @@
                   v-for="(packageItem, indexPackage) in data.accordionObject
                     .packaging.contentProps.packages"
                   :key="`${indexPackage}-package`"
+                  class="mb-10"
                 >
                   <h4>{{ packageItem.name }}</h4>
                   <div>{{ packageItem.typeName }}</div>
-                  <div v-if="packageItem.articleNumber">
+                  <div v-if="packageItem.articleNumber" class="mb-5">
                     <div>{{ packageItem.articleNumber.label }}</div>
                     <span class="product-identifier">
                       {{ packageItem.articleNumber.value }}
