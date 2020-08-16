@@ -61,8 +61,6 @@
         </v-col>
       </v-row>
 
-      <v-divider></v-divider>
-
       <v-row class="cart-total">
         <v-col>Сумма</v-col>
         <v-col class="text-right">
@@ -104,4 +102,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.products-list {
+  > .row {
+    border-bottom: thin solid rgba(0, 0, 0, 0.12);
+  }
+}
+</style>
