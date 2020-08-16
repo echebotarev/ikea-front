@@ -16,9 +16,7 @@
         >{{ link.label }}</nuxt-link
       >
     </nav>
-    <span v-if="countCart()" class="count ml-2 text-center">{{
-      countCart()
-    }}</span>
+    <span v-if="countCart" class="count ml-2 text-center">{{ countCart }}</span>
   </v-app-bar>
 </template>
 
@@ -34,7 +32,7 @@ export default {
       default: null,
     },
   },
-  methods: {
+  computed: {
     ...mapGetters({
       countCart: 'cart/getCountCart',
     }),
