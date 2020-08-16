@@ -19,6 +19,14 @@
                 <v-col>{{ product.price.newProductText }}</v-col>
               </v-row>
 
+              <v-row
+                v-if="product.price.familyText"
+                class="family-text"
+                no-gutters
+              >
+                <v-col>{{ product.price.familyText }}</v-col>
+              </v-row>
+
               <a :href="`/product/${product.identifier}`">
                 <h4>{{ product.name }}</h4>
               </a>
@@ -118,6 +126,14 @@ export default {
 
   .product-price {
     display: block;
+  }
+
+  .family-text {
+    display: inline-block;
+    background-color: #0077c8;
+    font-weight: 700;
+    color: #fff;
+    padding: 0 0.5em;
   }
 }
 </style>
