@@ -25,7 +25,6 @@
             <v-col v-if="data.currentVariation.priceProps" class="text-right">
               <Price
                 :price="getPriceDifference(data.currentVariation, option).price"
-                :is-only-formatted="true"
                 :prepend="
                   getPriceDifference(data.currentVariation, option).sign
                 "
@@ -70,10 +69,9 @@ export default {
       ) {
         return {
           sign: '-',
-          price: this.$getPrice(
+          price:
             currentVariation.priceProps.priceNumeral -
-              option.priceProps.priceNumeral
-          ),
+            option.priceProps.priceNumeral,
         }
       } else if (
         currentVariation.priceProps.priceNumeral <
@@ -81,10 +79,9 @@ export default {
       ) {
         return {
           sign: '+',
-          price: this.$getPrice(
+          price:
             option.priceProps.priceNumeral -
-              currentVariation.priceProps.priceNumeral
-          ),
+            currentVariation.priceProps.priceNumeral,
         }
       } else {
         return {}
