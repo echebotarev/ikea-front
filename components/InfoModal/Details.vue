@@ -5,7 +5,12 @@
       <h2>{{ data.title }}</h2>
       <div
         class="product-details-content"
-        :style="isOpenDetails === false ? 'height: 156px;' : ''"
+        :style="
+          isOpenDetails === false &&
+          data.productDescriptionProps.paragraphs.length > 1
+            ? 'height: 156px;'
+            : ''
+        "
       >
         <p
           v-for="(paragraph, index) in data.productDescriptionProps.paragraphs"
@@ -19,9 +24,11 @@
         </p>
       </div>
 
-      <a @click="toggleDetails(!isOpenDetails)">{{
-        isOpenDetails ? 'Скрыть' : 'Читать далее'
-      }}</a>
+      <a
+        v-if="data.productDescriptionProps.paragraphs.length > 1"
+        @click="toggleDetails(!isOpenDetails)"
+        >{{ isOpenDetails ? 'Скрыть' : 'Читать далее' }}</a
+      >
 
       <!-- Материалы и уход -->
       <v-expansion-panels v-if="data.accordionObject" accordion flat>
