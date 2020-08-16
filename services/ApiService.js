@@ -34,7 +34,9 @@ export default {
     return apiClient.get(`/search/products/?q=${value}`)
   },
 
-  getAvailabilityProduct(url) {
-    return apiClient.get(`/available?url=${url}`)
+  getAvailabilityProduct(payload) {
+    return apiClient.get(
+      `/available?type=${payload.type}&id=${payload.identifier}`
+    )
   },
 }

@@ -68,7 +68,10 @@
 
         <v-row>
           <v-col>
-            <Available :url="product.url" :identifier="product.identifier" />
+            <Available
+              :type="product.utag.product_type"
+              :identifier="product.identifier"
+            />
           </v-col>
         </v-row>
       </v-col>

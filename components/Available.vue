@@ -19,7 +19,7 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'Available',
   props: {
-    url: {
+    type: {
       type: String,
       default: () => '',
     },
@@ -34,7 +34,7 @@ export default {
   mounted() {
     const checkAvailability = () => {
       this.fetchAvailabilityProduct({
-        url: this.url,
+        type: this.type,
         identifier: this.identifier,
       }).then(() => {
         // опрашиваем сервер каждые 5 секунд, пока данные не пришли

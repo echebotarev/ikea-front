@@ -22,7 +22,7 @@ export const actions = {
       return commit('SET_AVAILABILITY_PRODUCT', state.identifier)
     }
 
-    return ApiService.getAvailabilityProduct(payload.url).then((response) => {
+    return ApiService.getAvailabilityProduct(payload).then((response) => {
       // обновляем store, если даныне обновились
       if (
         !state.products[payload.identifier] ||
