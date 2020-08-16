@@ -54,6 +54,29 @@
                   symbol=".-"
                   class="light"
                 />
+
+                <div v-if="product.price.familyText" class="previous-price">
+                  <Price
+                    :price="
+                      $getPrice(
+                        product.price.price.previousPriceProps.price.integer
+                      ) * product.qnt
+                    "
+                    :is-only-formatted="true"
+                    :prepend="`${product.price.price.previousPriceText}:`"
+                    symbol=".-"
+                    class="light"
+                  />
+
+                  <Price
+                    v-if="product.qnt > 1"
+                    :price="
+                      product.price.price.previousPriceProps.price.integer
+                    "
+                    symbol=".-"
+                    class="light"
+                  />
+                </div>
               </div>
             </v-col>
           </v-row>
