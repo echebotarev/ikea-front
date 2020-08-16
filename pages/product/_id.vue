@@ -44,7 +44,14 @@
             </p>
           </v-col>
           <v-col cols="4" class="text-right">
-            <Price :price="product.price.price.mainPriceProps.price.integer" />
+            <Price
+              :price="product.price.price.mainPriceProps.price.integer"
+              :class="
+                product.price.price.mainPriceProps.hasHighlight
+                  ? 'highlight'
+                  : ''
+              "
+            />
           </v-col>
         </v-row>
 
@@ -204,5 +211,10 @@ export default {
   font-size: 0.875rem;
   font-weight: 600;
   color: #ca5008;
+}
+.highlight {
+  background-color: #ffdb00;
+  box-shadow: 0.125rem 0.125rem #e00751;
+  padding: 0 0.3125rem;
 }
 </style>
