@@ -6,7 +6,9 @@
         <v-col>
           <v-row>
             <v-col cols="3">
-              <v-img :src="product.images.fullMediaList[0].content.url"></v-img>
+              <v-img
+                :src="getImage(product.images.fullMediaList[0].content.url, 3)"
+              ></v-img>
             </v-col>
             <v-col cols="4" class="cart-description">
               <a :href="`/product/${product.identifier}`">
@@ -56,6 +58,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import getImage from 'assets/utils/getImage'
 export default {
   name: 'Cart',
   computed: mapState({
@@ -73,10 +76,13 @@ export default {
       return sum
     },
   }),
-  methods: mapActions({
-    addProduct: 'cart/addProduct',
-    removeProduct: 'cart/removeProduct',
-  }),
+  methods: {
+    ...mapActions({
+      addProduct: 'cart/addProduct',
+      removeProduct: 'cart/removeProduct',
+    }),
+    getImage,
+  },
 }
 </script>
 
