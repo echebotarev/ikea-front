@@ -32,12 +32,26 @@
         >
           <v-col>{{ product.price.newProductText }}</v-col>
         </v-row>
+
+        <v-row v-if="product.price.familyText" class="family-text" no-gutters>
+          <v-col>{{ product.price.familyText }}</v-col>
+        </v-row>
+
         <v-row>
           <v-col cols="8">
             <h2 class="product-name">{{ product.name }}</h2>
             <p class="product-description">
               {{ product.price.productDescription }},
               {{ product.price.measurementText }}
+              <br />
+              <span v-if="product.price.price.previousPriceProps">
+                {{ product.price.price.previousPriceText }}
+                <Price
+                  :price="product.price.price.previousPriceProps.price.integer"
+                />
+                <br />
+                {{ product.price.validToFromAndWhileSupplyLastText }}
+              </span>
             </p>
             <p v-if="product.price.isLastChance" class="text-weight-500">
               Выходит из ассортимента
@@ -62,7 +76,7 @@
 
         <Variations v-if="product.variations" :product="product" />
 
-        <v-row>
+        <v-row class="mt-5">
           <v-btn
             block
             rounded
@@ -205,12 +219,23 @@ export default {
 }
 .product-description {
   font-size: 14px;
+
+  .product-price {
+    font-size: inherit;
+    font-weight: normal;
+  }
 }
-.product-new {
+.product-new,
+.family-text {
   padding-top: 12px;
   font-size: 0.875rem;
   font-weight: 600;
+}
+.product-new {
   color: #ca5008;
+}
+.family-text {
+  color: #0077c1;
 }
 .highlight {
   background-color: #ffdb00;
