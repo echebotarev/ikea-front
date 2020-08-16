@@ -41,10 +41,7 @@
             </p>
           </v-col>
           <v-col cols="4" class="text-right">
-            <span class="product-price">
-              {{ product.price.price.mainPriceProps.price.integer }}
-              {{ product.price.price.mainPriceProps.currencySymbol }}
-            </span>
+            <Price :price="product.price.price.mainPriceProps.price.integer" />
           </v-col>
         </v-row>
 
@@ -145,6 +142,7 @@ import InfoModal from '@/components/InfoModal/index'
 import Variations from '@/components/Variations'
 import DisplayVariations from '@/components/DisplayVariations'
 import Available from '@/components/Available'
+import Price from '@/components/Price'
 
 import getImage from '@/assets/utils/getImage'
 
@@ -155,6 +153,7 @@ export default {
     Available,
     Variations,
     DisplayVariations,
+    Price,
   },
   async fetch({ store, error, params }) {
     try {

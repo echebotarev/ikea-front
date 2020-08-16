@@ -29,4 +29,16 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.product-price {
+  font-weight: 600;
+
+  .symbol {
+    position: relative;
+    top: 4px;
+    line-height: 0.9;
+    font-size: 0.6875rem;
+    vertical-align: text-top;
+  }
+}
+</style>
