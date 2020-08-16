@@ -3,6 +3,9 @@
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
         <img src="~/assets/images/ikea-logo.svg" />
+        <span class="logo-text ml-3 pl-3">
+          Доставка
+        </span>
       </nuxt-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
@@ -48,5 +51,21 @@ export default {
   border-radius: 50%;
   background: rgb(0, 88, 163);
   color: #fff;
+}
+.logo-text {
+  line-height: 40px;
+  display: inline-block;
+  float: right;
+  border-left: thin solid rgba(0, 0, 0, 0.12);
+  transition: all 0.3s;
+
+  &:hover {
+    border-left-color: rgba(0, 0, 0, 1);
+  }
+}
+a:hover {
+  .logo-text {
+    border-left-color: rgba(0, 0, 0, 1);
+  }
 }
 </style>
