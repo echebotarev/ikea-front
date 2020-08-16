@@ -1,5 +1,6 @@
 <template>
-  <div :class="`product-price ${className}`">
+  <div v-if="$getPrice(price)" :class="`product-price ${className}`">
+    <span v-if="prepend">{{ prepend }}</span>
     <span class="price">{{
       $getDisplayPrice(price, { isOnlyFormatted })
     }}</span>
@@ -25,6 +26,10 @@ export default {
       type: String,
       default: () => currencySymbol,
     },
+    prepend: {
+      type: String,
+      default: () => '',
+    },
     className: {
       type: String,
       default: () => '',
@@ -35,6 +40,7 @@ export default {
 
 <style scoped lang="scss">
 .product-price {
+  display: inline-block;
   font-size: 22px;
   font-weight: 600;
 

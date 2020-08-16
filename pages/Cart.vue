@@ -107,5 +107,9 @@ export default {
   > .row {
     border-bottom: thin solid rgba(0, 0, 0, 0.12);
   }
+
+  .product-price {
+    display: block;
+  }
 }
 </style>
