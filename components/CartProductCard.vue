@@ -25,9 +25,9 @@
               <v-col>{{ product.price.familyText }}</v-col>
             </v-row>
 
-            <a :href="`/product/${product.identifier}`">
+            <nuxt-link :to="`/product/${product.identifier}`">
               <h4>{{ product.name }}</h4>
-            </a>
+            </nuxt-link>
             <div>{{ product.price.productDescription }}</div>
             <div v-if="product.price.measurementText">
               {{ product.price.measurementText }}
