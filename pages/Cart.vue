@@ -34,10 +34,6 @@ export default {
       return sum
     },
   }),
-  mounted() {
-    console.log('This', this)
-    this.availabilityProduct()('123')
-  },
   methods: {
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',

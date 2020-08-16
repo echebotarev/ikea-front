@@ -9,8 +9,19 @@
         :class="`status-dot__${
           availabilityProduct(identifier).StockAvailability
             .RetailItemAvailability.InStockProbabilityCode.$
-        } pl-5`"
+        } ${withQnt ? 'with-qnt' : ''} pl-5`"
       >
+        <span
+          v-if="
+            withQnt &&
+            availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.InStockProbabilityCode.$ !== 'LOW'
+          "
+          >{{
+            availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.AvailableStock.$
+          }}</span
+        >
         <span
           v-if="
             availabilityProduct(identifier).StockAvailability
@@ -18,19 +29,21 @@
           "
           >В наличии</span
         >
-        <span
-          v-if="
-            availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode.$ === 'LOW'
-          "
-          >Нет в наличии</span
-        >
+
         <span
           v-if="
             availabilityProduct(identifier).StockAvailability
               .RetailItemAvailability.InStockProbabilityCode.$ === 'MEDIUM'
           "
           >Заканчивается</span
+        >
+
+        <span
+          v-if="
+            availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.InStockProbabilityCode.$ === 'LOW'
+          "
+          >Нет в наличии</span
         >
       </div>
     </div>
@@ -58,6 +71,10 @@ export default {
     identifier: {
       type: String,
       default: () => '',
+    },
+    withQnt: {
+      type: Boolean,
+      default: () => false,
     },
   },
   computed: {
@@ -100,13 +117,33 @@ export default {
   left: 5px;
   flex-shrink: 0;
 }
-.status-dot__MEDIUM:before {
-  background: #ffa524;
+.status-dot__MEDIUM {
+  &:before {
+    background: #ffa524;
+  }
+
+  &.with-qnt {
+    color: #ffa524;
+    text-transform: lowercase;
+  }
 }
-.status-dot__HIGH:before {
-  background: #0a8a00;
+.status-dot__HIGH {
+  &:before {
+    background: #0a8a00;
+  }
+
+  &.with-qnt {
+    color: #0a8a00;
+    text-transform: lowercase;
+  }
 }
-.status-dot__LOW:before {
-  background: red;
+.status-dot__LOW {
+  &:before {
+    background: red;
+  }
+
+  &.with-qnt {
+    color: red;
+  }
 }
 </style>

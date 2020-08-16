@@ -14,7 +14,7 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchAvailabilityProduct({ commit, state, getters }, payload) {
+  fetchAvailabilityProduct({ commit, state }, payload) {
     return ApiService.getAvailabilityProduct(payload).then((response) => {
       commit(
         'ADD_AVAILABILITY_PRODUCT',
