@@ -1,13 +1,13 @@
 <template>
   <v-app id="app">
-    <v-content>
+    <v-main>
       <NavBar :links="links" />
       <v-main>
         <v-container>
           <Nuxt />
         </v-container>
       </v-main>
-    </v-content>
+    </v-main>
     <Footer />
     <portal-target name="modal"></portal-target>
   </v-app>
