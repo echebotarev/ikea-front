@@ -22,7 +22,12 @@
             </v-col>
             <v-col class="cart-price text-right">
               <div class="main-price">
-                <b>{{ product.price.price.mainPriceProps.price.integer }}</b>
+                <b>
+                  <Price
+                    :price="product.price.price.mainPriceProps.price.integer"
+                    symbol=".-"
+                  />
+                </b>
               </div>
             </v-col>
           </v-row>
@@ -50,7 +55,9 @@
 
       <v-row class="cart-total">
         <v-col>Сумма</v-col>
-        <v-col class="text-right">{{ sum }}</v-col>
+        <v-col class="text-right">
+          <Price :price="sum" :is-only-formatted="true" />
+        </v-col>
       </v-row>
     </div>
   </div>
@@ -59,19 +66,20 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import getImage from 'assets/utils/getImage'
+import Price from '@/components/Price'
+
 export default {
   name: 'Cart',
+  components: { Price },
   computed: mapState({
     products: (state) => state.cart.products,
-    sum: (state) => {
+    sum(state) {
       let sum = 0
       state.cart.products.forEach((product) => {
-        let price = product.price.price.mainPriceProps.price.integer.replace(
-          / /g,
-          ''
-        )
-        price = price * product.qnt
-        sum += parseInt(price)
+        const price =
+          this.$getPrice(product.price.price.mainPriceProps.price.integer) *
+          product.qnt
+        sum += price
       })
       return sum
     },
