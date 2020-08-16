@@ -116,7 +116,7 @@
           >
             <v-banner single-line>
               {{ product.information.dimensionProps.title }}
-              <v-subheader>{{
+              <v-subheader v-if="product.information.dimensionProps.subtitle">{{
                 product.information.dimensionProps.subtitle
               }}</v-subheader>
               <template v-slot:actions>
@@ -186,8 +186,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.product-name,
-.product-price {
+.product.name {
   font-size: 22px;
   font-weight: 500;
 }

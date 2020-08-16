@@ -31,6 +31,7 @@ export default {
 
 <style scoped lang="scss">
 .product-price {
+  font-size: 22px;
   font-weight: 600;
 
   .symbol {

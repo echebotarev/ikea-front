@@ -21,17 +21,20 @@
             : ''
         }}
       </p>
-      <p class="card-product-price">{{ product.priceNumeral }}</p>
+      <p class="card-product-price">
+        <Price :price="product.priceNumeral" />
+      </p>
     </nuxt-link>
   </div>
 </template>
 
 <script>
-// TODO заменить lazy-src на thumbnail этого изображения
+import Price from '@/components/Price'
 import getImage from '@/assets/utils/getImage'
 
 export default {
   name: 'ProductCard',
+  components: { Price },
   props: {
     product: { type: Object, default: () => {} },
   },

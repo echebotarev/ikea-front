@@ -57,6 +57,8 @@ export default {
       switch (length) {
         case 1:
         case 2:
+          return 6
+
         case 3:
           return 4
 
