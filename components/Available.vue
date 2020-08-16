@@ -1,36 +1,44 @@
 <template>
   <div>
-    <div v-if="availabilityProduct.StockAvailability" class="status">
+    <div
+      v-if="availabilityProduct(identifier).StockAvailability"
+      class="status"
+    >
       <v-icon>mdi-store-outline</v-icon>
-      <!--      <div class="status-text">{{ availabilityProduct.data.statusText }}</div>-->
       <div
-        :class="`status-dot__${availabilityProduct.StockAvailability.RetailItemAvailability.InStockProbabilityCode.$} pl-5`"
+        :class="`status-dot__${
+          availabilityProduct(identifier).StockAvailability
+            .RetailItemAvailability.InStockProbabilityCode.$
+        } pl-5`"
       >
         <span
           v-if="
-            availabilityProduct.StockAvailability.RetailItemAvailability
-              .InStockProbabilityCode.$ === 'HIGH'
+            availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.InStockProbabilityCode.$ === 'HIGH'
           "
           >В наличии</span
         >
         <span
           v-if="
-            availabilityProduct.StockAvailability.RetailItemAvailability
-              .InStockProbabilityCode.$ === 'LOW'
+            availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.InStockProbabilityCode.$ === 'LOW'
           "
           >Нет в наличии</span
         >
         <span
           v-if="
-            availabilityProduct.StockAvailability.RetailItemAvailability
-              .InStockProbabilityCode.$ === 'MEDIUM'
+            availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.InStockProbabilityCode.$ === 'MEDIUM'
           "
           >Заканчивается</span
         >
       </div>
     </div>
 
-    <div v-if="!availabilityProduct.StockAvailability" class="status">
+    <div
+      v-if="!availabilityProduct(identifier).StockAvailability"
+      class="status"
+    >
       <v-icon>mdi-clock-time-three-outline</v-icon>
       <div>Проверяем наличие</div>
     </div>
@@ -38,7 +46,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Available',
@@ -52,9 +60,11 @@ export default {
       default: () => '',
     },
   },
-  computed: mapState({
-    availabilityProduct: (state) => state.availability.availabilityProduct,
-  }),
+  computed: {
+    ...mapGetters({
+      availabilityProduct: 'availability/availabilityProduct',
+    }),
+  },
   mounted() {
     this.fetchAvailabilityProduct({
       type: this.type,

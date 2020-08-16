@@ -1,40 +1,31 @@
 import ApiService from '@/services/ApiService.js'
 
 export const state = () => ({
-  products: {},
-  availabilityProduct: {},
+  products: [],
 })
 
 export const mutations = {
   ADD_AVAILABILITY_PRODUCT(state, payload) {
-    state.products[payload.identifier] = payload
-  },
-
-  SET_AVAILABILITY_PRODUCT(state, payload) {
-    state.availabilityProduct = payload
+    state.products = [
+      ...state.products.filter((p) => p.identifier !== payload.identifier),
+      { ...payload },
+    ]
   },
 }
 
 export const actions = {
-  fetchAvailabilityProduct({ commit, state }, payload) {
-    // если данные уже есть сразу отдаем
-    if (state.products[state.identifier]) {
-      return commit(
-        'SET_AVAILABILITY_PRODUCT',
-        state.products[state.identifier]
-      )
-    }
-
+  fetchAvailabilityProduct({ commit, state, getters }, payload) {
     return ApiService.getAvailabilityProduct(payload).then((response) => {
-      commit(
-        'SET_AVAILABILITY_PRODUCT',
-        Object.assign({}, payload, response.data)
-      )
-
       commit(
         'ADD_AVAILABILITY_PRODUCT',
         Object.assign({}, payload, response.data)
       )
     })
+  },
+}
+
+export const getters = {
+  availabilityProduct: (state) => (id) => {
+    return state.products.find((p) => p.identifier === id) || {}
   },
 }
