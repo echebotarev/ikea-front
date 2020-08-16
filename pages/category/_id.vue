@@ -13,6 +13,10 @@
       </v-col>
     </v-row>
 
+    <v-row v-if="category.description">
+      <v-col cols="8">{{ category.description }}</v-col>
+    </v-row>
+
     <ProductList :products="products" />
 
     <Pagination :category-id="category.identifier" />
