@@ -11,6 +11,14 @@
               ></v-img>
             </v-col>
             <v-col cols="4" class="cart-description">
+              <v-row
+                v-if="product.price.newProductText"
+                class="product-new"
+                no-gutters
+              >
+                <v-col>{{ product.price.newProductText }}</v-col>
+              </v-row>
+
               <a :href="`/product/${product.identifier}`">
                 <h4>{{ product.name }}</h4>
               </a>

@@ -228,11 +228,6 @@ export default {
 .product-new,
 .family-text {
   padding-top: 12px;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-.product-new {
-  color: #ca5008;
 }
 .family-text {
   color: #0077c1;
