@@ -12,11 +12,13 @@ export const mutations = {
     if (statedProduct) {
       qnt = statedProduct.qnt + qnt
       return (state.products = [
-        ...state.products.filter((p) => p.identifier !== product.identifier),
-        {
-          ...product,
-          qnt,
-        },
+        ...state.products.map((p) => {
+          if (p.identifier === product.identifier) {
+            return { ...product, qnt }
+          }
+
+          return p
+        }),
       ])
     }
 
@@ -38,11 +40,13 @@ export const mutations = {
     }
 
     return (state.products = [
-      ...state.products.filter((p) => p.identifier !== product.identifier),
-      {
-        ...product,
-        qnt,
-      },
+      ...state.products.map((p) => {
+        if (p.identifier === product.identifier) {
+          return { ...product, qnt }
+        }
+
+        return p
+      }),
     ])
   },
 }
