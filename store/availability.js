@@ -16,7 +16,6 @@ export const mutations = {
 export const actions = {
   fetchAvailabilityProduct({ commit, state, getters }, payload) {
     const product = getters.availabilityProduct(payload.identifier)
-    console.log('Product', product)
     if (product && Date.now() < product.expires) {
       return product
     }
