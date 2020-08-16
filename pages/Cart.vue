@@ -22,12 +22,22 @@
             </v-col>
             <v-col class="cart-price text-right">
               <div class="main-price">
-                <b>
-                  <Price
-                    :price="product.price.price.mainPriceProps.price.integer"
-                    symbol=".-"
-                  />
-                </b>
+                <Price
+                  :price="
+                    $getPrice(
+                      product.price.price.mainPriceProps.price.integer
+                    ) * product.qnt
+                  "
+                  :is-only-formatted="true"
+                  symbol=".-"
+                />
+
+                <Price
+                  v-if="product.qnt > 1"
+                  :price="product.price.price.mainPriceProps.price.integer"
+                  symbol=".-"
+                  class="light"
+                />
               </div>
             </v-col>
           </v-row>

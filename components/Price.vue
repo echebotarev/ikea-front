@@ -1,5 +1,5 @@
 <template>
-  <div class="product-price">
+  <div :class="`product-price ${className}`">
     <span class="price">{{
       $getDisplayPrice(price, { isOnlyFormatted })
     }}</span>
@@ -25,6 +25,10 @@ export default {
       type: String,
       default: () => currencySymbol,
     },
+    className: {
+      type: String,
+      default: () => '',
+    },
   },
 }
 </script>
@@ -40,6 +44,11 @@ export default {
     line-height: 0.9;
     font-size: 0.6875rem;
     vertical-align: text-top;
+  }
+
+  &.light {
+    font-size: 16px;
+    font-weight: 400;
   }
 }
 </style>
