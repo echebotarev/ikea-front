@@ -42,7 +42,7 @@
                   product.qnt
                 "
                 :is-only-formatted="true"
-                symbol=".-"
+                symbol=".–"
                 :class-name="
                   product.price.price.mainPriceProps.hasHighlight &&
                   product.qnt === 1
@@ -54,7 +54,7 @@
               <Price
                 v-if="product.qnt > 1"
                 :price="product.price.price.mainPriceProps.price.integer"
-                symbol=".-"
+                symbol=".–"
                 :class-name="`light ${
                   product.price.price.mainPriceProps.hasHighlight
                     ? 'highlight'
@@ -71,14 +71,14 @@
                   "
                   :is-only-formatted="true"
                   :prepend="`${product.price.price.previousPriceText}:`"
-                  symbol=".-"
+                  symbol=".–"
                   class-name="light"
                 />
 
                 <Price
                   v-if="product.qnt > 1"
                   :price="product.price.price.previousPriceProps.price.integer"
-                  symbol=".-"
+                  symbol=".–"
                   class-name="light"
                 />
               </div>
@@ -117,10 +117,11 @@
 import getImage from 'assets/utils/getImage'
 import { mapActions } from 'vuex'
 import Price from '@/components/Price'
+import Available from '@/components/Available'
 
 export default {
   name: 'CartProductCard',
-  components: { Price },
+  components: { Price, Available },
   props: {
     products: {
       type: Array,
