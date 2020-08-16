@@ -14,11 +14,19 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchAvailabilityProduct({ commit, state }, payload) {
+  fetchAvailabilityProduct({ commit, state, getters }, payload) {
+    const product = getters.availabilityProduct(payload.identifier)
+    console.log('Product', product)
+    if (product && Date.now() < product.expires) {
+      return product
+    }
+
     return ApiService.getAvailabilityProduct(payload).then((response) => {
       commit(
         'ADD_AVAILABILITY_PRODUCT',
-        Object.assign({}, payload, response.data)
+        Object.assign({}, payload, response.data, {
+          expires: Date.now() + 1000 * 60 * 60 * 24,
+        })
       )
     })
   },
