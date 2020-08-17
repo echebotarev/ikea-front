@@ -8,6 +8,7 @@
       placeholder="Что вы ищете?"
       prepend-inner-icon="mdi-magnify"
       full-width
+      :height="$vuetify.breakpoint.smAndUp ? '50' : ''"
       @focus="showModal({ type: 'search' })"
     ></v-text-field>
     <SearchModal />

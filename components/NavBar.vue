@@ -3,11 +3,18 @@
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
         <img src="~/assets/images/ikea-logo.svg" />
-        <span v-if="$isBrowser" class="logo-text ml-3 pl-3"> Доставка </span>
+        <span class="logo-text ml-3 pl-3">
+          Доставка
+        </span>
       </nuxt-link>
     </v-toolbar-title>
+
     <v-spacer></v-spacer>
-    <Search />
+
+    <no-ssr v-if="$vuetify.breakpoint.smAndUp">
+      <Search />
+    </no-ssr>
+
     <nav>
       <nuxt-link
         v-for="link in links"
@@ -17,6 +24,7 @@
         >{{ link.label }}</nuxt-link
       >
     </nav>
+
     <span v-if="countCart" class="count ml-2 text-center">{{ countCart }}</span>
   </v-app-bar>
 </template>

@@ -2,24 +2,40 @@
   <v-app id="app">
     <v-main>
       <NavBar :links="links" />
+
+      <no-ssr v-if="$vuetify.breakpoint.smAndDown">
+        <v-row class="sm-and-down">
+          <v-spacer></v-spacer>
+          <v-col cols="11">
+            <Search />
+          </v-col>
+          <v-spacer></v-spacer>
+        </v-row>
+      </no-ssr>
+
       <v-main>
         <v-container>
           <Nuxt />
         </v-container>
       </v-main>
     </v-main>
+
     <Footer />
+
     <portal-target name="modal"></portal-target>
   </v-app>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import Search from '@/components/Search.vue'
 import Footer from '@/components/Footer.vue'
 import links from '@/assets/data/links'
+
 export default {
   components: {
     NavBar,
+    Search,
     Footer,
   },
   computed: {
