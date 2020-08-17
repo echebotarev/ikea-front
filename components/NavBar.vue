@@ -3,9 +3,7 @@
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
         <img src="~/assets/images/ikea-logo.svg" />
-        <span class="logo-text ml-3 pl-3">
-          Доставка
-        </span>
+        <span v-if="$isBrowser" class="logo-text ml-3 pl-3"> Доставка </span>
       </nuxt-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
@@ -26,6 +24,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Search from '@/components/Search'
+
 export default {
   name: 'NavBar',
   components: { Search },
