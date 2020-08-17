@@ -24,6 +24,7 @@
           </v-col>
         </v-row>
       </v-col>
+
       <v-col cols="5">
         <v-row
           v-if="product.price.newProductText"
@@ -53,6 +54,7 @@
                 {{ product.price.validToFromAndWhileSupplyLastText }}
               </span>
             </p>
+
             <p v-if="product.price.isLastChance" class="text-weight-500">
               Выходит из ассортимента
             </p>
@@ -67,6 +69,28 @@
               "
             />
           </v-col>
+        </v-row>
+
+        <v-row
+          v-if="product.sold_separately"
+          class="sold-separately"
+          no-gutters
+        >
+          <v-col cols="1">
+            <svg
+              focusable="false"
+              viewBox="0 0 24 24"
+              class="sold-separately__icon"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM11.2468 7.20281C11.4577 7.06223 11.7081 6.99194 11.9981 6.99194C12.2968 6.99194 12.5516 7.06223 12.7624 7.20281C12.9645 7.3346 13.0656 7.585 13.0656 7.95401C13.0656 8.31424 12.9645 8.56464 12.7624 8.70521C12.5516 8.84579 12.2968 8.91608 11.9981 8.91608C11.7081 8.91608 11.4577 8.84579 11.2468 8.70521C11.036 8.56464 10.9306 8.31424 10.9306 7.95401C10.9306 7.585 11.036 7.3346 11.2468 7.20281ZM11.0228 17.008V9.81225H12.9865V17.008H11.0228Z"
+              ></path>
+            </svg>
+          </v-col>
+          <v-col>{{ product.sold_separately }}</v-col>
         </v-row>
 
         <DisplayVariations
@@ -241,5 +265,20 @@ export default {
   background-color: #ffdb00;
   box-shadow: 0.125rem 0.125rem #e00751;
   padding: 0 0.3125rem;
+}
+
+.sold-separately {
+  font-size: 12px;
+  color: #484848;
+
+  .col-1 {
+    padding: 0.1625rem;
+  }
+
+  svg.sold-separately__icon {
+    fill: #484848;
+    width: 1rem;
+    height: 1rem;
+  }
 }
 </style>
