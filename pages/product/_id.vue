@@ -128,7 +128,9 @@
     <v-row>
       <v-col cols="7">
         <div class="product-summary mb-10">
-          <p v-if="product.full_desc">{{ product.full_desc }}</p>
+          <p v-if="product.summary_description">
+            {{ product.summary_description }}
+          </p>
           <span class="product-identifier">{{
             product.display_identifier
           }}</span>
@@ -280,5 +282,11 @@ export default {
     width: 1rem;
     height: 1rem;
   }
+}
+.product-summary p {
+  color: #666;
+  font-size: 0.875rem;
+  line-height: 1.71429;
+  padding-bottom: 1.25rem;
 }
 </style>
