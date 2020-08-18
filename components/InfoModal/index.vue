@@ -2,7 +2,11 @@
   <portal v-if="isShow && data.type === 'info'" to="modal">
     <div class="modal-substrate" @click="hideModal">
       <v-row align="center">
-        <v-col class="modal" cols="6" @click.stop="">
+        <v-col
+          class="modal"
+          :cols="$vuetify.breakpoint.xs ? 12 : 6"
+          @click.stop=""
+        >
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="2">
