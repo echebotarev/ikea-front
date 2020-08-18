@@ -13,21 +13,16 @@
         </v-row>
 
         <v-navigation-drawer v-model="drawer" absolute temporary>
-          <v-list nav dense>
-            <v-list-item-group active-class="deep-purple--text text--accent-4">
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon>mdi-home</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>Home</v-list-item-title>
-              </v-list-item>
-
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon>mdi-account</v-icon>
-                </v-list-item-icon>
-                <v-list-item-title>Account</v-list-item-title>
-              </v-list-item>
+          <v-list nav>
+            <v-list-item-group active-class="grey lighten-5">
+              <nuxt-link v-for="link in links" :key="link.label" :to="link.url">
+                <v-list-item>
+                  <v-list-item-icon v-if="link.icon">
+                    <v-icon>{{ link.icon }}</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-title>{{ link.label }}</v-list-item-title>
+                </v-list-item>
+              </nuxt-link>
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
@@ -92,9 +87,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .vue-portal-target {
   position: absolute;
   z-index: 10;
+}
+.v-list--nav {
+  padding-top: 50px;
+
+  .v-list-item__title {
+    font-size: 24px !important;
+  }
 }
 </style>
