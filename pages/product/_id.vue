@@ -3,7 +3,7 @@
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
 
     <v-row>
-      <v-col cols="7">
+      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
         <v-row>
           <v-col
             v-for="img in fullMediaList"
@@ -25,7 +25,7 @@
         </v-row>
       </v-col>
 
-      <v-col cols="5">
+      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 5">
         <v-row
           v-if="product.price.newProductText"
           class="product-new"
@@ -126,7 +126,7 @@
     </v-row>
 
     <v-row>
-      <v-col cols="7">
+      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
         <div class="product-summary mb-10">
           <p v-if="product.summary_description">
             {{ product.summary_description }}
