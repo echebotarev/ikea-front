@@ -1,10 +1,10 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" :class="$vuetify.breakpoint.smAndDown ? 'sm-and-down' : ''">
     <v-main>
       <NavBar :links="links" />
 
       <no-ssr v-if="$vuetify.breakpoint.smAndDown">
-        <v-row class="sm-and-down">
+        <v-row>
           <v-spacer></v-spacer>
           <v-col cols="11">
             <Search />
