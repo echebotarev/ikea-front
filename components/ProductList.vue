@@ -1,6 +1,10 @@
 <template>
   <v-row class="products">
-    <v-col v-for="product in products" :key="product.id" cols="3">
+    <v-col
+      v-for="product in products"
+      :key="product.id"
+      :cols="$vuetify.breakpoint.smAndDown ? 6 : 3"
+    >
       <ProductCard :product="product" />
     </v-col>
   </v-row>
