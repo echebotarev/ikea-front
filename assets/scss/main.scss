@@ -104,6 +104,16 @@
 	font-weight: 500;
 }
 
-.sm-and-down .v-input__prepend-inner {
-	margin-top: 9px !important;
+.sm-and-down {
+	.v-input__prepend-inner {
+		margin-top: 9px !important;
+	}
+
+	.products > div:nth-child(odd) {
+		border-right: 1px solid #f5f5f5;
+	}
+
+	.products > div {
+		border-top: 1px solid #f5f5f5;
+	}
 }
