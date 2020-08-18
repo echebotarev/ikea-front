@@ -11,6 +11,26 @@
           </v-col>
           <v-spacer></v-spacer>
         </v-row>
+
+        <v-navigation-drawer v-model="drawer" absolute temporary>
+          <v-list nav dense>
+            <v-list-item-group active-class="deep-purple--text text--accent-4">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-home</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>Home</v-list-item-title>
+              </v-list-item>
+
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-account</v-icon>
+                </v-list-item-icon>
+                <v-list-item-title>Account</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-navigation-drawer>
       </no-ssr>
 
       <v-main>
@@ -27,6 +47,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import NavBar from '@/components/NavBar.vue'
 import Search from '@/components/Search.vue'
 import Footer from '@/components/Footer.vue'
@@ -40,6 +61,21 @@ export default {
   },
   computed: {
     links: () => links,
+    drawer: {
+      get() {
+        return this.$store.state.page.menuDrawer
+      },
+      set(state) {
+        if (state !== this.$store.state.page.menuDrawer) {
+          this.$store.dispatch('page/toggleDrawer')
+        }
+      },
+    },
+  },
+  methods: {
+    ...mapActions({
+      toggleDrawer: 'page/toggleDrawer',
+    }),
   },
   head() {
     return {

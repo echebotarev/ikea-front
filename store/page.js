@@ -5,6 +5,7 @@ export const state = () => ({
     data: {},
   },
   breadcrumbs: [],
+  menuDrawer: false,
 })
 export const mutations = {
   SET_BREADCRUMBS(state, breadcrumbs) {
@@ -36,6 +37,10 @@ export const mutations = {
   TOGGLE_DETAILS(state, payload) {
     state.modal.isOpenDetails = payload
   },
+
+  TOGGLE_DRAWER(state, payload = false) {
+    state.menuDrawer = payload
+  },
 }
 export const actions = {
   showModal({ commit }, payload) {
@@ -48,5 +53,9 @@ export const actions = {
 
   toggleDetails({ commit }, payload) {
     commit('TOGGLE_DETAILS', payload)
+  },
+
+  toggleDrawer({ commit }, payload) {
+    commit('TOGGLE_DRAWER', payload)
   },
 }

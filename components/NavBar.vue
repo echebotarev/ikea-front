@@ -15,22 +15,28 @@
       <Search />
     </no-ssr>
 
-    <nav>
-      <nuxt-link
-        v-for="link in links"
-        :key="link.url"
-        :to="link.url"
-        class="ml-5"
-        >{{ link.label }}</nuxt-link
-      >
-    </nav>
+    <no-ssr v-if="$vuetify.breakpoint.smAndUp">
+      <nav>
+        <nuxt-link
+          v-for="link in links"
+          :key="link.url"
+          :to="link.url"
+          class="ml-5"
+          >{{ link.label }}</nuxt-link
+        >
+      </nav>
+    </no-ssr>
+
+    <no-ssr v-if="$vuetify.breakpoint.smAndDown">
+      <v-app-bar-nav-icon @click="toggleDrawer(true)"></v-app-bar-nav-icon>
+    </no-ssr>
 
     <span v-if="countCart" class="count ml-2 text-center">{{ countCart }}</span>
   </v-app-bar>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Search from '@/components/Search'
 
 export default {
@@ -45,6 +51,11 @@ export default {
   computed: {
     ...mapGetters({
       countCart: 'cart/getCountCart',
+    }),
+  },
+  methods: {
+    ...mapActions({
+      toggleDrawer: 'page/toggleDrawer',
     }),
   },
 }
