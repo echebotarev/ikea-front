@@ -11,7 +11,7 @@
 
     <v-spacer></v-spacer>
 
-    <no-ssr v-if="$vuetify.breakpoint.smAndUp">
+    <no-ssr v-if="$vuetify.breakpoint.mdAndUp">
       <Search />
     </no-ssr>
 
@@ -27,7 +27,7 @@
       </nav>
     </no-ssr>
 
-    <no-ssr v-if="$vuetify.breakpoint.smAndDown">
+    <no-ssr v-if="!$vuetify.breakpoint.mdAndUp">
       <v-app-bar-nav-icon @click="toggleDrawer(true)"></v-app-bar-nav-icon>
     </no-ssr>
 
