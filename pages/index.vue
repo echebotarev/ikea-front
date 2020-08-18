@@ -3,10 +3,10 @@
     <h1>{{ category.title }}</h1>
 
     <v-row>
-      <v-col v-for="col in cols" :key="col[0].title" cols="3">
+      <v-col v-for="col in cols" :key="col[0].url" cols="3">
         <MainCategoryCard
           v-for="(category, index) in col"
-          :key="`${category.identifier}-${Math.random()}`"
+          :key="`${category.identifier}-${col[0].url}-${index}`"
           :data-index="index"
           :category="category"
         />
