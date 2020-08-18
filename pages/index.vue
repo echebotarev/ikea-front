@@ -2,7 +2,7 @@
   <v-main>
     <h1>{{ category.title }}</h1>
 
-    <v-row>
+    <v-row v-if="$vuetify.breakpoint.smAndUp">
       <v-col v-for="col in cols" :key="col[0].url" cols="3">
         <MainCategoryCard
           v-for="(category, index) in col"
@@ -12,16 +12,25 @@
         />
       </v-col>
     </v-row>
+
+    <v-row v-if="$vuetify.breakpoint.smAndDown">
+      <v-col v-for="col in cols" :key="col[0].url" cols="12">
+        <MainCategoryMobileCard :categories="col" />
+        <v-divider></v-divider>
+      </v-col>
+    </v-row>
   </v-main>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import MainCategoryCard from '@/components/MainCategoryCard'
+import MainCategoryMobileCard from '@/components/MainCategoryMobileCard'
 
 export default {
   components: {
     MainCategoryCard,
+    MainCategoryMobileCard,
   },
   async fetch({ store, error }) {
     try {
