@@ -4,7 +4,7 @@
       <NavBar :links="links" />
 
       <client-only>
-        <div v-if="$vuetify.breakpoint.smAndDown">
+        <div v-show="$vuetify.breakpoint.smAndDown">
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="11">
@@ -14,19 +14,23 @@
           </v-row>
 
           <v-navigation-drawer v-model="drawer" absolute temporary>
-          <v-list nav>
-            <v-list-item-group active-class="grey lighten-5">
-              <nuxt-link v-for="link in links" :key="link.label" :to="link.url">
-                <v-list-item>
-                  <v-list-item-icon v-if="link.icon">
-                    <v-icon>{{ link.icon }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>{{ link.label }}</v-list-item-title>
-                </v-list-item>
-              </nuxt-link>
-            </v-list-item-group>
-          </v-list>
-        </v-navigation-drawer>
+            <v-list nav>
+              <v-list-item-group active-class="grey lighten-5">
+                <nuxt-link
+                  v-for="link in links"
+                  :key="link.label"
+                  :to="link.url"
+                >
+                  <v-list-item>
+                    <v-list-item-icon v-show="link.icon">
+                      <v-icon>{{ link.icon }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>{{ link.label }}</v-list-item-title>
+                  </v-list-item>
+                </nuxt-link>
+              </v-list-item-group>
+            </v-list>
+          </v-navigation-drawer>
         </div>
       </client-only>
 
