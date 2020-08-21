@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "nuxt build && gulp",
     "start": "nuxt start",
     "export": "nuxt export",
     "serve": "nuxt serve",
@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
+    "gulp": "^4.0.2",
+    "gulp-html-minifier": "^0.1.8",
     "nuxt": "^2.14.3",
     "nuxt-vuex-localstorage": "^1.2.6",
     "portal-vue": "^2.1.7"
