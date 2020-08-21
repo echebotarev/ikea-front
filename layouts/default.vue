@@ -3,7 +3,7 @@
     <v-main>
       <NavBar :links="links" />
 
-      <no-ssr v-if="$vuetify.breakpoint.smAndDown">
+      <client-only v-if="$vuetify.breakpoint.smAndDown">
         <v-row>
           <v-spacer></v-spacer>
           <v-col cols="11">
@@ -26,7 +26,7 @@
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
-      </no-ssr>
+      </client-only>
 
       <v-main>
         <v-container>

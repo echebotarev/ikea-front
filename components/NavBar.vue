@@ -11,11 +11,11 @@
 
     <v-spacer></v-spacer>
 
-    <no-ssr v-if="$vuetify.breakpoint.mdAndUp">
+    <client-only v-if="$vuetify.breakpoint.mdAndUp">
       <Search />
-    </no-ssr>
+    </client-only>
 
-    <no-ssr v-if="$vuetify.breakpoint.smAndUp">
+    <client-only v-if="$vuetify.breakpoint.smAndUp">
       <nav>
         <nuxt-link
           v-for="link in links"
@@ -25,11 +25,11 @@
           >{{ link.label }}</nuxt-link
         >
       </nav>
-    </no-ssr>
+    </client-only>
 
-    <no-ssr v-if="!$vuetify.breakpoint.mdAndUp">
+    <client-only v-if="!$vuetify.breakpoint.mdAndUp">
       <v-app-bar-nav-icon @click="toggleDrawer(true)"></v-app-bar-nav-icon>
-    </no-ssr>
+    </client-only>
 
     <span v-if="countCart" class="count ml-2 text-center">{{ countCart }}</span>
   </v-app-bar>
