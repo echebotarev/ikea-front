@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <h1>Корзина</h1>
+  <client-only>
     <div>
-      <CartProductCard :products="products" />
+      <h1>Корзина</h1>
+      <div>
+        <CartProductCard :products="products" />
 
-      <v-row class="cart-total">
-        <v-col>Сумма</v-col>
-        <v-col class="text-right">
-          <Price :price="sum" :is-only-formatted="true" />
-        </v-col>
-      </v-row>
+        <v-row class="cart-total">
+          <v-col>Сумма</v-col>
+          <v-col class="text-right">
+            <Price :price="sum" :is-only-formatted="true" />
+          </v-col>
+        </v-row>
+      </div>
     </div>
-  </div>
+  </client-only>
 </template>
 
 <script>
