@@ -11,12 +11,12 @@
 
     <v-spacer></v-spacer>
 
-    <client-only v-if="$vuetify.breakpoint.mdAndUp">
-      <Search />
+    <client-only>
+      <Search v-if="$vuetify.breakpoint.mdAndUp" />
     </client-only>
 
-    <client-only v-if="$vuetify.breakpoint.smAndUp">
-      <nav>
+    <client-only>
+      <nav v-if="$vuetify.breakpoint.smAndUp">
         <nuxt-link
           v-for="link in links"
           :key="link.url"
@@ -27,8 +27,11 @@
       </nav>
     </client-only>
 
-    <client-only v-if="!$vuetify.breakpoint.mdAndUp">
-      <v-app-bar-nav-icon @click="toggleDrawer(true)"></v-app-bar-nav-icon>
+    <client-only>
+      <v-app-bar-nav-icon
+        v-if="!$vuetify.breakpoint.mdAndUp"
+        @click="toggleDrawer(true)"
+      ></v-app-bar-nav-icon>
     </client-only>
 
     <span v-if="countCart" class="count ml-2 text-center">{{ countCart }}</span>

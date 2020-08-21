@@ -3,16 +3,17 @@
     <v-main>
       <NavBar :links="links" />
 
-      <client-only v-if="$vuetify.breakpoint.smAndDown">
-        <v-row>
-          <v-spacer></v-spacer>
-          <v-col cols="11">
-            <Search />
-          </v-col>
-          <v-spacer></v-spacer>
-        </v-row>
+      <client-only>
+        <div v-if="$vuetify.breakpoint.smAndDown">
+          <v-row>
+            <v-spacer></v-spacer>
+            <v-col cols="11">
+              <Search />
+            </v-col>
+            <v-spacer></v-spacer>
+          </v-row>
 
-        <v-navigation-drawer v-model="drawer" absolute temporary>
+          <v-navigation-drawer v-model="drawer" absolute temporary>
           <v-list nav>
             <v-list-item-group active-class="grey lighten-5">
               <nuxt-link v-for="link in links" :key="link.label" :to="link.url">
@@ -26,6 +27,7 @@
             </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
+        </div>
       </client-only>
 
       <v-main>
