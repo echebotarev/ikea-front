@@ -1,5 +1,5 @@
 <template>
-  <v-spacer>
+  <div>
     <v-text-field
       flat
       hide-details
@@ -12,7 +12,7 @@
       @focus="showModal({ type: 'search' })"
     ></v-text-field>
     <SearchModal />
-  </v-spacer>
+  </div>
 </template>
 
 <script>

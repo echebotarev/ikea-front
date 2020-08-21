@@ -21,9 +21,9 @@
             : ''
         }}
       </p>
-      <p class="card-product-price">
+      <div class="card-product-price">
         <Price :price="product.priceNumeral" />
-      </p>
+      </div>
     </nuxt-link>
   </div>
 </template>
@@ -55,10 +55,10 @@ p {
     font-size: 14px;
     color: #484848;
   }
-
-  &.card-product-price {
-    font-size: 22px;
-    font-weight: 600;
-  }
+}
+.card-product-price {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 </style>

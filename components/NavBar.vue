@@ -2,7 +2,7 @@
   <v-app-bar color="transparent" elevation="0" hide-on-scroll class="mt-5">
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
-        <img src="~/assets/images/ikea-logo.svg" />
+        <img src="~/assets/images/ikea-logo.svg" alt="IKEA Dostavka Logo" />
         <span class="logo-text ml-3 pl-3">
           Доставка
         </span>
@@ -11,12 +11,12 @@
 
     <v-spacer></v-spacer>
 
-    <client-only>
-      <Search v-if="$vuetify.breakpoint.mdAndUp" />
+    <client-only v-if="$vuetify.breakpoint.mdAndUp">
+      <Search />
     </client-only>
 
-    <client-only>
-      <nav v-if="$vuetify.breakpoint.smAndUp">
+    <client-only v-if="$vuetify.breakpoint.smAndUp">
+      <nav>
         <nuxt-link
           v-for="link in links"
           :key="link.url"
@@ -27,14 +27,13 @@
       </nav>
     </client-only>
 
-    <client-only>
-      <v-app-bar-nav-icon
-        v-if="!$vuetify.breakpoint.mdAndUp"
-        @click="toggleDrawer(true)"
-      ></v-app-bar-nav-icon>
+    <client-only v-if="!$vuetify.breakpoint.mdAndUp">
+      <v-app-bar-nav-icon @click="toggleDrawer(true)"></v-app-bar-nav-icon>
     </client-only>
 
-    <span v-if="countCart" class="count ml-2 text-center">{{ countCart }}</span>
+    <client-only v-if="countCart">
+      <span class="count ml-2 text-center">{{ countCart }}</span>
+    </client-only>
   </v-app-bar>
 </template>
 

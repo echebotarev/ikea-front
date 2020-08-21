@@ -17,10 +17,11 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import CartProductCard from '@/components/CartProductCard'
+import Price from '~/components/Price'
 
 export default {
   name: 'Cart',
-  components: { CartProductCard },
+  components: { CartProductCard, Price },
   computed: mapState({
     products: (state) => state.cart.products,
     sum(state) {

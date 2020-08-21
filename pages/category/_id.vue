@@ -3,7 +3,7 @@
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
     <h1>{{ category.title }}</h1>
 
-    <v-row>
+    <v-row v-if="categories && categories.length">
       <v-col
         v-for="category in categories"
         :key="`${category.identifier}-${Math.random()}`"

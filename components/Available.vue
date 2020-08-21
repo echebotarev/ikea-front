@@ -22,6 +22,7 @@
               .RetailItemAvailability.AvailableStock.$
           }}</span
         >
+
         <span
           v-if="
             availabilityProduct(identifier).StockAvailability
