@@ -6,6 +6,6 @@ export default {
 
     return process.server
       ? 'http://localhost:8080/api/v1'
-      : 'http://ikea-dostavka.org'
+      : 'http://ikea-dostavka.org/api/v1'
   },
 }
