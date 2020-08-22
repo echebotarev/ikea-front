@@ -21,7 +21,7 @@
 
     <ProductList :products="products" />
 
-    <Pagination :category-id="category.identifier" />
+    <Pagination :category-id="category.identifier" target-id="scroll-target" />
   </div>
 </template>
 

@@ -20,6 +20,10 @@ export default {
       type: String,
       default: () => '',
     },
+    targetId: {
+      type: String,
+      default: () => '',
+    },
     // eslint-disable-next-line vue/prop-name-casing
     PER_PAGE: {
       type: Number,
@@ -36,6 +40,12 @@ export default {
   }),
   methods: {
     async input(page) {
+      // скроллинг до начала страницы
+      await this.$vuetify.goTo(`#${this.targetId}`, {
+        duration: 200,
+        easing: 'easeOutQuint',
+      })
+
       await this.$router.push({ query: { page } })
       await this.$store.dispatch('products/fetchProductsByCategoryId', {
         id: this.categoryId,
