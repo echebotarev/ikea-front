@@ -74,12 +74,12 @@ export default {
   },
   head() {
     return {
-      titleTemplate: '%s - Real World Events',
+      titleTemplate: '%s - Доставка',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Where you can find all the events',
+          content: 'Доставка товаров IKEA',
         },
       ],
     }
