@@ -17,6 +17,10 @@ export const mutations = {
   SET_PRODUCT_COUNT(state, count) {
     state.productCount = count
   },
+
+  SET_RECOMMENDATIONS(state, recommendations) {
+    state.recommendations = recommendations
+  },
 }
 export const actions = {
   fetchProductsByCategoryId({ commit }, { id, page }) {
@@ -53,6 +57,8 @@ export const actions = {
     return ApiService.getRecommendations({ id, categoryList }).then(
       (response) => {
         console.log('Res', response)
+        response.data.success &&
+          commit('SET_RECOMMENDATIONS', response.data.data)
       }
     )
   },

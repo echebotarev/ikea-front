@@ -195,7 +195,6 @@ TODO: рекомендации
 # Другие пользователи смотрели
 # https://rec.ingka.com/services/ru-prod/items/popular/?n=12&productName=PAX
 */
-// TODO парсить fulldesc в скрапере
 import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import InfoModal from '@/components/InfoModal/index'
