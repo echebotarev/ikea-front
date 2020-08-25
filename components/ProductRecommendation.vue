@@ -14,6 +14,8 @@
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
+
+      <v-divider></v-divider>
     </v-col>
   </v-row>
 </template>
