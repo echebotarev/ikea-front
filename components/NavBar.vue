@@ -32,7 +32,9 @@
     </client-only>
 
     <client-only v-if="countCart">
-      <span class="count ml-2 text-center">{{ countCart }}</span>
+      <nuxt-link to="/cart" class="count ml-2 text-center">
+        {{ countCart }}
+      </nuxt-link>
     </client-only>
   </v-app-bar>
 </template>
@@ -71,6 +73,7 @@ export default {
   border-radius: 50%;
   background: rgb(0, 88, 163);
   color: #fff;
+  text-decoration: none !important;
 }
 .logo-text {
   line-height: 40px;
