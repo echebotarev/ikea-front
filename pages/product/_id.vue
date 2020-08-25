@@ -220,7 +220,6 @@ export default {
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('products/fetchProductById', params.id)
-      await store.dispatch('products/fetchRecommendations')
     } catch (e) {
       error({
         statusCode: 503,

@@ -9,6 +9,9 @@
 <script>
 export default {
   name: 'ProductRecommendation',
+  mounted() {
+    this.$store.dispatch('products/fetchRecommendations')
+  },
 }
 </script>
 
