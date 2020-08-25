@@ -41,9 +41,9 @@ export default {
     )
   },
 
-  getRecommendations(payload) {
+  getRecommendations({ id, categoryList }) {
     return apiClient.get(
-      `/recommendations?id=${payload.id}&categoryList=${payload.categoryList}`
+      `/recommendations?id=${id}&categoryList=${encodeURI(categoryList)}`
     )
   },
 }
