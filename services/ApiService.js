@@ -40,4 +40,10 @@ export default {
       `/available?type=${payload.type}&id=${payload.identifier}`
     )
   },
+
+  getRecommendations(payload) {
+    return apiClient.get(
+      `/recommendations?id=${payload.id}&categoryList=${payload.categoryList}`
+    )
+  },
 }

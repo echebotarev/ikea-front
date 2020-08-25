@@ -183,6 +183,8 @@
       </v-col>
     </v-row>
 
+    <ProductRecommendation />
+
     <InfoModal />
   </div>
 </template>
@@ -201,6 +203,7 @@ import Variations from '@/components/Variations'
 import DisplayVariations from '@/components/DisplayVariations'
 import Available from '@/components/Available'
 import Price from '@/components/Price'
+import ProductRecommendation from '@/components/ProductRecommendation'
 
 import getImage from '@/assets/utils/getImage'
 
@@ -212,10 +215,12 @@ export default {
     Variations,
     DisplayVariations,
     Price,
+    ProductRecommendation,
   },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('products/fetchProductById', params.id)
+      await store.dispatch('products/fetchRecommendations')
     } catch (e) {
       error({
         statusCode: 503,

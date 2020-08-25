@@ -1,6 +1,7 @@
 import ApiService from '@/services/ApiService.js'
 export const state = () => ({
   products: [],
+  recommendations: [],
   product: {},
   productCount: 0,
 })
@@ -41,5 +42,18 @@ export const actions = {
           root: true,
         })
     })
+  },
+
+  fetchRecommendations({ commit, state, rootState }) {
+    const id = state.product.identifier
+    const categoryList = rootState.page.breadcrumbs
+      .filter((breadcrumb, index, array) => index && index !== array.length - 1)
+      .map((breadcrumb) => breadcrumb.text)
+
+    return ApiService.getRecommendations({ id, categoryList }).then(
+      (response) => {
+        console.log('Res', response)
+      }
+    )
   },
 }
