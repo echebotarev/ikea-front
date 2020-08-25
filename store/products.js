@@ -50,7 +50,12 @@ export const actions = {
 
   fetchRecommendations({ commit, state, rootState }) {
     const id = state.product.identifier
-    const categoryList = rootState.page.breadcrumbs
+    const { breadcrumbs } = rootState.page
+    if (!breadcrumbs) {
+      return false
+    }
+
+    const categoryList = breadcrumbs
       .filter((breadcrumb, index, array) => index && index !== array.length - 1)
       .map((breadcrumb) => breadcrumb.text)
 
