@@ -43,7 +43,9 @@ export default {
 
   getRecommendations({ id, categoryList }) {
     return apiClient.get(
-      `/recommendations?id=${id}&categoryList=${encodeURI(categoryList)}`
+      `/recommendations/similar?id=${id}&categoryList=${encodeURI(
+        categoryList
+      )}`
     )
   },
 }
