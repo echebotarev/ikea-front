@@ -1,8 +1,8 @@
 <template>
   <div class="card-product">
-    <nuxt-link :to="`/product/${product.id}`">
+    <nuxt-link :to="`/product/${product.id || product.item_id}`">
       <v-img
-        :src="getImage(product.mainImageUrl, 4)"
+        :src="getImage(product.mainImageUrl || product.image_url, 4)"
         lazy-src="/images/placeholder.png"
         :alt="product.typeName"
       >
@@ -14,15 +14,10 @@
       </v-img>
       <h4 class="card-product-name">{{ product.name }}</h4>
       <p class="card-product-description">
-        {{ product.typeName
-        }}{{
-          product.itemMeasureReferenceText
-            ? `, ${product.itemMeasureReferenceText}`
-            : ''
-        }}
+        {{ getDescription(product) }}
       </p>
       <div class="card-product-price">
-        <Price :price="product.priceNumeral" />
+        <Price :price="product.priceNumeral || product.price.RUB" />
       </div>
     </nuxt-link>
   </div>
@@ -38,7 +33,22 @@ export default {
   props: {
     product: { type: Object, default: () => {} },
   },
-  methods: { getImage },
+  methods: {
+    getImage,
+    getDescription(product) {
+      if (product.typeName) {
+        return product.typeName + product.itemMeasureReferenceText
+          ? `, ${product.itemMeasureReferenceText}`
+          : ''
+      }
+
+      if (product.product_attributes) {
+        return product.product_attributes.upd_product_description
+      }
+
+      return ''
+    },
+  },
 }
 </script>
 
@@ -54,6 +64,7 @@ p {
   &.card-product-description {
     font-size: 14px;
     color: #484848;
+    white-space: normal;
   }
 }
 .card-product-price {

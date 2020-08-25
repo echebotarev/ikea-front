@@ -56,7 +56,6 @@ export const actions = {
 
     return ApiService.getRecommendations({ id, categoryList }).then(
       (response) => {
-        console.log('Res', response)
         response.data.success &&
           commit('SET_RECOMMENDATIONS', response.data.data)
       }
