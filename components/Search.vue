@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="search">
     <v-text-field
       flat
       hide-details
@@ -30,4 +30,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.search {
+  width: 40%;
+}
+.sm-and-down .search {
+  width: 100%;
+}
+</style>
