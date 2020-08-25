@@ -1,6 +1,6 @@
 <template>
   <v-row class="product-recommendations">
-    <v-col cols="7">
+    <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
       <h2 class="mb-10">Похожие товары</h2>
 
       <v-sheet width="100%">
@@ -43,5 +43,8 @@ export default {
 .slide-item {
   max-width: 15rem;
   padding: 10px;
+}
+.sm-and-down .slide-item {
+  max-width: 10rem;
 }
 </style>
