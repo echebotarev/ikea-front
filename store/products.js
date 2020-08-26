@@ -23,11 +23,8 @@ export const mutations = {
   },
 }
 export const actions = {
-  fetchProductsByCategoryId(
-    { commit },
-    { id, page = 1, sortType = 'RELEVANCE' }
-  ) {
-    return ApiService.getProducts(id, page, sortType).then((response) => {
+  fetchProductsByCategoryId({ commit }, { id, page = 1, sort = 'RELEVANCE' }) {
+    return ApiService.getProducts(id, page, sort).then((response) => {
       response.data.productCount &&
         commit('SET_PRODUCT_COUNT', response.data.productCount)
 
