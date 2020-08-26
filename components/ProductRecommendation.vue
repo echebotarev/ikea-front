@@ -34,7 +34,7 @@ export default {
     this.$store.dispatch('products/fetchRecommendations')
   },
   beforeDestroy() {
-    this.$store.commit('SET_RECOMMENDATIONS', [])
+    this.$store.commit('products/SET_RECOMMENDATIONS', [])
   },
 }
 </script>
