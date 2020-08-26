@@ -38,7 +38,7 @@
 import { mapState, mapActions } from 'vuex'
 import Details from '@/components/InfoModal/Details'
 import Dimensions from '@/components/InfoModal/Dimensions'
-import Variations from '@/components/InfoModal/Variations'
+import Variations from '@/components/InfoModal/InfoVariations'
 export default {
   name: 'InfoModal',
   components: { Details, Dimensions, Variations },

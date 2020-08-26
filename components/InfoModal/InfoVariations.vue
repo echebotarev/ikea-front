@@ -45,7 +45,7 @@ import Price from '@/components/Price'
 import getImage from '@/assets/utils/getImage'
 
 export default {
-  name: 'Variations',
+  name: 'InfoVariations',
   components: { Price },
   props: {
     data: {
