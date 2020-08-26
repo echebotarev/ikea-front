@@ -28,6 +28,8 @@
           />
 
           <Variations v-if="data.options" :data="data" />
+
+          <Filters v-if="data.filters || data.sortOrders" :data="data" />
         </v-col>
       </v-row>
     </div>
@@ -39,9 +41,11 @@ import { mapState, mapActions } from 'vuex'
 import Details from '@/components/InfoModal/Details'
 import Dimensions from '@/components/InfoModal/Dimensions'
 import Variations from '@/components/InfoModal/InfoVariations'
+import Filters from '@/components/InfoModal/Infofilters'
+
 export default {
   name: 'InfoModal',
-  components: { Details, Dimensions, Variations },
+  components: { Details, Dimensions, Variations, Filters },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
     isOpenDetails: (state) => state.page.modal.isOpenDetails,

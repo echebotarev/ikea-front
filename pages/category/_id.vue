@@ -24,6 +24,8 @@
     <ProductList :products="products" />
 
     <Pagination :category-id="category.identifier" target-id="scroll-target" />
+
+    <InfoModal />
   </div>
 </template>
 
@@ -34,6 +36,7 @@ import ProductList from '@/components/ProductList'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Filters from '@/components/Filters'
 import Pagination from '@/components/Pagination'
+import InfoModal from '@/components/InfoModal/index'
 
 export default {
   components: {
@@ -41,6 +44,7 @@ export default {
     Breadcrumbs,
     ProductList,
     Pagination,
+    InfoModal,
     Filters,
   },
   async fetch({ store, error, params, query }) {

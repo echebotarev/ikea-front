@@ -7,10 +7,20 @@
           rounded
           elevation="0"
           class="text-capitalize btn-filters"
+          @click="
+            showModal(
+              Object.assign(
+                {},
+                { filters: filters },
+                { sortOrders: sortOrders },
+                { type: 'info' }
+              )
+            )
+          "
           >Сортировать</v-btn
         >
       </v-col>
-      <v-col class="text-right product-count" align-self="middle">
+      <v-col class="text-right product-count" align="middle">
         <span>{{ productCount }} товаров(-а)</span>
       </v-col>
     </v-row>
@@ -20,7 +30,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Filters',
@@ -30,6 +40,11 @@ export default {
 
     productCount: (state) => state.products.productCount,
   }),
+  methods: {
+    ...mapActions({
+      showModal: 'page/showModal',
+    }),
+  },
 }
 </script>
 
