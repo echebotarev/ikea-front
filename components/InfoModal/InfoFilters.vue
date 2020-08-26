@@ -79,10 +79,6 @@ export default {
     },
     async setCurrentSort(value) {
       await this.$router.push({ query: { page: 1, sort: value } })
-      await this.$store.dispatch('products/fetchProductsByCategoryId', {
-        id: this.categoryId,
-        sort: value,
-      })
     },
   },
 }

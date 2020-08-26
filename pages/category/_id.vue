@@ -84,6 +84,7 @@ export default {
       }
     },
   },
+  watchQuery: true,
 }
 </script>
 
