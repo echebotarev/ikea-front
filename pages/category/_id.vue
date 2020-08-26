@@ -19,6 +19,8 @@
       }}</v-col>
     </v-row>
 
+    <Filters />
+
     <ProductList :products="products" />
 
     <Pagination :category-id="category.identifier" target-id="scroll-target" />
@@ -30,10 +32,17 @@ import { mapState } from 'vuex'
 import InnerCategoryCard from '@/components/InnerCategoryCard'
 import ProductList from '@/components/ProductList'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Filters from '@/components/Filters'
 import Pagination from '@/components/Pagination'
 
 export default {
-  components: { InnerCategoryCard, Breadcrumbs, ProductList, Pagination },
+  components: {
+    InnerCategoryCard,
+    Breadcrumbs,
+    ProductList,
+    Pagination,
+    Filters,
+  },
   async fetch({ store, error, params, query }) {
     const { page } = query
     try {
@@ -57,9 +66,6 @@ export default {
     productCount: (state) => state.products.productCount,
 
     breadcrumbs: (state) => state.page.breadcrumbs,
-
-    filters: (state) => state.filters.filters,
-    sortOrders: (state) => state.filters.sortOrders,
   }),
   methods: {
     getCols(length) {
