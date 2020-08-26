@@ -1,5 +1,5 @@
 <template>
-  <v-row id="scroll-target" class="products">
+  <v-row class="products">
     <v-col
       v-for="product in products"
       :key="product.id"

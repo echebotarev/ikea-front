@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="scroll-target">
     <v-row>
       <v-col>
         <v-btn
