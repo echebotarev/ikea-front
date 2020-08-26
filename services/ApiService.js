@@ -15,8 +15,8 @@ export default {
     return apiClient.get(`/category/${id}`)
   },
 
-  getProducts(id, page) {
-    return apiClient.get(`/products/${id}?page=${page}`)
+  getProducts(id, page, sortType) {
+    return apiClient.get(`/products/${id}?page=${page}&sort=${sortType}`)
   },
 
   getProductsByIds(ids = []) {

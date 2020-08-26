@@ -6,16 +6,25 @@
         <!-- Сортировка -->
         <v-expansion-panel v-if="data.sortOrders.name">
           <v-expansion-panel-header>
-            Сортировать
+            <v-row no-gutters>
+              <v-col>Сортировать</v-col>
+              <v-col class="text--secondary current-sort">
+                Популярность
+              </v-col>
+            </v-row>
           </v-expansion-panel-header>
 
           <v-expansion-panel-content>
-            <v-row
-              v-for="value in prepareSortData(data.sortOrders.values)"
-              :key="value.id"
-            >
-              <v-col>{{ value.name }}</v-col>
-            </v-row>
+            <v-radio-group v-model="currentSort" @change="setCurrentSort">
+              <v-radio
+                v-for="value in prepareSortData(data.sortOrders.values)"
+                :key="value.id"
+                class="radio-sort"
+                color="rgb(0,0,0)"
+                :label="value.name"
+                :value="value.id"
+              ></v-radio>
+            </v-radio-group>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -25,12 +34,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'InfoFilters',
   props: {
     data: {
       type: Object,
       default: () => {},
+    },
+  },
+  computed: {
+    ...mapState({
+      currentSortFromState: (state) => state.filters.currentSort,
+      categoryId: (state) => state.category.category.identifier,
+    }),
+    currentSort: {
+      get() {
+        return this.currentSortFromState
+      },
+      set(newName) {
+        return newName
+      },
     },
   },
   methods: {
@@ -46,8 +71,23 @@ export default {
         .filter((item) => item.id !== 'MOST_POPULAR')
         .map((item) => Object.assign({}, item, { name: dictName[item.id] }))
     },
+    async setCurrentSort(value) {
+      await this.$router.push({ query: { page: 1 } })
+      await this.$store.dispatch('filters/setCurrentSort', value)
+      await this.$store.dispatch('products/fetchProductsByCategoryId', {
+        id: this.categoryId,
+        sortType: this.currentSortFromState,
+      })
+    },
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.current-sort {
+  font-weight: 400;
+}
+.radio-sort {
+  flex-direction: row-reverse;
+}
+</style>
