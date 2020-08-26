@@ -4,6 +4,11 @@
       <template v-slot:divider>
         <v-icon>mdi-chevron-right</v-icon>
       </template>
+      <template v-slot:item="{ item }">
+        <v-breadcrumbs-item :to="item.href" :disabled="item.disabled" nuxt>
+          {{ item.text }}
+        </v-breadcrumbs-item>
+      </template>
     </v-breadcrumbs>
 
     <v-divider light class="mb-6"></v-divider>
