@@ -2,7 +2,13 @@
   <div>
     <v-row>
       <v-col>
-        <v-btn v-if="sortOrders.name">Сортировать</v-btn>
+        <v-btn
+          v-if="sortOrders.name"
+          rounded
+          elevation="0"
+          class="text-capitalize btn-filters"
+          >Сортировать</v-btn
+        >
       </v-col>
       <v-col class="text-right product-count" align-self="middle">
         <span>{{ productCount }} товаров(-а)</span>
@@ -32,5 +38,9 @@ export default {
   color: #929292;
   font-size: 0.75rem;
   font-weight: 500;
+}
+.btn-filters {
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 </style>
