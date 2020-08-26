@@ -37,9 +37,12 @@ export default {
     getImage,
     getDescription(product) {
       if (product.typeName) {
-        return product.typeName + product.itemMeasureReferenceText
-          ? `, ${product.itemMeasureReferenceText}`
-          : ''
+        return (
+          product.typeName +
+          (product.itemMeasureReferenceText
+            ? `, ${product.itemMeasureReferenceText}`
+            : '')
+        )
       }
 
       if (product.product_attributes) {
