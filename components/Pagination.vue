@@ -46,11 +46,7 @@ export default {
         easing: 'easeOutQuint',
       })
 
-      await this.$router.push({ query: { page } })
-      await this.$store.dispatch('products/fetchProductsByCategoryId', {
-        id: this.categoryId,
-        page,
-      })
+      await this.$router.push({ query: { ...this.$route.query, page } })
     },
   },
 }

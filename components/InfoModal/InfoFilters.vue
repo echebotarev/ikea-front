@@ -78,7 +78,7 @@ export default {
         )
     },
     async setCurrentSort(value) {
-      await this.$router.push({ query: { page: 1, sort: value } })
+      await this.$router.push({ query: { ...this.$route.query, sort: value } })
     },
   },
 }
