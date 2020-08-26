@@ -9,7 +9,7 @@
             <v-row no-gutters>
               <v-col>Сортировать</v-col>
               <v-col class="text--secondary current-sort">
-                Популярность
+                {{ dictName[currentSort] }}
               </v-col>
             </v-row>
           </v-expansion-panel-header>
@@ -44,6 +44,16 @@ export default {
       default: () => {},
     },
   },
+  data() {
+    return {
+      dictName: {
+        RELEVANCE: 'Популярность',
+        PRICE_LOW_TO_HIGH: 'Цена: от низкой до высокой',
+        PRICE_HIGH_TO_LOW: 'Цена: от высокой до низкой',
+        NAME_ASCENDING: 'По алфавиту: от А до Я',
+      },
+    }
+  },
   computed: {
     ...mapState({
       currentSortFromState: (state) => state.filters.currentSort,
@@ -60,16 +70,11 @@ export default {
   },
   methods: {
     prepareSortData(data) {
-      const dictName = {
-        RELEVANCE: 'Популярность',
-        PRICE_LOW_TO_HIGH: 'Цена: от низкой до высокой',
-        PRICE_HIGH_TO_LOW: 'Цена: от высокой до низкой',
-        NAME_ASCENDING: 'По алфавиту: от А до Я',
-      }
-
       return data
         .filter((item) => item.id !== 'MOST_POPULAR')
-        .map((item) => Object.assign({}, item, { name: dictName[item.id] }))
+        .map((item) =>
+          Object.assign({}, item, { name: this.dictName[item.id] })
+        )
     },
     async setCurrentSort(value) {
       await this.$router.push({ query: { page: 1 } })
