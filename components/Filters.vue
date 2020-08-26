@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <v-btn
-          v-if="sortOrders && sortOrders.name"
+          v-if="sortOrders"
           rounded
           elevation="0"
           class="text-capitalize btn-filters"

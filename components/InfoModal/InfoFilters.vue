@@ -4,7 +4,7 @@
     <v-col cols="10">
       <v-expansion-panels accordion flat>
         <!-- Сортировка -->
-        <v-expansion-panel v-if="data.sortOrders.name">
+        <v-expansion-panel v-if="data.sortOrders">
           <v-expansion-panel-header>
             <v-row no-gutters>
               <v-col>Сортировать</v-col>
@@ -17,7 +17,7 @@
           <v-expansion-panel-content>
             <v-radio-group v-model="currentSort" @change="setCurrentSort">
               <v-radio
-                v-for="value in prepareSortData(data.sortOrders.values)"
+                v-for="value in prepareSortData(data.sortOrders)"
                 :key="value.id"
                 class="radio-sort"
                 color="rgb(0,0,0)"
@@ -56,12 +56,13 @@ export default {
   },
   computed: {
     ...mapState({
-      currentSortFromState: (state) => state.filters.currentSort,
+      currentSortFromState: (state) =>
+        state.filters.sortOrders.find((item) => item.selected),
       categoryId: (state) => state.category.category.identifier,
     }),
     currentSort: {
       get() {
-        return this.currentSortFromState
+        return this.currentSortFromState.id
       },
       set(newName) {
         return newName
@@ -78,10 +79,9 @@ export default {
     },
     async setCurrentSort(value) {
       await this.$router.push({ query: { page: 1, sort: value } })
-      await this.$store.dispatch('filters/setCurrentSort', value)
       await this.$store.dispatch('products/fetchProductsByCategoryId', {
         id: this.categoryId,
-        sort: this.currentSortFromState,
+        sort: value,
       })
     },
   },

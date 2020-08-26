@@ -1,8 +1,6 @@
 export const state = () => ({
   filters: [],
-  sortOrders: {},
-
-  currentSort: 'RELEVANCE',
+  sortOrders: [],
 })
 export const mutations = {
   SET_FILTERS(state, filters) {
@@ -10,15 +8,10 @@ export const mutations = {
   },
 
   SET_SORT_ORDERS(state, sortOrders) {
-    state.sortOrders = sortOrders
+    state.sortOrders = sortOrders.values
   },
 
   SET_CURRENT_SORT(state, currentSort) {
     state.currentSort = currentSort
-  },
-}
-export const actions = {
-  setCurrentSort({ commit, dispatch, rootState }, currentSort) {
-    commit('SET_CURRENT_SORT', currentSort)
   },
 }
