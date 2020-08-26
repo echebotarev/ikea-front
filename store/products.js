@@ -27,7 +27,13 @@ export const actions = {
     return ApiService.getProducts(id, page).then((response) => {
       response.data.productCount &&
         commit('SET_PRODUCT_COUNT', response.data.productCount)
+
       commit('SET_PRODUCTS', response.data.productWindow)
+
+      commit('filters/SET_FILTERS', response.data.filters2, { root: true })
+      commit('filters/SET_SORT_ORDERS', response.data.sortOrders, {
+        root: true,
+      })
     })
   },
 

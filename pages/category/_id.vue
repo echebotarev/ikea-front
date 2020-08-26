@@ -57,6 +57,9 @@ export default {
     productCount: (state) => state.products.productCount,
 
     breadcrumbs: (state) => state.page.breadcrumbs,
+
+    filters: (state) => state.filters.filters,
+    sortOrders: (state) => state.filters.sortOrders,
   }),
   methods: {
     getCols(length) {
