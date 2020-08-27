@@ -48,13 +48,11 @@ export default {
     Filters,
   },
   async fetch({ store, error, params, query }) {
-    const { page, sort } = query
     try {
       await store.dispatch('category/fetchCategories', params.id)
       await store.dispatch('products/fetchProductsByCategoryId', {
         id: params.id,
-        page,
-        sort,
+        ...query,
       })
     } catch (e) {
       error({

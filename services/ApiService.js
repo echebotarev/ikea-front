@@ -10,13 +10,22 @@ const apiClient = axios.create({
   },
 })
 
+const getQueries = (payload) =>
+  Object.entries(payload).reduce(
+    (acc, [key, value]) => `${acc}${key}=${value}&`,
+    ''
+  )
+
 export default {
   getCategories(id = 'products') {
     return apiClient.get(`/category/${id}`)
   },
 
-  getProducts(id, page, sort) {
-    return apiClient.get(`/products/${id}?page=${page}&sort=${sort}`)
+  getProducts(payload) {
+    const { id } = payload
+    const queries = getQueries(payload)
+
+    return apiClient.get(`/products/${id}?${queries}`)
   },
 
   getProductsByIds(ids = []) {

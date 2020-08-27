@@ -19,13 +19,39 @@
               <v-radio
                 v-for="value in prepareSortData(data.sortOrders)"
                 :key="value.id"
-                class="radio-sort"
+                class="radio"
                 color="rgb(0,0,0)"
                 :label="value.name"
                 :value="value.id"
               ></v-radio>
             </v-radio-group>
           </v-expansion-panel-content>
+        </v-expansion-panel>
+
+        <v-expansion-panel
+          v-for="filter in prepareFiltersData(data.filters)"
+          :key="filter.id"
+        >
+          <v-expansion-panel-header>{{ filter.name }}</v-expansion-panel-header>
+
+          <div v-if="filter.type === 'CLASS_FILTER'">
+            <v-expansion-panel-content>
+              <v-radio-group
+                v-model="currentFilters"
+                multiple
+                @change="(values) => setFilter(filter.parameter, values)"
+              >
+                <v-radio
+                  v-for="value in filter.values"
+                  :key="value.id"
+                  class="radio"
+                  color="rgb(0,0,0)"
+                  :label="value.name"
+                  :value="value.id"
+                ></v-radio>
+              </v-radio-group>
+            </v-expansion-panel-content>
+          </div>
         </v-expansion-panel>
       </v-expansion-panels>
     </v-col>
@@ -77,8 +103,20 @@ export default {
           Object.assign({}, item, { name: this.dictName[item.id] })
         )
     },
+    prepareFiltersData(data) {
+      return data.filter((item) => item.enabled)
+    },
     async setCurrentSort(value) {
       await this.$router.push({ query: { ...this.$route.query, sort: value } })
+    },
+    async setFilter(parameter, values) {
+      await this.$router.push({
+        query: {
+          ...this.$route.query,
+          [parameter]: values.toString(),
+          page: 1,
+        },
+      })
     },
   },
 }
@@ -88,7 +126,8 @@ export default {
 .current-sort {
   font-weight: 400;
 }
-.radio-sort {
+.radio {
   flex-direction: row-reverse;
+  text-transform: capitalize;
 }
 </style>
