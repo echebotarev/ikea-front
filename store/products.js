@@ -34,6 +34,9 @@ export const actions = {
       commit('filters/SET_SORT_ORDERS', response.data.sortOrders, {
         root: true,
       })
+      commit('filters/SET_APPLIED_FILTERS', response.data.filters2, {
+        root: true,
+      })
     })
   },
 

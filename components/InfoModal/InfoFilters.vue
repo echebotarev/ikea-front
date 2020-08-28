@@ -36,11 +36,7 @@
 
           <div v-if="filter.type === 'CLASS_FILTER'">
             <v-expansion-panel-content>
-              <v-radio-group
-                v-model="currentFilters"
-                multiple
-                @change="(values) => setFilter(filter.parameter, values)"
-              >
+              <v-radio-group v-model="currentFilters" multiple>
                 <v-radio
                   v-for="value in filter.values"
                   :key="value.id"
@@ -48,6 +44,7 @@
                   color="rgb(0,0,0)"
                   :label="value.name"
                   :value="value.id"
+                  @click="() => toggleFilters(filter.parameter, value.id)"
                 ></v-radio>
               </v-radio-group>
             </v-expansion-panel-content>
@@ -85,6 +82,7 @@ export default {
       currentSortFromState: (state) =>
         state.filters.sortOrders.find((item) => item.selected),
       categoryId: (state) => state.category.category.identifier,
+      appliedFilters: (state) => state.filters.appliedFilters,
     }),
     currentSort: {
       get() {
@@ -92,6 +90,14 @@ export default {
       },
       set(newName) {
         return newName
+      },
+    },
+    currentFilters: {
+      get() {
+        return this.appliedFilters
+      },
+      set(newFilter) {
+        return newFilter
       },
     },
   },
@@ -103,20 +109,50 @@ export default {
           Object.assign({}, item, { name: this.dictName[item.id] })
         )
     },
+
     prepareFiltersData(data) {
       return data.filter((item) => item.enabled)
     },
+
     async setCurrentSort(value) {
       await this.$router.push({ query: { ...this.$route.query, sort: value } })
     },
+
     async setFilter(parameter, values) {
-      await this.$router.push({
+      if (values.length === 0) {
+        const { query } = this.$route
+        delete query[parameter]
+
+        // TODO опасная реализаци, но пока не представляю как делать иначе
+        // По другому страница не обновляется
+        await this.$router.replace({ query: null })
+        return await this.$router.replace({ query })
+      }
+
+      return await this.$router.push({
         query: {
           ...this.$route.query,
           [parameter]: values.toString(),
           page: 1,
         },
       })
+    },
+
+    toggleFilters(parameter, value) {
+      let values = []
+      const filter = this.$route.query[parameter]
+      if (!filter) {
+        return this.setFilter(parameter, [value])
+      }
+
+      values = filter.split(',')
+      if (values.includes(value)) {
+        values = values.filter((id) => id !== value)
+      } else {
+        values.push(value)
+      }
+
+      return this.setFilter(parameter, values)
     },
   },
 }

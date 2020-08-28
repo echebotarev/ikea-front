@@ -1,6 +1,8 @@
 export const state = () => ({
   filters: [],
   sortOrders: [],
+
+  appliedFilters: [],
 })
 export const mutations = {
   SET_FILTERS(state, filters) {
@@ -11,7 +13,16 @@ export const mutations = {
     state.sortOrders = sortOrders.values
   },
 
-  SET_CURRENT_SORT(state, currentSort) {
-    state.currentSort = currentSort
+  SET_APPLIED_FILTERS(state, payload) {
+    const appliedFilters = []
+
+    payload.map((filter) => {
+      if (filter.type === 'CLASS_FILTER') {
+        filter.values.map(
+          (value) => value.selected && appliedFilters.push(value.id)
+        )
+      }
+    })
+    state.appliedFilters = appliedFilters
   },
 }
