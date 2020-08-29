@@ -1,13 +1,13 @@
 <template>
   <v-radio-group v-model="currentFilters" multiple>
     <v-radio
-      v-for="value in filter.values"
+      v-for="value in values"
       :key="value.id"
       class="radio"
       color="rgb(0,0,0)"
       :label="value.name"
       :value="value.id"
-      @click="() => toggleFilters(filter.parameter, value.id)"
+      @click="() => toggleFilters(parameter, value.id)"
     ></v-radio>
   </v-radio-group>
 </template>
@@ -18,9 +18,13 @@ import { mapState } from 'vuex'
 export default {
   name: 'FilterRadioGroup',
   props: {
-    filter: {
-      type: Object,
-      default: () => {},
+    parameter: {
+      type: String,
+      default: () => '',
+    },
+    values: {
+      type: Array,
+      default: () => [],
     },
   },
 

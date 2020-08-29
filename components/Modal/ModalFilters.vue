@@ -36,7 +36,10 @@
 
           <div v-if="filter.type === 'CLASS_FILTER'">
             <v-expansion-panel-content>
-              <FilterRadioGroup :filter="filter" />
+              <FilterRadioGroup
+                :values="filter.values"
+                :parameter="filter.parameter"
+              />
             </v-expansion-panel-content>
           </div>
         </v-expansion-panel>
