@@ -23,9 +23,18 @@
             </v-img>
           </v-col>
         </v-row>
+
+        <client-only v-if="!$vuetify.breakpoint.xs">
+          <ProductInformationButtons :product="product" />
+
+          <ProductRecommendation />
+        </client-only>
       </v-col>
 
-      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 5">
+      <v-col
+        :cols="$vuetify.breakpoint.xs ? 12 : 5"
+        :class="$vuetify.breakpoint.xs ? '' : 'product-main'"
+      >
         <v-row
           v-if="product.price.newProductText"
           class="product-new"
@@ -125,65 +134,11 @@
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
-        <div class="product-summary mb-10">
-          <p v-if="product.summary_description">
-            {{ product.summary_description }}
-          </p>
-          <span class="product-identifier">{{
-            product.display_identifier
-          }}</span>
-        </div>
+    <client-only v-if="$vuetify.breakpoint.xs">
+      <ProductInformationButtons :product="product" />
 
-        <div class="product-information">
-          <a
-            v-if="product.information.productDetailsProps"
-            @click="
-              showModal(
-                Object.assign({}, product.information.productDetailsProps, {
-                  type: 'info',
-                })
-              )
-            "
-          >
-            <v-banner single-line>
-              {{ product.information.productDetailsProps.title }}
-              <template v-slot:actions>
-                <v-btn icon>
-                  <v-icon>mdi-chevron-right</v-icon>
-                </v-btn>
-              </template>
-            </v-banner>
-          </a>
-
-          <a
-            v-if="product.information.dimensionProps"
-            @click="
-              showModal(
-                Object.assign({}, product.information.dimensionProps, {
-                  type: 'info',
-                })
-              )
-            "
-          >
-            <v-banner single-line>
-              {{ product.information.dimensionProps.title }}
-              <v-subheader v-if="product.information.dimensionProps.subtitle">{{
-                product.information.dimensionProps.subtitle
-              }}</v-subheader>
-              <template v-slot:actions>
-                <v-btn icon>
-                  <v-icon>mdi-chevron-right</v-icon>
-                </v-btn>
-              </template>
-            </v-banner>
-          </a>
-        </div>
-      </v-col>
-    </v-row>
-
-    <ProductRecommendation />
+      <ProductRecommendation />
+    </client-only>
 
     <InfoModal />
   </div>
@@ -202,6 +157,7 @@ import Variations from '@/components/Variations'
 import DisplayVariations from '@/components/DisplayVariations'
 import Available from '@/components/Available'
 import Price from '@/components/Price'
+import ProductInformationButtons from '@/components/ProductInformationButtons'
 import ProductRecommendation from '@/components/ProductRecommendation'
 
 import getImage from '@/assets/utils/getImage'
@@ -214,6 +170,7 @@ export default {
     Variations,
     DisplayVariations,
     Price,
+    ProductInformationButtons,
     ProductRecommendation,
   },
   async fetch({ store, error, params }) {
@@ -238,7 +195,6 @@ export default {
   }),
   methods: {
     ...mapActions({
-      showModal: 'page/showModal',
       addProduct: 'cart/addProduct',
     }),
     getImage,
@@ -251,6 +207,13 @@ export default {
   font-size: 22px;
   font-weight: 500;
 }
+.product-main {
+  position: -webkit-sticky;
+  position: sticky;
+  height: 400px;
+  top: 0;
+}
+
 .product-description {
   font-size: 14px;
 

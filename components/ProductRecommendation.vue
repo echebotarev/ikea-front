@@ -1,6 +1,6 @@
 <template>
   <v-row class="product-recommendations">
-    <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
+    <v-col>
       <h2 class="mb-10">Похожие товары</h2>
 
       <v-sheet width="100%">
