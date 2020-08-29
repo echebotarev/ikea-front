@@ -140,7 +140,7 @@
       <ProductRecommendation />
     </client-only>
 
-    <InfoModal />
+    <Modal />
   </div>
 </template>
 
@@ -152,7 +152,7 @@ TODO: рекомендации
 */
 import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import InfoModal from '@/components/Modal/index'
+import Modal from '@/components/Modal/index'
 import Variations from '@/components/Variations'
 import DisplayVariations from '@/components/DisplayVariations'
 import Available from '@/components/Available'
@@ -165,7 +165,7 @@ import getImage from '@/assets/utils/getImage'
 export default {
   components: {
     Breadcrumbs,
-    InfoModal,
+    Modal,
     Available,
     Variations,
     DisplayVariations,
