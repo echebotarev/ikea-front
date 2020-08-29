@@ -44,11 +44,11 @@ export default {
   },
 
   methods: {
-    toggleFilters(parameter, value) {
+    async toggleFilters(parameter, value) {
       let values = []
       const filter = this.$route.query[parameter]
       if (!filter) {
-        return this.setFilter(parameter, [value])
+        return await this.setFilter(parameter, [value])
       }
 
       values = filter.split(',')
@@ -58,7 +58,7 @@ export default {
         values.push(value)
       }
 
-      return this.setFilter(parameter, values)
+      return await this.setFilter(parameter, values)
     },
 
     async setFilter(parameter, values) {
@@ -84,4 +84,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.radio {
+  flex-direction: row-reverse;
+  text-transform: capitalize;
+}
+</style>

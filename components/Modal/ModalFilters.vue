@@ -111,8 +111,4 @@ export default {
 .current-sort {
   font-weight: 400;
 }
-.radio {
-  flex-direction: row-reverse;
-  text-transform: capitalize;
-}
 </style>
