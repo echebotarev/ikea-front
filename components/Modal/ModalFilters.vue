@@ -109,7 +109,10 @@ export default {
     },
 
     prepareFiltersData(data) {
-      return data.filter((item) => item.enabled)
+      // TODO отображать фильтр по категориям
+      return data.filter(
+        (item) => item.enabled && item.type !== 'CATEGORY_TREE'
+      )
     },
 
     async setCurrentSort(value) {
