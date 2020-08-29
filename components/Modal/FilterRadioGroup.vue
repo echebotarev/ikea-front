@@ -2,7 +2,7 @@
   <v-radio-group v-model="appliedFilters" multiple>
     <v-radio
       v-for="value in values"
-      :key="value.id || value.key"
+      :key="`${value.id || value.key}_${value.count}`"
       class="radio"
       color="rgb(0,0,0)"
       :label="value.name"

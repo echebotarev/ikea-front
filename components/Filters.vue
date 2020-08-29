@@ -9,12 +9,7 @@
           class="text-capitalize btn-filters"
           @click="
             showModal(
-              Object.assign(
-                {},
-                { filters: filters },
-                { sortOrders: sortOrders },
-                { type: 'info' }
-              )
+              Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
             )
           "
           >Сортировать</v-btn
@@ -35,7 +30,6 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'Filters',
   computed: mapState({
-    filters: (state) => state.filters.filters,
     sortOrders: (state) => state.filters.sortOrders,
 
     productCount: (state) => state.products.productCount,

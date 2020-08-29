@@ -29,7 +29,7 @@
         </v-expansion-panel>
 
         <v-expansion-panel
-          v-for="filter in prepareFiltersData(data.filters)"
+          v-for="filter in prepareFiltersData(filters)"
           :key="filter.id"
         >
           <v-expansion-panel-header>{{ filter.name }}</v-expansion-panel-header>
@@ -90,6 +90,8 @@ export default {
   },
   computed: {
     ...mapState({
+      filters: (state) => state.filters.filters,
+
       currentSortFromState: (state) =>
         state.filters.sortOrders.find((item) => item.selected),
       categoryId: (state) => state.category.category.identifier,
