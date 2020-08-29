@@ -1,5 +1,5 @@
 <template>
-  <v-radio-group v-model="currentFilters" multiple>
+  <v-radio-group v-model="appliedFilters" multiple>
     <v-radio
       v-for="value in values"
       :key="value.id"
@@ -30,12 +30,12 @@ export default {
 
   computed: {
     ...mapState({
-      appliedFilters: (state) => state.filters.appliedFilters,
+      appliedFiltersFromState: (state) => state.filters.appliedFilters,
     }),
 
-    currentFilters: {
+    appliedFilters: {
       get() {
-        return this.appliedFilters
+        return this.appliedFiltersFromState
       },
       set(newFilter) {
         return newFilter
