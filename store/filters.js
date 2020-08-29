@@ -14,21 +14,6 @@ export const mutations = {
   },
 
   SET_APPLIED_FILTERS(state, payload) {
-    const appliedFilters = []
-
-    payload.map((filter) => {
-      if (filter.type === 'CLASS_FILTER') {
-        filter.values.map(
-          (value) => value.selected && appliedFilters.push(value.id)
-        )
-      } else if (filter.type === 'TYPED_CLASS_FILTER') {
-        filter.types.map((type) =>
-          type.values.map(
-            (value) => value.selected && appliedFilters.push(value.id)
-          )
-        )
-      }
-    })
-    state.appliedFilters = appliedFilters
+    state.appliedFilters = payload
   },
 }

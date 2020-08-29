@@ -1,4 +1,6 @@
 import ApiService from '@/services/ApiService.js'
+import getAppliedFiltersFromQuery from 'assets/utils/getAppliedFiltersFromQuery'
+
 export const state = () => ({
   products: [],
   recommendations: [],
@@ -34,9 +36,13 @@ export const actions = {
       commit('filters/SET_SORT_ORDERS', response.data.sortOrders, {
         root: true,
       })
-      commit('filters/SET_APPLIED_FILTERS', response.data.filters2, {
-        root: true,
-      })
+      commit(
+        'filters/SET_APPLIED_FILTERS',
+        getAppliedFiltersFromQuery(payload),
+        {
+          root: true,
+        }
+      )
     })
   },
 
