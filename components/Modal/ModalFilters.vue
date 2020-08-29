@@ -42,6 +42,18 @@
               />
             </v-expansion-panel-content>
           </div>
+
+          <div v-if="filter.type === 'TYPED_CLASS_FILTER'">
+            <v-expansion-panel-content>
+              <div v-for="(type, index) in filter.types" :key="index">
+                <h3>{{ type.name }}</h3>
+                <FilterRadioGroup
+                  :values="type.values"
+                  :parameter="filter.parameter"
+                />
+              </div>
+            </v-expansion-panel-content>
+          </div>
         </v-expansion-panel>
       </v-expansion-panels>
     </v-col>

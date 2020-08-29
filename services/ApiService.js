@@ -23,7 +23,7 @@ export default {
 
   getProducts(payload) {
     const { id } = payload
-    const queries = getQueries(payload)
+    const queries = encodeURI(getQueries(payload))
 
     return apiClient.get(`/products/${id}?${queries}`)
   },
