@@ -7,6 +7,7 @@
       color="rgb(0,0,0)"
       :label="value.name"
       :value="value.id"
+      :disabled="value.count === 0"
       @click="() => toggleFilters(parameter, value.id)"
     ></v-radio>
   </v-radio-group>
