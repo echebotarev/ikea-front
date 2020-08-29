@@ -1,0 +1,83 @@
+<template>
+  <v-radio-group v-model="currentFilters" multiple>
+    <v-radio
+      v-for="value in filter.values"
+      :key="value.id"
+      class="radio"
+      color="rgb(0,0,0)"
+      :label="value.name"
+      :value="value.id"
+      @click="() => toggleFilters(filter.parameter, value.id)"
+    ></v-radio>
+  </v-radio-group>
+</template>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  name: 'FilterRadioGroup',
+  props: {
+    filter: {
+      type: Object,
+      default: () => {},
+    },
+  },
+
+  computed: {
+    ...mapState({
+      appliedFilters: (state) => state.filters.appliedFilters,
+    }),
+
+    currentFilters: {
+      get() {
+        return this.appliedFilters
+      },
+      set(newFilter) {
+        return newFilter
+      },
+    },
+  },
+
+  methods: {
+    toggleFilters(parameter, value) {
+      let values = []
+      const filter = this.$route.query[parameter]
+      if (!filter) {
+        return this.setFilter(parameter, [value])
+      }
+
+      values = filter.split(',')
+      if (values.includes(value)) {
+        values = values.filter((id) => id !== value)
+      } else {
+        values.push(value)
+      }
+
+      return this.setFilter(parameter, values)
+    },
+
+    async setFilter(parameter, values) {
+      if (values.length === 0) {
+        const { query } = this.$route
+        delete query[parameter]
+
+        // TODO: опасная реализаци, но пока не представляю как делать иначе
+        // По другому страница не обновляется
+        await this.$router.replace({ query: null })
+        return await this.$router.replace({ query })
+      }
+
+      return await this.$router.push({
+        query: {
+          ...this.$route.query,
+          [parameter]: values.toString(),
+          page: 1,
+        },
+      })
+    },
+  },
+}
+</script>
+
+<style scoped></style>
