@@ -29,7 +29,7 @@
         </v-expansion-panel>
 
         <v-expansion-panel
-          v-for="filter in prepareFiltersData(filters)"
+          v-for="filter in getFiltersData(filters)"
           :key="filter.id"
         >
           <v-expansion-panel-header>{{ filter.name }}</v-expansion-panel-header>
@@ -67,6 +67,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import getFiltersData from 'assets/utils/getFiltersData'
 import FilterRadioGroup from '@/components/Modal/FilterRadioGroup'
 
 export default {
@@ -114,14 +115,11 @@ export default {
         )
     },
 
-    prepareFiltersData(data) {
-      // TODO: сделать фильтр по цене
-      return data.filter((item) => item.enabled && item.type !== 'RANGE')
-    },
-
     async setCurrentSort(value) {
       await this.$router.push({ query: { ...this.$route.query, sort: value } })
     },
+
+    getFiltersData,
   },
 }
 </script>

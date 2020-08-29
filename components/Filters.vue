@@ -1,20 +1,39 @@
 <template>
   <div id="scroll-target">
     <v-row>
-      <v-col>
+      <v-col cols="10">
         <v-btn
           v-if="sortOrders"
           rounded
           elevation="0"
-          class="text-capitalize btn-filters"
+          class="text-capitalize btn-filters mr-2 mb-2"
           @click="
             showModal(
               Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
             )
           "
-          >Сортировать</v-btn
         >
+          Сортировать
+        </v-btn>
+
+        <v-btn
+          v-for="filter in getFiltersData(filters)"
+          :key="filter.id"
+          rounded
+          elevation="0"
+          :class="`text-capitalize btn-filters mr-2 mb-2${
+            filter.selected ? ' selected' : ''
+          }`"
+          @click="
+            showModal(
+              Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
+            )
+          "
+        >
+          {{ filter.name }}
+        </v-btn>
       </v-col>
+
       <v-col class="text-right product-count" align="middle">
         <span>{{ productCount }} товаров(-а)</span>
       </v-col>
@@ -26,10 +45,12 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import getFiltersData from 'assets/utils/getFiltersData'
 
 export default {
   name: 'Filters',
   computed: mapState({
+    filters: (state) => state.filters.filters,
     sortOrders: (state) => state.filters.sortOrders,
 
     productCount: (state) => state.products.productCount,
@@ -38,6 +59,8 @@ export default {
     ...mapActions({
       showModal: 'page/showModal',
     }),
+
+    getFiltersData,
   },
 }
 </script>
@@ -51,5 +74,10 @@ export default {
 .btn-filters {
   font-size: 0.75rem;
   font-weight: 600;
+
+  &.selected {
+    background: rgb(29, 29, 29) !important;
+    color: #fff;
+  }
 }
 </style>
