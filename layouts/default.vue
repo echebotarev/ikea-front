@@ -4,7 +4,7 @@
       <NavBar :links="links" />
 
       <client-only v-if="$vuetify.breakpoint.smAndDown">
-        <v-row>
+        <v-row no-gutters>
           <v-spacer></v-spacer>
           <v-col cols="11">
             <Search />
