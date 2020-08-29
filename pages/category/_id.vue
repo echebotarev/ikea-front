@@ -36,7 +36,7 @@ import ProductList from '@/components/ProductList'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Filters from '@/components/Filters'
 import Pagination from '@/components/Pagination'
-import InfoModal from '@/components/InfoModal/index'
+import InfoModal from '@/components/Modal/index'
 
 export default {
   components: {

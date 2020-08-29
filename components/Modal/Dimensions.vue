@@ -1,5 +1,5 @@
 <template>
-  <v-row align="center product-dimensions">
+  <v-row align="center" class="product-dimensions">
     <v-spacer></v-spacer>
     <v-col cols="10">
       <h2>{{ data.title }}</h2>

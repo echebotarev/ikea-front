@@ -152,7 +152,7 @@ TODO: рекомендации
 */
 import { mapState, mapActions } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import InfoModal from '@/components/InfoModal/index'
+import InfoModal from '@/components/Modal/index'
 import Variations from '@/components/Variations'
 import DisplayVariations from '@/components/DisplayVariations'
 import Available from '@/components/Available'

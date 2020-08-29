@@ -38,10 +38,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Details from '@/components/InfoModal/Details'
-import Dimensions from '@/components/InfoModal/Dimensions'
-import Variations from '@/components/InfoModal/InfoVariations'
-import Filters from '@/components/InfoModal/Infofilters'
+import Details from '@/components/Modal/Details'
+import Dimensions from '@/components/Modal/Dimensions'
+import Variations from '@/components/Modal/ModalVariations'
+import Filters from '@/components/Modal/Modalfilters'
 
 export default {
   name: 'InfoModal',
