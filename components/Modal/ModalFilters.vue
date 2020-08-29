@@ -115,7 +115,8 @@ export default {
     },
 
     prepareFiltersData(data) {
-      return data.filter((item) => item.enabled)
+      // TODO: сделать фильтр по цене
+      return data.filter((item) => item.enabled && item.type !== 'RANGE')
     },
 
     async setCurrentSort(value) {
