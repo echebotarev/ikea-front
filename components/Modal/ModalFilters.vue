@@ -34,10 +34,14 @@
         >
           <v-expansion-panel-header>{{ filter.name }}</v-expansion-panel-header>
 
-          <div v-if="filter.type === 'CLASS_FILTER'">
+          <div
+            v-if="
+              filter.type === 'CLASS_FILTER' || filter.type === 'CATEGORY_TREE'
+            "
+          >
             <v-expansion-panel-content>
               <FilterRadioGroup
-                :values="filter.values"
+                :values="filter.values || filter.categories"
                 :parameter="filter.parameter"
               />
             </v-expansion-panel-content>
@@ -109,10 +113,7 @@ export default {
     },
 
     prepareFiltersData(data) {
-      // TODO отображать фильтр по категориям
-      return data.filter(
-        (item) => item.enabled && item.type !== 'CATEGORY_TREE'
-      )
+      return data.filter((item) => item.enabled)
     },
 
     async setCurrentSort(value) {

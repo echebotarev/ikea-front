@@ -2,13 +2,13 @@
   <v-radio-group v-model="appliedFilters" multiple>
     <v-radio
       v-for="value in values"
-      :key="value.id"
+      :key="value.id || value.key"
       class="radio"
       color="rgb(0,0,0)"
       :label="value.name"
-      :value="value.id"
+      :value="value.id || value.key"
       :disabled="value.count === 0"
-      @click="() => toggleFilters(parameter, value.id)"
+      @click="() => toggleFilters(parameter, value.id || value.key)"
     ></v-radio>
   </v-radio-group>
 </template>
