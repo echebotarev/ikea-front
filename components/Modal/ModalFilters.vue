@@ -60,7 +60,7 @@
 import { mapState } from 'vuex'
 
 export default {
-  name: 'InfoFilters',
+  name: 'Filters',
   props: {
     data: {
       type: Object,
