@@ -41,7 +41,7 @@ import { mapState, mapActions } from 'vuex'
 import Details from '@/components/Modal/Details'
 import Dimensions from '@/components/Modal/Dimensions'
 import Variations from '@/components/Modal/ModalVariations'
-import Filters from '@/components/Modal/Modalfilters'
+import Filters from '@/components/Modal/ModalFilters'
 
 export default {
   name: 'InfoModal',
