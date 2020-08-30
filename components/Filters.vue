@@ -8,16 +8,19 @@
           elevation="0"
           class="text-capitalize btn-filters mr-2 mb-2"
           @click="
-            showModal(
-              Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
-            )
+            () => {
+              setOpenPanels([0])
+              showModal(
+                Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
+              )
+            }
           "
         >
           Сортировать
         </v-btn>
 
         <v-btn
-          v-for="filter in getFiltersData(filters)"
+          v-for="(filter, index) in getFiltersData(filters)"
           :key="filter.id"
           rounded
           elevation="0"
@@ -25,9 +28,12 @@
             filter.selected ? ' selected' : ''
           }`"
           @click="
-            showModal(
-              Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
-            )
+            () => {
+              setOpenPanels([index + 1])
+              showModal(
+                Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
+              )
+            }
           "
         >
           {{ filter.name }}
@@ -58,6 +64,7 @@ export default {
   methods: {
     ...mapActions({
       showModal: 'page/showModal',
+      setOpenPanels: 'filters/setOpenPanels',
     }),
 
     getFiltersData,

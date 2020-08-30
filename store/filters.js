@@ -3,6 +3,7 @@ export const state = () => ({
   sortOrders: [],
 
   appliedFilters: [],
+  openPanels: [],
 })
 export const mutations = {
   SET_FILTERS(state, filters) {
@@ -15,5 +16,15 @@ export const mutations = {
 
   SET_APPLIED_FILTERS(state, payload) {
     state.appliedFilters = payload
+  },
+
+  SET_OPEN_PANELS(state, payload) {
+    state.openPanels = payload
+  },
+}
+
+export const actions = {
+  setOpenPanels({ commit }, payload) {
+    commit('SET_OPEN_PANELS', payload)
   },
 }

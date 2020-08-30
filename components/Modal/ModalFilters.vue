@@ -2,7 +2,7 @@
   <v-row>
     <v-spacer></v-spacer>
     <v-col cols="10">
-      <v-expansion-panels accordion flat>
+      <v-expansion-panels v-model="openPanels" accordion flat multiple>
         <!-- Сортировка -->
         <v-expansion-panel v-if="data.sortOrders">
           <v-expansion-panel-header>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import getFiltersData from 'assets/utils/getFiltersData'
 import FilterRadioGroup from '@/components/Modal/FilterRadioGroup'
 
@@ -95,8 +95,10 @@ export default {
 
       currentSortFromState: (state) =>
         state.filters.sortOrders.find((item) => item.selected),
+      openPanelsFromState: (state) => state.filters.openPanels,
       categoryId: (state) => state.category.category.identifier,
     }),
+
     currentSort: {
       get() {
         return this.currentSortFromState.id
@@ -105,8 +107,21 @@ export default {
         return newName
       },
     },
+
+    openPanels: {
+      get() {
+        return this.openPanelsFromState
+      },
+      set(openPanels) {
+        this.setOpenPanels(openPanels)
+      },
+    },
   },
   methods: {
+    ...mapActions({
+      setOpenPanels: 'filters/setOpenPanels',
+    }),
+
     prepareSortData(data) {
       return data
         .filter((item) => item.id !== 'MOST_POPULAR')
