@@ -1,46 +1,61 @@
 <template>
   <div id="scroll-target">
     <v-row>
-      <v-col cols="10">
-        <v-btn
-          v-if="sortOrders"
-          rounded
-          elevation="0"
-          class="text-capitalize btn-filters mr-2 mb-2"
-          @click="
-            () => {
-              setOpenPanels([0])
-              showModal(
-                Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
-              )
-            }
-          "
-        >
-          Сортировать
-        </v-btn>
+      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 10">
+        <v-tabs grow hide-slider :show-arrows="!$vuetify.breakpoint.xs">
+          <v-tab>
+            <v-btn
+              v-if="sortOrders"
+              rounded
+              elevation="0"
+              class="text-capitalize btn-filters mr-2 mb-2"
+              @click="
+                () => {
+                  setOpenPanels([0])
+                  showModal(
+                    Object.assign(
+                      {},
+                      { sortOrders: sortOrders },
+                      { type: 'info' }
+                    )
+                  )
+                }
+              "
+            >
+              Сортировать
+            </v-btn>
+          </v-tab>
 
-        <v-btn
-          v-for="(filter, index) in getFiltersData(filters)"
-          :key="filter.id"
-          rounded
-          elevation="0"
-          :class="`text-capitalize btn-filters mr-2 mb-2${
-            filter.selected ? ' selected' : ''
-          }`"
-          @click="
-            () => {
-              setOpenPanels([index + 1])
-              showModal(
-                Object.assign({}, { sortOrders: sortOrders }, { type: 'info' })
-              )
-            }
-          "
-        >
-          {{ filter.name }}
-        </v-btn>
+          <v-tab
+            v-for="(filter, index) in getFiltersData(filters)"
+            :key="filter.id"
+          >
+            <v-btn
+              rounded
+              elevation="0"
+              :class="`text-capitalize btn-filters mr-2 mb-2${
+                filter.selected ? ' selected' : ''
+              }`"
+              @click="
+                () => {
+                  setOpenPanels([index + 1])
+                  showModal(
+                    Object.assign(
+                      {},
+                      { sortOrders: sortOrders },
+                      { type: 'info' }
+                    )
+                  )
+                }
+              "
+            >
+              {{ filter.name }}
+            </v-btn>
+          </v-tab>
+        </v-tabs>
       </v-col>
 
-      <v-col class="text-right product-count" align="middle">
+      <v-col class="text-right product-count">
         <span>{{ productCount }} товаров(-а)</span>
       </v-col>
     </v-row>
