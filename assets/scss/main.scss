@@ -121,3 +121,6 @@
 .v-slide-group__prev.v-slide-group__prev--disabled {
 	display: none !important;
 }
+.theme--light.v-tabs .v-tab:hover::before {
+	opacity: 0 !important;
+}

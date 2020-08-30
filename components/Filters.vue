@@ -8,7 +8,7 @@
               v-if="sortOrders"
               rounded
               elevation="0"
-              class="text-capitalize btn-filters mr-2 mb-2"
+              class="text-capitalize btn-filters"
               @click="
                 () => {
                   setOpenPanels([0])
@@ -33,7 +33,7 @@
             <v-btn
               rounded
               elevation="0"
-              :class="`text-capitalize btn-filters mr-2 mb-2${
+              :class="`text-capitalize btn-filters${
                 filter.selected ? ' selected' : ''
               }`"
               @click="
@@ -96,10 +96,11 @@ export default {
 .btn-filters {
   font-size: 0.75rem;
   font-weight: 600;
+  color: rgba(0, 0, 0, 0.87) !important;
 
   &.selected {
     background: rgb(29, 29, 29) !important;
-    color: #fff;
+    color: #fff !important;
   }
 }
 </style>
