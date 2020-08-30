@@ -19,7 +19,9 @@
       }}</v-col>
     </v-row>
 
-    <Filters />
+    <client-only>
+      <Filters />
+    </client-only>
 
     <ProductList :products="products" />
 
