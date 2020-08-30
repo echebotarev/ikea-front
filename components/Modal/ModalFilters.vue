@@ -8,7 +8,7 @@
           <v-expansion-panel-header>
             <v-row no-gutters>
               <v-col>Сортировать</v-col>
-              <v-col class="text--secondary current-sort">
+              <v-col class="text--secondary current-filters">
                 {{ dictName[currentSort] }}
               </v-col>
             </v-row>
@@ -32,7 +32,14 @@
           v-for="filter in getFiltersData(filters)"
           :key="filter.id"
         >
-          <v-expansion-panel-header>{{ filter.name }}</v-expansion-panel-header>
+          <v-expansion-panel-header>
+            <v-row no-gutters>
+              <v-col>{{ filter.name }}</v-col>
+              <v-col class="text--secondary current-filters">
+                {{ getSelectedNames(filter) }}
+              </v-col>
+            </v-row>
+          </v-expansion-panel-header>
 
           <div
             v-if="
@@ -137,13 +144,36 @@ export default {
       await this.$router.push({ query: { ...this.$route.query, sort: value } })
     },
 
+    getSelectedNames(filter) {
+      if (filter.type === 'CLASS_FILTER') {
+        return filter.values.reduce(
+          (acc, value) =>
+            value.selected ? `${acc}${acc ? ',' : ''} ${value.name}` : acc,
+          ''
+        )
+      } else if (filter.type === 'TYPED_CLASS_FILTER') {
+        let result = ''
+        filter.types.map(
+          (type) =>
+            (result = type.values.reduce(
+              (acc, value) =>
+                value.selected ? `${acc}${acc ? ',' : ''} ${value.name}` : acc,
+              result
+            ))
+        )
+        return result
+      }
+
+      return ''
+    },
+
     getFiltersData,
   },
 }
 </script>
 
 <style scoped lang="scss">
-.current-sort {
+.current-filters {
   font-weight: 400;
 }
 </style>
