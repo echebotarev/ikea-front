@@ -79,6 +79,7 @@ export default {
       default: () => {},
     },
   },
+
   data() {
     return {
       dictName: {
@@ -89,6 +90,7 @@ export default {
       },
     }
   },
+
   computed: {
     ...mapState({
       filters: (state) => state.filters.filters,
@@ -117,6 +119,7 @@ export default {
       },
     },
   },
+
   methods: {
     ...mapActions({
       setOpenPanels: 'filters/setOpenPanels',
