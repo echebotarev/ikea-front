@@ -195,7 +195,7 @@ export default {
   }),
   methods: {
     ...mapActions({
-      addProduct: 'cart/addProduct',
+      addProduct: 'orders/addProduct',
     }),
     getImage,
   },
