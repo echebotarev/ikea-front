@@ -11,6 +11,10 @@ const apiClient = axios.create({
 })
 
 export default {
+  getOrder() {
+    return apiClient.get(`/`)
+  },
+
   createOrder(payload) {
     return apiClient.post(`/`, payload)
   },

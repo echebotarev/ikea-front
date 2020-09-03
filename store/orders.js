@@ -1,29 +1,44 @@
 import OrdersService from '@/services/OrdersService.js'
 
 export const state = () => ({
-  orders: [],
+  order: {},
+  products: [],
 })
 
 export const mutations = {
-  ADD_PRODUCT(state, { product, qnt }) {},
+  SET_ORDER(state, payload) {
+    state.order = payload
+  },
 
-  REMOVE_PRODUCT(state, { product, qnt }) {},
+  SET_PRODUCTS(state, payload) {
+    state.products = payload
+  },
 }
 
 export const actions = {
-  getOrders({ commit }, payload) {},
+  fetchProducts({ commit }) {
+    return OrdersService.getOrder().then((response) => {
+      if (response.data) {
+        commit('SET_ORDER', response.data)
+        commit('SET_PRODUCTS', response.data.products)
+      }
+    })
+  },
 
   addProduct({ commit }, payload) {
-    return OrdersService.createOrder(payload)
+    return OrdersService.createOrder(payload).then((response) => {
+      if (response.data) {
+        commit('SET_ORDER', response.data)
+        commit('SET_PRODUCTS', response.data.products)
+      }
+    })
   },
 }
 
 export const getters = {
   getCountCart(state) {
     let count = 0
-    state.orders.map((order) =>
-      order.products.map((product) => (count += product.qnt))
-    )
+    state.products.map((product) => (count += product.qnt))
     return count
   },
 }

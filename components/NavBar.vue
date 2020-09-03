@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      countCart: 'cart/getCountCart',
+      countCart: 'orders/getCountCart',
     }),
   },
   methods: {

@@ -67,6 +67,9 @@ export default {
       },
     },
   },
+  mounted() {
+    this.$store.dispatch('orders/fetchProducts')
+  },
   methods: {
     ...mapActions({
       toggleDrawer: 'page/toggleDrawer',

@@ -6,7 +6,7 @@
         <CartProductCard :products="products" />
 
         <v-row class="cart-total">
-          <v-col>Сумма</v-col>
+          <v-col>Сумма:</v-col>
           <v-col class="text-right">
             <Price :price="sum" :is-only-formatted="true" />
           </v-col>
@@ -25,10 +25,10 @@ export default {
   name: 'Cart',
   components: { CartProductCard, Price },
   computed: mapState({
-    products: (state) => state.cart.products,
+    products: (state) => state.orders.products,
     sum(state) {
       let sum = 0
-      state.cart.products.forEach((product) => {
+      state.orders.products.forEach((product) => {
         const price =
           this.$getPrice(product.price.price.mainPriceProps.price.integer) *
           product.qnt
