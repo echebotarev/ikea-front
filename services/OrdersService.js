@@ -15,7 +15,11 @@ export default {
     return apiClient.get(`/`)
   },
 
-  createOrder(payload) {
+  addProduct(payload) {
     return apiClient.post(`/`, payload)
+  },
+
+  removeProduct({ product, qnt }) {
+    return apiClient.delete(`/${product.identifier}?qnt=${qnt}`)
   },
 }

@@ -130,8 +130,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      addProduct: 'cart/addProduct',
-      removeProduct: 'cart/removeProduct',
+      addProduct: 'orders/addProduct',
+      removeProduct: 'orders/removeProduct',
     }),
     getImage,
   },

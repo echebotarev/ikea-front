@@ -26,7 +26,16 @@ export const actions = {
   },
 
   addProduct({ commit }, payload) {
-    return OrdersService.createOrder(payload).then((response) => {
+    return OrdersService.addProduct(payload).then((response) => {
+      if (response.data) {
+        commit('SET_ORDER', response.data)
+        commit('SET_PRODUCTS', response.data.products)
+      }
+    })
+  },
+
+  removeProduct({ commit }, payload) {
+    return OrdersService.removeProduct(payload).then((response) => {
       if (response.data) {
         commit('SET_ORDER', response.data)
         commit('SET_PRODUCTS', response.data.products)
