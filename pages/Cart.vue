@@ -13,7 +13,7 @@
         </v-row>
       </div>
 
-      <div>
+      <div class="mb-10">
         <span class="text-overline pl-5">Укажите адрес доставки:</span>
         <v-text-field
           id="address"
@@ -28,6 +28,34 @@
         >
         </v-text-field>
       </div>
+
+      <div class="mb-10">
+        <v-row class="pr-5 pl-5">
+          <v-col class="text-overline" cols="7">
+            Экономьте свое время. Воспользуйтесь услугой сборки. <br />
+            Стоимость сборки - {{ assemblyPercent }}% от суммы заказа
+          </v-col>
+
+          <v-divider vertical></v-divider>
+
+          <v-col>
+            <v-row>
+              <v-col cols="8">
+                <v-checkbox
+                  v-model="checkbox"
+                  prepend-icon="mdi-tools"
+                  label="Заказать сборку"
+                  class="checkbox"
+                ></v-checkbox>
+              </v-col>
+
+              <v-col class="text-right">
+                <Price :price="getAssemblyValue" :is-only-formatted="true" />
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </div>
     </div>
   </client-only>
 </template>
@@ -35,6 +63,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import config from '@/config'
+import { assemblyPercent } from '@/constants'
 import CartProductCard from '@/components/CartProductCard'
 import Price from '~/components/Price'
 
@@ -44,6 +73,8 @@ export default {
   data() {
     return {
       value: '',
+      checkbox: false,
+      assemblyPercent,
     }
   },
   computed: {
@@ -62,6 +93,13 @@ export default {
     }),
     getValue() {
       return this.value
+    },
+    getAssemblyValue() {
+      if (this.checkbox) {
+        return (this.sum * this.assemblyPercent) / 100
+      }
+
+      return 0
     },
   },
   mounted() {
@@ -89,4 +127,8 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.checkbox {
+  margin-top: 0 !important;
+}
+</style>

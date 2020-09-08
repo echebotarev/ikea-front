@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$getPrice(price)" :class="`product-price ${className}`">
+  <div :class="`product-price ${className}`">
     <span v-if="prepend">{{ prepend }}</span>
     <span class="price">{{
       $getDisplayPrice(price, { isOnlyFormatted })
