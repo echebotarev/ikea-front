@@ -12,12 +12,24 @@
           </v-col>
         </v-row>
       </div>
+
+      <v-text-field
+        id="address"
+        flat
+        hide-details
+        rounded
+        filled
+        placeholder="Ваш адрес"
+        full-width
+        height="50"
+      ></v-text-field>
     </div>
   </client-only>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import config from '@/config'
 import CartProductCard from '@/components/CartProductCard'
 import Price from '~/components/Price'
 
@@ -37,10 +49,23 @@ export default {
       return sum
     },
   }),
+  mounted() {
+    global.ymaps.ready(() => {
+      // eslint-disable-next-line no-new
+      new global.ymaps.SuggestView('address')
+    })
+  },
   methods: {
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
     }),
+  },
+  head: {
+    script: [
+      {
+        src: `https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${config.yandexApiKey}`,
+      },
+    ],
   },
 }
 </script>

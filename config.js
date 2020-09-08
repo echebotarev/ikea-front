@@ -18,4 +18,6 @@ export default {
       ? 'http://localhost:7070/orders'
       : 'https://orders.ikea-dostavka.org/orders'
   },
+
+  yandexApiKey: '042a2e05-86cf-4d8f-b283-ca17f9f5ddb5',
 }
