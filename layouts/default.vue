@@ -78,6 +78,9 @@ export default {
   head() {
     return {
       titleTemplate: '%s - Доставка',
+      htmlAttrs: {
+        lang: 'ru',
+      },
       meta: [
         {
           hid: 'description',

@@ -22,6 +22,7 @@
         placeholder="Ваш адрес"
         full-width
         height="50"
+        :value="value"
       ></v-text-field>
     </div>
   </client-only>
@@ -36,23 +37,37 @@ import Price from '~/components/Price'
 export default {
   name: 'Cart',
   components: { CartProductCard, Price },
-  computed: mapState({
-    products: (state) => state.orders.products,
-    sum(state) {
-      let sum = 0
-      state.orders.products.forEach((product) => {
-        const price =
-          this.$getPrice(product.price.price.mainPriceProps.price.integer) *
-          product.qnt
-        sum += price
-      })
-      return sum
+  data() {
+    return {
+      value: '',
+    }
+  },
+  computed: {
+    ...mapState({
+      products: (state) => state.orders.products,
+      sum(state) {
+        let sum = 0
+        state.orders.products.forEach((product) => {
+          const price =
+            this.$getPrice(product.price.price.mainPriceProps.price.integer) *
+            product.qnt
+          sum += price
+        })
+        return sum
+      },
+    }),
+    getValue() {
+      return this.value
     },
-  }),
+  },
   mounted() {
     global.ymaps.ready(() => {
       // eslint-disable-next-line no-new
-      new global.ymaps.SuggestView('address')
+      const suggestView = new global.ymaps.SuggestView('address')
+
+      suggestView.events.add('select', (e) => {
+        this.value = e.get('item').displayName
+      })
     })
   },
   methods: {
