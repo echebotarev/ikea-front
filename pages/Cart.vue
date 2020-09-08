@@ -24,6 +24,7 @@
             placeholder="ФИО"
             full-width
             height="50"
+            :rules="[rules.required]"
           >
           </v-text-field>
         </v-col>
@@ -38,6 +39,7 @@
             placeholder="mail@example.com"
             full-width
             height="50"
+            :rules="[rules.required, rules.email]"
           >
           </v-text-field>
         </v-col>
@@ -56,6 +58,7 @@
             full-width
             height="50"
             :value="value"
+            :rules="[rules.required]"
           >
           </v-text-field>
         </v-col>
@@ -119,6 +122,13 @@ export default {
       value: '',
       checkbox: false,
       assemblyPercent,
+      rules: {
+        required: (value) => !!value || 'Required.',
+        email: (value) => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        },
+      },
     }
   },
   computed: {
