@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <div>
+    <div class="cart">
       <h1>Корзина</h1>
       <div class="mb-16">
         <CartProductCard :products="products" />
@@ -29,33 +29,38 @@
         </v-text-field>
       </div>
 
-      <div class="mb-10">
-        <v-row class="pr-5 pl-5">
-          <v-col class="text-overline" :cols="$vuetify.breakpoint.xs ? 12 : 7">
-            Экономьте свое время. Воспользуйтесь услугой сборки. <br />
-            Стоимость сборки - {{ assemblyPercent }}% от суммы заказа
-          </v-col>
+      <v-row no-gutters class="mb-10">
+        <v-col>
+          <v-row class="pr-5 pl-5">
+            <v-col
+              class="text-overline"
+              :cols="$vuetify.breakpoint.xs ? 12 : 7"
+            >
+              Экономьте свое время. Воспользуйтесь услугой сборки. <br />
+              Стоимость сборки - {{ assemblyPercent }}% от суммы заказа
+            </v-col>
 
-          <v-divider vertical></v-divider>
+            <v-divider vertical></v-divider>
 
-          <v-col>
-            <v-row>
-              <v-col cols="8">
-                <v-checkbox
-                  v-model="checkbox"
-                  prepend-icon="mdi-tools"
-                  label="Заказать сборку"
-                  class="checkbox"
-                ></v-checkbox>
-              </v-col>
+            <v-col>
+              <v-row>
+                <v-col cols="8">
+                  <v-checkbox
+                    v-model="checkbox"
+                    prepend-icon="mdi-tools"
+                    label="Заказать сборку"
+                    class="checkbox"
+                  ></v-checkbox>
+                </v-col>
 
-              <v-col class="text-right">
-                <Price :price="getAssemblyValue" :is-only-formatted="true" />
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </div>
+                <v-col class="text-right">
+                  <Price :price="getAssemblyValue" :is-only-formatted="true" />
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </div>
   </client-only>
 </template>
@@ -128,7 +133,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.checkbox {
-  margin-top: 0 !important;
+.cart {
+  .checkbox {
+    margin-top: 0 !important;
+  }
+  //
+  //> .row:last-of-type {
+  //  border-bottom: thin solid rgba(0, 0, 0, 0.12);
+  //}
 }
 </style>
