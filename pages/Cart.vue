@@ -13,17 +13,21 @@
         </v-row>
       </div>
 
-      <v-text-field
-        id="address"
-        flat
-        hide-details
-        rounded
-        filled
-        placeholder="Ваш адрес"
-        full-width
-        height="50"
-        :value="value"
-      ></v-text-field>
+      <div>
+        <span class="text-overline pl-5">Укажите адрес доставки:</span>
+        <v-text-field
+          id="address"
+          flat
+          hide-details
+          rounded
+          filled
+          placeholder="Актау ..."
+          full-width
+          height="50"
+          :value="value"
+        >
+        </v-text-field>
+      </div>
     </div>
   </client-only>
 </template>
