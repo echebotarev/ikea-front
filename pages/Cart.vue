@@ -61,6 +61,13 @@
           </v-row>
         </v-col>
       </v-row>
+
+      <v-row class="mb-10">
+        <v-col>Итого:</v-col>
+        <v-col class="text-right">
+          <Price :price="total" :is-only-formatted="true" />
+        </v-col>
+      </v-row>
     </div>
   </client-only>
 </template>
@@ -106,6 +113,9 @@ export default {
 
       return 0
     },
+    total() {
+      return this.getAssemblyValue + this.sum
+    },
   },
   mounted() {
     global.ymaps.ready(() => {
@@ -137,9 +147,9 @@ export default {
   .checkbox {
     margin-top: 0 !important;
   }
-  //
-  //> .row:last-of-type {
-  //  border-bottom: thin solid rgba(0, 0, 0, 0.12);
-  //}
+
+  > .row:last-of-type {
+    border-top: thin solid rgba(0, 0, 0, 0.12);
+  }
 }
 </style>
