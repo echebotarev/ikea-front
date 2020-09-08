@@ -2,7 +2,7 @@
   <client-only>
     <div>
       <h1>Корзина</h1>
-      <div>
+      <div class="mb-16">
         <CartProductCard :products="products" />
 
         <v-row class="cart-total">
