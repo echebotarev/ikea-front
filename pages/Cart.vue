@@ -31,7 +31,7 @@
 
       <div class="mb-10">
         <v-row class="pr-5 pl-5">
-          <v-col class="text-overline" cols="7">
+          <v-col class="text-overline" :cols="$vuetify.breakpoint.xs ? 12 : 7">
             Экономьте свое время. Воспользуйтесь услугой сборки. <br />
             Стоимость сборки - {{ assemblyPercent }}% от суммы заказа
           </v-col>
