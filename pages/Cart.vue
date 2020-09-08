@@ -13,21 +13,53 @@
         </v-row>
       </div>
 
-      <div class="mb-10">
-        <span class="text-overline pl-5">Укажите адрес доставки:</span>
-        <v-text-field
-          id="address"
-          flat
-          hide-details
-          rounded
-          filled
-          placeholder="Актау ..."
-          full-width
-          height="50"
-          :value="value"
-        >
-        </v-text-field>
-      </div>
+      <v-row>
+        <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
+          <span class="text-overline pl-5">Имя:</span>
+          <v-text-field
+            flat
+            hide-details
+            rounded
+            filled
+            placeholder="ФИО"
+            full-width
+            height="50"
+          >
+          </v-text-field>
+        </v-col>
+
+        <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
+          <span class="text-overline pl-5">Адрес почты:</span>
+          <v-text-field
+            flat
+            hide-details
+            rounded
+            filled
+            placeholder="mail@example.com"
+            full-width
+            height="50"
+          >
+          </v-text-field>
+        </v-col>
+      </v-row>
+
+      <v-row class="mb-10">
+        <v-col>
+          <span class="text-overline pl-5">Укажите адрес доставки:</span>
+          <v-text-field
+            id="address"
+            flat
+            hide-details
+            rounded
+            filled
+            placeholder="Актау ..."
+            full-width
+            height="50"
+            :value="value"
+          >
+          </v-text-field>
+        </v-col>
+      </v-row>
 
       <v-row no-gutters class="mb-10">
         <v-col>
