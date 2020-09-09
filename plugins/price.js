@@ -1,9 +1,12 @@
-import { percent } from '@/constants'
+import { percent, KZT } from '@/constants'
 
 const getPrice = (num) => {
   if (typeof num === 'string') {
     num = parseInt(num.replace(/ /g, ''))
   }
+
+  num = num * KZT
+
   return Math.ceil(num + (num * percent) / 100)
 }
 
