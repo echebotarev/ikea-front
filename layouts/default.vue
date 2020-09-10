@@ -38,6 +38,10 @@
     <Footer />
 
     <portal-target name="modal"></portal-target>
+
+    <client-only>
+      <notifications group="all" class="notification" />
+    </client-only>
   </v-app>
 </template>
 
@@ -103,6 +107,16 @@ export default {
 
   .v-list-item__title {
     font-size: 24px !important;
+  }
+}
+
+.notification {
+  top: 10px !important;
+  right: 10px !important;
+
+  .vue-notification {
+    background: #3ba133;
+    border-left: 0;
   }
 }
 </style>

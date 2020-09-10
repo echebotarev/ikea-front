@@ -220,18 +220,34 @@ export default {
     },
 
     validateProducts() {
-      return this.products.map((product) => {
+      const availableProducts = {}
+      this.products.forEach((product) => {
         const availableProduct =
           this.availabilityProduct(product.identifier).StockAvailability &&
           this.availabilityProduct(product.identifier).StockAvailability
             .RetailItemAvailability.AvailableStock.$
 
-        return {
-          [product.identifier]: !!(
-            availableProduct && availableProduct - product.qnt
-          ),
+        availableProducts[product.identifier] = !!(
+          availableProduct && availableProduct - product.qnt
+        )
+      })
+
+      let text = ''
+      this.products.forEach((product) => {
+        if (availableProducts[product.identifier] === false) {
+          text = text ? `${text}, ${product.name}` : product.name
         }
       })
+
+      text &&
+        this.$notify({
+          group: 'all',
+          title: 'К сожалению этих товаров осталось слишком мало:',
+          text,
+
+          type: 'warn',
+          duration: 10000,
+        })
     },
   },
   head: {
