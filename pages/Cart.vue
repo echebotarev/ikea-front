@@ -163,24 +163,34 @@ export default {
     },
   },
   mounted() {
-    global.ymaps.ready(() => {
-      // eslint-disable-next-line no-new
-      const suggestView = new global.ymaps.SuggestView('address')
-
-      suggestView.events.add('select', (e) => {
-        this.value = e.get('item').displayName
-      })
-    })
+    this.initMap()
   },
   methods: {
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
     }),
+
+    initMap() {
+      if (global.ymaps) {
+        return global.ymaps.ready(() => {
+          // eslint-disable-next-line no-new
+          const suggestView = new global.ymaps.SuggestView('address')
+
+          suggestView.events.add('select', (e) => {
+            this.value = e.get('item').displayName
+          })
+        })
+      }
+
+      return setTimeout(this.initMap.bind(this), 100)
+    },
   },
   head: {
     script: [
       {
         src: `https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${config.yandexApiKey}`,
+        defer: true,
+        type: 'text/javascript',
       },
     ],
   },
