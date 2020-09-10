@@ -179,9 +179,15 @@ export default {
         return sum
       },
     }),
+
+    ...mapGetters({
+      availabilityProduct: 'availability/availabilityProduct',
+    }),
+
     getValue() {
       return this.value
     },
+
     getAssemblyValue() {
       if (this.isAssembly) {
         return (this.sum * this.assemblyPercent) / 100
@@ -189,6 +195,7 @@ export default {
 
       return 0
     },
+
     total() {
       return this.getAssemblyValue + this.sum
     },
@@ -197,10 +204,6 @@ export default {
     this.initMap()
   },
   methods: {
-    ...mapGetters({
-      availabilityProduct: 'availability/availabilityProduct',
-    }),
-
     initMap() {
       if (global.ymaps) {
         return global.ymaps.ready(() => {
@@ -214,6 +217,21 @@ export default {
       }
 
       return setTimeout(this.initMap.bind(this), 100)
+    },
+
+    validateProducts() {
+      return this.products.map((product) => {
+        const availableProduct =
+          this.availabilityProduct(product.identifier).StockAvailability &&
+          this.availabilityProduct(product.identifier).StockAvailability
+            .RetailItemAvailability.AvailableStock.$
+
+        return {
+          [product.identifier]: !!(
+            availableProduct && availableProduct - product.qnt
+          ),
+        }
+      })
     },
   },
   head: {
