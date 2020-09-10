@@ -13,92 +13,119 @@
         </v-row>
       </div>
 
-      <v-row>
-        <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
-          <span class="text-overline pl-5">Имя:</span>
-          <v-text-field
-            flat
-            hide-details
-            rounded
-            filled
-            placeholder="ФИО"
-            full-width
-            height="50"
-            :rules="[rules.required]"
-          >
-          </v-text-field>
-        </v-col>
-
-        <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
-          <span class="text-overline pl-5">Адрес почты:</span>
-          <v-text-field
-            flat
-            hide-details
-            rounded
-            filled
-            placeholder="mail@example.com"
-            full-width
-            height="50"
-            :rules="[rules.required, rules.email]"
-          >
-          </v-text-field>
-        </v-col>
-      </v-row>
-
-      <v-row class="mb-10">
-        <v-col>
-          <span class="text-overline pl-5"
-            >Укажите полный адрес доставки (Город, микрорайон, дом,
-            квартира):</span
-          >
-          <v-text-field
-            id="address"
-            flat
-            hide-details
-            rounded
-            filled
-            placeholder="Актау ..."
-            full-width
-            height="50"
-            :value="value"
-            :rules="[rules.required]"
-          >
-          </v-text-field>
-        </v-col>
-      </v-row>
-
-      <v-row no-gutters class="mb-10">
-        <v-col>
-          <v-row class="pr-5 pl-5">
-            <v-col
-              class="text-overline"
-              :cols="$vuetify.breakpoint.xs ? 12 : 7"
+      <v-form>
+        <v-row>
+          <v-col cols="12">
+            <span class="text-overline pl-5">Имя:</span>
+            <v-text-field
+              v-model="name"
+              flat
+              hide-details
+              rounded
+              filled
+              placeholder="ФИО"
+              full-width
+              height="50"
+              :rules="[rules.required]"
+              required
             >
-              Экономьте свое время. Воспользуйтесь услугой сборки. <br />
-              Стоимость сборки - {{ assemblyPercent }}% от суммы заказа
-            </v-col>
+            </v-text-field>
+          </v-col>
 
-            <v-divider vertical></v-divider>
+          <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
+            <span class="text-overline pl-5">Телефон:</span>
+            <v-text-field
+              v-model="phone"
+              flat
+              hide-details
+              rounded
+              filled
+              placeholder="8 701 123 4567"
+              full-width
+              height="50"
+              :rules="[rules.required]"
+              required
+            >
+            </v-text-field>
+          </v-col>
 
-            <v-col>
-              <v-row>
-                <v-col cols="8">
-                  <v-checkbox
-                    v-model="checkbox"
-                    prepend-icon="mdi-tools"
-                    label="Заказать сборку"
-                    class="checkbox"
-                  ></v-checkbox>
-                </v-col>
+          <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
+            <span class="text-overline pl-5">Адрес почты:</span>
+            <v-text-field
+              v-model="mail"
+              flat
+              hide-details
+              rounded
+              filled
+              placeholder="mail@example.com"
+              full-width
+              height="50"
+              :rules="[rules.required, rules.email]"
+              required
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
 
-                <v-col class="text-right">
-                  <Price :price="getAssemblyValue" :is-only-formatted="true" />
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
+        <v-row class="mb-10">
+          <v-col>
+            <span class="text-overline pl-5"
+              >Укажите полный адрес доставки (Город, микрорайон, дом,
+              квартира):</span
+            >
+            <v-text-field
+              id="address"
+              flat
+              hide-details
+              rounded
+              filled
+              placeholder="Актау ..."
+              full-width
+              height="50"
+              :value="value"
+              :rules="[rules.required]"
+              prepend-inner-icon="mdi-map-marker"
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row no-gutters class="mb-10">
+          <v-col>
+            <v-row class="pr-5 pl-5">
+              <v-col
+                class="text-overline"
+                :cols="$vuetify.breakpoint.xs ? 12 : 7"
+              >
+                Экономьте свое время. Воспользуйтесь услугой сборки. <br />
+                Стоимость сборки - {{ assemblyPercent }}% от суммы заказа
+              </v-col>
+
+              <v-divider vertical></v-divider>
+
+              <v-col>
+                <v-row>
+                  <v-col cols="8">
+                    <v-checkbox
+                      v-model="isAssembly"
+                      prepend-icon="mdi-tools"
+                      label="Заказать сборку"
+                      class="checkbox"
+                    ></v-checkbox>
+                  </v-col>
+
+                  <v-col class="text-right">
+                    <Price
+                      :price="getAssemblyValue"
+                      :is-only-formatted="true"
+                    />
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-form>
 
       <v-row class="mb-10">
         <v-col>Итого:</v-col>
@@ -123,8 +150,11 @@ export default {
   data() {
     return {
       value: '',
-      checkbox: false,
       assemblyPercent,
+      phone: '',
+      name: '',
+      mail: '',
+      isAssembly: false,
       rules: {
         required: (value) => !!value || 'Required.',
         email: (value) => {
@@ -152,7 +182,7 @@ export default {
       return this.value
     },
     getAssemblyValue() {
-      if (this.checkbox) {
+      if (this.isAssembly) {
         return (this.sum * this.assemblyPercent) / 100
       }
 
