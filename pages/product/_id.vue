@@ -115,7 +115,8 @@
             rounded
             color="#0058a3"
             min-height="50"
-            dark
+            class="button"
+            :disabled="disabled"
             @click="addProduct({ product, qnt: 1 })"
           >
             <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
@@ -181,6 +182,11 @@ export default {
         statusCode: 503,
         message: 'Unable API server',
       })
+    }
+  },
+  data() {
+    return {
+      disabled: false,
     }
   },
   computed: mapState({
