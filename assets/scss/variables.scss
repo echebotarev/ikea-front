@@ -15,4 +15,7 @@ $tabs-item-min-width: 0;
 
 $card-hover-elevation: 1;
 
+// отступ prepend-icon в адресе в корзине
+$text-field-enclosed-prepend-append-margin-top: 13px;
+
 @import '~vuetify/src/styles/styles.sass';
