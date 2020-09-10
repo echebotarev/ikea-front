@@ -47,7 +47,10 @@
 
       <v-row class="mb-10">
         <v-col>
-          <span class="text-overline pl-5">Укажите адрес доставки:</span>
+          <span class="text-overline pl-5"
+            >Укажите полный адрес доставки (Город, микрорайон, дом,
+            квартира):</span
+          >
           <v-text-field
             id="address"
             flat
