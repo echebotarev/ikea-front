@@ -116,7 +116,7 @@
             color="#0058a3"
             min-height="50"
             class="button"
-            :disabled="disabled"
+            :disabled="isDisabledOrderBtn"
             @click="addProduct({ product, qnt: 1 })"
           >
             <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
@@ -151,7 +151,7 @@ TODO: рекомендации
 # Другие пользователи смотрели
 # https://rec.ingka.com/services/ru-prod/items/popular/?n=12&productName=PAX
 */
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Modal from '@/components/Modal/index'
 import Variations from '@/components/Variations'
@@ -184,21 +184,27 @@ export default {
       })
     }
   },
-  data() {
-    return {
-      disabled: false,
-    }
+  computed: {
+    ...mapState({
+      product: (state) => state.products.product,
+      breadcrumbs: (state) => state.page.breadcrumbs,
+      // TODO: убрать, когда реализую отображение видео
+      fullMediaList: (state) =>
+        state.products.product.images.fullMediaList.filter(
+          (img) => img.type === 'image'
+        ),
+    }),
+    ...mapGetters({
+      availabilityProduct: 'availability/availabilityProduct',
+    }),
+    isDisabledOrderBtn() {
+      return !(
+        this.availabilityProduct(this.product.identifier).StockAvailability &&
+        this.availabilityProduct(this.product.identifier).StockAvailability
+          .RetailItemAvailability.AvailableStock.$
+      )
+    },
   },
-  computed: mapState({
-    product: (state) => state.products.product,
-    breadcrumbs: (state) => state.page.breadcrumbs,
-    products: (state) => state.cart.products,
-    // TODO: убрать, когда реализую отображение видео
-    fullMediaList: (state) =>
-      state.products.product.images.fullMediaList.filter(
-        (img) => img.type === 'image'
-      ),
-  }),
   methods: {
     ...mapActions({
       addProduct: 'orders/addProduct',
