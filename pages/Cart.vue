@@ -36,6 +36,7 @@
             <span class="text-overline pl-5">Телефон:</span>
             <v-text-field
               v-model="phone"
+              v-mask="'# (###) ###-####'"
               flat
               hide-details
               rounded
