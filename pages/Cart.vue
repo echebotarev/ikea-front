@@ -168,6 +168,7 @@ export default {
   computed: {
     ...mapState({
       products: (state) => state.orders.products,
+
       sum(state) {
         let sum = 0
         state.orders.products.forEach((product) => {
@@ -175,6 +176,22 @@ export default {
             this.$getPrice(product.price.price.mainPriceProps.price.integer) *
             product.qnt
           sum += price
+        })
+        return sum
+      },
+
+      assemblySum(state) {
+        let sum = 0
+        state.orders.products.forEach((product) => {
+          if (
+            product.information.productDetailsProps.accordionObject
+              .assemblyAndDocuments
+          ) {
+            const price =
+              this.$getPrice(product.price.price.mainPriceProps.price.integer) *
+              product.qnt
+            sum += price
+          }
         })
         return sum
       },
@@ -190,7 +207,7 @@ export default {
 
     getAssemblyValue() {
       if (this.isAssembly) {
-        return (this.sum * this.assemblyPercent) / 100
+        return (this.assemblySum * this.assemblyPercent) / 100
       }
 
       return 0
