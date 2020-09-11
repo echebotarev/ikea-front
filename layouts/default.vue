@@ -1,6 +1,8 @@
 <template>
   <v-app id="app" :class="$vuetify.breakpoint.smAndDown ? 'sm-and-down' : ''">
     <v-main>
+      <Message />
+
       <NavBar :links="links" />
 
       <client-only v-if="$vuetify.breakpoint.smAndDown">
@@ -47,6 +49,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Message from '@/components/Message.vue'
 import NavBar from '@/components/NavBar.vue'
 import Search from '@/components/Search.vue'
 import Footer from '@/components/Footer.vue'
@@ -54,6 +57,7 @@ import links from '@/assets/data/links'
 
 export default {
   components: {
+    Message,
     NavBar,
     Search,
     Footer,
