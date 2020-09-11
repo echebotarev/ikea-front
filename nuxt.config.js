@@ -64,7 +64,17 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', 'portal-vue/nuxt'],
+  modules: [
+    '@nuxtjs/axios',
+    'portal-vue/nuxt',
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: '67230112',
+        webvisor: true,
+      },
+    ],
+  ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
