@@ -91,15 +91,16 @@
           </v-col>
         </v-row>
 
-        <v-row no-gutters class="mb-10">
+        <v-row v-if="assemblySum" no-gutters class="mb-10">
           <v-col>
             <v-row class="pr-5 pl-5">
-              <v-col
-                class="text-overline"
-                :cols="$vuetify.breakpoint.xs ? 12 : 7"
-              >
-                Экономьте свое время. Воспользуйтесь услугой сборки. <br />
-                Стоимость сборки - {{ assemblyPercent }}% от суммы заказа
+              <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
+                <span class="text-overline"
+                  >Экономьте свое время. Воспользуйтесь услугой сборки.</span
+                >
+                <span class="text-caption text-decoration-underline"
+                  >Сборка начисляется только на товары требующие сборки</span
+                >
               </v-col>
 
               <v-divider vertical></v-divider>
@@ -113,6 +114,12 @@
                       label="Заказать сборку"
                       class="checkbox"
                     ></v-checkbox>
+
+                    <span
+                      style="display: block; margin-top: -20px;"
+                      class="text-caption pl-9"
+                      >Стоимость сборки - {{ assemblyPercent }}%</span
+                    >
                   </v-col>
 
                   <v-col class="text-right">
