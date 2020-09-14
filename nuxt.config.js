@@ -74,6 +74,13 @@ export default {
         webvisor: true,
       },
     ],
+    [
+      '@nuxtjs/sentry',
+      {
+        dsn:
+          'https://c5f9be1ea1b740a5bcd0dd873b50d988@o446780.ingest.sentry.io/5425799',
+      },
+    ],
   ],
   /*
    ** Axios module configuration
