@@ -5,7 +5,18 @@
     </v-col>
 
     <v-col class="pl-2" cols="8">
-      Мы доставляем прямо до двери
+      <v-carousel
+        cycle
+        height="19"
+        vertical
+        hide-delimiter-background
+        hide-delimiters
+        :show-arrows="false"
+      >
+        <v-carousel-item v-for="message in messages" :key="message">{{
+          message
+        }}</v-carousel-item>
+      </v-carousel>
     </v-col>
 
     <v-col cols="2">
@@ -19,7 +30,10 @@
 <script>
 export default {
   name: 'Message',
-  data: () => ({ isOpen: true }),
+  data: () => ({
+    isOpen: true,
+    messages: ['Мы доставляем прямо до двери', 'Привезем заказ через 2 недели'],
+  }),
   methods: {
     close() {
       this.isOpen = false
