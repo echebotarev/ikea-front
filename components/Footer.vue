@@ -6,9 +6,9 @@
 
         <v-list-item v-for="link in links" :key="link.url" nuxt>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-subtitle>
               <nuxt-link :to="link.url">{{ link.label }}</nuxt-link>
-            </v-list-item-title>
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-col>
