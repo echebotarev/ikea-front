@@ -78,16 +78,12 @@ export default {
   line-height: 40px;
   display: inline-block;
   float: right;
-  border-left: thin solid rgba(0, 0, 0, 0.12);
+  border-left: thin solid #0058a3;
   transition: all 0.3s;
-
-  &:hover {
-    border-left-color: rgba(0, 0, 0, 1);
-  }
 }
 a:hover {
   .logo-text {
-    border-left-color: rgba(0, 0, 0, 1);
+    border-left-color: #fad911;
   }
 }
 </style>
