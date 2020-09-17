@@ -14,6 +14,7 @@
               :src="getImage(img.content.url, 4)"
               lazy-src="/images/placeholder.png"
               :alt="img.content.alt"
+              aspect-ratio="1"
             >
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
