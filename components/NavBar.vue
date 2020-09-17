@@ -75,6 +75,7 @@ export default {
   text-decoration: none !important;
 }
 .logo-text {
+  color: #0058a3;
   line-height: 40px;
   display: inline-block;
   float: right;
