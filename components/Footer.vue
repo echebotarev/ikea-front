@@ -26,7 +26,7 @@
           </span>
         </div>
       </v-col>
-      <v-col class="text-right">&copy; {{ new Date().getFullYear() }}</v-col>
+      <v-col class="text-right">{{ new Date().getFullYear() }}</v-col>
     </v-row>
   </v-footer>
 </template>
