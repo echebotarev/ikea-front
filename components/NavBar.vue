@@ -2,9 +2,8 @@
   <v-app-bar color="transparent" elevation="0" class="mt-5">
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
-        <img src="~/assets/images/ikea-logo.svg" alt="IKEA Dostavka Logo" />
         <span class="logo-text ml-3 pl-3">
-          Доставка
+          Доставка товаров IKEA
         </span>
       </nuxt-link>
     </v-toolbar-title>
