@@ -1,8 +1,20 @@
 <template>
   <v-footer>
     <v-row>
+      <v-col class="bottom-nav">
+        <b>Навигация:</b>
+
+        <v-list-item v-for="link in links" :key="link.url" nuxt>
+          <v-list-item-content>
+            <v-list-item-title>
+              <nuxt-link :to="link.url">{{ link.label }}</nuxt-link>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-col>
+
       <v-col class="social-icons">
-        Напишите нам:
+        <b>Напишите нам:</b>
 
         <div>
           <span>
@@ -32,8 +44,13 @@
 </template>
 
 <script>
+import links from '@/assets/data/links'
+
 export default {
   name: 'Footer',
+  computed: {
+    links: () => links,
+  },
 }
 </script>
 
@@ -63,5 +80,9 @@ export default {
       }
     }
   }
+}
+
+.bottom-nav .v-list-item {
+  padding-left: 0;
 }
 </style>
