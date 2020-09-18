@@ -85,6 +85,19 @@ export default {
     },
   },
   watchQuery: true,
+
+  head() {
+    return {
+      title: this.category.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.category.description,
+        },
+      ],
+    }
+  },
 }
 </script>
 

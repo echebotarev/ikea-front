@@ -64,10 +64,15 @@ export default {
       return cols
     },
   }),
-  head() {
-    return {
-      title: 'IKEA - Товары',
-    }
-  },
+  head: () => ({
+    titleTemplate: 'DomaDoma - Доставка IKEA',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Доставка товаров IKEA',
+      },
+    ],
+  }),
 }
 </script>

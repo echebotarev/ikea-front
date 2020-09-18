@@ -83,21 +83,11 @@ export default {
       toggleDrawer: 'page/toggleDrawer',
     }),
   },
-  head() {
-    return {
-      titleTemplate: '%s - Доставка',
-      htmlAttrs: {
-        lang: 'ru',
-      },
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Доставка товаров IKEA',
-        },
-      ],
-    }
-  },
+  head: () => ({
+    htmlAttrs: {
+      lang: 'ru',
+    },
+  }),
 }
 </script>
 
