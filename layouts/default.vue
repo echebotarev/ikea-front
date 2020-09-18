@@ -84,6 +84,7 @@ export default {
     }),
   },
   head: () => ({
+    titleTemplate: '%s - DomaDoma. Доставка товаров IKEA в Актау',
     htmlAttrs: {
       lang: 'ru',
     },

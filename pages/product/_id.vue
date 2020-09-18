@@ -212,6 +212,19 @@ export default {
     }),
     getImage,
   },
+
+  head() {
+    return {
+      title: this.product.name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.product.summary_description,
+        },
+      ],
+    }
+  },
 }
 </script>
 
