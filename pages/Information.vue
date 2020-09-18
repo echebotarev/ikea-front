@@ -44,6 +44,18 @@
 <script>
 export default {
   name: 'Information',
+
+  head: () => ({
+    title: 'Doma-doma – доставка товаров IKEA в Актау',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Doma-doma – сервис по доставке товаров из магазина IKEA в Самаре в Актау',
+      },
+    ],
+  }),
 }
 </script>
 
