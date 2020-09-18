@@ -6,7 +6,15 @@
           <v-col cols="3">
             <v-img
               :src="getImage(product.images.fullMediaList[0].content.url, 3)"
-            ></v-img>
+              lazy-src="/images/placeholder.png"
+              aspect-ratio="1"
+            >
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-icon x-large>mdi-image-multiple-outline</v-icon>
+                </v-row>
+              </template>
+            </v-img>
           </v-col>
           <v-col cols="4" class="cart-description">
             <v-row
