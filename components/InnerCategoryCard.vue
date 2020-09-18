@@ -6,6 +6,7 @@
         v-if="category.image"
         :src="category.image"
         lazy-src="/images/placeholder-horizontal.png"
+        aspect-ratio="1.785"
       >
         <template v-slot:placeholder>
           <v-row class="fill-height ma-0" align="center" justify="center">
