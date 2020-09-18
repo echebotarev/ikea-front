@@ -201,8 +201,10 @@ export default {
     isDisabledOrderBtn() {
       return !(
         this.availabilityProduct(this.product.identifier).StockAvailability &&
-        this.availabilityProduct(this.product.identifier).StockAvailability
-          .RetailItemAvailability.AvailableStock.$
+        parseInt(
+          this.availabilityProduct(this.product.identifier).StockAvailability
+            .RetailItemAvailability.AvailableStock.$
+        )
       )
     },
   },
