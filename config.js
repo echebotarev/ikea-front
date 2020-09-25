@@ -20,4 +20,5 @@ export default {
   },
 
   yandexApiKey: '042a2e05-86cf-4d8f-b283-ca17f9f5ddb5',
+  cloudPaymentsPublicKey: 'pk_65ca7617c1fc1e310a7ea9b5547f1',
 }

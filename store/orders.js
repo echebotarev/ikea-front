@@ -42,6 +42,17 @@ export const actions = {
       }
     })
   },
+
+  updateOrder({ commit }, payload) {
+    return OrdersService.updateOrder(payload).then((response) => {
+      const order = response.data
+
+      if (order && order.paid) {
+        commit('SET_ORDER', {})
+        commit('SET_PRODUCTS', [])
+      }
+    })
+  },
 }
 
 export const getters = {

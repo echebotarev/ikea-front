@@ -146,7 +146,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import config from '@/config'
 import { assemblyPercent } from '@/constants'
 import CartProductCard from '@/components/CartProductCard'
@@ -174,6 +174,7 @@ export default {
   },
   computed: {
     ...mapState({
+      order: (state) => state.orders.order,
       products: (state) => state.orders.products,
 
       sum(state) {
@@ -226,8 +227,50 @@ export default {
   },
   mounted() {
     this.initMap()
+
+    // eslint-disable-next-line no-undef
+    this.widget = new cp.CloudPayments()
   },
   methods: {
+    pay() {
+      const updateOrder = this.updateOrder.bind(this)
+      this.widget.pay(
+        'auth', // или 'charge'
+        {
+          // options
+          publicId: config.cloudPaymentsPublicKey, // id из личного кабинета
+          description: 'Оплата товаров в doma-doma.kz', // назначение
+          amount: this.total, // сумма
+          currency: 'KZT', // валюта
+          invoiceId: this.order._id, // номер заказа  (необязательно)
+          accountId: this.mail, // идентификатор плательщика (необязательно)
+          skin: 'classic', // дизайн виджета (необязательно)
+          data: { isAssembly: this.isAssembly },
+        },
+        {
+          onSuccess(options) {
+            // success
+            console.log('Success')
+          },
+          onFail(reason, options) {
+            // fail
+            console.log('Fail')
+          },
+          onComplete(paymentResult, options) {
+            console.log('Complete')
+            if (paymentResult.success) {
+              const { invoiceId } = options
+
+              updateOrder({
+                orderId: invoiceId,
+                payload: Object.assign(options.data, { paid: true }),
+              })
+            }
+          },
+        }
+      )
+    },
+
     initMap() {
       if (global.ymaps) {
         return global.ymaps.ready(() => {
@@ -273,11 +316,20 @@ export default {
           duration: 10000,
         })
     },
+
+    ...mapActions({
+      updateOrder: 'orders/updateOrder',
+    }),
   },
   head: {
     script: [
       {
         src: `https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${config.yandexApiKey}`,
+        defer: true,
+        type: 'text/javascript',
+      },
+      {
+        src: 'https://widget.cloudpayments.ru/bundles/cloudpayments',
         defer: true,
         type: 'text/javascript',
       },
