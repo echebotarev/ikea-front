@@ -37,6 +37,9 @@
             ></a>
           </span>
         </div>
+
+        <b>Телефон:</b>
+        <div>+7 (911) 172-1308</div>
       </v-col>
       <v-col class="text-right">{{ new Date().getFullYear() }}</v-col>
     </v-row>

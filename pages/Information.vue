@@ -16,7 +16,23 @@
 
       <p>
         Если у вас остались вопросы, или нужна помощь, звоните: <br />
-        <b>+7 (911) 172-1308</b> - WhatsApp, Telegram
+        <b>+7 (911) 172-1308</b> -
+        <a
+          href="https://api.whatsapp.com/send?phone=+79111721308&text=Привет"
+          class="social-link whatsapp"
+          target="_blank"
+          rel="nofollow"
+          title="Telegram"
+          >WhatsApp</a
+        >,
+        <a
+          href="https://t.me/echebotarev"
+          class="social-link telegram"
+          target="_blank"
+          rel="nofollow"
+          title="Telegram"
+          >Telegram</a
+        >
       </p>
     </v-col>
 
@@ -69,4 +85,20 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.social-link {
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.whatsapp {
+    color: #1cab13;
+  }
+
+  &.telegram {
+    color: #129bd0;
+  }
+}
+</style>
