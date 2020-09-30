@@ -226,18 +226,15 @@ export default {
     },
   },
   mounted() {
-    this.initMap()
-
-    // eslint-disable-next-line no-undef
-    this.widget = new cp.CloudPayments()
+    this.initScripts('ymaps')
+    this.initScripts('cp')
   },
   methods: {
     pay() {
       const updateOrder = this.updateOrder.bind(this)
       this.widget.pay(
-        'auth', // или 'charge'
+        'auth',
         {
-          // options
           publicId: config.cloudPaymentsPublicKey, // id из личного кабинета
           description: 'Оплата товаров в doma-doma.kz', // назначение
           amount: this.total, // сумма
@@ -271,8 +268,8 @@ export default {
       )
     },
 
-    initMap() {
-      if (global.ymaps) {
+    initScripts(name) {
+      if (name === 'ymaps' && global.ymaps) {
         return global.ymaps.ready(() => {
           // eslint-disable-next-line no-new
           const suggestView = new global.ymaps.SuggestView('address')
@@ -281,9 +278,12 @@ export default {
             this.value = e.get('item').displayName
           })
         })
+      } else if (name === 'cp' && global.cp) {
+        // eslint-disable-next-line no-undef
+        return (this.widget = new cp.CloudPayments())
       }
 
-      return setTimeout(this.initMap.bind(this), 100)
+      return setTimeout(this.initScripts.bind(this, name), 100)
     },
 
     validateProducts() {
