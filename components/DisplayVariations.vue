@@ -40,6 +40,7 @@
             :src="getImage(productVariant.image.url, 2)"
             lazy-src="/images/placeholder.png"
             :class="`selectable ${productVariant.isSelected ? 'selected' : ''}`"
+            aspect-ratio="1"
             @mouseover="mouseOver(productVariant.title)"
             @mouseleave="mouseLeave()"
           ></v-img>
