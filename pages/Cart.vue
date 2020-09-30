@@ -232,6 +232,8 @@ export default {
   methods: {
     pay() {
       const updateOrder = this.updateOrder.bind(this)
+      const getLetterProducts = this.getLetterProducts.bind(this)
+
       this.widget.pay(
         'auth',
         {
@@ -242,7 +244,13 @@ export default {
           invoiceId: this.order._id, // номер заказа  (необязательно)
           accountId: this.mail, // идентификатор плательщика (необязательно)
           skin: 'classic', // дизайн виджета (необязательно)
-          data: { isAssembly: this.isAssembly },
+          data: {
+            isAssembly: this.isAssembly,
+            assembly: this.isAssembly ? this.getAssemblyValue : 0,
+            name: this.name,
+            to: this.mail,
+            total: this.total,
+          },
         },
         {
           onSuccess(options) {
@@ -260,7 +268,10 @@ export default {
 
               updateOrder({
                 orderId: invoiceId,
-                payload: Object.assign(options.data, { paid: true }),
+                payload: Object.assign(options.data, {
+                  paid: true,
+                  products: getLetterProducts(),
+                }),
               })
             }
           },
@@ -315,6 +326,19 @@ export default {
           type: 'warn',
           duration: 10000,
         })
+    },
+
+    getLetterProducts() {
+      return this.products.map((product) => {
+        return Object.assign({}, product, {
+          computedPrice: this.$getPrice(
+            product.price.price.mainPriceProps.price.integer
+          ),
+          computedPriceTotal:
+            this.$getPrice(product.price.price.mainPriceProps.price.integer) *
+            product.qnt,
+        })
+      })
     },
 
     ...mapActions({
