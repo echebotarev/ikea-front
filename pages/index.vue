@@ -51,7 +51,7 @@ export default {
       let colName = 0
       try {
         state.category.categories.forEach((category) => {
-          if (category.title === null) {
+          if (category.title === null || category.title.trim() === '') {
             cols[colName] = []
             prevColName = colName
             colName++
