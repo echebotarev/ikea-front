@@ -11,7 +11,7 @@
         :class="`mb-5${option.isSelected ? ' selected' : ''}`"
       >
         <nuxt-link :to="`/product/${option.linkId}`">
-          <v-row align="center pl-3 pr-3">
+          <v-row align="center" class="pl-3 pr-3">
             <v-col v-if="option.image" cols="2">
               <v-avatar>
                 <v-img :src="getImage(option.image.url, 2)"></v-img>
