@@ -227,7 +227,12 @@ export default {
   },
   mounted() {
     this.initScripts('ymaps')
-    this.initScripts('cp')
+
+    // без этого ф-ия receiveMessage падает на JSON.parse
+    // туда приходят данные от detector.js в виде объекта
+    setTimeout(() => {
+      this.initScripts('cp')
+    }, 5000)
   },
   methods: {
     pay() {
