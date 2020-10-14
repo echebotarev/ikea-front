@@ -162,6 +162,26 @@
           </v-card>
         </v-col>
       </v-row>
+
+      <v-alert
+        :value="alert.isShow"
+        transition="scale-transition"
+        elevation="5"
+        border="left"
+        :color="alert.success ? '#0058a3' : '#fb8c00'"
+        colored-border
+        dismissible
+        class="alert"
+      >
+        <div v-if="alert.success">
+          <h3>Заказ оформлен</h3>
+          <p>В ближайшее время мы свяжется с вами</p>
+        </div>
+        <div v-else>
+          <h3>Уппссс...</h3>
+          <p>Что-то пошло не так, попробуйте отправить заказа через минуту</p>
+        </div>
+      </v-alert>
     </div>
   </client-only>
 </template>
@@ -186,6 +206,10 @@ export default {
       mail: '',
       isAssembly: false,
       payMethod: 1,
+      alert: {
+        isShow: false,
+        success: true,
+      },
     }
   },
   computed: {
@@ -457,6 +481,8 @@ export default {
 
 <style scoped lang="scss">
 .cart {
+  position: relative;
+
   .checkbox {
     margin-top: 0 !important;
   }
@@ -469,6 +495,12 @@ export default {
     .v-card {
       padding: 10px;
     }
+  }
+
+  .alert {
+    position: absolute;
+    width: 100%;
+    top: 50%;
   }
 }
 </style>
