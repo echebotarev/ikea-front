@@ -47,7 +47,7 @@ export const actions = {
     return OrdersService.updateOrder(payload).then((response) => {
       const order = response.data
 
-      if (order && order.paid) {
+      if (order && order.checkout) {
         commit('SET_ORDER', {})
         commit('SET_PRODUCTS', [])
       }
