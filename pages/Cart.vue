@@ -26,7 +26,6 @@
               placeholder="ФИО"
               full-width
               height="50"
-              :rules="[rules.required]"
               required
             >
             </v-text-field>
@@ -44,7 +43,6 @@
               placeholder="8 701 123 4567"
               full-width
               height="50"
-              :rules="[rules.required]"
               required
             >
             </v-text-field>
@@ -61,7 +59,6 @@
               placeholder="mail@example.com"
               full-width
               height="50"
-              :rules="[rules.required, rules.email]"
               required
             >
             </v-text-field>
@@ -84,7 +81,6 @@
               full-width
               height="50"
               :value="value"
-              :rules="[rules.required]"
               prepend-inner-icon="mdi-map-marker"
             >
             </v-text-field>
@@ -157,19 +153,13 @@ export default {
   components: { CartProductCard, Price },
   data() {
     return {
+      errors: [],
       value: '',
       assemblyPercent,
       phone: '',
       name: '',
       mail: '',
       isAssembly: false,
-      rules: {
-        required: (value) => !!value || 'Required.',
-        email: (value) => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Invalid e-mail.'
-        },
-      },
     }
   },
   computed: {
@@ -304,6 +294,42 @@ export default {
       return setTimeout(this.initScripts.bind(this, name), 100)
     },
 
+    validateForm() {
+      if (!this.value) {
+        this.errors.push('Укажите адрес')
+      }
+
+      if (!this.phone) {
+        this.errors.push('Укажите номер телефона')
+      }
+
+      if (!this.name) {
+        this.errors.push('Укажите ваше имя')
+      }
+
+      if (!this.checkEmail(this.mail)) {
+        this.errors.push('Укажите правильную почту')
+      }
+
+      if (this.errors.length) {
+        this.errors.forEach((text) => {
+          this.$notify({
+            group: 'all',
+            title: 'Пожалуйста исправьте указанные ошибки:',
+            text,
+
+            type: 'warn',
+            duration: 10000,
+          })
+        })
+
+        this.errors = []
+        return false
+      }
+
+      return true
+    },
+
     validateProducts() {
       const availableProducts = {}
       this.products.forEach((product) => {
@@ -324,7 +350,8 @@ export default {
         }
       })
 
-      text &&
+      return !(
+        text &&
         this.$notify({
           group: 'all',
           title: 'К сожалению этих товаров осталось слишком мало:',
@@ -333,6 +360,12 @@ export default {
           type: 'warn',
           duration: 10000,
         })
+      )
+    },
+
+    checkEmail(value) {
+      const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return pattern.test(value)
     },
 
     getLetterProducts() {
