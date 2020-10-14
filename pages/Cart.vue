@@ -350,6 +350,13 @@ export default {
           payMethod: 'offline',
           products: this.getLetterProducts(),
         },
+      }).then(() => {
+        this.alert.success = !this.products.length
+        this.alert.isShow = true
+
+        setTimeout(() => {
+          this.alert.isShow = false
+        }, 10000)
       })
     },
 
