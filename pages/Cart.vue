@@ -146,7 +146,7 @@
               color="#0058a3"
               min-height="50"
               class="button"
-              @click="validateProducts() && validateForm() && pay()"
+              @click="checkout"
             >
               Оформить заказ
             </v-btn>
@@ -155,6 +155,10 @@
         <v-col>
           <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
             <h3>Способ оплаты:</h3>
+            <v-radio-group v-model="payMethod">
+              <v-radio label="Оплатить онлайн" :value="1"></v-radio>
+              <v-radio label="Оплатить наличными в офисе" :value="2"></v-radio>
+            </v-radio-group>
           </v-card>
         </v-col>
       </v-row>
@@ -181,6 +185,7 @@ export default {
       name: '',
       mail: '',
       isAssembly: false,
+      payMethod: 1,
     }
   },
   computed: {
@@ -246,7 +251,13 @@ export default {
     }, 5000)
   },
   methods: {
-    pay() {
+    checkout() {
+      if (this.validateProducts() && this.validateForm()) {
+        this.payMethod === 1 ? this.onlinePay() : this.offlinePay()
+      }
+    },
+
+    onlinePay() {
       const updateOrder = this.updateOrder.bind(this)
       const getLetterProducts = this.getLetterProducts.bind(this)
 
@@ -288,6 +299,8 @@ export default {
                 orderId: invoiceId,
                 payload: Object.assign(options.data, {
                   paid: true,
+                  checkout: true,
+                  payMethod: 'online',
                   products: getLetterProducts(),
                 }),
               })
@@ -295,6 +308,25 @@ export default {
           },
         }
       )
+    },
+
+    offlinePay() {
+      this.updateOrder({
+        orderId: this.order._id,
+        payload: {
+          isAssembly: this.isAssembly,
+          assembly: this.isAssembly ? this.getAssemblyValue : 0,
+          name: this.name,
+          address: this.getValue,
+          email: this.mail,
+          phone: this.phone,
+          total: this.total,
+          paid: false,
+          checkout: true,
+          payMethod: 'offline',
+          products: this.getLetterProducts(),
+        },
+      })
     },
 
     initScripts(name) {
