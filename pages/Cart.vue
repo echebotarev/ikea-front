@@ -137,6 +137,27 @@
           <Price :price="total" :is-only-formatted="true" />
         </v-col>
       </v-row>
+
+      <v-row class="pay-area pt-5">
+        <v-col>
+          <v-card flat min-height="150" color="transparent" class="pt-0">
+            <v-btn
+              block
+              color="#0058a3"
+              min-height="50"
+              class="button"
+              @click="validateProducts() && validateForm() && pay()"
+            >
+              Оформить заказ
+            </v-btn>
+          </v-card>
+        </v-col>
+        <v-col>
+          <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
+            <h3>Способ оплаты:</h3>
+          </v-card>
+        </v-col>
+      </v-row>
     </div>
   </client-only>
 </template>
@@ -410,6 +431,12 @@ export default {
 
   > .row:last-of-type {
     border-top: thin solid rgba(0, 0, 0, 0.12);
+  }
+
+  .pay-area {
+    .v-card {
+      padding: 10px;
+    }
   }
 }
 </style>
