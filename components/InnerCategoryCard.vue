@@ -26,4 +26,10 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style scoped lang="scss">
+.card-category {
+  p {
+    word-break: break-word;
+  }
+}
+</style>
