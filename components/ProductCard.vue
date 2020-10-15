@@ -58,6 +58,11 @@ export default {
 
 <style scoped lang="scss">
 .card-product {
+  .card-product-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
   a:hover {
     .card-product-name {
       text-decoration: underline;
