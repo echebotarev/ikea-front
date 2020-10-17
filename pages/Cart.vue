@@ -364,7 +364,9 @@ export default {
       if (name === 'ymaps' && global.ymaps) {
         return global.ymaps.ready(() => {
           // eslint-disable-next-line no-new
-          const suggestView = new global.ymaps.SuggestView('address')
+          const suggestView = new global.ymaps.SuggestView('address', {
+            zIndex: 9000,
+          })
 
           suggestView.events.add('select', (e) => {
             this.value = e.get('item').displayName
