@@ -22,7 +22,10 @@
               <v-card-subtitle>{{ option.title }}</v-card-subtitle>
             </v-col>
 
-            <v-col v-if="data.currentVariation.priceProps" class="text-right">
+            <v-col
+              v-if="getPriceDifference(data.currentVariation, option).price"
+              class="text-right"
+            >
               <Price
                 :price="getPriceDifference(data.currentVariation, option).price"
                 :prepend="
