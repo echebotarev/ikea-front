@@ -143,8 +143,15 @@
           <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
             <h3>Способ оплаты:</h3>
             <v-radio-group v-model="payMethod">
-              <v-radio label="Оплатить онлайн" :value="1"></v-radio>
-              <v-radio label="Оплатить наличными в офисе" :value="2"></v-radio>
+              <v-radio
+                label="Оплатить онлайн с чеком на e-mail"
+                :value="1"
+              ></v-radio>
+              <v-radio
+                :label="`Оплатить менеджеру и получить товарный чек\n\rАдрес: 10 мкр, 2 дом`"
+                :value="2"
+              >
+              </v-radio>
             </v-radio-group>
           </v-card>
         </v-col>
