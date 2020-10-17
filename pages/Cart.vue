@@ -423,7 +423,7 @@ export default {
             .RetailItemAvailability.AvailableStock.$
 
         availableProducts[product.identifier] = !!(
-          availableProduct && availableProduct - product.qnt
+          availableProduct && parseInt(availableProduct) - product.qnt >= 0
         )
       })
 
@@ -436,7 +436,8 @@ export default {
 
       return !(
         text &&
-        this.$notify({
+        // ф-ия возвращает undefined, поэтому преобразуем его
+        !this.$notify({
           group: 'all',
           title: 'К сожалению этих товаров осталось слишком мало:',
           text,
