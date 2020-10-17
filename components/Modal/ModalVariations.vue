@@ -62,6 +62,10 @@ export default {
     }),
     getImage,
     getPriceDifference(currentVariation, option) {
+      if (!currentVariation.priceProps || !option.priceProps) {
+        return ''
+      }
+
       if (currentVariation.linkId === option.linkId) {
         return ''
       }
