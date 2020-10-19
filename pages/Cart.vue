@@ -143,10 +143,10 @@
           <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
             <h3>Способ оплаты:</h3>
             <v-radio-group v-model="payMethod">
-              <v-radio
+              <!--<v-radio
                 label="Оплатить онлайн с чеком на e-mail"
                 :value="1"
-              ></v-radio>
+              ></v-radio>-->
               <v-radio
                 :label="`Оплатить менеджеру и получить товарный чек (Адрес: 10 мкр, 2 дом)`"
                 :value="2"
@@ -212,7 +212,7 @@ export default {
       name: '',
       mail: '',
       isAssembly: false,
-      payMethod: 1,
+      payMethod: 2,
       alert: {
         isShow: false,
         success: true,
@@ -284,7 +284,8 @@ export default {
   methods: {
     checkout() {
       if (this.validateProducts() && this.validateForm()) {
-        this.payMethod === 1 ? this.onlinePay() : this.offlinePay()
+        // this.payMethod === 1 ? this.onlinePay() : this.offlinePay()
+        this.offlinePay()
       }
     },
 
