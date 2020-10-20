@@ -1,5 +1,8 @@
 <template>
   <div :class="`product-price ${className}`">
+    <span v-if="!withoutLabel" class="product-price-label">
+      Цена с учетом доставки:
+    </span>
     <span v-if="prepend">{{ prepend }}</span>
     <span class="price">{{
       $getDisplayPrice(price, { isOnlyFormatted })
@@ -34,6 +37,10 @@ export default {
       type: String,
       default: () => '',
     },
+    withoutLabel: {
+      type: Boolean,
+      default: () => false,
+    },
   },
 }
 </script>
@@ -43,6 +50,12 @@ export default {
   display: inline-block;
   font-size: 22px;
   font-weight: 600;
+
+  .product-price-label {
+    font-size: 0.7rem;
+    display: block;
+    color: #111;
+  }
 
   .symbol {
     position: relative;

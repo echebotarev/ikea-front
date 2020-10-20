@@ -122,6 +122,7 @@
                     <Price
                       :price="getAssemblyValue"
                       :is-only-formatted="true"
+                      :without-label="true"
                     />
                   </v-col>
                 </v-row>

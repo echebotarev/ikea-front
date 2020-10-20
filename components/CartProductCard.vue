@@ -49,6 +49,7 @@
                   $getPrice(product.price.price.mainPriceProps.price.integer) *
                   product.qnt
                 "
+                :without-label="true"
                 :is-only-formatted="true"
                 symbol=".–"
                 :class-name="
@@ -62,6 +63,7 @@
               <Price
                 v-if="product.qnt > 1"
                 :price="product.price.price.mainPriceProps.price.integer"
+                :without-label="true"
                 symbol=".–"
                 :class-name="`light ${
                   product.price.price.mainPriceProps.hasHighlight
@@ -77,6 +79,7 @@
                       product.price.price.previousPriceProps.price.integer
                     ) * product.qnt
                   "
+                  :without-label="true"
                   :is-only-formatted="true"
                   :prepend="`${product.price.price.previousPriceText}:`"
                   symbol=".–"
@@ -86,6 +89,7 @@
                 <Price
                   v-if="product.qnt > 1"
                   :price="product.price.price.previousPriceProps.price.integer"
+                  :without-label="true"
                   symbol=".–"
                   class-name="light"
                 />
