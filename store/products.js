@@ -27,6 +27,10 @@ export const mutations = {
 export const actions = {
   fetchProductsByCategoryId({ commit }, payload) {
     return ApiService.getProducts(payload).then((response) => {
+      if (!response.data || response.data.code) {
+        return false
+      }
+
       response.data.productCount &&
         commit('SET_PRODUCT_COUNT', response.data.productCount)
 
