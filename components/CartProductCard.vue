@@ -102,7 +102,6 @@
           <v-col cols="3"></v-col>
           <v-col cols="4">
             <Available
-              :type="product.utag.product_type"
               :identifier="product.identifier"
               :with-qnt="true"
             />

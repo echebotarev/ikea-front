@@ -65,10 +65,6 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Available',
   props: {
-    type: {
-      type: String,
-      default: () => '',
-    },
     identifier: {
       type: String,
       default: () => '',
@@ -85,7 +81,6 @@ export default {
   },
   mounted() {
     this.fetchAvailabilityProduct({
-      type: this.type,
       identifier: this.identifier,
     })
   },
