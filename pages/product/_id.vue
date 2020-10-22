@@ -128,8 +128,8 @@
         <v-row>
           <v-col>
             <Available
-                :type="product.utag.product_type"
-                :identifier="product.identifier"
+              :type="product.utag.product_type"
+              :identifier="product.identifier"
             />
           </v-col>
         </v-row>

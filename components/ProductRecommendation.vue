@@ -42,6 +42,7 @@ export default {
 <style scoped lang="scss">
 .slide-item {
   max-width: 15rem;
+  width: 240px;
   padding: 10px;
 }
 .sm-and-down .slide-item {
