@@ -101,7 +101,11 @@
         <v-row>
           <v-col cols="3"></v-col>
           <v-col cols="4">
-            <Available :identifier="product.identifier" :with-qnt="true" />
+            <Available
+              :type="product.utag.product_type"
+              :identifier="product.identifier"
+              :with-qnt="true"
+            />
           </v-col>
           <v-col class="text-right">
             <v-btn icon @click="removeProduct({ product, qnt: product.qnt })">
