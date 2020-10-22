@@ -73,6 +73,7 @@
             >
             <v-text-field
               id="address"
+              v-model="value"
               flat
               hide-details
               rounded
