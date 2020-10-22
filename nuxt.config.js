@@ -58,6 +58,9 @@ export default {
       {
         customVariables: ['~/assets/scss/variables.scss'],
         treeShake: true,
+        breakpoint: {
+          mobileBreakpoint: 600,
+        },
       },
     ],
   ],

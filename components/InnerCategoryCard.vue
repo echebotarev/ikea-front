@@ -4,7 +4,7 @@
     <nuxt-link :to="`/category/${category.identifier}`">
       <v-img
         v-if="category.image"
-        :src="category.image"
+        :src="getUrlImage(category.image)"
         lazy-src="/images/placeholder-horizontal.png"
         aspect-ratio="1.785"
       >
@@ -23,6 +23,13 @@ export default {
   name: 'MainCategoryCard',
   props: {
     category: { type: Object, default: () => {} },
+  },
+  methods: {
+    getUrlImage(url) {
+      return this.$vuetify.breakpoint.mobile
+        ? url.replace('imwidth=400', 'imwidth=200')
+        : url.replace('imwidth=400', 'imwidth=500')
+    },
   },
 }
 </script>
