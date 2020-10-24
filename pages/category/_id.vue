@@ -95,7 +95,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.category.description,
+          content: this.category.description || this.category.title,
         },
       ],
     }
