@@ -29,10 +29,4 @@ export const actions = {
         })
     })
   },
-
-  fetchProductsByCategoryId({ commit }, id) {
-    return ApiService.getProducts(id).then((response) => {
-      commit('SET_PRODUCTS', response.data.productWindow)
-    })
-  },
 }
