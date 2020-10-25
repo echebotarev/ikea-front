@@ -1,30 +1,34 @@
 <template>
-  <v-row v-if="isOpen" class="message" no-gutters align="center">
-    <v-col class="text-right" cols="2">
-      <v-icon color="#fff" small>mdi-store-outline</v-icon>
-    </v-col>
+  <client-only>
+    <v-row v-if="isOpen" class="message" no-gutters align="center">
+      <v-col class="text-right" cols="2">
+        <v-icon color="#fff" small>mdi-store-outline</v-icon>
+      </v-col>
 
-    <v-col class="pl-2" cols="8">
-      <v-carousel
-        cycle
-        height="19"
-        vertical
-        hide-delimiter-background
-        hide-delimiters
-        :show-arrows="false"
-      >
-        <v-carousel-item v-for="message in messages" :key="message">{{
-          message
-        }}</v-carousel-item>
-      </v-carousel>
-    </v-col>
+      <v-col class="pl-2" cols="8">
+        <v-carousel
+          cycle
+          :height="$vuetify.breakpoint.xs ? 45 : 19"
+          vertical
+          hide-delimiter-background
+          hide-delimiters
+          :show-arrows="false"
+        >
+          <v-carousel-item v-for="message in messages" :key="message">
+            <v-row class="fill-height pl-3" align="center">
+              <div>{{ message }}</div>
+            </v-row>
+          </v-carousel-item>
+        </v-carousel>
+      </v-col>
 
-    <v-col cols="2">
-      <v-btn icon @click="close">
-        <v-icon color="#fff" small>mdi-close</v-icon>
-      </v-btn>
-    </v-col>
-  </v-row>
+      <v-col cols="2">
+        <v-btn icon @click="close">
+          <v-icon color="#fff" small>mdi-close</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+  </client-only>
 </template>
 
 <script>
