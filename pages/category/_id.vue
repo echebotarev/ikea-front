@@ -50,12 +50,10 @@ export default {
     Filters,
   },
   async fetch({ store, error, params, query, route }) {
-    const { fullPath } = route
     try {
       await store.dispatch('category/fetchCategories', params.id)
       await store.dispatch('products/fetchProductsByCategoryId', {
         id: params.id,
-        fullPath,
         ...query,
       })
     } catch (e) {
