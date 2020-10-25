@@ -67,6 +67,20 @@
           </div>
         </v-expansion-panel>
       </v-expansion-panels>
+
+      <v-row no-gutters>
+        <v-col>
+          <v-btn
+            rounded
+            elevation="0"
+            width="100%"
+            class="button-black"
+            @click="hideModal"
+          >
+            Смотреть {{ productCount }}
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-col>
     <v-spacer></v-spacer>
   </v-row>
@@ -105,6 +119,7 @@ export default {
   computed: {
     ...mapState({
       filters: (state) => state.filters.filters,
+      productCount: (state) => state.products.productCount,
 
       currentSortFromState: (state) =>
         state.filters.sortOrders.find((item) => item.selected),
@@ -134,6 +149,7 @@ export default {
   methods: {
     ...mapActions({
       setOpenPanels: 'filters/setOpenPanels',
+      hideModal: 'page/hideModal',
     }),
 
     prepareSortData(data) {

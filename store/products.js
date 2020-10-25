@@ -31,7 +31,7 @@ export const actions = {
         return false
       }
 
-      response.data.productCount &&
+      ;(response.data.productCount || response.data.productCount === 0) &&
         commit('SET_PRODUCT_COUNT', response.data.productCount)
 
       commit('SET_PRODUCTS', response.data.productWindow)
