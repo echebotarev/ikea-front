@@ -94,6 +94,10 @@ export default {
         PRICE_LOW_TO_HIGH: 'Цена: от низкой до высокой',
         PRICE_HIGH_TO_LOW: 'Цена: от высокой до низкой',
         NAME_ASCENDING: 'По алфавиту: от А до Я',
+        WIDTH: 'Ширина',
+        HEIGHT: 'Высота',
+        LENGTH: 'Длина',
+        DEPTH: 'Глубина',
       },
     }
   },
