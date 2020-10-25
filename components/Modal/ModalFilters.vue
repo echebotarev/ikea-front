@@ -135,9 +135,10 @@ export default {
     prepareSortData(data) {
       return data
         .filter((item) => item.id !== 'MOST_POPULAR')
-        .map((item) =>
-          Object.assign({}, item, { name: this.dictName[item.id] })
-        )
+        .map((item) => {
+          const name = this.dictName[item.id] || item.name
+          return Object.assign({}, item, { name })
+        })
     },
 
     async setCurrentSort(value) {
