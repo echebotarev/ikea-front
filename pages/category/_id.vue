@@ -49,7 +49,7 @@ export default {
     Modal,
     Filters,
   },
-  async fetch({ store, error, params, query, route }) {
+  async fetch({ store, error, params, query }) {
     try {
       await store.dispatch('category/fetchCategories', params.id)
       await store.dispatch('products/fetchProductsByCategoryId', {

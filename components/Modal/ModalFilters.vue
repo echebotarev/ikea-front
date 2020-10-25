@@ -68,7 +68,11 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-row class="fixed-buttons">
+      <v-row
+        :class="`fixed-buttons ${
+          $vuetify.breakpoint.mobile ? 'mobile' : 'desktop'
+        }`"
+      >
         <v-col cols="6">
           <v-btn
             rounded
@@ -221,6 +225,13 @@ export default {
   position: fixed;
   z-index: 10000;
   bottom: 20px;
-  width: 80%;
+
+  &.mobile {
+    width: 80%;
+  }
+
+  &.desktop {
+    width: 42%;
+  }
 }
 </style>
