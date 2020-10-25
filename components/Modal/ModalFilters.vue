@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-spacer></v-spacer>
-    <v-col cols="10">
+    <v-col cols="10" class="pb-15">
       <v-expansion-panels v-model="openPanels" accordion flat multiple>
         <!-- Сортировка -->
         <v-expansion-panel v-if="data.sortOrders">
@@ -68,7 +68,7 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-row>
+      <v-row class="fixed-buttons">
         <v-col cols="6">
           <v-btn
             rounded
@@ -178,7 +178,11 @@ export default {
     },
 
     async cleanFilters() {
-      await this.$router.replace({ query: null })
+      // проверяем есть ли установленные фильтры
+      // если вызвать $router.replace, когда query уже null, вылетает ошибка
+      if (Object.keys(this.$router.currentRoute.query).length) {
+        await this.$router.replace({ query: null })
+      }
     },
 
     getSelectedNames(filter) {
@@ -212,5 +216,11 @@ export default {
 <style scoped lang="scss">
 .current-filters {
   font-weight: 400;
+}
+.fixed-buttons {
+  position: fixed;
+  z-index: 10000;
+  bottom: 20px;
+  width: 80%;
 }
 </style>
