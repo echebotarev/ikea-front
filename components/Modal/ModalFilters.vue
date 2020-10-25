@@ -68,8 +68,20 @@
         </v-expansion-panel>
       </v-expansion-panels>
 
-      <v-row no-gutters>
-        <v-col>
+      <v-row>
+        <v-col cols="6">
+          <v-btn
+            rounded
+            elevation="0"
+            width="100%"
+            class="button-black"
+            @click="cleanFilters"
+          >
+            Очистить фильтры
+          </v-btn>
+        </v-col>
+
+        <v-col cols="6">
           <v-btn
             rounded
             elevation="0"
@@ -163,6 +175,10 @@ export default {
 
     async setCurrentSort(value) {
       await this.$router.push({ query: { ...this.$route.query, sort: value } })
+    },
+
+    async cleanFilters() {
+      await this.$router.replace({ query: null })
     },
 
     getSelectedNames(filter) {
