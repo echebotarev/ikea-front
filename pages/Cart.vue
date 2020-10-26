@@ -53,6 +53,9 @@
               <v-text-field
                 v-model="phone"
                 v-mask="'# (###) ###-####'"
+                type="tel"
+                pattern="[\d]*"
+                novalidate
                 flat
                 hide-details
                 rounded
