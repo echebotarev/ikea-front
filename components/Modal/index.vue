@@ -30,6 +30,8 @@
           <Variations v-if="data.options" :data="data" />
 
           <Filters v-if="data.filters || data.sortOrders" :data="data" />
+
+          <Suggestion v-if="data.suggestion" :data="data" />
         </v-col>
       </v-row>
     </div>
@@ -42,10 +44,11 @@ import Details from '@/components/Modal/Details'
 import Dimensions from '@/components/Modal/Dimensions'
 import Variations from '@/components/Modal/ModalVariations'
 import Filters from '@/components/Modal/ModalFilters'
+import Suggestion from '@/components/Modal/ModalSuggestion'
 
 export default {
   name: 'InfoModal',
-  components: { Details, Dimensions, Variations, Filters },
+  components: { Details, Dimensions, Variations, Filters, Suggestion },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
     isOpenDetails: (state) => state.page.modal.isOpenDetails,

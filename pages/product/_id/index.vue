@@ -118,7 +118,7 @@
             min-height="50"
             class="button"
             :disabled="isDisabledOrderBtn"
-            @click="addProduct({ product, qnt: 1 })"
+            @click="add({ product, qnt: 1 })"
           >
             <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
             Добавить в корзину
@@ -213,10 +213,7 @@ export default {
 
   mounted() {
     // Этот товар можно дополнить
-    setTimeout(
-      () => this.fetchSuggestionProducts(this.product.identifier),
-      2000
-    )
+    this.fetchSuggestionProducts(this.product.identifier)
   },
 
   beforeDestroy() {
@@ -228,8 +225,22 @@ export default {
       addProduct: 'orders/addProduct',
       fetchSuggestionProducts: 'suggestion/fetchSuggestionProducts',
       cleanSuggestionProducts: 'suggestion/cleanSuggestionProducts',
+      showModal: 'page/showModal',
     }),
+
     getImage,
+
+    async add(payload) {
+      await this.addProduct(payload)
+      this.suggestionProducts.length &&
+        this.showModal(
+          Object.assign(
+            {},
+            { title: 'А ну ка', suggestion: this.suggestionProducts },
+            { type: 'info' }
+          )
+        )
+    },
   },
 
   head() {
