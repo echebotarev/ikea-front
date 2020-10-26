@@ -185,6 +185,7 @@ export default {
       })
     }
   },
+
   computed: {
     ...mapState({
       product: (state) => state.products.product,
@@ -194,6 +195,7 @@ export default {
         state.products.product.images.fullMediaList.filter(
           (img) => img.type === 'image'
         ),
+      suggestionProducts: (state) => state.suggestion.suggestionProducts,
     }),
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
@@ -208,9 +210,15 @@ export default {
       )
     },
   },
+
+  mounted() {
+    this.fetchSuggestionProducts(this.product.identifier)
+  },
+
   methods: {
     ...mapActions({
       addProduct: 'orders/addProduct',
+      fetchSuggestionProducts: 'suggestion/fetchSuggestionProducts',
     }),
     getImage,
   },
