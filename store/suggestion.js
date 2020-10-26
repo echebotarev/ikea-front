@@ -12,7 +12,9 @@ export const mutations = {
 
 export const actions = {
   fetchSuggestionProducts({ commit }, productId) {
-    return ApiService.getSuggestionProducts(productId)
+    return ApiService.getSuggestionProducts(productId).then((response) => {
+      commit('SET_SUGGESTION_PRODUCTS', response.data)
+    })
   },
 
   cleanSuggestionProducts({ commit }) {

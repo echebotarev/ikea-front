@@ -212,7 +212,11 @@ export default {
   },
 
   mounted() {
-    this.fetchSuggestionProducts(this.product.identifier)
+    // Этот товар можно дополнить
+    setTimeout(
+      () => this.fetchSuggestionProducts(this.product.identifier),
+      2000
+    )
   },
 
   methods: {
