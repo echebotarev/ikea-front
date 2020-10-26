@@ -219,10 +219,15 @@ export default {
     )
   },
 
+  beforeDestroy() {
+    this.cleanSuggestionProducts()
+  },
+
   methods: {
     ...mapActions({
       addProduct: 'orders/addProduct',
       fetchSuggestionProducts: 'suggestion/fetchSuggestionProducts',
+      cleanSuggestionProducts: 'suggestion/cleanSuggestionProducts',
     }),
     getImage,
   },
