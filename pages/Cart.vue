@@ -11,166 +11,184 @@
             <Price :price="sum" :is-only-formatted="true" />
           </v-col>
         </v-row>
+
+        <div ref="openDataAreaBtn">
+          <v-row>
+            <v-col>
+              <v-btn
+                block
+                color="#0058a3"
+                min-height="50"
+                class="button"
+                @click="openDataArea"
+              >
+                Оформить заказ
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
       </div>
 
-      <v-form>
-        <v-row>
-          <v-col cols="12">
-            <span class="text-overline pl-5">Имя:</span>
-            <v-text-field
-              v-model="name"
-              flat
-              hide-details
-              rounded
-              filled
-              placeholder="ФИО"
-              full-width
-              height="50"
-              required
-            >
-            </v-text-field>
-          </v-col>
+      <div ref="dataArea" id="data-area" class="data-area">
+        <v-form>
+          <v-row>
+            <v-col cols="12">
+              <span class="text-overline pl-5">Имя:</span>
+              <v-text-field
+                v-model="name"
+                flat
+                hide-details
+                rounded
+                filled
+                placeholder="ФИО"
+                full-width
+                height="50"
+                required
+              >
+              </v-text-field>
+            </v-col>
 
-          <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
-            <span class="text-overline pl-5">Телефон:</span>
-            <v-text-field
-              v-model="phone"
-              v-mask="'# (###) ###-####'"
-              flat
-              hide-details
-              rounded
-              filled
-              placeholder="8 701 123 4567"
-              full-width
-              height="50"
-              required
-            >
-            </v-text-field>
-          </v-col>
+            <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
+              <span class="text-overline pl-5">Телефон:</span>
+              <v-text-field
+                v-model="phone"
+                v-mask="'# (###) ###-####'"
+                flat
+                hide-details
+                rounded
+                filled
+                placeholder="8 701 123 4567"
+                full-width
+                height="50"
+                required
+              >
+              </v-text-field>
+            </v-col>
 
-          <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
-            <span class="text-overline pl-5">Адрес почты:</span>
-            <v-text-field
-              v-model="mail"
-              flat
-              hide-details
-              rounded
-              filled
-              placeholder="mail@example.com"
-              full-width
-              height="50"
-              required
-            >
-            </v-text-field>
-          </v-col>
-        </v-row>
+            <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
+              <span class="text-overline pl-5">Адрес почты:</span>
+              <v-text-field
+                v-model="mail"
+                flat
+                hide-details
+                rounded
+                filled
+                placeholder="mail@example.com"
+                full-width
+                height="50"
+                required
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row class="mb-10">
+            <v-col>
+              <span class="text-overline pl-5"
+                >Укажите полный адрес доставки (Город, микрорайон, дом,
+                квартира):</span
+              >
+              <v-text-field
+                id="address"
+                v-model="value"
+                flat
+                hide-details
+                rounded
+                filled
+                placeholder="Актау ..."
+                full-width
+                height="50"
+                :value="value"
+                prepend-inner-icon="mdi-map-marker"
+              >
+              </v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row v-if="assemblySum" no-gutters class="mb-10">
+            <v-col>
+              <v-row class="pr-5 pl-5">
+                <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
+                  <span class="text-overline"
+                    >Экономьте свое время. Воспользуйтесь услугой сборки.</span
+                  >
+                  <span class="text-caption text-decoration-underline"
+                    >Сборка начисляется только на товары требующие сборки</span
+                  >
+                </v-col>
+
+                <v-divider vertical></v-divider>
+
+                <v-col>
+                  <v-row>
+                    <v-col cols="8">
+                      <v-checkbox
+                        v-model="isAssembly"
+                        prepend-icon="mdi-tools"
+                        label="Заказать сборку"
+                        class="checkbox"
+                      ></v-checkbox>
+
+                      <span
+                        style="display: block; margin-top: -20px;"
+                        class="text-caption pl-9"
+                        >Стоимость сборки - {{ assemblyPercent }}%</span
+                      >
+                    </v-col>
+
+                    <v-col class="text-right">
+                      <Price
+                        :price="getAssemblyValue"
+                        :is-only-formatted="true"
+                        :without-label="true"
+                      />
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-form>
 
         <v-row class="mb-10">
-          <v-col>
-            <span class="text-overline pl-5"
-              >Укажите полный адрес доставки (Город, микрорайон, дом,
-              квартира):</span
-            >
-            <v-text-field
-              id="address"
-              v-model="value"
-              flat
-              hide-details
-              rounded
-              filled
-              placeholder="Актау ..."
-              full-width
-              height="50"
-              :value="value"
-              prepend-inner-icon="mdi-map-marker"
-            >
-            </v-text-field>
+          <v-col>Итого:</v-col>
+          <v-col class="text-right">
+            <Price :price="total" :is-only-formatted="true" />
           </v-col>
         </v-row>
 
-        <v-row v-if="assemblySum" no-gutters class="mb-10">
-          <v-col>
-            <v-row class="pr-5 pl-5">
-              <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
-                <span class="text-overline"
-                  >Экономьте свое время. Воспользуйтесь услугой сборки.</span
+        <v-row class="pay-area pt-5">
+          <v-col order-sm="2" sm>
+            <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
+              <h3>Способ оплаты:</h3>
+              <v-radio-group v-model="payMethod">
+                <v-radio
+                  label="Оплатить онлайн с чеком на e-mail"
+                  :value="1"
+                ></v-radio>
+                <v-radio
+                  :label="`Оплатить менеджеру и получить товарный чек (Адрес: 10 мкр, 2 дом)`"
+                  :value="2"
                 >
-                <span class="text-caption text-decoration-underline"
-                  >Сборка начисляется только на товары требующие сборки</span
-                >
-              </v-col>
-
-              <v-divider vertical></v-divider>
-
-              <v-col>
-                <v-row>
-                  <v-col cols="8">
-                    <v-checkbox
-                      v-model="isAssembly"
-                      prepend-icon="mdi-tools"
-                      label="Заказать сборку"
-                      class="checkbox"
-                    ></v-checkbox>
-
-                    <span
-                      style="display: block; margin-top: -20px;"
-                      class="text-caption pl-9"
-                      >Стоимость сборки - {{ assemblyPercent }}%</span
-                    >
-                  </v-col>
-
-                  <v-col class="text-right">
-                    <Price
-                      :price="getAssemblyValue"
-                      :is-only-formatted="true"
-                      :without-label="true"
-                    />
-                  </v-col>
-                </v-row>
-              </v-col>
-            </v-row>
+                </v-radio>
+              </v-radio-group>
+            </v-card>
           </v-col>
-        </v-row>
-      </v-form>
-
-      <v-row class="mb-10">
-        <v-col>Итого:</v-col>
-        <v-col class="text-right">
-          <Price :price="total" :is-only-formatted="true" />
-        </v-col>
-      </v-row>
-
-      <v-row class="pay-area pt-5">
-        <v-col order-sm="2" sm>
-          <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
-            <h3>Способ оплаты:</h3>
-            <v-radio-group v-model="payMethod">
-              <v-radio
-                label="Оплатить онлайн с чеком на e-mail"
-                :value="1"
-              ></v-radio>
-              <v-radio
-                :label="`Оплатить менеджеру и получить товарный чек (Адрес: 10 мкр, 2 дом)`"
-                :value="2"
+          <v-col order-sm="1" sm>
+            <v-card flat min-height="150" color="transparent" class="pt-0">
+              <v-btn
+                block
+                color="#0058a3"
+                min-height="50"
+                class="button"
+                @click="checkout"
               >
-              </v-radio>
-            </v-radio-group>
-          </v-card>
-        </v-col>
-        <v-col order-sm="1" sm>
-          <v-card flat min-height="150" color="transparent" class="pt-0">
-            <v-btn
-              block
-              color="#0058a3"
-              min-height="50"
-              class="button"
-              @click="checkout"
-            >
-              Оформить заказ
-            </v-btn>
-          </v-card>
-        </v-col>
-      </v-row>
+                Отправить
+              </v-btn>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
 
       <v-alert
         :value="alert.isShow"
@@ -369,6 +387,15 @@ export default {
       })
     },
 
+    openDataArea() {
+      this.$refs.openDataAreaBtn.style.display = 'none'
+      this.$refs.dataArea.style.display = 'block'
+      this.$vuetify.goTo(this.$refs.dataArea, {
+        duration: 500,
+        easing: 'easeOutQuint',
+      })
+    },
+
     initScripts(name) {
       if (name === 'ymaps' && global.ymaps) {
         return global.ymaps.ready(() => {
@@ -514,6 +541,10 @@ export default {
     .v-card {
       padding: 10px;
     }
+  }
+
+  .data-area {
+    display: none;
   }
 
   .alert {
