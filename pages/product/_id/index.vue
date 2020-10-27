@@ -236,7 +236,10 @@ export default {
         this.showModal(
           Object.assign(
             {},
-            { title: 'А ну ка', suggestion: this.suggestionProducts },
+            {
+              title: `Дополните ваш ${this.product.name} этими товарами`,
+              suggestion: this.suggestionProducts,
+            },
             { type: 'info' }
           )
         )
