@@ -60,6 +60,13 @@
         class="button mt-10"
       >
         Перейти в корзину
+        <v-badge
+          :content="countCart"
+          :value="countCart"
+          color="transparent"
+          inline
+          large
+        ></v-badge>
       </v-btn>
     </v-col>
     <v-spacer></v-spacer>
@@ -67,7 +74,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Price from '@/components/Price'
 import getImage from '@/assets/utils/getImage'
 
@@ -79,6 +86,11 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  computed: {
+    ...mapGetters({
+      countCart: 'orders/getCountCart',
+    }),
   },
   methods: {
     ...mapActions({
