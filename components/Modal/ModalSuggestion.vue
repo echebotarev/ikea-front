@@ -28,10 +28,11 @@
               color="#0058a3"
               width="40"
               height="40"
-              :loading="isLoading"
               @click="add({ product, qnt: 1 })"
             >
-              <v-icon color="#fff">mdi-basket-plus-outline</v-icon>
+              <v-icon color="#fff">
+                mdi-basket-plus-outline
+              </v-icon>
             </v-btn>
           </v-col>
         </v-row>
@@ -56,9 +57,6 @@ export default {
       default: () => {},
     },
   },
-  data: () => ({
-    isLoading: false,
-  }),
   methods: {
     ...mapActions({
       addProduct: 'orders/addProduct',
@@ -68,11 +66,7 @@ export default {
       return product.images.fullMediaList[0]
     },
     add(payload) {
-      console.log('This', this)
-      this.isLoading = true
-      this.addProduct(payload).then(() => {
-        this.isLoading = false
-      })
+      this.addProduct(payload)
     },
   },
 }
