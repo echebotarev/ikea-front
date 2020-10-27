@@ -10,7 +10,7 @@
           :key="product.identifier"
         >
           <v-row>
-            <v-col cols="9">
+            <v-col :cols="$vuetify.breakpoint.xs ? 9 : 8">
               <nuxt-link :to="`/product/${product.identifier}`">
                 <v-row no-gutters>
                   <v-col cols="4">
@@ -32,7 +32,7 @@
               </nuxt-link>
             </v-col>
 
-            <v-col cols="3">
+            <v-col :cols="$vuetify.breakpoint.xs ? 3 : 4">
               <v-btn
                 elevation="0"
                 fab
