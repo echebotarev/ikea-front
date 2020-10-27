@@ -9,16 +9,26 @@
         :key="product.identifier"
       >
         <v-row>
-          <v-col cols="3">
-            <v-img :src="getImage(imgPreview(product).content.url, 2)"></v-img>
-          </v-col>
+          <v-col cols="10">
+            <nuxt-link :to="`/product/${product.identifier}`">
+              <v-row>
+                <v-col cols="4">
+                  <v-img
+                    :src="getImage(imgPreview(product).content.url, 2)"
+                  ></v-img>
+                </v-col>
 
-          <v-col cols="7">
-            <h4>{{ product.name }}</h4>
-            <div class="product-description mb-5">
-              {{ product.price.productDescription }}
-            </div>
-            <Price :price="product.price.price.mainPriceProps.price.integer" />
+                <v-col cols="8">
+                  <h4>{{ product.name }}</h4>
+                  <div class="product-description mb-5">
+                    {{ product.price.productDescription }}
+                  </div>
+                  <Price
+                    :price="product.price.price.mainPriceProps.price.integer"
+                  />
+                </v-col>
+              </v-row>
+            </nuxt-link>
           </v-col>
 
           <v-col cols="2">
