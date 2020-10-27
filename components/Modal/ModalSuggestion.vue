@@ -10,9 +10,9 @@
           :key="product.identifier"
         >
           <v-row>
-            <v-col cols="10">
+            <v-col cols="9">
               <nuxt-link :to="`/product/${product.identifier}`">
-                <v-row>
+                <v-row no-gutters>
                   <v-col cols="4">
                     <v-img
                       :src="getImage(imgPreview(product).content.url, 2)"
@@ -32,7 +32,7 @@
               </nuxt-link>
             </v-col>
 
-            <v-col cols="2">
+            <v-col cols="3">
               <v-btn
                 elevation="0"
                 fab
