@@ -9,8 +9,8 @@
           v-for="(product, index) in data.suggestion"
           :key="product.identifier"
         >
-          <v-row>
-            <v-col :cols="$vuetify.breakpoint.xs ? 9 : 8">
+          <v-row no-gutters class="pt-5 pb-5">
+            <v-col cols="10">
               <nuxt-link :to="`/product/${product.identifier}`">
                 <v-row no-gutters>
                   <v-col cols="4">
@@ -32,13 +32,14 @@
               </nuxt-link>
             </v-col>
 
-            <v-col :cols="$vuetify.breakpoint.xs ? 3 : 4">
+            <v-col cols="2">
               <v-btn
                 elevation="0"
                 fab
                 color="#0058a3"
                 width="40"
                 height="40"
+                class="float-right"
                 @click="add({ product, qnt: 1 })"
               >
                 <v-icon color="#fff">
