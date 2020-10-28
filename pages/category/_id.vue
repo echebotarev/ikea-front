@@ -51,7 +51,14 @@ export default {
   },
   async fetch({ store, error, params, query }) {
     try {
-      await store.dispatch('category/fetchCategories', params.id)
+      const result = await store.dispatch('category/fetchCategories', params.id)
+      if (!result) {
+        return error({
+          statusCode: 404,
+          message: 'Упс, такой страницы не существует',
+        })
+      }
+
       await store.dispatch('products/fetchProductsByCategoryId', {
         id: params.id,
         ...query,

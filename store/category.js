@@ -20,6 +20,10 @@ export const mutations = {
 export const actions = {
   fetchCategories({ commit }, id) {
     return ApiService.getCategories(id).then((response) => {
+      if (!response.data) {
+        return false
+      }
+
       commit('SET_CATEGORY', response.data)
       commit('SET_CATEGORIES', response.data.subcategories)
 
@@ -27,6 +31,8 @@ export const actions = {
         commit('page/SET_BREADCRUMBS', response.data.breadcrumbs, {
           root: true,
         })
+
+      return true
     })
   },
 }
