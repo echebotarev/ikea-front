@@ -110,7 +110,7 @@
 
         <Variations v-if="product.variations" :product="product" />
 
-        <v-row class="mt-5">
+        <v-row class="mt-5 pl-3 pr-3">
           <v-btn
             block
             rounded
