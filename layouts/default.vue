@@ -1,5 +1,10 @@
 <template>
-  <v-app id="app" :class="$vuetify.breakpoint.smAndDown ? 'sm-and-down' : ''">
+  <v-app
+    id="app"
+    :class="
+      ($vuetify.breakpoint.smAndDown ? 'sm-and-down' : '')
+    "
+  >
     <v-main>
       <Message />
 

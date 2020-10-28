@@ -45,10 +45,12 @@ export const mutations = {
 }
 export const actions = {
   showModal({ commit }, payload) {
+    global.document.documentElement.style.overflow = 'hidden'
     commit('SHOW_MODAL', payload)
   },
 
   hideModal({ commit }, payload) {
+    global.document.documentElement.style.overflow = ''
     commit('HIDE_MODAL', payload)
   },
 
