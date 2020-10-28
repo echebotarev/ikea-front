@@ -177,7 +177,17 @@ export default {
   },
   async fetch({ store, error, params }) {
     try {
-      await store.dispatch('products/fetchProductById', params.id)
+      const result = await store.dispatch(
+        'products/fetchProductById',
+        params.id
+      )
+
+      if (result === false) {
+        return error({
+          statusCode: 404,
+          message: 'Упс, такой страницы не существует',
+        })
+      }
     } catch (e) {
       error({
         statusCode: 503,
