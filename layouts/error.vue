@@ -16,7 +16,7 @@
     </div>
     <p v-if="statusCode === 404">
       <nuxt-link to="/">
-        Return to homepage
+        Вернуться на главную
       </nuxt-link>
     </p>
   </div>
