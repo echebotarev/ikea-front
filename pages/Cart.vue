@@ -511,19 +511,23 @@ export default {
       updateOrder: 'orders/updateOrder',
     }),
   },
-  head: {
-    script: [
-      {
-        src: `https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${config.yandexApiKey}`,
-        defer: true,
-        type: 'text/javascript',
-      },
-      {
-        src: 'https://widget.cloudpayments.ru/bundles/cloudpayments',
-        defer: true,
-        type: 'text/javascript',
-      },
-    ],
+
+  head() {
+    return {
+      title: 'Корзина',
+      script: [
+        {
+          src: `https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=${config.yandexApiKey}`,
+          defer: true,
+          type: 'text/javascript',
+        },
+        {
+          src: 'https://widget.cloudpayments.ru/bundles/cloudpayments',
+          defer: true,
+          type: 'text/javascript',
+        },
+      ],
+    }
   },
 }
 </script>
