@@ -3,7 +3,8 @@
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
         <span class="logo-text ml-3 pl-3">
-          Доставка товаров IKEA
+          Доставка товаров IKEA <br />
+          <span class="logo-text-mini">в Актау</span>
         </span>
       </nuxt-link>
     </v-toolbar-title>
@@ -76,11 +77,15 @@ export default {
 }
 .logo-text {
   color: #0058a3;
-  line-height: 40px;
+  line-height: 1;
   display: inline-block;
   float: right;
   border-left: thin solid #0058a3;
   transition: all 0.3s;
+
+  .logo-text-mini {
+    font-size: 1rem;
+  }
 }
 a:hover {
   .logo-text {
