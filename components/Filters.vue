@@ -1,5 +1,5 @@
 <template>
-  <div id="scroll-target">
+  <div v-if="productCount" id="scroll-target">
     <v-row>
       <v-col :cols="$vuetify.breakpoint.xs ? 12 : 10">
         <v-tabs grow hide-slider :show-arrows="!$vuetify.breakpoint.xs">
@@ -74,7 +74,7 @@ export default {
     filters: (state) => state.filters.filters,
     sortOrders: (state) => state.filters.sortOrders,
 
-    productCount: (state) => state.products.productCount,
+    productCount: (state) => parseInt(state.products.productCount),
   }),
   methods: {
     ...mapActions({
