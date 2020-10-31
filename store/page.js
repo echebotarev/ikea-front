@@ -18,7 +18,8 @@ export const mutations = {
 
         items.push({
           text: breadcrumb.name,
-          href: identifier === 'products' ? '/' : `/category/${identifier}`,
+          href:
+            identifier === 'products' ? '/catalog' : `/category/${identifier}`,
           disabled: breadcrumbs.itemListElement.length === index + 1,
         })
       })
