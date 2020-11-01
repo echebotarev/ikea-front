@@ -67,6 +67,7 @@ export default {
     Search,
     Footer,
   },
+  middleware: 'fetchOrders',
   computed: {
     links: () => links,
     drawer: {
