@@ -83,6 +83,7 @@ export default {
       {
         dsn:
           'https://c5f9be1ea1b740a5bcd0dd873b50d988@o446780.ingest.sentry.io/5425799',
+        disabled: process.env.NODE_ENV === 'development',
       },
     ],
   ],
