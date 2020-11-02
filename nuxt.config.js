@@ -41,6 +41,7 @@ export default {
     '@/plugins/price',
     '@/plugins/vMask',
     { src: '@/plugins/notifications', ssr: false },
+    { src: '@plugins/ga.js', mode: 'client' },
   ],
   /*
    ** Auto import components

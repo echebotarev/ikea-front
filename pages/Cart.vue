@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div ref="dataArea" id="data-area" class="data-area">
+      <div id="data-area" ref="dataArea" class="data-area">
         <v-form>
           <v-row>
             <v-col cols="12">
