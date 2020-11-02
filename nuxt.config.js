@@ -42,6 +42,7 @@ export default {
     '@/plugins/vMask',
     { src: '@/plugins/notifications', ssr: false },
     { src: '@plugins/ga.js', mode: 'client' },
+    { src: '@plugins/ya.js', mode: 'client' },
   ],
   /*
    ** Auto import components
@@ -71,19 +72,19 @@ export default {
   modules: [
     '@nuxtjs/axios',
     'portal-vue/nuxt',
-    [
-      '@nuxtjs/yandex-metrika',
-      {
-        id: '67230112',
-        webvisor: true,
-      },
-    ],
+    // [
+    //   '@nuxtjs/yandex-metrika',
+    //   {
+    //     id: '67230112',
+    //     webvisor: true,
+    //   },
+    // ],
     [
       '@nuxtjs/sentry',
       {
         dsn:
           'https://c5f9be1ea1b740a5bcd0dd873b50d988@o446780.ingest.sentry.io/5425799',
-        disabled: process.env.NODE_ENV === 'development',
+        disabled: process.env.NODE_ENV === 'development' || false,
       },
     ],
   ],
