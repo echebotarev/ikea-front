@@ -31,6 +31,7 @@
         <v-expansion-panel
           v-for="filter in getFiltersData(filters)"
           :key="filter.id"
+          :disabled="!filter.enabled"
         >
           <v-expansion-panel-header
             :expand-icon="

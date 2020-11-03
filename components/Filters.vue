@@ -36,6 +36,7 @@
               :class="`text-capitalize btn-filters${
                 filter.selected ? ' selected' : ''
               }`"
+              :disabled="!filter.enabled"
               @click="setFilter({ filter, index })"
             >
               {{ filter.name }}
