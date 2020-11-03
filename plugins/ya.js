@@ -21,7 +21,7 @@ export default ({ app, $getCookie }) => {
   const cookieId = $getCookie('cookieId')
   // eslint-disable-next-line no-undef
   ym('67230112', 'init', {
-    webwisor: true,
+    webvisor: true,
     trackHash: true,
     userParams: cookieId
       ? {
