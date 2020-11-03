@@ -46,6 +46,7 @@ export default {
 
   methods: {
     async toggleFilters(parameter, value) {
+      // сделано так, потому что по другому не достучаться до this
       // eslint-disable-next-line no-useless-call
       await this.$toggleFilters.call(this, parameter, value)
     },

@@ -36,18 +36,7 @@
               :class="`text-capitalize btn-filters${
                 filter.selected ? ' selected' : ''
               }`"
-              @click="
-                () => {
-                  setOpenPanels([index + 1])
-                  showModal(
-                    Object.assign(
-                      {},
-                      { sortOrders: sortOrders },
-                      { type: 'info' }
-                    )
-                  )
-                }
-              "
+              @click="setFilter({ filter, index })"
             >
               {{ filter.name }}
             </v-btn>
@@ -81,6 +70,18 @@ export default {
       showModal: 'page/showModal',
       setOpenPanels: 'filters/setOpenPanels',
     }),
+
+    setFilter({ filter, index }) {
+      if (filter.type === 'BOOLEAN') {
+        // eslint-disable-next-line no-useless-call
+        return this.$toggleFilters.call(this, filter.parameter, 'true')
+      }
+
+      this.setOpenPanels([index + 1])
+      this.showModal(
+        Object.assign({}, { sortOrders: this.sortOrders }, { type: 'info' })
+      )
+    },
 
     getFiltersData,
   },
