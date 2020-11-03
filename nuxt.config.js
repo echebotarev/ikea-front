@@ -44,6 +44,7 @@ export default {
     { src: '@/plugins/notifications', ssr: false },
     { src: '@plugins/ga.js', mode: 'client' },
     { src: '@plugins/ya.js', mode: 'client' },
+    { src: '@plugins/filters.js', mode: 'client' },
   ],
   /*
    ** Auto import components
