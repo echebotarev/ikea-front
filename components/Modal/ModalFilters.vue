@@ -32,7 +32,19 @@
           v-for="filter in getFiltersData(filters)"
           :key="filter.id"
         >
-          <v-expansion-panel-header>
+          <v-expansion-panel-header
+            :expand-icon="
+              filter.type === 'BOOLEAN'
+                ? filter.selected
+                  ? 'mdi-checkbox-marked'
+                  : 'mdi-checkbox-blank-outline'
+                : 'mdi-chevron-down'
+            "
+            :disable-icon-rotate="filter.type === 'BOOLEAN'"
+            @click="
+              filter.type === 'BOOLEAN' ? toggleFilter(filter.parameter) : ''
+            "
+          >
             <v-row no-gutters>
               <v-col>{{ filter.name }}</v-col>
               <v-col class="text--secondary current-filters">
@@ -210,6 +222,11 @@ export default {
       }
 
       return ''
+    },
+
+    toggleFilter(parameter) {
+      // eslint-disable-next-line no-useless-call
+      return this.$toggleFilters.call(this, parameter, 'true')
     },
 
     getFiltersData,
