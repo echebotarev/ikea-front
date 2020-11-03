@@ -1,4 +1,4 @@
-export default ({ app }) => {
+export default ({ app, $getCookie }) => {
   if (process.env.NODE_ENV !== 'production') {
     return
   }
@@ -18,13 +18,22 @@ export default ({ app }) => {
       a.parentNode.insertBefore(k, a)
   })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
 
+  const cookieId = $getCookie('cookieId')
   // eslint-disable-next-line no-undef
   ym('67230112', 'init', {
     webwisor: true,
+    trackHash: true,
+    userParams: cookieId
+      ? {
+          UserID: cookieId,
+        }
+      : {},
   })
 
   app.router.afterEach((to, from) => {
     // eslint-disable-next-line no-undef
     ym('67230112', 'hit', to.fullPath)
+    // eslint-disable-next-line no-undef
+    cookieId && ym('67230112', 'setUserID', cookieId)
   })
 }

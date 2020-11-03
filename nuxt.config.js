@@ -40,6 +40,7 @@ export default {
   plugins: [
     '@/plugins/price',
     '@/plugins/vMask',
+    { src: '@plugins/cookie.js', mode: 'client' },
     { src: '@/plugins/notifications', ssr: false },
     { src: '@plugins/ga.js', mode: 'client' },
     { src: '@plugins/ya.js', mode: 'client' },
