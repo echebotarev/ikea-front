@@ -32,7 +32,7 @@ export default ({ app, $getCookie }) => {
 
   app.router.afterEach((to, from) => {
     // eslint-disable-next-line no-undef
-    ym('67230112', 'hit', to.fullPath)
+    ym('67230112', 'hit', `${document.location.origin}${to.fullPath}`)
     // eslint-disable-next-line no-undef
     cookieId && ym('67230112', 'setUserID', cookieId)
   })
