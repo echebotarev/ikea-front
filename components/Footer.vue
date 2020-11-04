@@ -36,6 +36,16 @@
               title="Telegram"
             ></a>
           </span>
+
+          <span>
+            <a
+              class="instagram"
+              href="https://instagram.com/domadoma.kz"
+              target="_blank"
+              rel="nofollow"
+              title="Instagram"
+            ></a>
+          </span>
         </div>
 
         <b>Телефон:</b>
@@ -80,6 +90,10 @@ export default {
 
       &.telegram {
         background-position: -153px -104px;
+      }
+
+      &.instagram {
+        background-position: -154px -4px;
       }
     }
   }
