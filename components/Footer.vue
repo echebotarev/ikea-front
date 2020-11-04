@@ -1,7 +1,7 @@
 <template>
   <v-footer>
     <v-row>
-      <v-col class="bottom-nav">
+      <v-col class="bottom-nav" cols="4">
         <b>Навигация:</b>
 
         <v-list-item v-for="link in links" :key="link.url" nuxt>
@@ -13,7 +13,7 @@
         </v-list-item>
       </v-col>
 
-      <v-col class="social-icons">
+      <v-col class="social-icons" cols="6">
         <b>Напишите нам:</b>
 
         <div>
@@ -51,7 +51,7 @@
         <b>Телефон:</b>
         <div>+7 (911) 172-1308</div>
       </v-col>
-      <v-col class="text-right">{{ new Date().getFullYear() }}</v-col>
+      <v-col class="text-right" cols="2">{{ new Date().getFullYear() }}</v-col>
     </v-row>
   </v-footer>
 </template>
