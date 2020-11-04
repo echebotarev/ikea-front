@@ -40,9 +40,9 @@
           <Nuxt />
         </v-container>
       </v-main>
-    </v-main>
 
-    <Footer />
+      <Footer />
+    </v-main>
 
     <portal-target name="modal"></portal-target>
 
