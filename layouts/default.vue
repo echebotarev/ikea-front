@@ -19,7 +19,7 @@
           <v-spacer></v-spacer>
         </v-row>
 
-        <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-navigation-drawer v-model="drawer" fixed temporary>
           <v-list nav>
             <v-list-item-group active-class="grey lighten-5">
               <nuxt-link v-for="link in links" :key="link.label" :to="link.url">
