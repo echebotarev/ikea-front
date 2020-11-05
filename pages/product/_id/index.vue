@@ -3,7 +3,7 @@
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
 
     <v-row>
-      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
+      <v-col :cols="$vuetify.breakpoint.xs ? 12 : 8">
         <v-row>
           <v-col
             v-for="img in fullMediaList"
@@ -33,7 +33,7 @@
       </v-col>
 
       <v-col
-        :cols="$vuetify.breakpoint.xs ? 12 : 5"
+        :cols="$vuetify.breakpoint.xs ? 12 : 4"
         :class="$vuetify.breakpoint.xs ? '' : 'product-main'"
       >
         <v-row
@@ -49,7 +49,7 @@
         </v-row>
 
         <v-row>
-          <v-col cols="8">
+          <v-col cols="8" class="pr-0">
             <h2 class="product-name">{{ product.name }}</h2>
             <p class="product-description">
               {{ product.price.productDescription }},
@@ -70,7 +70,7 @@
               Выходит из ассортимента
             </p>
           </v-col>
-          <v-col cols="4" class="text-right">
+          <v-col cols="4" class="text-right pl-0">
             <Price
               :price="product.price.price.mainPriceProps.price.integer"
               :class="

@@ -4,10 +4,12 @@
       Цена с учетом доставки:
     </span>
     <span v-if="prepend">{{ prepend }}</span>
-    <span class="price">{{
-      $getDisplayPrice(price, { isOnlyFormatted })
-    }}</span>
-    <span class="symbol">{{ symbol }}</span>
+    <div>
+      <span class="price">{{
+        $getDisplayPrice(price, { isOnlyFormatted })
+      }}</span>
+      <span class="symbol">{{ symbol }}</span>
+    </div>
   </div>
 </template>
 
