@@ -59,6 +59,7 @@
                 {{ product.price.price.previousPriceText }}
                 <Price
                   :price="product.price.price.previousPriceProps.price.integer"
+                  :without-label="true"
                 />
                 <br />
                 {{ product.price.validToFromAndWhileSupplyLastText }}
