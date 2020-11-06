@@ -118,11 +118,17 @@
             color="#0058a3"
             min-height="50"
             class="button"
+            :loading="isLoading"
             :disabled="isDisabledOrderBtn"
             @click="add({ product, qnt: 1 })"
           >
             <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
             Добавить в корзину
+            <template v-slot:loader>
+              <span class="custom-loader">
+                <v-icon light color="#fff">mdi-loading</v-icon>
+              </span>
+            </template>
           </v-btn>
         </v-row>
 
@@ -176,6 +182,7 @@ export default {
     ProductInformationButtons,
     ProductRecommendation,
   },
+
   async fetch({ store, error, params }) {
     try {
       const result = await store.dispatch(
@@ -194,6 +201,12 @@ export default {
         statusCode: 503,
         message: 'Unable API server',
       })
+    }
+  },
+
+  data() {
+    return {
+      isLoading: false,
     }
   },
 
@@ -242,7 +255,10 @@ export default {
     getImage,
 
     async add(payload) {
+      this.isLoading = true
       await this.addProduct(payload)
+      this.isLoading = false
+
       this.suggestionProducts.length &&
         this.showModal(
           Object.assign(

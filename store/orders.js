@@ -30,7 +30,11 @@ export const actions = {
       if (response.data) {
         commit('SET_ORDER', response.data)
         commit('SET_PRODUCTS', response.data.products)
+
+        return true
       }
+
+      return false
     })
   },
 
