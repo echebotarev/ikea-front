@@ -36,19 +36,7 @@
               </v-col>
 
               <v-col cols="2">
-                <v-btn
-                  elevation="0"
-                  fab
-                  color="#0058a3"
-                  width="40"
-                  height="40"
-                  class="float-right"
-                  @click="add({ product, qnt: 1 })"
-                >
-                  <v-icon color="#fff">
-                    mdi-basket-plus-outline
-                  </v-icon>
-                </v-btn>
+                <CircleBtn :add-product="add" :product="product" />
               </v-col>
             </v-row>
             <v-divider v-if="index !== data.suggestion.length - 1"></v-divider>
@@ -87,11 +75,12 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import Price from '@/components/Price'
+import CircleBtn from '@/components/CircleBtn'
 import getImage from '@/assets/utils/getImage'
 
 export default {
   name: 'ModalSuggestion',
-  components: { Price },
+  components: { Price, CircleBtn },
   props: {
     data: {
       type: Object,
@@ -111,8 +100,8 @@ export default {
     imgPreview(product) {
       return product.images.fullMediaList[0]
     },
-    add(payload) {
-      this.addProduct(payload)
+    async add(payload) {
+      await this.addProduct(payload)
     },
   },
 }
