@@ -1,6 +1,15 @@
 <template>
   <div class="products-list">
-    <v-row v-for="product in products" :key="product.identifier">
+    <div :class="`loader${isLoading ? ' d-block' : ''}`">
+      <v-icon x-large color="#212121" class="custom-loader">
+        mdi-loading
+      </v-icon>
+    </div>
+    <v-row
+      v-for="product in products"
+      :key="product.identifier"
+      :ref="product.identifier"
+    >
       <v-col>
         <v-row>
           <v-col cols="3">
@@ -108,14 +117,14 @@
             />
           </v-col>
           <v-col class="text-right">
-            <v-btn icon @click="removeProduct({ product, qnt: product.qnt })">
+            <v-btn icon @click="remove({ product, qnt: product.qnt })">
               <v-icon>mdi-trash-can-outline</v-icon>
             </v-btn>
-            <v-btn icon @click="removeProduct({ product, qnt: 1 })">
+            <v-btn icon @click="remove({ product, qnt: 1 })">
               <v-icon>mdi-minus</v-icon>
             </v-btn>
             <span class="amount">{{ product.qnt }}</span>
-            <v-btn icon @click="addProduct({ product, qnt: 1 })">
+            <v-btn icon @click="add({ product, qnt: 1 })">
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </v-col>
@@ -140,17 +149,58 @@ export default {
       default: () => [],
     },
   },
+  data() {
+    return {
+      isLoading: false,
+    }
+  },
   methods: {
     ...mapActions({
       addProduct: 'orders/addProduct',
       removeProduct: 'orders/removeProduct',
     }),
     getImage,
+    toggleBlur(id) {
+      const elem = this.$refs[id][0]
+      elem && elem.classList.toggle('product__blur')
+    },
+    async add(payload) {
+      this.toggleBlur(payload.product.identifier)
+      this.isLoading = true
+      await this.addProduct(payload)
+      this.isLoading = false
+      this.toggleBlur(payload.product.identifier)
+    },
+    async remove(payload) {
+      this.toggleBlur(payload.product.identifier)
+      this.isLoading = true
+      await this.removeProduct(payload)
+      this.isLoading = false
+      this.toggleBlur(payload.product.identifier)
+    },
   },
 }
 </script>
 
 <style scoped lang="scss">
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+
+  .custom-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+  }
+}
+.product__blur {
+  filter: blur(2px);
+}
 .products-list {
   > .row {
     border-bottom: thin solid rgba(0, 0, 0, 0.12);
