@@ -1,16 +1,16 @@
 <template>
-  <div :class="`product-price ${className}`">
+  <span :class="`product-price ${className}`">
     <span v-if="!withoutLabel" class="product-price-label">
       Цена с учетом доставки:
     </span>
     <span v-if="prepend">{{ prepend }}</span>
-    <div>
+    <span>
       <span class="price">{{
         $getDisplayPrice(price, { isOnlyFormatted })
       }}</span>
       <span class="symbol">{{ symbol }}</span>
-    </div>
-  </div>
+    </span>
+  </span>
 </template>
 
 <script>
