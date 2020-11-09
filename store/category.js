@@ -1,5 +1,6 @@
 import ApiService from '@/services/ApiService.js'
 export const state = () => ({
+  isCategoryLoading: false,
   products: [],
   categories: [],
   category: {},
@@ -16,10 +17,19 @@ export const mutations = {
   SET_CATEGORY(state, category) {
     state.category = category
   },
+
+  SET_CATEGORY_LOADING(state, value) {
+    state.isCategoryLoading = value
+  },
 }
 export const actions = {
   fetchCategories({ commit }, id) {
+    commit('SET_CATEGORIES', [])
+    commit('SET_CATEGORY', {})
+    commit('SET_CATEGORY_LOADING', true)
+
     return ApiService.getCategories(id).then((response) => {
+      commit('SET_CATEGORY_LOADING', false)
       if (!response.data) {
         return false
       }

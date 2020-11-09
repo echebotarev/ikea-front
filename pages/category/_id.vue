@@ -12,6 +12,9 @@
         <InnerCategoryCard :category="category" />
       </v-col>
     </v-row>
+    <div v-if="isCategoryLoading">
+      <SkeletonItems loader-type="category" />
+    </div>
 
     <v-row v-if="category.description">
       <v-col :cols="$vuetify.breakpoint.smAndDown ? 12 : 8">{{
@@ -39,6 +42,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import Filters from '@/components/Filters'
 import Pagination from '@/components/Pagination'
 import Modal from '@/components/Modal/index'
+import SkeletonItems from '@/components/SkeletonItems'
 
 export default {
   components: {
@@ -48,6 +52,7 @@ export default {
     Pagination,
     Modal,
     Filters,
+    SkeletonItems,
   },
   async fetch({ store, error, params, query }) {
     try {
@@ -70,15 +75,18 @@ export default {
       })
     }
   },
+
   computed: mapState({
     category: (state) => state.category.category,
     categories: (state) => state.category.categories,
+    isCategoryLoading: (state) => state.category.isCategoryLoading,
 
     products: (state) => state.products.products,
     productCount: (state) => state.products.productCount,
 
     breadcrumbs: (state) => state.page.breadcrumbs,
   }),
+
   methods: {
     getCols(length) {
       switch (length) {
