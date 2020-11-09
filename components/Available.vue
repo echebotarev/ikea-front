@@ -1,7 +1,10 @@
 <template>
   <div>
     <div
-      v-if="availabilityProduct(identifier).StockAvailability"
+      v-if="
+        availabilityProduct(identifier).StockAvailability &&
+        availabilityProduct(identifier).StockAvailability.RetailItemAvailability
+      "
       class="status"
     >
       <v-icon>mdi-store-outline</v-icon>
