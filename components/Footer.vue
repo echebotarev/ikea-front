@@ -1,5 +1,5 @@
 <template>
-  <v-footer>
+  <v-footer class="footer">
     <v-row>
       <v-col class="bottom-nav" cols="4">
         <b>Навигация:</b>
@@ -68,6 +68,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
 .social-icons {
   span {
     width: 40px;
