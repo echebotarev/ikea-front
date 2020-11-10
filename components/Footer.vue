@@ -68,11 +68,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
 .social-icons {
   span {
     width: 40px;
