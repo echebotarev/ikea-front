@@ -133,11 +133,20 @@
         </v-row>
 
         <v-row>
-          <v-col>
+          <v-col class="pb-0" cols="12">
             <Available
               :type="product.utag.product_type"
               :identifier="product.identifier"
             />
+          </v-col>
+
+          <v-col
+            v-if="!isDisabledOrderBtn"
+            class="delivery-time pt-0"
+            cols="12"
+          >
+            <span class="font-weight-bold">Доставка:</span> ориентировочно
+            {{ deliveryTime }}
           </v-col>
         </v-row>
       </v-col>
@@ -220,6 +229,8 @@ export default {
           (img) => img.type === 'image'
         ),
       suggestionProducts: (state) => state.suggestion.suggestionProducts,
+
+      deliveryTime: (state) => state.page.deliveryTime,
     }),
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
@@ -238,6 +249,7 @@ export default {
   mounted() {
     // Этот товар можно дополнить
     this.fetchSuggestionProducts(this.product.identifier)
+    this.getDeliveryTime()
   },
 
   beforeDestroy() {
@@ -250,6 +262,7 @@ export default {
       fetchSuggestionProducts: 'suggestion/fetchSuggestionProducts',
       cleanSuggestionProducts: 'suggestion/cleanSuggestionProducts',
       showModal: 'page/showModal',
+      getDeliveryTime: 'page/getDeliveryTime',
     }),
 
     getImage,
@@ -340,5 +353,8 @@ export default {
   font-size: 0.875rem;
   line-height: 1.71429;
   padding-bottom: 1.25rem;
+}
+.delivery-time {
+  font-size: 14px;
 }
 </style>

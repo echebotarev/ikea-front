@@ -61,4 +61,8 @@ export default {
   getSuggestionProducts(productId) {
     return apiClient.get(`/suggestion/${productId}`)
   },
+
+  getDeliveryTime() {
+    return apiClient.get(`/time-to-delivery`)
+  },
 }

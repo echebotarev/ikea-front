@@ -1,3 +1,5 @@
+import ApiService from '@/services/ApiService'
+
 export const state = () => ({
   modal: {
     isShow: false,
@@ -6,7 +8,9 @@ export const state = () => ({
   },
   breadcrumbs: [],
   menuDrawer: false,
+  deliveryTime: '',
 })
+
 export const mutations = {
   SET_BREADCRUMBS(state, breadcrumbs) {
     const items = []
@@ -42,6 +46,10 @@ export const mutations = {
   TOGGLE_DRAWER(state, payload = false) {
     state.menuDrawer = payload
   },
+
+  SET_DELIVERY_TIME(state, payload) {
+    state.deliveryTime = payload
+  },
 }
 export const actions = {
   showModal({ commit }, payload) {
@@ -60,5 +68,12 @@ export const actions = {
 
   toggleDrawer({ commit }, payload) {
     commit('TOGGLE_DRAWER', payload)
+  },
+
+  getDeliveryTime({ commit }) {
+    return ApiService.getDeliveryTime().then((response) => {
+      console.log('Time', response.data)
+      commit('SET_DELIVERY_TIME', response.data)
+    })
   },
 }
