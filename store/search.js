@@ -20,7 +20,9 @@ export const actions = {
     commit('SET_VALUE', payload)
 
     ApiService.getSearch(payload).then((response) => {
-      commit('SET_DATA', response.data.searchBox)
+      response.data &&
+        response.data.searchBox &&
+        commit('SET_DATA', response.data.searchBox)
     })
   },
 }

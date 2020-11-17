@@ -112,7 +112,7 @@ export default {
     isShow: (state) => state.page.modal.isShow,
     modalData: (state) => state.page.modal.data,
     universal: (state) =>
-      state.search.data.universal
+      state.search.data && state.search.data.universal
         ? state.search.data.universal.filter(
             (item) =>
               item.label === 'Искать' ||
