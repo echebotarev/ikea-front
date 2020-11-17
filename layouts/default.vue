@@ -89,12 +89,20 @@ export default {
       toggleDrawer: 'page/toggleDrawer',
     }),
   },
-  head: () => ({
-    titleTemplate: '%s - DomaDoma. Доставка товаров IKEA в Актау',
-    htmlAttrs: {
-      lang: 'ru',
-    },
-  }),
+  head() {
+    return {
+      titleTemplate: '%s - DomaDoma. Доставка товаров IKEA в Актау',
+      htmlAttrs: {
+        lang: 'ru',
+      },
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://doma-doma.kz${this.$route.path}`,
+        },
+      ],
+    }
+  },
 }
 </script>
 
