@@ -9,7 +9,7 @@
     <v-row v-else-if="categories && categories.length">
       <v-col
         v-for="category in categories"
-        :key="`${category.identifier}`"
+        :key="category.identifier"
         :cols="getCols(categories.length)"
       >
         <InnerCategoryCard :category="category" />
