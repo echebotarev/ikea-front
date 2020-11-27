@@ -24,8 +24,6 @@ export const mutations = {
 }
 export const actions = {
   fetchCategories({ commit }, id) {
-    commit('SET_CATEGORIES', [])
-    commit('SET_CATEGORY', {})
     commit('SET_CATEGORY_LOADING', true)
 
     return ApiService.getCategories(id).then((response) => {
@@ -35,7 +33,7 @@ export const actions = {
       }
 
       commit('SET_CATEGORY', response.data)
-      commit('SET_CATEGORIES', response.data.subcategories)
+      commit('SET_CATEGORIES', response.data.subcategories || [])
 
       response.data.breadcrumbs &&
         commit('page/SET_BREADCRUMBS', response.data.breadcrumbs, {

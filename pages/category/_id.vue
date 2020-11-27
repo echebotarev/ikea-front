@@ -3,7 +3,10 @@
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
     <h1>{{ category.title }}</h1>
 
-    <v-row v-if="categories && categories.length">
+    <div v-if="isCategoryLoading">
+      <SkeletonItems loader-type="category" />
+    </div>
+    <v-row v-else-if="categories && categories.length">
       <v-col
         v-for="category in categories"
         :key="`${category.identifier}-${Math.random()}`"
@@ -12,9 +15,6 @@
         <InnerCategoryCard :category="category" />
       </v-col>
     </v-row>
-    <div v-if="isCategoryLoading">
-      <SkeletonItems loader-type="category" />
-    </div>
 
     <v-row v-if="category.description">
       <v-col :cols="$vuetify.breakpoint.smAndDown ? 12 : 8">{{
