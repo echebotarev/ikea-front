@@ -82,7 +82,6 @@ export default {
     isCategoryLoading: (state) => state.category.isCategoryLoading,
 
     products: (state) => state.products.products,
-    productCount: (state) => state.products.productCount,
 
     breadcrumbs: (state) => state.page.breadcrumbs,
   }),
