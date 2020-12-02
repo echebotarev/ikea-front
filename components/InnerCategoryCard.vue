@@ -20,10 +20,13 @@
 </template>
 <script>
 export default {
-  name: 'MainCategoryCard',
+  name: 'InnerCategoryCard',
   props: {
     category: { type: Object, default: () => {} },
   },
+  // mounted() {
+  //   console.log('Mounted', this.category.identifier)
+  // },
   methods: {
     getUrlImage(url) {
       return this.$vuetify.breakpoint.mobile

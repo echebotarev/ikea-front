@@ -8,8 +8,8 @@
     </div>
     <v-row v-else-if="categories && categories.length">
       <v-col
-        v-for="category in categories"
-        :key="category.identifier"
+        v-for="(category, index) in categories"
+        :key="`${category.identifier}-${index}`"
         :cols="getCols(categories.length)"
       >
         <InnerCategoryCard :category="category" />
@@ -54,10 +54,14 @@ export default {
     Filters,
     SkeletonItems,
   },
+
   async fetch({ store, error, params, query }) {
+    store.commit('category/SET_CATEGORY_LOADING', true)
+
     try {
       const result = await store.dispatch('category/fetchCategories', params.id)
       if (result === false) {
+        store.commit('category/SET_CATEGORY_LOADING', false)
         return error({
           statusCode: 404,
           message: 'Упс, такой страницы не существует',
@@ -74,17 +78,21 @@ export default {
         message: 'Unable API server',
       })
     }
+
+    store.commit('category/SET_CATEGORY_LOADING', false)
   },
 
-  computed: mapState({
-    category: (state) => state.category.category,
-    categories: (state) => state.category.categories,
-    isCategoryLoading: (state) => state.category.isCategoryLoading,
+  computed: {
+    ...mapState({
+      category: (state) => state.category.category,
+      categories: (state) => state.category.categories,
+      isCategoryLoading: (state) => state.category.isCategoryLoading,
 
-    products: (state) => state.products.products,
+      products: (state) => state.products.products,
 
-    breadcrumbs: (state) => state.page.breadcrumbs,
-  }),
+      breadcrumbs: (state) => state.page.breadcrumbs,
+    }),
+  },
 
   methods: {
     getCols(length) {
