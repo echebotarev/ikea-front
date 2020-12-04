@@ -163,7 +163,7 @@
     </client-only>
 
     <client-only>
-      <ProductSimilar />
+      <ProductRecommendation type="similar" />
     </client-only>
 
     <Modal />
@@ -185,7 +185,6 @@ import Available from '@/components/Available'
 import Price from '@/components/Price'
 import ProductInformationButtons from '@/components/ProductInformationButtons'
 import ProductRecommendation from '@/components/ProductRecommendation'
-import ProductSimilar from '@/components/ProductSimilar'
 
 import getImage from '@/assets/utils/getImage'
 
@@ -199,7 +198,6 @@ export default {
     Price,
     ProductInformationButtons,
     ProductRecommendation,
-    ProductSimilar,
   },
 
   async fetch({ store, error, params }) {

@@ -78,19 +78,7 @@ export const actions = {
     })
   },
 
-  fetchSameRecommendations({ commit, state }) {
-    const id = state.product.identifier
-
-    return ApiService.getRecommendations({
-      id,
-      type: 'same-category',
-    }).then((response) => {
-      response.status >= 200 &&
-        commit('SET_SAME_RECOMMENDATIONS', response.data)
-    })
-  },
-
-  fetchSimilarRecommendations({ commit, state, rootState }) {
+  fetchRecommendations({ commit, state, rootState }, { type }) {
     const id = state.product.identifier
     const { breadcrumbs } = rootState.page
     if (!breadcrumbs) {
@@ -103,11 +91,14 @@ export const actions = {
 
     return ApiService.getRecommendations({
       id,
-      type: 'similar',
+      type,
       categoryList,
     }).then((response) => {
-      response.status >= 200 &&
-        commit('SET_SIMILAR_RECOMMENDATIONS', response.data.data)
+      if (response.status >= 200) {
+        type === 'same'
+          ? commit('SET_SAME_RECOMMENDATIONS', response.data)
+          : commit('SET_SIMILAR_RECOMMENDATIONS', response.data.data)
+      }
     })
   },
 }

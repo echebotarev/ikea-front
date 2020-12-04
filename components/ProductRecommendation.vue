@@ -1,12 +1,14 @@
 <template>
   <v-row class="product-recommendations">
     <v-col>
-      <h2 class="mb-10">Похожие товары</h2>
+      <h2 class="mb-10">
+        {{ type === 'same' ? 'Похожие товары' : 'Вам может понравиться' }}
+      </h2>
 
       <v-sheet width="100%">
         <v-slide-group multiple show-arrows>
           <v-slide-item
-            v-for="item in recommendations"
+            v-for="item in recommendations[type]"
             :key="item.identifier"
             class="slide-item"
           >
@@ -27,14 +29,27 @@ import ProductCard from '@/components/ProductCard'
 export default {
   name: 'ProductRecommendation',
   components: { ProductCard },
+  props: {
+    type: {
+      type: String,
+      default: 'same',
+    },
+  },
   computed: mapState({
-    recommendations: (state) => state.products.sameRecommendations,
+    recommendations: (state) => ({
+      same: state.products.sameRecommendations,
+      similar: state.products.similarRecommendations,
+    }),
   }),
   mounted() {
-    this.$store.dispatch('products/fetchSameRecommendations')
+    this.$store.dispatch('products/fetchRecommendations', {
+      type: this.type,
+    })
   },
   beforeDestroy() {
-    this.$store.commit('products/SET_SAME_RECOMMENDATIONS', [])
+    this.type === 'same'
+      ? this.$store.commit('products/SET_SAME_RECOMMENDATIONS', [])
+      : this.$store.commit('products/SET_SIMILAR_RECOMMENDATIONS', [])
   },
 }
 </script>
