@@ -1,7 +1,7 @@
 <template>
   <v-row class="product-recommendations">
     <v-col>
-      <h2 class="mb-10">Похожие товары</h2>
+      <h2 class="mb-10">Вам может понравиться</h2>
 
       <v-sheet width="100%">
         <v-slide-group multiple show-arrows>
@@ -21,20 +21,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import ProductCard from '@/components/ProductCard'
+import { mapState } from 'vuex'
 
 export default {
-  name: 'ProductRecommendation',
+  name: 'ProductSimilar',
   components: { ProductCard },
   computed: mapState({
-    recommendations: (state) => state.products.sameRecommendations,
+    recommendations: (state) => state.products.similarRecommendations,
   }),
   mounted() {
-    this.$store.dispatch('products/fetchSameRecommendations')
+    this.$store.dispatch('products/fetchSimilarRecommendations')
   },
   beforeDestroy() {
-    this.$store.commit('products/SET_SAME_RECOMMENDATIONS', [])
+    this.$store.commit('products/SET_SIMILAR_RECOMMENDATIONS', [])
   },
 }
 </script>

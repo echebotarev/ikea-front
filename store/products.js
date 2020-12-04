@@ -4,6 +4,7 @@ import getAppliedFiltersFromQuery from 'assets/utils/getAppliedFiltersFromQuery'
 export const state = () => ({
   products: [],
   sameRecommendations: [],
+  similarRecommendations: [],
   product: {},
   productCount: 0,
 })
@@ -22,6 +23,10 @@ export const mutations = {
 
   SET_SAME_RECOMMENDATIONS(state, recommendations) {
     state.sameRecommendations = recommendations
+  },
+
+  SET_SIMILAR_RECOMMENDATIONS(state, recommendations) {
+    state.similarRecommendations = recommendations
   },
 }
 export const actions = {
@@ -73,7 +78,19 @@ export const actions = {
     })
   },
 
-  fetchSameRecommendations({ commit, state, rootState }) {
+  fetchSameRecommendations({ commit, state }) {
+    const id = state.product.identifier
+
+    return ApiService.getRecommendations({
+      id,
+      type: 'same-category',
+    }).then((response) => {
+      response.status >= 200 &&
+        commit('SET_SAME_RECOMMENDATIONS', response.data)
+    })
+  },
+
+  fetchSimilarRecommendations({ commit, state, rootState }) {
     const id = state.product.identifier
     const { breadcrumbs } = rootState.page
     if (!breadcrumbs) {
@@ -86,11 +103,11 @@ export const actions = {
 
     return ApiService.getRecommendations({
       id,
-      type: 'same-category',
+      type: 'similar',
       categoryList,
     }).then((response) => {
       response.status >= 200 &&
-        commit('SET_SAME_RECOMMENDATIONS', response.data)
+        commit('SET_SIMILAR_RECOMMENDATIONS', response.data.data)
     })
   },
 }

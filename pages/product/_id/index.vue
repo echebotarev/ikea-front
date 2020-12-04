@@ -162,6 +162,10 @@
       <ProductRecommendation />
     </client-only>
 
+    <client-only>
+      <ProductSimilar />
+    </client-only>
+
     <Modal />
   </div>
 </template>
@@ -181,6 +185,7 @@ import Available from '@/components/Available'
 import Price from '@/components/Price'
 import ProductInformationButtons from '@/components/ProductInformationButtons'
 import ProductRecommendation from '@/components/ProductRecommendation'
+import ProductSimilar from '@/components/ProductSimilar'
 
 import getImage from '@/assets/utils/getImage'
 
@@ -194,6 +199,7 @@ export default {
     Price,
     ProductInformationButtons,
     ProductRecommendation,
+    ProductSimilar,
   },
 
   async fetch({ store, error, params }) {
@@ -313,7 +319,7 @@ export default {
 .product-main {
   position: -webkit-sticky;
   position: sticky;
-  height: 400px;
+  height: 100%;
   top: 0;
 }
 
