@@ -84,11 +84,12 @@ export const actions = {
       .filter((breadcrumb, index, array) => index && index !== array.length - 1)
       .map((breadcrumb) => breadcrumb.text)
 
-    return ApiService.getRecommendations({ id, categoryList }).then(
-      (response) => {
-        response.data.success &&
-          commit('SET_RECOMMENDATIONS', response.data.data)
-      }
-    )
+    return ApiService.getRecommendations({
+      id,
+      type: 'same-category',
+      categoryList,
+    }).then((response) => {
+      response.status >= 200 && commit('SET_RECOMMENDATIONS', response.data)
+    })
   },
 }

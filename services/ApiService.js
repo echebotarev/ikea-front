@@ -50,9 +50,9 @@ export default {
     )
   },
 
-  getRecommendations({ id, categoryList }) {
+  getRecommendations({ id, categoryList = [], type = 'similar' }) {
     return apiClient.get(
-      `/recommendation/similar?id=${id}&categoryList=${encodeURI(categoryList)}`
+      `/recommendation/${type}?id=${id}&categoryList=${encodeURI(categoryList)}`
     )
   },
 

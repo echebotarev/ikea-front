@@ -7,7 +7,7 @@
         <v-slide-group multiple show-arrows>
           <v-slide-item
             v-for="item in recommendations"
-            :key="item.item_id"
+            :key="item.identifier"
             class="slide-item"
           >
             <ProductCard :product="item" />

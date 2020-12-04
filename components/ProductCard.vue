@@ -1,10 +1,19 @@
 <template>
   <div class="card-product">
-    <nuxt-link :to="`/product/${product.id || product.item_id}`">
+    <nuxt-link
+      :to="`/product/${product.id || product.item_id || product.identifier}`"
+    >
       <v-img
-        :src="getImage(product.mainImageUrl || product.image_url, 4)"
+        :src="
+          getImage(
+            product.mainImageUrl ||
+              product.image_url ||
+              product.images.fullMediaList[0].content.url,
+            4
+          )
+        "
         lazy-src="/images/placeholder.png"
-        :alt="product.typeName"
+        :alt="product.typeName || product.name"
         aspect-ratio="1"
       >
         <template v-slot:placeholder>
@@ -18,7 +27,13 @@
         {{ getDescription(product) }}
       </p>
       <div class="card-product-price">
-        <Price :price="product.priceNumeral || product.price.RUB" />
+        <Price
+          :price="
+            product.priceNumeral ||
+            product.price.RUB ||
+            product.price.price.mainPriceProps.price.integer
+          "
+        />
       </div>
     </nuxt-link>
   </div>
@@ -48,6 +63,10 @@ export default {
 
       if (product.product_attributes) {
         return product.product_attributes.upd_product_description
+      }
+
+      if (product.price.productDescription) {
+        return `${product.price.productDescription}, ${product.price.measurementText}`
       }
 
       return ''
