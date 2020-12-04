@@ -3,7 +3,7 @@ import getAppliedFiltersFromQuery from 'assets/utils/getAppliedFiltersFromQuery'
 
 export const state = () => ({
   products: [],
-  recommendations: [],
+  sameRecommendations: [],
   product: {},
   productCount: 0,
 })
@@ -20,8 +20,8 @@ export const mutations = {
     state.productCount = count
   },
 
-  SET_RECOMMENDATIONS(state, recommendations) {
-    state.recommendations = recommendations
+  SET_SAME_RECOMMENDATIONS(state, recommendations) {
+    state.sameRecommendations = recommendations
   },
 }
 export const actions = {
@@ -73,7 +73,7 @@ export const actions = {
     })
   },
 
-  fetchRecommendations({ commit, state, rootState }) {
+  fetchSameRecommendations({ commit, state, rootState }) {
     const id = state.product.identifier
     const { breadcrumbs } = rootState.page
     if (!breadcrumbs) {
@@ -89,7 +89,8 @@ export const actions = {
       type: 'same-category',
       categoryList,
     }).then((response) => {
-      response.status >= 200 && commit('SET_RECOMMENDATIONS', response.data)
+      response.status >= 200 &&
+        commit('SET_SAME_RECOMMENDATIONS', response.data)
     })
   },
 }

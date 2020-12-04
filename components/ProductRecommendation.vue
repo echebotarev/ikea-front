@@ -28,10 +28,10 @@ export default {
   name: 'ProductRecommendation',
   components: { ProductCard },
   computed: mapState({
-    recommendations: (state) => state.products.recommendations,
+    recommendations: (state) => state.products.sameRecommendations,
   }),
   mounted() {
-    this.$store.dispatch('products/fetchRecommendations')
+    this.$store.dispatch('products/fetchSameRecommendations')
   },
   beforeDestroy() {
     this.$store.commit('products/SET_RECOMMENDATIONS', [])
