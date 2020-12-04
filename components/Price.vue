@@ -4,7 +4,7 @@
       Цена с учетом доставки:
     </span>
     <span v-if="prepend">{{ prepend }}</span>
-    <span>
+    <span class="price-wrap">
       <span class="price">{{
         $getDisplayPrice(price, { isOnlyFormatted })
       }}</span>
@@ -57,6 +57,10 @@ export default {
     font-size: 0.7rem;
     display: block;
     color: #111;
+  }
+
+  .price-wrap {
+    white-space: nowrap;
   }
 
   .symbol {
