@@ -15,6 +15,10 @@ export const mutations = {
   },
 }
 
+const getPrice = (payload) => {
+  const value = payload.product.price.price.mainPriceProps.price.integer
+  return parseInt(value.replace(/ /g, ''))
+}
 export const actions = {
   fetchProducts({ commit }) {
     return OrdersService.getOrder().then((response) => {
@@ -26,6 +30,7 @@ export const actions = {
   },
 
   addProduct({ commit }, payload) {
+    this.$fb.track('Purchase', { currency: 'RUB', value: getPrice(payload) })
     return OrdersService.addProduct(payload).then((response) => {
       if (response.data) {
         commit('SET_ORDER', response.data)
