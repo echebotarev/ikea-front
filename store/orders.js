@@ -30,7 +30,7 @@ export const actions = {
   },
 
   addProduct({ commit }, payload) {
-    this.$fb.track('Purchase', { currency: 'RUB', value: getPrice(payload) })
+    this.$fb.track('AddToCart', { currency: 'RUB', value: getPrice(payload) })
     return OrdersService.addProduct(payload).then((response) => {
       if (response.data) {
         commit('SET_ORDER', response.data)
