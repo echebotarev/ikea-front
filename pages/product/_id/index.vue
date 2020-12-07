@@ -164,10 +164,13 @@
 
     <client-only>
       <ProductRecommendation type="similar" />
-    </client-only>
 
-    <client-only>
       <ProductRecommendation type="style" />
+
+      <ProductRecommendation
+        type="series"
+        :product-name="product.price.productName"
+      />
     </client-only>
 
     <Modal />

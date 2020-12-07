@@ -6,6 +6,7 @@ export const state = () => ({
   sameRecommendations: [],
   similarRecommendations: [],
   styleRecommendations: [],
+  seriesRecommendations: [],
   product: {},
   productCount: 0,
 })
@@ -32,6 +33,10 @@ export const mutations = {
 
   SET_STYLE_RECOMMENDATIONS(state, recommendations) {
     state.styleRecommendations = recommendations
+  },
+
+  SET_SERIES_RECOMMENDATIONS(state, recommendations) {
+    state.seriesRecommendations = recommendations
   },
 }
 export const actions = {
@@ -88,6 +93,7 @@ export const actions = {
       same: 'SET_SAME_RECOMMENDATIONS',
       similar: 'SET_SIMILAR_RECOMMENDATIONS',
       style: 'SET_STYLE_RECOMMENDATIONS',
+      series: 'SET_SERIES_RECOMMENDATIONS',
     }
 
     const id = state.product.identifier

@@ -5,6 +5,9 @@
         <span v-if="type === 'same'">Похожие товары</span>
         <span v-else-if="type === 'similar'">Вам может понравиться</span>
         <span v-else-if="type === 'style'">С этим товаром часто покупают</span>
+        <span v-else-if="type === 'series'">
+          Смотреть еще {{ productName }} серия
+        </span>
       </h2>
 
       <v-sheet width="100%">
@@ -32,6 +35,7 @@ const DICT_COMMIT = {
   same: 'products/SET_SAME_RECOMMENDATIONS',
   similar: 'products/SET_SIMILAR_RECOMMENDATIONS',
   style: 'products/SET_STYLE_RECOMMENDATIONS',
+  series: 'products/SET_SERIES_RECOMMENDATIONS',
 }
 
 export default {
@@ -42,12 +46,17 @@ export default {
       type: String,
       default: 'same',
     },
+    productName: {
+      type: String,
+      default: '',
+    },
   },
   computed: mapState({
     recommendations: (state) => ({
       same: state.products.sameRecommendations,
       similar: state.products.similarRecommendations,
       style: state.products.styleRecommendations,
+      series: state.products.seriesRecommendations,
     }),
   }),
   mounted() {
