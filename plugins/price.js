@@ -1,5 +1,8 @@
 import { percent, KZT } from '@/constants'
 
+import intl from 'intl'
+import locale from 'intl/locale-data/jsonp/en.js'
+
 const getPrice = (num) => {
   if (typeof num === 'string') {
     num = parseInt(num.replace(/ /g, ''))
@@ -17,7 +20,9 @@ const getDisplayPrice = (num, options = {}) => {
     num = getPrice(num)
   }
 
-  return new Intl.NumberFormat().format(num)
+  return global.Intl
+    ? new Intl.NumberFormat().format(num)
+    : new intl.NumberFormat(locale).format(num)
 }
 
 export default (ctx, inject) => {
