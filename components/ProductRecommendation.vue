@@ -2,7 +2,9 @@
   <v-row class="product-recommendations">
     <v-col>
       <h2 class="mb-10">
-        {{ type === 'same' ? 'Похожие товары' : 'Вам может понравиться' }}
+        <span v-if="type === 'same'">Похожие товары</span>
+        <span v-else-if="type === 'similar'">Вам может понравиться</span>
+        <span v-else-if="type === 'style'">С этим товаром часто покупают</span>
       </h2>
 
       <v-sheet width="100%">
@@ -26,6 +28,12 @@
 import { mapState } from 'vuex'
 import ProductCard from '@/components/ProductCard'
 
+const DICT_COMMIT = {
+  same: 'products/SET_SAME_RECOMMENDATIONS',
+  similar: 'products/SET_SIMILAR_RECOMMENDATIONS',
+  style: 'products/SET_STYLE_RECOMMENDATIONS',
+}
+
 export default {
   name: 'ProductRecommendation',
   components: { ProductCard },
@@ -39,6 +47,7 @@ export default {
     recommendations: (state) => ({
       same: state.products.sameRecommendations,
       similar: state.products.similarRecommendations,
+      style: state.products.styleRecommendations,
     }),
   }),
   mounted() {
@@ -47,9 +56,7 @@ export default {
     })
   },
   beforeDestroy() {
-    this.type === 'same'
-      ? this.$store.commit('products/SET_SAME_RECOMMENDATIONS', [])
-      : this.$store.commit('products/SET_SIMILAR_RECOMMENDATIONS', [])
+    this.$store.commit(DICT_COMMIT[this.type], [])
   },
 }
 </script>

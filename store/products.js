@@ -5,6 +5,7 @@ export const state = () => ({
   products: [],
   sameRecommendations: [],
   similarRecommendations: [],
+  styleRecommendations: [],
   product: {},
   productCount: 0,
 })
@@ -27,6 +28,10 @@ export const mutations = {
 
   SET_SIMILAR_RECOMMENDATIONS(state, recommendations) {
     state.similarRecommendations = recommendations
+  },
+
+  SET_STYLE_RECOMMENDATIONS(state, recommendations) {
+    state.styleRecommendations = recommendations
   },
 }
 export const actions = {
@@ -79,6 +84,12 @@ export const actions = {
   },
 
   fetchRecommendations({ commit, state, rootState }, { type }) {
+    const DICT_COMMIT = {
+      same: 'SET_SAME_RECOMMENDATIONS',
+      similar: 'SET_SIMILAR_RECOMMENDATIONS',
+      style: 'SET_STYLE_RECOMMENDATIONS',
+    }
+
     const id = state.product.identifier
     const { breadcrumbs } = rootState.page
     if (!breadcrumbs) {
@@ -95,9 +106,8 @@ export const actions = {
       categoryList,
     }).then((response) => {
       if (response.status >= 200) {
-        type === 'same'
-          ? commit('SET_SAME_RECOMMENDATIONS', response.data)
-          : commit('SET_SIMILAR_RECOMMENDATIONS', response.data.data)
+        const data = type === 'similar' ? response.data.data : response.data
+        commit(DICT_COMMIT[type], data)
       }
     })
   },

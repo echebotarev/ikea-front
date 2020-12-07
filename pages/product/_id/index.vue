@@ -166,6 +166,10 @@
       <ProductRecommendation type="similar" />
     </client-only>
 
+    <client-only>
+      <ProductRecommendation type="style" />
+    </client-only>
+
     <Modal />
   </div>
 </template>
