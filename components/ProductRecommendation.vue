@@ -3,7 +3,9 @@
     <v-col>
       <h2 class="mb-10">
         <span v-if="type === 'same'">Похожие товары</span>
-        <span v-else-if="type === 'similar'">Вам может понравиться</span>
+        <span v-else-if="type === 'similar' || type === 'trending'"
+          >Вам может понравиться</span
+        >
         <span v-else-if="type === 'style'">С этим товаром часто покупают</span>
         <span v-else-if="type === 'series'">
           Смотреть еще {{ productName }} серия
@@ -36,6 +38,7 @@ const DICT_COMMIT = {
   similar: 'products/SET_SIMILAR_RECOMMENDATIONS',
   style: 'products/SET_STYLE_RECOMMENDATIONS',
   series: 'products/SET_SERIES_RECOMMENDATIONS',
+  trending: 'products/SET_TRENDING_RECOMMENDATIONS',
 }
 
 export default {
@@ -50,6 +53,10 @@ export default {
       type: String,
       default: '',
     },
+    isCategory: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: mapState({
     recommendations: (state) => ({
@@ -57,11 +64,13 @@ export default {
       similar: state.products.similarRecommendations,
       style: state.products.styleRecommendations,
       series: state.products.seriesRecommendations,
+      trending: state.products.trendingRecommendations,
     }),
   }),
   mounted() {
     this.$store.dispatch('products/fetchRecommendations', {
       type: this.type,
+      isCategory: this.isCategory,
     })
   },
   beforeDestroy() {

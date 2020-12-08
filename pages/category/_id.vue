@@ -30,6 +30,10 @@
 
     <Pagination :category-id="category.identifier" target-id="scroll-target" />
 
+    <client-only>
+      <ProductRecommendation type="trending" :is-category="true" />
+    </client-only>
+
     <Modal />
   </div>
 </template>
@@ -43,6 +47,7 @@ import Filters from '@/components/Filters'
 import Pagination from '@/components/Pagination'
 import Modal from '@/components/Modal/index'
 import SkeletonItems from '@/components/SkeletonItems'
+import ProductRecommendation from '@/components/ProductRecommendation'
 
 export default {
   components: {
@@ -53,6 +58,7 @@ export default {
     Modal,
     Filters,
     SkeletonItems,
+    ProductRecommendation,
   },
 
   async fetch({ store, error, params, query }) {

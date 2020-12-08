@@ -7,6 +7,7 @@ export const state = () => ({
   similarRecommendations: [],
   styleRecommendations: [],
   seriesRecommendations: [],
+  trendingRecommendations: [],
   product: {},
   productCount: 0,
 })
@@ -37,6 +38,10 @@ export const mutations = {
 
   SET_SERIES_RECOMMENDATIONS(state, recommendations) {
     state.seriesRecommendations = recommendations
+  },
+
+  SET_TRENDING_RECOMMENDATIONS(state, recommendations) {
+    state.trendingRecommendations = recommendations
   },
 }
 export const actions = {
@@ -88,12 +93,16 @@ export const actions = {
     })
   },
 
-  fetchRecommendations({ commit, state, rootState }, { type }) {
+  fetchRecommendations(
+    { commit, state, rootState },
+    { type, isCategory = false }
+  ) {
     const DICT_COMMIT = {
       same: 'SET_SAME_RECOMMENDATIONS',
       similar: 'SET_SIMILAR_RECOMMENDATIONS',
       style: 'SET_STYLE_RECOMMENDATIONS',
       series: 'SET_SERIES_RECOMMENDATIONS',
+      trending: 'SET_TRENDING_RECOMMENDATIONS',
     }
 
     const id = state.product.identifier
@@ -103,7 +112,10 @@ export const actions = {
     }
 
     const categoryList = breadcrumbs
-      .filter((breadcrumb, index, array) => index && index !== array.length - 1)
+      .filter(
+        (breadcrumb, index, array) =>
+          index && (isCategory || index !== array.length - 1)
+      )
       .map((breadcrumb) => breadcrumb.text)
 
     return ApiService.getRecommendations({
