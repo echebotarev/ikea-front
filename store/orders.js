@@ -53,7 +53,12 @@ export const actions = {
   },
 
   updateOrder({ commit }, payload) {
-    this.$fb.track('Purchase', { currency: 'KZT', value: payload.total })
+    this.$fb.track('Purchase', {
+      currency: 'KZT',
+      value: payload.total,
+      offline: payload.paid,
+    })
+
     return OrdersService.updateOrder(payload).then((response) => {
       const order = response.data
 
