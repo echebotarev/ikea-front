@@ -56,7 +56,7 @@ export const actions = {
     this.$fb.track('Purchase', {
       currency: 'KZT',
       value: payload.total,
-      offline: payload.paid,
+      paymentMethod: payload.payMethod,
     })
 
     return OrdersService.updateOrder(payload).then((response) => {
