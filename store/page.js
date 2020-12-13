@@ -72,7 +72,6 @@ export const actions = {
 
   getDeliveryTime({ commit }) {
     return ApiService.getDeliveryTime().then((response) => {
-      console.log('Time', response.data)
       commit('SET_DELIVERY_TIME', response.data)
     })
   },

@@ -273,6 +273,7 @@ export default {
         })
         return sum
       },
+      deliveryTime: (state) => state.page.deliveryTime,
     }),
 
     ...mapGetters({
@@ -297,6 +298,7 @@ export default {
   },
   mounted() {
     this.initScripts('ymaps')
+    this.getDeliveryTime()
 
     // без этого ф-ия receiveMessage падает на JSON.parse
     // туда приходят данные от detector.js в виде объекта
@@ -314,6 +316,7 @@ export default {
     onlinePay() {
       const updateOrder = this.updateOrder.bind(this)
       const getLetterProducts = this.getLetterProducts.bind(this)
+      const deliveryTime = this.deliveryTime
 
       this.widget.pay(
         'auth',
@@ -356,6 +359,7 @@ export default {
                   checkout: true,
                   payMethod: 'online',
                   products: getLetterProducts(),
+                  deliveryTime,
                 }),
               })
             }
@@ -379,6 +383,7 @@ export default {
           checkout: true,
           payMethod: 'offline',
           products: this.getLetterProducts(),
+          deliveryTime: this.deliveryTime,
         },
       }).then(() => {
         this.alert.success = !this.products.length
@@ -509,6 +514,7 @@ export default {
 
     ...mapActions({
       updateOrder: 'orders/updateOrder',
+      getDeliveryTime: 'page/getDeliveryTime',
     }),
   },
 

@@ -178,11 +178,6 @@
 </template>
 
 <script>
-/*
-TODO: рекомендации
-# Другие пользователи смотрели
-# https://rec.ingka.com/services/ru-prod/items/popular/?n=12&productName=PAX
-*/
 import { mapState, mapActions, mapGetters } from 'vuex'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Modal from '@/components/Modal/index'
