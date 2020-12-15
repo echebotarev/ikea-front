@@ -1,5 +1,6 @@
-export default ({ app, $getCookie }) => {
+export default ({ app, $getCookie }, inject) => {
   if (process.env.NODE_ENV !== 'production') {
+    inject('metrika', function () {})
     return
   }
 
@@ -17,6 +18,9 @@ export default ({ app, $getCookie }) => {
       (k.src = r),
       a.parentNode.insertBefore(k, a)
   })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+
+  // eslint-disable-next-line no-undef
+  inject('metrika', ym)
 
   const cookieId = $getCookie('cookieId')
   // eslint-disable-next-line no-undef

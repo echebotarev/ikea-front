@@ -31,6 +31,8 @@ export const actions = {
 
   addProduct({ commit }, payload) {
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
+    this.$metrika(67230112, 'reachGoal', 'addToCart')
+
     return OrdersService.addProduct(payload).then((response) => {
       if (response.data) {
         commit('SET_ORDER', response.data)
@@ -53,6 +55,7 @@ export const actions = {
   },
 
   updateOrder({ commit }, payload) {
+    this.$metrika(67230112, 'reachGoal', `purchase-${payload.payMethod}`)
     this.$fb.track('Purchase', {
       currency: 'KZT',
       value: payload.total,
