@@ -55,11 +55,15 @@ export const actions = {
   },
 
   updateOrder({ commit }, payload) {
-    this.$metrika(67230112, 'reachGoal', `purchase-${payload.payMethod}`)
+    this.$metrika(
+      67230112,
+      'reachGoal',
+      `purchase-${payload.payload.payMethod}`
+    )
     this.$fb.track('Purchase', {
       currency: 'KZT',
       value: payload.total,
-      paymentMethod: payload.payMethod,
+      paymentMethod: payload.payload.payMethod,
     })
 
     return OrdersService.updateOrder(payload).then((response) => {
