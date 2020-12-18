@@ -2,7 +2,7 @@
   <div v-if="productCount" id="scroll-target">
     <v-row>
       <v-col :cols="$vuetify.breakpoint.xs ? 12 : 10">
-        <v-tabs grow hide-slider :show-arrows="!$vuetify.breakpoint.xs">
+        <v-tabs hide-slider :show-arrows="!$vuetify.breakpoint.xs">
           <v-tab>
             <v-btn
               v-if="sortOrders"
