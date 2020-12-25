@@ -48,41 +48,37 @@
           <v-col>{{ product.price.familyText }}</v-col>
         </v-row>
 
-        <v-row>
-          <v-col cols="12" class="d-flex flex-row justify-content-between">
-            <div class="mr-1">
-              <h2 class="product-name">{{ product.name }}</h2>
-              <p class="product-description">
-                {{ product.price.productDescription }},
-                {{ product.price.measurementText }}
+        <v-row justify="space-between" no-gutters>
+          <v-col class="mr-1">
+            <h2 class="product-name">{{ product.name }}</h2>
+            <p class="product-description">
+              {{ product.price.productDescription }},
+              {{ product.price.measurementText }}
+              <br />
+              <span v-if="product.price.price.previousPriceProps">
+                {{ product.price.price.previousPriceText }}
+                <Price
+                  :price="product.price.price.previousPriceProps.price.integer"
+                  :without-label="true"
+                />
                 <br />
-                <span v-if="product.price.price.previousPriceProps">
-                  {{ product.price.price.previousPriceText }}
-                  <Price
-                    :price="
-                      product.price.price.previousPriceProps.price.integer
-                    "
-                    :without-label="true"
-                  />
-                  <br />
-                  {{ product.price.validToFromAndWhileSupplyLastText }}
-                </span>
-              </p>
+                {{ product.price.validToFromAndWhileSupplyLastText }}
+              </span>
+            </p>
 
-              <p v-if="product.price.isLastChance" class="text-weight-500">
-                Выходит из ассортимента
-              </p>
-            </div>
-            <div class="text-right">
-              <Price
-                :price="product.price.price.mainPriceProps.price.integer"
-                :class="
-                  product.price.price.mainPriceProps.hasHighlight
-                    ? 'highlight'
-                    : ''
-                "
-              />
-            </div>
+            <p v-if="product.price.isLastChance" class="text-weight-500">
+              Выходит из ассортимента
+            </p>
+          </v-col>
+          <v-col class="text-right" cols="auto">
+            <Price
+              :price="product.price.price.mainPriceProps.price.integer"
+              :class="
+                product.price.price.mainPriceProps.hasHighlight
+                  ? 'highlight'
+                  : ''
+              "
+            />
           </v-col>
         </v-row>
 
