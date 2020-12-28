@@ -73,6 +73,7 @@
           <v-col class="text-right" cols="auto">
             <Price
               :price="product.price.price.mainPriceProps.price.integer"
+              :unit="product.price.price.mainPriceProps.unit"
               :class="
                 product.price.price.mainPriceProps.hasHighlight
                   ? 'highlight'

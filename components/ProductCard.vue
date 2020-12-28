@@ -33,6 +33,7 @@
             product.price.RUB ||
             product.price.price.mainPriceProps.price.integer
           "
+          :unit="product.price.price && product.price.price.mainPriceProps.unit"
         />
       </div>
     </nuxt-link>

@@ -9,6 +9,7 @@
         $getDisplayPrice(price, { isOnlyFormatted })
       }}</span>
       <span class="symbol">{{ symbol }}</span>
+      <span v-if="unit" class="unit">{{ unit }}</span>
     </span>
   </span>
 </template>
@@ -22,6 +23,10 @@ export default {
     price: {
       type: [Number, String],
       default: () => 0,
+    },
+    unit: {
+      type: String,
+      default: () => '',
     },
     isOnlyFormatted: {
       type: Boolean,
@@ -52,6 +57,14 @@ export default {
   display: inline-block;
   font-size: 22px;
   font-weight: 600;
+
+  .price {
+    font-size: 1.375rem;
+  }
+
+  .unit {
+    font-size: 0.6875rem;
+  }
 
   .product-price-label {
     font-size: 0.7rem;
