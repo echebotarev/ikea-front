@@ -226,8 +226,10 @@ import Price from '~/components/Price'
 export default {
   name: 'Cart',
   components: { CartProductCard, Price },
+
   data() {
     return {
+      timer: null,
       errors: [],
       value: '',
       assemblyPercent,
@@ -242,6 +244,7 @@ export default {
       },
     }
   },
+
   computed: {
     ...mapState({
       order: (state) => state.orders.order,
@@ -296,16 +299,22 @@ export default {
       return this.getAssemblyValue + this.sum
     },
   },
+
   mounted() {
     this.initScripts('ymaps')
     this.getDeliveryTime()
 
     // без этого ф-ия receiveMessage падает на JSON.parse
     // туда приходят данные от detector.js в виде объекта
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.initScripts('cp')
     }, 5000)
   },
+
+  beforeDestroy() {
+    clearTimeout(this.timer)
+  },
+
   methods: {
     checkout() {
       if (this.validateProducts() && this.validateForm()) {
