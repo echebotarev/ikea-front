@@ -5,7 +5,7 @@
       <div class="mb-16">
         <CartProductCard :products="products" />
 
-        <CartTotal text="Сумма:" :total="sum" :sale="sale" />
+        <CartTotal text="Сумма:" :total="getDiscountPrice(sum)" :sale="sale" />
 
         <div ref="openDataAreaBtn">
           <v-row>
@@ -148,7 +148,11 @@
           </v-row>
         </v-form>
 
-        <CartTotal text="Итого:" :total="total" :sale="sale" />
+        <CartTotal
+          text="Итого:"
+          :total="getDiscountPrice(total)"
+          :sale="sale"
+        />
 
         <v-row class="pay-area pt-5">
           <v-col order-sm="2" sm>

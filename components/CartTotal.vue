@@ -8,7 +8,7 @@
       <v-col class="font-weight-bold">{{ text }}</v-col>
       <v-col class="text-right">
         <Price
-          :price="value"
+          :price="total"
           :is-only-formatted="true"
           :text="sale ? 'Цена с учетом скидки и доставки' : null"
         />
@@ -35,13 +35,6 @@ export default {
     sale: {
       type: Object,
       default: () => null,
-    },
-  },
-  computed: {
-    value() {
-      return this.sale
-        ? this.total - (this.total * this.sale.value) / 100
-        : this.total
     },
   },
 }
