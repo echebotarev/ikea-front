@@ -207,6 +207,7 @@ export default {
 
     &:last-of-type {
       border-bottom: none;
+      margin-bottom: 20px;
     }
   }
 
