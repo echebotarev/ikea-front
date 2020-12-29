@@ -286,7 +286,7 @@ export default {
 
     getAssemblyValue() {
       if (this.isAssembly) {
-        return (this.assemblySum * this.assemblyPercent) / 100
+        return Math.ceil((this.assemblySum * this.assemblyPercent) / 100)
       }
 
       return 0
@@ -524,7 +524,9 @@ export default {
     },
 
     getDiscountPrice(price) {
-      return this.sale ? price - (price * this.sale.value) / 100 : price
+      return this.sale
+        ? Math.ceil(price - (price * this.sale.value) / 100)
+        : price
     },
 
     ...mapActions({
