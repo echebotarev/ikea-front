@@ -8,7 +8,8 @@
           getImage(
             product.mainImageUrl ||
               product.image_url ||
-              product.images.fullMediaList[0].content.url,
+              (product.images.fullMediaList.length &&
+                product.images.fullMediaList[0].content.url),
             4
           )
         "
