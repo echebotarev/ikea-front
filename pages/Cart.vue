@@ -344,6 +344,7 @@ export default {
             email: this.mail,
             phone: this.phone,
             total: this.getDiscountPrice(this.total),
+            sale: this.sale,
           },
         },
         {
@@ -392,6 +393,7 @@ export default {
           payMethod: 'offline',
           products: this.getLetterProducts(),
           deliveryTime: this.deliveryTime,
+          sale: this.sale,
         },
       }).then(() => {
         this.alert.success = !this.products.length
