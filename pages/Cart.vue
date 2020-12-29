@@ -1,7 +1,7 @@
 <template>
-  <client-only>
-    <div class="cart">
-      <h1>Корзина</h1>
+  <div class="cart">
+    <h1>Корзина</h1>
+    <client-only>
       <div class="mb-16">
         <CartProductCard :products="products" />
 
@@ -212,8 +212,8 @@
           <p>Что-то пошло не так, попробуйте отправить заказа через минуту</p>
         </div>
       </v-alert>
-    </div>
-  </client-only>
+    </client-only>
+  </div>
 </template>
 
 <script>
