@@ -204,6 +204,10 @@ export default {
 .products-list {
   > .row {
     border-bottom: thin solid rgba(0, 0, 0, 0.12);
+
+    &:last-of-type {
+      border-bottom: none;
+    }
   }
 
   .product-price {

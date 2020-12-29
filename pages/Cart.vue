@@ -5,8 +5,8 @@
       <div class="mb-16">
         <CartProductCard :products="products" />
 
-        <v-row class="cart-total">
-          <v-col>Сумма:</v-col>
+        <v-row class="cart-total" no-gutters>
+          <v-col class="font-weight-bold">Сумма:</v-col>
           <v-col class="text-right">
             <Price :price="sum" :is-only-formatted="true" />
           </v-col>
@@ -153,8 +153,8 @@
           </v-row>
         </v-form>
 
-        <v-row class="mb-10">
-          <v-col>Итого:</v-col>
+        <v-row class="mb-10 cart-total" no-gutters>
+          <v-col class="font-weight-bold">Итого:</v-col>
           <v-col class="text-right">
             <Price :price="total" :is-only-formatted="true" />
           </v-col>
@@ -251,6 +251,8 @@ export default {
       products: (state) => state.orders.products,
 
       sum(state) {
+        console.log('Sale', this.sale)
+
         let sum = 0
         state.orders.products.forEach((product) => {
           const price =
@@ -568,6 +570,11 @@ export default {
 
   > .row:last-of-type {
     border-top: thin solid rgba(0, 0, 0, 0.12);
+  }
+
+  .cart-total {
+    border: 1px solid #dfdfdf;
+    padding: 1.875rem 1.25rem;
   }
 
   .pay-area {
