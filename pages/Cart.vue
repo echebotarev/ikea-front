@@ -277,6 +277,8 @@ export default {
         return sum
       },
       deliveryTime: (state) => state.page.deliveryTime,
+
+      sale: (state) => state.orders.sale,
     }),
 
     ...mapGetters({
@@ -301,6 +303,8 @@ export default {
   },
 
   mounted() {
+    this.fetchSale(this.$route.query)
+
     this.initScripts('ymaps')
     this.getDeliveryTime()
 
@@ -523,6 +527,7 @@ export default {
 
     ...mapActions({
       updateOrder: 'orders/updateOrder',
+      fetchSale: 'orders/fetchSale',
       getDeliveryTime: 'page/getDeliveryTime',
     }),
   },

@@ -1,8 +1,10 @@
 import OrdersService from '@/services/OrdersService.js'
+import ApiService from '@/services/ApiService.js'
 
 export const state = () => ({
   order: {},
   products: [],
+  sale: null,
 })
 
 export const mutations = {
@@ -12,6 +14,10 @@ export const mutations = {
 
   SET_PRODUCTS(state, payload) {
     state.products = payload
+  },
+
+  SET_SALE(state, payload) {
+    state.sale = payload
   },
 }
 
@@ -74,6 +80,16 @@ export const actions = {
         commit('SET_PRODUCTS', [])
       }
     })
+  },
+
+  // eslint-disable-next-line camelcase
+  fetchSale({ commit }, { utm_campaign: campaign, utm_cause: cause }) {
+    return (
+      cause === 'sale' &&
+      ApiService.getSale({ campaign }).then((response) => {
+        response.data && commit('SET_SALE', response.data)
+      })
+    )
   },
 }
 

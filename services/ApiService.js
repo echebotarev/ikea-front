@@ -63,4 +63,8 @@ export default {
   getDeliveryTime() {
     return apiClient.get(`/time-to-delivery`)
   },
+
+  getSale({ campaign }) {
+    return apiClient.get(`/sale/${campaign}`)
+  },
 }
