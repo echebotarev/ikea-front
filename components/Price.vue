@@ -1,7 +1,7 @@
 <template>
   <span :class="`product-price ${className}`">
     <span v-if="!withoutLabel" class="product-price-label">
-      Цена с учетом<br />доставки:
+      {{ text || 'Цена с учетом доставки:' }}
     </span>
     <span v-if="prepend">{{ prepend }}</span>
     <span class="price-wrap">
@@ -47,6 +47,10 @@ export default {
     withoutLabel: {
       type: Boolean,
       default: () => false,
+    },
+    text: {
+      type: String,
+      default: () => null,
     },
   },
 }

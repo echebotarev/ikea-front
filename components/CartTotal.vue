@@ -1,13 +1,17 @@
 <template>
   <div class="mb-10 cart-total">
     <v-row v-if="sale" class="cart-sale mb-3">
-      <v-col class="font-weight-bold">Скидка</v-col>
+      <v-col class="font-weight-bold">Скидка:</v-col>
       <v-col class="text-right font-weight-bold">{{ sale.value }}%</v-col>
     </v-row>
     <v-row no-gutters>
       <v-col class="font-weight-bold">{{ text }}</v-col>
       <v-col class="text-right">
-        <Price :price="value" :is-only-formatted="true" />
+        <Price
+          :price="value"
+          :is-only-formatted="true"
+          :text="sale ? 'Цена с учетом скидки и доставки' : null"
+        />
       </v-col>
     </v-row>
   </div>
@@ -20,7 +24,7 @@ export default {
   name: 'CartTotal',
   components: { Price },
   props: {
-    value: {
+    total: {
       type: Number,
       default: () => 0,
     },
@@ -31,6 +35,13 @@ export default {
     sale: {
       type: Object,
       default: () => null,
+    },
+  },
+  computed: {
+    value() {
+      return this.sale
+        ? this.total - (this.total * this.sale.value) / 100
+        : this.total
     },
   },
 }
