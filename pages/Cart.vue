@@ -331,7 +331,7 @@ export default {
         {
           publicId: config.cloudPaymentsPublicKey, // id из личного кабинета
           description: 'Оплата товаров в doma-doma.kz', // назначение
-          amount: this.total, // сумма
+          amount: this.getDiscountPrice(this.total), // сумма
           currency: 'KZT', // валюта
           invoiceId: this.order._id, // номер заказа  (необязательно)
           accountId: this.mail, // идентификатор плательщика (необязательно)
@@ -343,7 +343,7 @@ export default {
             address: this.getValue,
             email: this.mail,
             phone: this.phone,
-            total: this.total,
+            total: this.getDiscountPrice(this.total),
           },
         },
         {
@@ -386,7 +386,7 @@ export default {
           address: this.getValue,
           email: this.mail,
           phone: this.phone,
-          total: this.total,
+          total: this.getDiscountPrice(this.total),
           paid: false,
           checkout: true,
           payMethod: 'offline',
@@ -510,14 +510,19 @@ export default {
     getLetterProducts() {
       return this.products.map((product) => {
         return Object.assign({}, product, {
-          computedPrice: this.$getPrice(
-            product.price.price.mainPriceProps.price.integer
+          computedPrice: this.getDiscountPrice(
+            this.$getPrice(product.price.price.mainPriceProps.price.integer)
           ),
-          computedPriceTotal:
+          computedPriceTotal: this.getDiscountPrice(
             this.$getPrice(product.price.price.mainPriceProps.price.integer) *
-            product.qnt,
+              product.qnt
+          ),
         })
       })
+    },
+
+    getDiscountPrice(price) {
+      return this.sale ? price - (price * this.sale.value) / 100 : price
     },
 
     ...mapActions({
