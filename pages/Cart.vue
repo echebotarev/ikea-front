@@ -5,12 +5,7 @@
       <div class="mb-16">
         <CartProductCard :products="products" />
 
-        <v-row class="cart-total" no-gutters>
-          <v-col class="font-weight-bold">Сумма:</v-col>
-          <v-col class="text-right">
-            <Price :price="sum" :is-only-formatted="true" />
-          </v-col>
-        </v-row>
+        <CartTotal text="Сумма:" :value="sum" :sale="sale" />
 
         <div ref="openDataAreaBtn">
           <v-row>
@@ -153,12 +148,7 @@
           </v-row>
         </v-form>
 
-        <v-row class="mb-10 cart-total" no-gutters>
-          <v-col class="font-weight-bold">Итого:</v-col>
-          <v-col class="text-right">
-            <Price :price="total" :is-only-formatted="true" />
-          </v-col>
-        </v-row>
+        <CartTotal text="Итого:" :value="total" :sale="sale" />
 
         <v-row class="pay-area pt-5">
           <v-col order-sm="2" sm>
@@ -221,11 +211,12 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import config from '@/config'
 import { assemblyPercent } from '@/constants'
 import CartProductCard from '@/components/CartProductCard'
-import Price from '~/components/Price'
+import CartTotal from '@/components/CartTotal'
+import Price from '@/components/Price'
 
 export default {
   name: 'Cart',
-  components: { CartProductCard, Price },
+  components: { CartProductCard, CartTotal, Price },
 
   data() {
     return {
@@ -251,8 +242,6 @@ export default {
       products: (state) => state.orders.products,
 
       sum(state) {
-        console.log('Sale', this.sale)
-
         let sum = 0
         state.orders.products.forEach((product) => {
           const price =
@@ -570,11 +559,6 @@ export default {
 
   > .row:last-of-type {
     border-top: thin solid rgba(0, 0, 0, 0.12);
-  }
-
-  .cart-total {
-    border: 1px solid #dfdfdf;
-    padding: 1.875rem 1.25rem;
   }
 
   .pay-area {
