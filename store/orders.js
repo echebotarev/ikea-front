@@ -84,12 +84,11 @@ export const actions = {
 
   // eslint-disable-next-line camelcase
   fetchSale({ commit }, { utm_campaign: campaign, utm_cause: cause }) {
-    return (
-      cause === 'sale' &&
-      ApiService.getSale({ campaign }).then((response) => {
-        response.data && commit('SET_SALE', response.data)
-      })
-    )
+    return cause === 'sale'
+      ? ApiService.getSale({ campaign }).then((response) => {
+          response.data && commit('SET_SALE', response.data)
+        })
+      : commit('SET_SALE', null)
   },
 }
 
