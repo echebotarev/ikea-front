@@ -547,6 +547,12 @@ export default {
           type: 'text/javascript',
         },
       ],
+      meta: [
+        {
+          name: 'robots',
+          content: 'noindex',
+        },
+      ],
     }
   },
 }
