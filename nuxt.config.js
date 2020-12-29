@@ -72,7 +72,6 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
-    '@nuxtjs/axios',
     'portal-vue/nuxt',
     // [
     //   '@nuxtjs/yandex-metrika',
