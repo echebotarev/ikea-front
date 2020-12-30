@@ -312,6 +312,7 @@ export default {
 
   beforeDestroy() {
     clearTimeout(this.timer)
+    this.$store.commit('orders/SET_SALE', null)
   },
 
   methods: {
