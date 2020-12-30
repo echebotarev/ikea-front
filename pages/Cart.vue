@@ -5,7 +5,14 @@
       <div class="mb-16">
         <CartProductCard :products="products" />
 
-        <CartTotal text="Сумма:" :total="getDiscountPrice(sum)" :sale="sale" />
+        <CartTotal
+          text="Сумма:"
+          :total="getDiscountPrice(sum)"
+          :sale="
+            sale &&
+            Object.assign({}, sale, { absoluteValue: getDiscountValue(sum) })
+          "
+        />
 
         <div ref="openDataAreaBtn">
           <v-row>
@@ -151,7 +158,10 @@
         <CartTotal
           text="Итого:"
           :total="getDiscountPrice(total)"
-          :sale="sale"
+          :sale="
+            sale &&
+            Object.assign({}, sale, { absoluteValue: getDiscountValue(total) })
+          "
         />
 
         <v-row class="pay-area pt-5">
@@ -528,6 +538,12 @@ export default {
       return this.sale
         ? Math.ceil(price - (price * this.sale.value) / 100)
         : price
+    },
+
+    getDiscountValue(price) {
+      return this.sale
+        ? Math.floor(price - (price * (100 - this.sale.value)) / 100)
+        : 0
     },
 
     ...mapActions({
