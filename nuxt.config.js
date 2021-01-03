@@ -25,12 +25,6 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    script: [
-      {
-        async: true,
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-710S6RQJH7',
-      },
-    ],
   },
   loading: {
     color: '#0059aa',
