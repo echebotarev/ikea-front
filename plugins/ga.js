@@ -32,7 +32,7 @@ export default ({ app }) => {
    ** Устанавливаем текущую страницу
    */
   // eslint-disable-next-line no-undef
-  ga('create', '251263672', 'auto')
+  ga('create', 'G-710S6RQJH7', 'auto')
   /*
    ** Вызывается каждый раз после смены роута (при инициализации тоже)
    */
