@@ -118,7 +118,7 @@
             rounded
             color="#0058a3"
             min-height="50"
-            class="button"
+            class="button add-to-cart"
             :loading="isLoading"
             :disabled="isDisabledOrderBtn"
             @click="add({ product, qnt: 1 })"

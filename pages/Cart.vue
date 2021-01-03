@@ -187,7 +187,7 @@
                 block
                 color="#0058a3"
                 min-height="50"
-                class="button"
+                class="button purchase"
                 @click="checkout"
               >
                 Отправить

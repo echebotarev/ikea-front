@@ -5,7 +5,7 @@
     color="#0058a3"
     width="40"
     height="40"
-    class="float-right"
+    class="float-right add-to-cart"
     :loading="isLoading"
     @click="add({ product, qnt: 1 })"
   >
