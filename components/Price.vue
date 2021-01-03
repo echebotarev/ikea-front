@@ -71,7 +71,6 @@ export default {
   }
 
   .product-price-label {
-    max-width: 100px;
     font-size: 0.7rem;
     display: block;
     color: #111;

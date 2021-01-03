@@ -48,7 +48,7 @@
           <v-col>{{ product.price.familyText }}</v-col>
         </v-row>
 
-        <v-row justify="space-between" no-gutters>
+        <v-row justify="space-between" no-gutters class="flex-nowrap">
           <v-col class="mr-1">
             <h2 class="product-name">{{ product.name }}</h2>
             <p class="product-description">
@@ -76,8 +76,8 @@
               :unit="product.price.price.mainPriceProps.unit"
               :class="
                 product.price.price.mainPriceProps.hasHighlight
-                  ? 'highlight'
-                  : ''
+                  ? 'highlight max-width-80'
+                  : 'max-width-80'
               "
             />
           </v-col>
