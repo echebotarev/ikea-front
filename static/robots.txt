@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /cart/
+Disallow: /search/
 Sitemap: https://doma-doma.kz/api/v1/static/sitemap.xml
