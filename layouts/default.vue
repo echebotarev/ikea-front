@@ -101,6 +101,18 @@ export default {
           href: `https://doma-doma.kz${this.$route.path}`,
         },
       ],
+      meta: [
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: `https://doma-doma.kz${this.$route.path}`,
+        },
+        {
+          hid: 'og:site_name',
+          property: 'og:site_name',
+          content: 'Doma-Doma.kz - IKEA',
+        },
+      ],
     }
   },
 }

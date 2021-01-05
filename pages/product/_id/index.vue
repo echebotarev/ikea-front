@@ -291,18 +291,64 @@ export default {
           )
         )
     },
+
+    getMetaProduct() {
+      const title = `${this.product.price.productName}, ${this.product.price.productDescription}, IKEA, ${this.product.price.measurementText}`
+      const description = `${this.product.price.productName}, ${this.product.price.productDescription}. ${this.product.information.productDetailsProps.productDescriptionProps.paragraphs[0]}`
+      const image =
+        this.product.images.fullMediaList[0] &&
+        this.product.images.fullMediaList[0].content.url
+      const keywords = `${this.product.price.productName}, ${this.product.price.productDescription}`
+
+      return [
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: title,
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: title,
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: description,
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: description,
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: description,
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'product',
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: image || '',
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: keywords,
+        },
+      ]
+    },
   },
 
   head() {
     return {
       title: `${this.product.price.productName}, ${this.product.price.productDescription}, IKEA, ${this.product.price.measurementText}`,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.product.summary_description,
-        },
-      ],
+      meta: this.getMetaProduct(),
     }
   },
 }
