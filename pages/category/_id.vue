@@ -141,7 +141,7 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.category.meta_image,
+          content: this.category.meta_image || '',
         },
         {
           hid: 'keywords',
