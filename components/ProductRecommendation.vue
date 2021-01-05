@@ -1,5 +1,8 @@
 <template>
-  <v-row v-if="recommendations[type].length" class="product-recommendations">
+  <v-row
+    v-if="recommendations[type] && recommendations[type].length"
+    class="product-recommendations"
+  >
     <v-col>
       <h2 class="mb-10">
         <span v-if="type === 'same'">Похожие товары</span>
