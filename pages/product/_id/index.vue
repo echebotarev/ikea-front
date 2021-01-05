@@ -295,7 +295,7 @@ export default {
 
   head() {
     return {
-      title: `${this.product.price.productDescription}, IKEA, ${this.product.price.productName}, ${this.product.price.measurementText}`,
+      title: `${this.product.price.productName}, ${this.product.price.productDescription}, IKEA, ${this.product.price.measurementText}`,
       meta: [
         {
           hid: 'description',
