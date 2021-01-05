@@ -121,7 +121,32 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.category.description || this.category.title,
+          content: this.category.meta_description || '',
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.category.meta_description || '',
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.category.title,
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'product.group',
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.category.meta_image,
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: `${this.category.title} - купить в интернет-магазине`,
         },
       ],
     }
