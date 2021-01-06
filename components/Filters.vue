@@ -1,6 +1,6 @@
 <template>
   <div v-if="productCount" id="scroll-target">
-    <v-row>
+    <v-row align="center">
       <v-col :cols="$vuetify.breakpoint.xs ? 12 : 10">
         <v-tabs hide-slider :show-arrows="!$vuetify.breakpoint.xs">
           <v-tab>
