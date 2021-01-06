@@ -378,9 +378,6 @@ export default {
 .family-text {
   padding-top: 12px;
 }
-.family-text {
-  color: #0077c1;
-}
 .highlight {
   background-color: #ffdb00;
   box-shadow: 0.125rem 0.125rem #e00751;

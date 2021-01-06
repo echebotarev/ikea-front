@@ -24,10 +24,25 @@
           </v-row>
         </template>
       </v-img>
+      <h4 v-if="product.price.familyText" class="card-product-name family-text">
+        {{ product.price.familyText }}
+      </h4>
       <h4 class="card-product-name">{{ product.name }}</h4>
       <p class="card-product-description">
         {{ getDescription(product) }}
       </p>
+
+      <span
+        v-if="product.price.price && product.price.price.previousPriceProps"
+        class="card-product-previous-price-text"
+      >
+        {{ product.price.price.previousPriceText }}
+        <Price
+          :price="product.price.price.previousPriceProps.price.integer"
+          :without-label="true"
+        />
+      </span>
+
       <div class="card-product-price">
         <Price
           :price="
@@ -83,11 +98,30 @@ export default {
   .card-product-name {
     text-overflow: ellipsis;
     overflow: hidden;
+    margin-top: 21px;
+  }
+
+  .family-text.card-product-name,
+  .family-text + .card-product-name {
+    margin-top: 0;
+  }
+
+  .card-product-previous-price-text {
+    color: #484848;
+    font-size: 0.75rem;
+
+    .product-price {
+      font-size: inherit;
+    }
   }
 
   a:hover {
     .card-product-name {
       text-decoration: underline;
+    }
+
+    .family-text {
+      text-decoration: none;
     }
   }
 }
