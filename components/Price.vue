@@ -62,10 +62,6 @@ export default {
   font-size: 22px;
   font-weight: 600;
 
-  .price {
-    font-size: 1.375rem;
-  }
-
   .unit {
     font-size: 0.6875rem;
   }
