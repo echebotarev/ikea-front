@@ -8,7 +8,7 @@ export const state = () => ({
   },
   breadcrumbs: [],
   menuDrawer: false,
-  deliveryTime: '',
+  delivery: {},
 })
 
 export const mutations = {
@@ -47,8 +47,8 @@ export const mutations = {
     state.menuDrawer = payload
   },
 
-  SET_DELIVERY_TIME(state, payload) {
-    state.deliveryTime = payload
+  SET_DELIVERY_DATA(state, payload) {
+    state.delivery = payload
   },
 }
 export const actions = {
@@ -70,9 +70,9 @@ export const actions = {
     commit('TOGGLE_DRAWER', payload)
   },
 
-  getDeliveryTime({ commit }) {
-    return ApiService.getDeliveryTime().then((response) => {
-      commit('SET_DELIVERY_TIME', response.data)
+  getDeliveryData({ commit }) {
+    return ApiService.getDeliveryData().then((response) => {
+      commit('SET_DELIVERY_DATA', response.data)
     })
   },
 }

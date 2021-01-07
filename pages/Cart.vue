@@ -311,7 +311,7 @@ export default {
     this.fetchSale(this.$route.query)
 
     this.initScripts('ymaps')
-    this.getDeliveryTime()
+    this.getDeliveryData()
 
     // без этого ф-ия receiveMessage падает на JSON.parse
     // туда приходят данные от detector.js в виде объекта
@@ -549,7 +549,7 @@ export default {
     ...mapActions({
       updateOrder: 'orders/updateOrder',
       fetchSale: 'orders/fetchSale',
-      getDeliveryTime: 'page/getDeliveryTime',
+      getDeliveryData: 'page/getDeliveryData',
     }),
   },
 

@@ -133,7 +133,7 @@
           </v-btn>
         </v-row>
 
-        <v-row>
+        <v-row no-gutters class="mt-3">
           <v-col class="pb-0" cols="12">
             <Available
               :type="product.utag.product_type"
@@ -143,11 +143,18 @@
 
           <v-col
             v-if="!isDisabledOrderBtn"
-            class="delivery-time pt-0"
+            class="delivery-time mt-2"
             cols="12"
           >
-            <span class="font-weight-bold">Доставка:</span> ориентировочно
-            {{ deliveryTime }}
+            <v-row>
+              <v-col cols="auto" class="pr-0">
+                <v-icon>mdi-information-outline</v-icon>
+              </v-col>
+              <v-col>
+                Закажите до {{ delivery.lastOrderDay }}, чтобы получить товар
+                {{ delivery.deliveryDay }}
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-col>
@@ -237,7 +244,7 @@ export default {
         ),
       suggestionProducts: (state) => state.suggestion.suggestionProducts,
 
-      deliveryTime: (state) => state.page.deliveryTime,
+      delivery: (state) => state.page.delivery,
     }),
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
@@ -256,7 +263,7 @@ export default {
   mounted() {
     // Этот товар можно дополнить
     this.fetchSuggestionProducts(this.product.identifier)
-    this.getDeliveryTime()
+    this.getDeliveryData()
   },
 
   beforeDestroy() {
@@ -269,7 +276,7 @@ export default {
       fetchSuggestionProducts: 'suggestion/fetchSuggestionProducts',
       cleanSuggestionProducts: 'suggestion/cleanSuggestionProducts',
       showModal: 'page/showModal',
-      getDeliveryTime: 'page/getDeliveryTime',
+      getDeliveryData: 'page/getDeliveryData',
     }),
 
     getImage,
@@ -406,5 +413,7 @@ export default {
 }
 .delivery-time {
   font-size: 14px;
+  padding: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 </style>
