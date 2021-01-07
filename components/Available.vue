@@ -7,7 +7,7 @@
       "
       class="status"
     >
-      <v-icon>mdi-store-outline</v-icon>
+      <v-icon v-if="!$vuetify.breakpoint.mobile">mdi-store-outline</v-icon>
       <div
         :class="`status-dot__${
           availabilityProduct(identifier).StockAvailability
@@ -110,6 +110,7 @@ export default {
 }
 [class^='status-dot'] {
   position: relative;
+  white-space: nowrap;
 }
 [class^='status-dot']:before {
   position: absolute;

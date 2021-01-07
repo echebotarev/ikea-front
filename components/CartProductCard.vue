@@ -107,7 +107,7 @@
           </v-col>
         </v-row>
 
-        <v-row>
+        <v-row align="center">
           <v-col cols="3"></v-col>
           <v-col cols="4">
             <Available
