@@ -281,7 +281,7 @@ export default {
         })
         return sum
       },
-      deliveryTime: (state) => state.page.deliveryTime,
+      deliveryTime: (state) => state.page.delivery.deliveryDay,
 
       sale: (state) => state.orders.sale,
     }),
