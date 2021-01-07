@@ -123,9 +123,8 @@ export const actions = {
       type,
       categoryList,
     }).then((response) => {
-      if (response.status >= 200) {
-        const data = type === 'similar' ? response.data.data : response.data
-        commit(DICT_COMMIT[type], data)
+      if (response.status === 200) {
+        commit(DICT_COMMIT[type], response.data)
       }
     })
   },
