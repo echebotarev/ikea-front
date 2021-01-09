@@ -11,7 +11,9 @@
             :cols="product.images.fullMediaList.length === 1 ? 12 : 6"
           >
             <v-img
-              :src="getImage(img.content.url, 4)"
+              :src="
+                getImage(img.content.url, $vuetify.breakpoint.mobile ? 3 : 5)
+              "
               lazy-src="/images/placeholder.png"
               :alt="img.content.alt"
               aspect-ratio="1"
