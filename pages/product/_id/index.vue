@@ -150,10 +150,10 @@
           >
             <v-row>
               <v-col cols="auto" class="pr-0">
-                <v-icon>mdi-information-outline</v-icon>
+                <v-icon color="#0a8a00">mdi-information-outline</v-icon>
               </v-col>
               <v-col>
-                Закажите до {{ delivery.lastOrderDay }}, чтобы получить товар
+                Закажите до {{ delivery.lastOrderDay }} и мы привезем товар
                 {{ delivery.deliveryDay }}
               </v-col>
             </v-row>
