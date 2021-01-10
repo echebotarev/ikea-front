@@ -78,8 +78,8 @@
               :unit="product.price.price.mainPriceProps.unit"
               :class="
                 product.price.price.mainPriceProps.hasHighlight
-                  ? 'highlight max-width-80'
-                  : 'max-width-80'
+                  ? 'highlight'
+                  : ''
               "
             />
           </v-col>

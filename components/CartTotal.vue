@@ -17,7 +17,7 @@
         <Price
           :price="total"
           :is-only-formatted="true"
-          :text="sale ? 'Цена с учетом скидки и доставки' : null"
+          :text="sale ? 'Цена с учетом<br /> скидки и доставки' : null"
         />
       </v-col>
     </v-row>
