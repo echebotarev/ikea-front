@@ -173,7 +173,7 @@
                   label="Оплатить онлайн с чеком на e-mail"
                   :value="1"
                 ></v-radio>
-                <v-radio :label="`Оплатить наличными менеджеру`" :value="2">
+                <v-radio :label="`Оплатить на Каспий Голд`" :value="2">
                 </v-radio>
               </v-radio-group>
             </v-card>
