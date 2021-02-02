@@ -15,9 +15,7 @@
       {{ message }}
     </div>
     <p v-if="statusCode === 404">
-      <nuxt-link to="/">
-        Вернуться на главную
-      </nuxt-link>
+      <nuxt-link to="/">Вернуться на главную</nuxt-link>
     </p>
   </div>
 </template>

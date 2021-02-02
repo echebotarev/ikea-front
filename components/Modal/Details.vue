@@ -132,8 +132,9 @@
                   </div>
                   <div v-if="packageItem.measurements">
                     <div
-                      v-for="(measurements,
-                      indexMeasurements) in packageItem.measurements"
+                      v-for="(
+                        measurements, indexMeasurements
+                      ) in packageItem.measurements"
                       :key="`${indexMeasurements}-measurements`"
                     >
                       <div

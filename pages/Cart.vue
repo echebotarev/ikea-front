@@ -135,7 +135,7 @@
                       ></v-checkbox>
 
                       <span
-                        style="display: block; margin-top: -20px;"
+                        style="display: block; margin-top: -20px"
                         class="text-caption pl-9"
                         >Стоимость сборки - {{ assemblyPercent }}%</span
                       >

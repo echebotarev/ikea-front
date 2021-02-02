@@ -9,9 +9,7 @@
     :loading="isLoading"
     @click="add({ product, qnt: 1 })"
   >
-    <v-icon color="#fff">
-      mdi-basket-plus-outline
-    </v-icon>
+    <v-icon color="#fff"> mdi-basket-plus-outline </v-icon>
     <template v-slot:loader>
       <span class="custom-loader">
         <v-icon light color="#fff">mdi-loading</v-icon>

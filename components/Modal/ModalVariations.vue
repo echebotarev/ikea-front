@@ -4,7 +4,7 @@
     <v-col cols="10">
       <h2>{{ data.title }}</h2>
       <v-card
-        v-for="option in (data.allOptions ? data.allOptions : data.options)"
+        v-for="option in data.allOptions ? data.allOptions : data.options"
         :key="option.linkId"
         outlined
         hover
