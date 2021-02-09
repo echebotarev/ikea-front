@@ -169,10 +169,10 @@
             <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
               <h3>Способ оплаты:</h3>
               <v-radio-group v-model="payMethod">
-                <v-radio
+                <!--<v-radio
                   label="Оплатить онлайн с чеком на e-mail"
                   :value="1"
-                ></v-radio>
+                ></v-radio>-->
                 <v-radio :label="`Оплатить на Каспий Голд`" :value="2">
                 </v-radio>
               </v-radio-group>
@@ -239,7 +239,7 @@ export default {
       name: '',
       mail: '',
       isAssembly: false,
-      payMethod: 1,
+      payMethod: 2,
       alert: {
         isShow: false,
         success: true,
