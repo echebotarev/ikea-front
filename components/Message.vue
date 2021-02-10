@@ -15,7 +15,7 @@
           :show-arrows="false"
         >
           <v-carousel-item v-for="message in messages" :key="message">
-            <v-row class="fill-height pl-3" align="center">
+            <v-row class="fill-height pl-3" align="center" no-gutters>
               <div>{{ message }}</div>
             </v-row>
           </v-carousel-item>
