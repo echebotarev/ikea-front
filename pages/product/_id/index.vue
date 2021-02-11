@@ -114,25 +114,27 @@
 
         <Variations v-if="product.variations" :product="product" />
 
-        <v-row class="mt-5 pl-3 pr-3">
-          <v-btn
-            block
-            rounded
-            color="#0058a3"
-            min-height="50"
-            class="button add-to-cart"
-            :loading="isLoading"
-            :disabled="isDisabledOrderBtn"
-            @click="add({ product, qnt: 1 })"
-          >
-            <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
-            Добавить в корзину
-            <template v-slot:loader>
-              <span class="custom-loader">
-                <v-icon light color="#fff">mdi-loading</v-icon>
-              </span>
-            </template>
-          </v-btn>
+        <v-row no-gutters class="mt-5">
+          <v-col>
+            <v-btn
+              block
+              rounded
+              color="#0058a3"
+              min-height="50"
+              class="button add-to-cart"
+              :loading="isLoading"
+              :disabled="isDisabledOrderBtn"
+              @click="add({ product, qnt: 1 })"
+            >
+              <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
+              Добавить в корзину
+              <template v-slot:loader>
+                <span class="custom-loader">
+                  <v-icon light color="#fff">mdi-loading</v-icon>
+                </span>
+              </template>
+            </v-btn>
+          </v-col>
         </v-row>
 
         <v-row class="mt-3">
