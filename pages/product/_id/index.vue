@@ -135,7 +135,7 @@
           </v-btn>
         </v-row>
 
-        <v-row no-gutters class="mt-3">
+        <v-row class="mt-3">
           <v-col class="pb-0" cols="12">
             <Available
               :type="product.utag.product_type"
