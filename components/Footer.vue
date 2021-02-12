@@ -14,6 +14,14 @@
       </v-col>
 
       <v-col class="social-icons" cols="6">
+        <b>Телефон:</b>
+        <div>
+          <a href="tel:+77017375736">+7 (701) 737-5736</a>
+        </div>
+        <div class="mb-4">
+          <a href="tel:+79111721308">+7 (911) 172-1308</a>
+        </div>
+
         <b>Напишите нам:</b>
 
         <div>
@@ -47,11 +55,10 @@
             ></a>
           </span>
         </div>
-
-        <b>Телефон:</b>
-        <div>+7 (911) 172-1308</div>
       </v-col>
-      <v-col class="text-right" cols="2">{{ new Date().getFullYear() }}</v-col>
+      <v-col class="text-right" cols="2">
+        <b>{{ new Date().getFullYear() }}</b>
+      </v-col>
     </v-row>
   </v-footer>
 </template>
