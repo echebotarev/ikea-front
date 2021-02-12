@@ -145,20 +145,20 @@
             />
           </v-col>
 
-          <v-col
-            v-if="!isDisabledOrderBtn"
-            class="delivery-time mt-2"
-            cols="12"
-          >
-            <v-row>
-              <v-col cols="auto" class="pr-0">
-                <v-icon color="#0a8a00">mdi-information-outline</v-icon>
-              </v-col>
-              <v-col>
-                Закажите до {{ delivery.lastOrderDay }} и мы привезем товар
-                {{ delivery.deliveryDay }}
-              </v-col>
-            </v-row>
+          <v-col v-if="!isDisabledOrderBtn" cols="12">
+            <v-card>
+              <v-card-text>
+                <v-row no-gutters>
+                  <v-col class="pr-2" cols="auto">
+                    <v-icon color="#0a8a00">mdi-information-outline</v-icon>
+                  </v-col>
+                  <v-col>
+                    Закажите до {{ delivery.lastOrderDay }} и мы привезем товар
+                    {{ delivery.deliveryDay }}
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-col>
@@ -414,10 +414,5 @@ export default {
   font-size: 0.875rem;
   line-height: 1.71429;
   padding-bottom: 1.25rem;
-}
-.delivery-time {
-  font-size: 14px;
-  padding: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 </style>
