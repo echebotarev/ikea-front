@@ -35,6 +35,13 @@
 export default {
   name: 'ArrivalMail',
 
+  props: {
+    id: {
+      type: String,
+      default: '',
+    },
+  },
+
   data() {
     return {
       mail: '',
@@ -49,6 +56,12 @@ export default {
 
     send() {
       console.log('Mail', this.mail)
+      if (this.checkEmail(this.mail)) {
+        this.$store.dispatch('availability/setAvailabilityNotification', {
+          mail: this.mail,
+          id: this.id,
+        })
+      }
     },
   },
 }

@@ -162,7 +162,7 @@
           </v-col>
 
           <v-col v-else>
-            <ArrivalMail />
+            <ArrivalMail :id="product.identifier" />
           </v-col>
         </v-row>
       </v-col>

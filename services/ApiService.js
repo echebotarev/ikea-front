@@ -50,6 +50,10 @@ export default {
     )
   },
 
+  setAvailabilityNotification(payload) {
+    return apiClient.put(`/available`, payload)
+  },
+
   getRecommendations({ id, categoryList = [], type = 'similar' }) {
     return apiClient.get(
       `/recommendation/${type}?id=${id}&categoryList=${encodeURI(categoryList)}`

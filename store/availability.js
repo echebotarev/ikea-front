@@ -24,6 +24,12 @@ export const actions = {
       )
     })
   },
+
+  setAvailabilityNotification(ctx, payload) {
+    return ApiService.setAvailabilityNotification(payload).then((response) => {
+      console.log('Response', response)
+    })
+  },
 }
 
 export const getters = {
