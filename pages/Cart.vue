@@ -312,9 +312,10 @@ export default {
 
     // без этого ф-ия receiveMessage падает на JSON.parse
     // туда приходят данные от detector.js в виде объекта
-    this.timer = setTimeout(() => {
-      this.initScripts('cp')
-    }, 5000)
+    /* Выключили лишний запрос пока у нас нет оплаты картами с сайта */
+    // this.timer = setTimeout(() => {
+    //   this.initScripts('cp')
+    // }, 5000)
   },
 
   beforeDestroy() {
