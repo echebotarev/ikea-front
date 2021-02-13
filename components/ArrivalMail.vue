@@ -17,7 +17,14 @@
         required
       >
       </v-text-field>
-      <v-btn block rounded color="#111" min-height="50" class="button mt-2">
+      <v-btn
+        block
+        rounded
+        color="#111"
+        min-height="50"
+        class="button mt-2"
+        @click="send"
+      >
         Отправить
       </v-btn>
     </v-card-text>
@@ -28,10 +35,20 @@
 export default {
   name: 'ArrivalMail',
 
+  data() {
+    return {
+      mail: '',
+    }
+  },
+
   methods: {
     checkEmail(value) {
       const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return pattern.test(value.trim())
+    },
+
+    send() {
+      console.log('Mail', this.mail)
     },
   },
 }
