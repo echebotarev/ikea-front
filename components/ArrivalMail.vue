@@ -6,7 +6,7 @@
     </v-card-subtitle>
     <v-card-text>
       <v-text-field
-        v-model="mail"
+        v-model="email"
         flat
         hide-details
         rounded
@@ -44,7 +44,7 @@ export default {
 
   data() {
     return {
-      mail: '',
+      email: '',
     }
   },
 
@@ -55,10 +55,9 @@ export default {
     },
 
     send() {
-      console.log('Mail', this.mail)
-      if (this.checkEmail(this.mail)) {
+      if (this.checkEmail(this.email)) {
         this.$store.dispatch('availability/setAvailabilityNotification', {
-          mail: this.mail,
+          email: this.email,
           id: this.id,
         })
       }

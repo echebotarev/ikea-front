@@ -11,12 +11,12 @@ export default {
 
   get ordersUrl() {
     if (process.env.NODE_ENV === 'development') {
-      return 'http://localhost:7070/orders'
+      return 'http://localhost:7070'
     }
 
     return process.server
-      ? 'http://localhost:7070/orders'
-      : 'https://orders.doma-doma.kz/orders'
+      ? 'http://localhost:7070'
+      : 'https://orders.doma-doma.kz'
   },
 
   yandexApiKey: '042a2e05-86cf-4d8f-b283-ca17f9f5ddb5',
