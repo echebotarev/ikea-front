@@ -5,6 +5,10 @@
 	background: rgba(0, 0, 0, 0.15);
 }
 
+.v-main__wrap > .container {
+	max-width: calc(100% - 40px) !important;
+}
+
 .v-application {
 	a {
 		color: #111;
