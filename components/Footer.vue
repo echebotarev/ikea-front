@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="footer">
+  <v-footer class="footer py-10 mt-10">
     <v-row>
       <v-col class="bottom-nav" cols="4">
         <b>Навигация:</b>
