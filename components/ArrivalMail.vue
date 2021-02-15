@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-subtitle class="product-description">
-      Обычно товары появляются в течении пары недель. Оставьте почту и мы
+      Обычно товары появляются в течении пары недель. Оставьте вашу почту и мы
       сообщим вам об этом
     </v-card-subtitle>
     <v-card-text>
@@ -40,6 +40,10 @@ export default {
       type: String,
       default: '',
     },
+    type: {
+      type: String,
+      default: '',
+    },
   },
 
   data() {
@@ -59,6 +63,7 @@ export default {
         this.$store.dispatch('availability/setAvailabilityNotification', {
           email: this.email,
           id: this.id,
+          type: this.type,
         })
       }
     },

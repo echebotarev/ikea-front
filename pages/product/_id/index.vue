@@ -162,7 +162,10 @@
           </v-col>
 
           <v-col v-else>
-            <ArrivalMail :id="product.identifier" />
+            <ArrivalMail
+              :id="product.identifier"
+              :type="product.utag.product_type"
+            />
           </v-col>
         </v-row>
       </v-col>
