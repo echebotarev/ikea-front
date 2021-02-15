@@ -69,13 +69,6 @@ export default {
    */
   modules: [
     'portal-vue/nuxt',
-    // [
-    //   '@nuxtjs/yandex-metrika',
-    //   {
-    //     id: '67230112',
-    //     webvisor: true,
-    //   },
-    // ],
     [
       '@nuxtjs/sentry',
       {
