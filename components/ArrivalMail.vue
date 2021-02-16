@@ -65,6 +65,14 @@ export default {
           id: this.id,
           type: this.type,
         })
+      } else {
+        this.$notify({
+          group: 'all',
+          title: 'Не правильно указана почта.',
+
+          type: 'warn',
+          duration: 10000,
+        })
       }
     },
   },
