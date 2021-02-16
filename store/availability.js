@@ -29,7 +29,7 @@ export const actions = {
   setAvailabilityNotification(ctx, payload) {
     return OrderService.setAvailabilityNotification(payload).then(
       (response) => {
-        console.log('Response', response)
+        return response.data
       }
     )
   },

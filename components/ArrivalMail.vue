@@ -1,10 +1,13 @@
 <template>
   <v-card>
-    <v-card-subtitle class="product-description">
+    <v-card-subtitle v-if="isSent">
+      Отлично! Мы скоро с вами свяжемся.
+    </v-card-subtitle>
+    <v-card-subtitle v-if="!isSent" class="product-description">
       Обычно товары появляются в течении пары недель. Оставьте вашу почту и мы
       сообщим вам об этом
     </v-card-subtitle>
-    <v-card-text>
+    <v-card-text v-if="!isSent">
       <v-text-field
         v-model="email"
         flat
@@ -22,6 +25,7 @@
         rounded
         color="#111"
         min-height="50"
+        :loading="isLoading"
         class="button mt-2"
         @click="send"
       >
@@ -49,6 +53,8 @@ export default {
   data() {
     return {
       email: '',
+      isLoading: false,
+      isSent: false,
     }
   },
 
@@ -58,13 +64,17 @@ export default {
       return pattern.test(value.trim())
     },
 
-    send() {
+    async send() {
       if (this.checkEmail(this.email)) {
-        this.$store.dispatch('availability/setAvailabilityNotification', {
+        this.isLoading = true
+        await this.$store.dispatch('availability/setAvailabilityNotification', {
           email: this.email,
           id: this.id,
           type: this.type,
         })
+
+        this.isLoading = false
+        this.isSent = true
       } else {
         this.$notify({
           group: 'all',
