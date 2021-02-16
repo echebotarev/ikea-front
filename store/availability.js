@@ -1,4 +1,5 @@
 import ApiService from '@/services/ApiService.js'
+import OrderService from '@/services/OrdersService.js'
 
 export const state = () => ({
   products: [],
@@ -23,6 +24,14 @@ export const actions = {
         })
       )
     })
+  },
+
+  setAvailabilityNotification(ctx, payload) {
+    return OrderService.setAvailabilityNotification(payload).then(
+      (response) => {
+        return response.data
+      }
+    )
   },
 }
 

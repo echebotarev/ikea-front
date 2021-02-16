@@ -160,6 +160,13 @@
               </v-card-text>
             </v-card>
           </v-col>
+
+          <v-col v-else>
+            <ArrivalMail
+              :id="product.identifier"
+              :type="product.utag.product_type"
+            />
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
@@ -192,6 +199,7 @@ import Modal from '@/components/Modal/index'
 import Variations from '@/components/Variations'
 import DisplayVariations from '@/components/DisplayVariations'
 import Available from '@/components/Available'
+import ArrivalMail from '@/components/ArrivalMail'
 import Price from '@/components/Price'
 import ProductInformationButtons from '@/components/ProductInformationButtons'
 import ProductRecommendation from '@/components/ProductRecommendation'
@@ -203,6 +211,7 @@ export default {
     Breadcrumbs,
     Modal,
     Available,
+    ArrivalMail,
     Variations,
     DisplayVariations,
     Price,
