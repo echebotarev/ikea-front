@@ -81,7 +81,7 @@ export default {
       'nuxt-facebook-pixel-module',
       {
         track: 'PageView',
-        pixelId: '417893592914820',
+        pixelId: '912562219512503',
         autoPageView: true,
         disabled: process.env.NODE_ENV === 'development' || false,
       },
