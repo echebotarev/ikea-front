@@ -133,6 +133,12 @@
 
 .button {
 	color: #fff !important;
+	max-width: 100%;
+
+	span {
+		max-width: 100%;
+		white-space: normal;
+	}
 }
 
 .button-black {

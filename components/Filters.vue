@@ -50,7 +50,7 @@
       </v-col>
     </v-row>
 
-    <v-divider class="mt-3"></v-divider>
+    <v-divider class="my-3"></v-divider>
   </div>
 </template>
 

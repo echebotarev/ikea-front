@@ -1,72 +1,104 @@
 <template>
-  <div class="card-product">
-    <nuxt-link
-      :to="`/product/${product.id || product.item_id || product.identifier}`"
+  <div class="card-container">
+    <v-card
+      elevation="0"
+      :class="`card-product ${!product.available ? 'disabled' : ''}`"
     >
-      <v-img
-        :src="
-          getImage(
-            product.mainImageUrl ||
-              product.image_url ||
-              (product.images.fullMediaList.length
-                ? product.images.fullMediaList[0].content.url
-                : '/images/placeholder.png'),
-            4
-          )
-        "
-        lazy-src="/images/placeholder.png"
-        :alt="product.typeName || product.name"
-        aspect-ratio="1"
+      <nuxt-link
+        :to="`/product/${product.id || product.item_id || product.identifier}`"
       >
-        <template v-slot:placeholder>
-          <v-row class="fill-height ma-0" align="center" justify="center">
-            <v-icon x-large>mdi-image-multiple-outline</v-icon>
-          </v-row>
-        </template>
-      </v-img>
-      <h4 v-if="product.price.familyText" class="card-product-name family-text">
-        {{ product.price.familyText }}
-      </h4>
-      <h4 class="card-product-name">{{ product.name }}</h4>
-      <p class="card-product-description">
-        {{ getDescription(product) }}
-      </p>
-
-      <span
-        v-if="product.price.price && product.price.price.previousPriceProps"
-        class="card-product-previous-price-text"
-      >
-        {{ product.price.price.previousPriceText }}
-        <Price
-          :price="product.price.price.previousPriceProps.price.integer"
-          :without-label="true"
-        />
-      </span>
-
-      <div class="card-product-price">
-        <Price
-          :price="
-            product.priceNumeral ||
-            product.price.RUB ||
-            product.price.price.mainPriceProps.price.integer
+        <v-img
+          :src="
+            getImage(
+              product.mainImageUrl ||
+                product.image_url ||
+                (product.images.fullMediaList.length
+                  ? product.images.fullMediaList[0].content.url
+                  : '/images/placeholder.png'),
+              4
+            )
           "
-          :unit="product.price.price && product.price.price.mainPriceProps.unit"
-        />
-      </div>
-    </nuxt-link>
+          lazy-src="/images/placeholder.png"
+          :alt="product.typeName || product.name"
+          aspect-ratio="1"
+        >
+          <template v-slot:placeholder>
+            <v-row class="fill-height ma-0" align="center" justify="center">
+              <v-icon x-large>mdi-image-multiple-outline</v-icon>
+            </v-row>
+          </template>
+        </v-img>
+        <h4
+          v-if="product.price.familyText"
+          class="card-product-name family-text"
+        >
+          {{ product.price.familyText }}
+        </h4>
+        <h4 class="card-product-name">{{ product.name }}</h4>
+        <p class="card-product-description">
+          {{ getDescription(product) }}
+        </p>
+
+        <span
+          v-if="product.price.price && product.price.price.previousPriceProps"
+          class="card-product-previous-price-text"
+        >
+          {{ product.price.price.previousPriceText }}
+          <Price
+            :price="product.price.price.previousPriceProps.price.integer"
+            :without-label="true"
+          />
+        </span>
+
+        <div class="card-product-price">
+          <Price
+            :price="
+              product.priceNumeral ||
+              product.price.RUB ||
+              product.price.price.mainPriceProps.price.integer
+            "
+            :unit="
+              product.price.price && product.price.price.mainPriceProps.unit
+            "
+          />
+        </div>
+      </nuxt-link>
+    </v-card>
+    <v-btn
+      v-if="!product.available && !isOpenArrival"
+      elevation="0"
+      class="button button-black"
+      @click="() => (isOpenArrival = !isOpenArrival)"
+    >
+      Узнать о поступлении
+    </v-btn>
+    <div class="arrival-container">
+      <ArrivalMail v-if="!product.available && isOpenArrival" />
+    </div>
   </div>
 </template>
 
 <script>
 import Price from '@/components/Price'
+import ArrivalMail from '@/components/ArrivalMail'
 import getImage from '@/assets/utils/getImage'
 
 export default {
   name: 'ProductCard',
-  components: { Price },
+  components: { Price, ArrivalMail },
   props: {
-    product: { type: Object, default: () => {} },
+    product: {
+      type: Object,
+      default: () => {},
+    },
   },
+
+  data() {
+    return {
+      isOpenArrival: false,
+    }
+  },
+
   methods: {
     getImage,
     getDescription(product) {
@@ -94,7 +126,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.card-container {
+  position: relative;
+
+  .arrival-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
 .card-product {
+  &.disabled {
+    opacity: 0.5;
+  }
+
   .card-product-name {
     text-overflow: ellipsis;
     overflow: hidden;
