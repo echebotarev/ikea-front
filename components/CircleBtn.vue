@@ -7,7 +7,7 @@
     height="40"
     class="float-right add-to-cart"
     :loading="isLoading"
-    @click="add({ product, qnt: 1 })"
+    @click.stop.prevent="add({ product, qnt: 1 })"
   >
     <v-icon color="#fff"> mdi-basket-plus-outline </v-icon>
     <template v-slot:loader>

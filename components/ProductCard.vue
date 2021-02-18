@@ -61,6 +61,14 @@
               product.price.price && product.price.price.mainPriceProps.unit
             "
           />
+
+          <div class="circle-btn-container">
+            <CircleBtn
+              v-if="product.available"
+              :add-product="(payload) => addProduct(payload)"
+              :product="product"
+            />
+          </div>
         </div>
       </nuxt-link>
     </v-card>
@@ -81,11 +89,13 @@
 <script>
 import Price from '@/components/Price'
 import ArrivalMail from '@/components/ArrivalMail'
+import CircleBtn from '@/components/CircleBtn'
 import getImage from '@/assets/utils/getImage'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'ProductCard',
-  components: { Price, ArrivalMail },
+  components: { Price, ArrivalMail, CircleBtn },
   props: {
     product: {
       type: Object,
@@ -121,6 +131,10 @@ export default {
 
       return ''
     },
+
+    ...mapActions({
+      addProduct: 'orders/addProduct',
+    }),
   },
 }
 </script>
@@ -181,5 +195,11 @@ p {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 16px;
+}
+
+.circle-btn-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 </style>
