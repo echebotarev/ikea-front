@@ -3,6 +3,7 @@ import OrderService from '@/services/OrdersService.js'
 
 export const state = () => ({
   products: [],
+  email: null,
 })
 
 export const mutations = {
@@ -11,6 +12,10 @@ export const mutations = {
       ...state.products.filter((p) => p.identifier !== payload.identifier),
       { ...payload },
     ]
+  },
+
+  SET_EMAIL(state, payload) {
+    state.email = payload
   },
 }
 
@@ -26,7 +31,10 @@ export const actions = {
     })
   },
 
-  setAvailabilityNotification(ctx, payload) {
+  setAvailabilityNotification({ commit }, payload) {
+    const { email } = payload
+    commit('SET_EMAIL', email)
+
     return OrderService.setAvailabilityNotification(payload).then(
       (response) => {
         return response.data

@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'ArrivalMail',
 
@@ -56,6 +58,16 @@ export default {
       isLoading: false,
       isSent: false,
     }
+  },
+
+  computed: {
+    ...mapState({
+      storagedMail: (state) => state.availability.email,
+    }),
+  },
+
+  mounted() {
+    this.email = this.storagedMail || ''
   },
 
   methods: {
