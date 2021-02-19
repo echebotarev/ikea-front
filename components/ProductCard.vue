@@ -81,7 +81,11 @@
       Узнать о поступлении
     </v-btn>
     <div class="arrival-container">
-      <ArrivalMail v-if="!product.available && isOpenArrival" />
+      <ArrivalMail
+        v-if="!product.available && isOpenArrival"
+        :id="product.identifier"
+        :type="product.utag.product_type"
+      />
     </div>
   </div>
 </template>
