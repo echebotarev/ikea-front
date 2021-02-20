@@ -2,7 +2,7 @@
   <div class="card-container">
     <v-card
       elevation="0"
-      :class="`card-product ${!product.available ? 'disabled' : ''}`"
+      :class="`card-product ${product.available === 0 ? 'disabled' : ''}`"
     >
       <nuxt-link
         :to="`/product/${product.id || product.item_id || product.identifier}`"
@@ -73,7 +73,7 @@
       </nuxt-link>
     </v-card>
     <v-btn
-      v-if="!product.available && !isOpenArrival"
+      v-if="product.available === 0 && !isOpenArrival"
       elevation="0"
       class="button button-black"
       @click="() => (isOpenArrival = !isOpenArrival)"
@@ -82,7 +82,7 @@
     </v-btn>
     <div class="arrival-container">
       <ArrivalMail
-        v-if="!product.available && isOpenArrival"
+        v-if="product.available === 0 && isOpenArrival"
         :id="product.identifier"
         :type="product.utag.product_type"
       />
