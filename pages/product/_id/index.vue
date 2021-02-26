@@ -137,7 +137,12 @@
           </v-col>
         </v-row>
 
-        <v-row class="mt-3">
+        <InlineMessage
+          v-if="product.inline_message"
+          :message="product.inline_message"
+        />
+
+        <v-row class="mt-2">
           <v-col class="pb-0" cols="12">
             <Available
               :type="product.utag.product_type"
@@ -198,6 +203,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import Modal from '@/components/Modal/index'
 import Variations from '@/components/Variations'
 import DisplayVariations from '@/components/DisplayVariations'
+import InlineMessage from '@/components/InlineMessage'
 import Available from '@/components/Available'
 import ArrivalMail from '@/components/ArrivalMail'
 import Price from '@/components/Price'
@@ -214,6 +220,7 @@ export default {
     ArrivalMail,
     Variations,
     DisplayVariations,
+    InlineMessage,
     Price,
     ProductInformationButtons,
     ProductRecommendation,

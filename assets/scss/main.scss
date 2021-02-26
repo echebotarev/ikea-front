@@ -107,7 +107,10 @@
 
 }
 .text-weight-500 {
-	font-weight: 500;
+	font-weight: 500 !important;
+}
+.text-weight-600 {
+	font-weight: 600 !important;
 }
 
 .sm-and-down {
