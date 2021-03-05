@@ -1,3 +1,5 @@
+import { KZT } from '@/constants'
+
 import OrdersService from '@/services/OrdersService.js'
 import ApiService from '@/services/ApiService.js'
 
@@ -67,8 +69,8 @@ export const actions = {
       `purchase-${payload.payload.payMethod}`
     )
     this.$fb.track('Purchase', {
-      currency: 'KZT',
-      value: payload.total,
+      currency: 'RUB',
+      value: payload.payload.total / KZT,
       paymentMethod: payload.payload.payMethod,
     })
 
