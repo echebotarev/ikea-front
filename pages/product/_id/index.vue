@@ -52,21 +52,25 @@
 
         <v-row justify="space-between" no-gutters class="flex-nowrap">
           <v-col class="mr-1">
-            <h2 class="product-name">{{ product.name }}</h2>
-            <p class="product-description">
-              {{ product.price.productDescription }},
-              {{ product.price.measurementText }}
-              <br />
-              <span v-if="product.price.price.previousPriceProps">
-                {{ product.price.price.previousPriceText }}
-                <Price
-                  :price="product.price.price.previousPriceProps.price.integer"
-                  :without-label="true"
-                />
+            <h1>
+              <div class="product-name">{{ product.name }}</div>
+              <div class="product-description">
+                {{ product.price.productDescription }},
+                {{ product.price.measurementText }}
                 <br />
-                {{ product.price.validToFromAndWhileSupplyLastText }}
-              </span>
-            </p>
+                <span v-if="product.price.price.previousPriceProps">
+                  {{ product.price.price.previousPriceText }}
+                  <Price
+                    :price="
+                      product.price.price.previousPriceProps.price.integer
+                    "
+                    :without-label="true"
+                  />
+                  <br />
+                  {{ product.price.validToFromAndWhileSupplyLastText }}
+                </span>
+              </div>
+            </h1>
 
             <p v-if="product.price.isLastChance" class="text-weight-500">
               Выходит из ассортимента
@@ -384,9 +388,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.product.name {
+.product-name {
   font-size: 22px;
-  font-weight: 500;
+  line-height: 1.2;
 }
 .product-main {
   position: -webkit-sticky;
@@ -397,6 +401,7 @@ export default {
 
 .product-description {
   font-size: 14px;
+  font-weight: 400;
 
   .product-price {
     font-size: inherit;
