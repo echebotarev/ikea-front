@@ -70,7 +70,8 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Доставка товаров IKEA',
+        content:
+          'Доставка товаров IKEA. Сервис по доставке товаров IKEA в Актау прямо до двери',
       },
     ],
   }),
