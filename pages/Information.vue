@@ -1,9 +1,7 @@
 <template>
   <v-row class="pt-10">
     <v-col cols="12">
-      <p>
-        <b>Doma-doma</b> – сервис по доставке товаров из магазина IKEA в Самаре
-      </p>
+      <h1>Doma-doma – сервис по доставке товаров из магазина IKEA в Самаре</h1>
     </v-col>
 
     <v-col cols="12">
@@ -92,6 +90,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+h1 {
+  width: 75%;
+  font-size: 2em;
+  line-height: 1.2;
+}
 .social-link {
   text-decoration: underline;
 
