@@ -1,12 +1,38 @@
 <template>
-  <v-footer class="footer py-10 mt-10">
-    <v-row>
-      <v-col class="bottom-nav" cols="4">
+  <v-footer class="footer py-10 px-10 mt-10">
+    <v-row class="footer-line">
+      <v-col cols="6">
+        <b>Контакты:</b>
+        <div class="vcard">
+          <div class="fn org">ИП Чеботарева Дарья</div>
+          <div class="adr">
+            <span class="”country-name”">Казахстан</span>,
+            <span class="locality">г. Актау</span>,
+            <span class="street-address">10 микрорайон, 2 дом</span>
+            <div>
+              <a class="tel" href="tel:+77017375736">+7 (701) 737-5736</a>
+            </div>
+            <div>
+              <a class="tel" href="tel:+79111721308">+7 (911) 172-1308</a>
+            </div>
+            <br />
+            <a class="url" href="https://doma-doma.kz/">https://doma-doma.kz</a>
+          </div>
+        </div>
+      </v-col>
+
+      <v-col class="bottom-nav" cols="6">
         <b>Навигация:</b>
 
-        <v-list-item v-for="link in links" :key="link.url" nuxt>
-          <v-list-item-content>
-            <v-list-item-subtitle>
+        <v-list-item
+          v-for="link in links"
+          :key="link.url"
+          dense
+          nuxt
+          class="list-item"
+        >
+          <v-list-item-content class="py-0">
+            <v-list-item-subtitle class="list-item-subtitle">
               <nuxt-link :to="link.url">{{ link.label }}</nuxt-link>
             </v-list-item-subtitle>
           </v-list-item-content>
@@ -14,14 +40,6 @@
       </v-col>
 
       <v-col class="social-icons" cols="6">
-        <b>Телефон:</b>
-        <div>
-          <a href="tel:+77017375736">+7 (701) 737-5736</a>
-        </div>
-        <div class="mb-4">
-          <a href="tel:+79111721308">+7 (911) 172-1308</a>
-        </div>
-
         <b>Напишите нам:</b>
 
         <div>
@@ -56,8 +74,13 @@
           </span>
         </div>
       </v-col>
-      <v-col class="text-right" cols="2">
-        <b>{{ new Date().getFullYear() }}</b>
+    </v-row>
+    <v-row class="footer-line">
+      <v-divider></v-divider>
+    </v-row>
+    <v-row class="footer-line">
+      <v-col cols="12">
+        <b>2020 - {{ new Date().getFullYear() }}</b>
       </v-col>
     </v-row>
   </v-footer>
@@ -75,6 +98,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.footer {
+  color: #484848;
+}
+.vcard {
+  font-size: 14px;
+}
+.footer-line {
+  width: 100%;
+}
+.list-item {
+  height: 30px;
+  min-height: 30px;
+
+  .list-item-subtitle {
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
 .social-icons {
   span {
     width: 40px;
