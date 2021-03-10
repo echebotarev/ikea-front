@@ -130,8 +130,14 @@
               :disabled="isDisabledOrderBtn"
               @click="add({ product, qnt: 1 })"
             >
-              <v-icon class="mr-2">mdi-basket-plus-outline</v-icon>
-              Добавить в корзину
+              <template v-slot:default>
+                <span class="add-to-cart">
+                  <v-icon class="mr-2 add-to-cart">
+                    mdi-basket-plus-outline
+                  </v-icon>
+                  Добавить в корзину
+                </span>
+              </template>
               <template v-slot:loader>
                 <span class="custom-loader">
                   <v-icon light color="#fff">mdi-loading</v-icon>
