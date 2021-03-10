@@ -9,7 +9,9 @@
     :loading="isLoading"
     @click.stop.prevent="add({ product, qnt: 1 })"
   >
-    <v-icon color="#fff"> mdi-basket-plus-outline </v-icon>
+    <v-icon color="#fff" class="add-to-cart-icon">
+      mdi-basket-plus-outline
+    </v-icon>
     <template v-slot:loader>
       <span class="custom-loader">
         <v-icon light color="#fff">mdi-loading</v-icon>
@@ -46,4 +48,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.add-to-cart-icon {
+  width: 100%;
+}
+</style>

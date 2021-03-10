@@ -187,7 +187,9 @@
                 class="button purchase"
                 @click="checkout"
               >
-                Отправить
+                <template v-slot:default>
+                  <span class="purchase">Отправить</span>
+                </template>
               </v-btn>
             </v-card>
           </v-col>
@@ -580,6 +582,10 @@ export default {
 <style scoped lang="scss">
 .cart {
   position: relative;
+
+  .purchase {
+    width: 100%;
+  }
 
   .checkbox {
     margin-top: 0 !important;

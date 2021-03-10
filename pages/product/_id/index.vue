@@ -132,7 +132,7 @@
             >
               <template v-slot:default>
                 <span class="add-to-cart">
-                  <v-icon class="mr-2 add-to-cart">
+                  <v-icon class="mr-2 add-to-cart-icon">
                     mdi-basket-plus-outline
                   </v-icon>
                   Добавить в корзину
@@ -394,6 +394,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.add-to-cart {
+  width: 100%;
+}
 .product-name {
   font-size: 22px;
   line-height: 1.2;
