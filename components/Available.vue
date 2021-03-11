@@ -35,15 +35,19 @@
         >
 
         <span
-          v-if="
+          v-else-if="
             availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode.$ === 'MEDIUM'
+              .RetailItemAvailability.InStockProbabilityCode.$ === 'MEDIUM' ||
+            (availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.InStockProbabilityCode.$ === 'LOW' &&
+              availabilityProduct(identifier).StockAvailability
+                .RetailItemAvailability.AvailableStock.$ !== 0)
           "
           >Заканчивается</span
         >
 
         <span
-          v-if="
+          v-else-if="
             availabilityProduct(identifier).StockAvailability
               .RetailItemAvailability.InStockProbabilityCode.$ === 'LOW'
           "
