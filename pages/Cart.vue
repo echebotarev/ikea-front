@@ -1,5 +1,5 @@
 <template>
-  <div class="cart">
+  <div class="cart" ref="cart">
     <h1>Корзина</h1>
     <client-only>
       <div class="mb-16">
@@ -341,6 +341,7 @@ export default {
     onlinePay() {
       const updateOrder = this.updateOrder.bind(this)
       const getLetterProducts = this.getLetterProducts.bind(this)
+      const closeDataArea = this.closeDataArea.bind(this)
       const deliveryTime = this.deliveryTime
 
       this.widget.pay(
@@ -377,6 +378,8 @@ export default {
             console.log('Complete')
             if (paymentResult.success) {
               const { invoiceId } = options
+
+              closeDataArea()
 
               updateOrder({
                 orderId: invoiceId,
@@ -416,6 +419,8 @@ export default {
         this.alert.success = !this.products.length
         this.alert.isShow = true
 
+        this.closeDataArea()
+
         setTimeout(() => {
           this.alert.isShow = false
         }, 10000)
@@ -426,6 +431,15 @@ export default {
       this.$refs.openDataAreaBtn.style.display = 'none'
       this.$refs.dataArea.style.display = 'block'
       this.$vuetify.goTo(this.$refs.dataArea, {
+        duration: 500,
+        easing: 'easeOutQuint',
+      })
+    },
+
+    closeDataArea() {
+      this.$refs.openDataAreaBtn.style.display = 'block'
+      this.$refs.dataArea.style.display = 'none'
+      this.$vuetify.goTo(this.$refs.cart, {
         duration: 500,
         easing: 'easeOutQuint',
       })
