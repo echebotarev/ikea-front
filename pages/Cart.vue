@@ -3,7 +3,7 @@
     <h1>Корзина</h1>
     <client-only>
       <div class="mb-16">
-        <CartProductCard :products="products" />
+        <CartProductCard :products="products" :check-send-btn="checkSendBtn" />
 
         <CartTotal
           text="Сумма:"
@@ -46,6 +46,7 @@
                 full-width
                 height="50"
                 required
+                @change="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -66,6 +67,7 @@
                 full-width
                 height="50"
                 required
+                @change="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -82,6 +84,7 @@
                 full-width
                 height="50"
                 required
+                @change="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -105,6 +108,7 @@
                 height="50"
                 :value="value"
                 prepend-inner-icon="mdi-map-marker"
+                @change="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -185,6 +189,7 @@
                 color="#0058a3"
                 min-height="50"
                 class="button purchase"
+                :disabled="isDisabledSendBtn"
                 @click="checkout"
               >
                 <template v-slot:default>
@@ -241,6 +246,7 @@ export default {
       name: '',
       mail: '',
       isAssembly: false,
+      isDisabledSendBtn: true,
       payMethod: 2,
       alert: {
         isShow: false,
@@ -445,7 +451,7 @@ export default {
       return setTimeout(this.initScripts.bind(this, name), 100)
     },
 
-    validateForm() {
+    validateForm(notify = true) {
       if (!this.value) {
         this.errors.push('Укажите адрес')
       }
@@ -462,7 +468,7 @@ export default {
         this.errors.push('Укажите правильную почту')
       }
 
-      if (this.errors.length) {
+      if (this.errors.length && notify) {
         this.errors.forEach((text) => {
           this.$notify({
             group: 'all',
@@ -478,10 +484,15 @@ export default {
         return false
       }
 
+      if (this.errors.length) {
+        this.errors = []
+        return false
+      }
+
       return true
     },
 
-    validateProducts() {
+    validateProducts(notify = true) {
       const availableProducts = {}
       this.products.forEach((product) => {
         const availableProduct =
@@ -501,10 +512,8 @@ export default {
         }
       })
 
-      return !(
-        text &&
-        // ф-ия возвращает undefined, поэтому преобразуем его
-        !this.$notify({
+      if (text && notify) {
+        this.$notify({
           group: 'all',
           title: 'К сожалению этих товаров осталось слишком мало:',
           text,
@@ -512,7 +521,18 @@ export default {
           type: 'warn',
           duration: 10000,
         })
-      )
+
+        return false
+      }
+
+      return !text
+    },
+
+    checkSendBtn() {
+      const validateProducts = this.validateProducts()
+      const validateForm = this.validateForm(false)
+
+      this.isDisabledSendBtn = !(validateProducts && validateForm)
     },
 
     checkEmail(value) {

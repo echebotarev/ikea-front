@@ -148,6 +148,11 @@ export default {
       type: Array,
       default: () => [],
     },
+
+    checkSendBtn: {
+      type: Function,
+      default: () => () => {},
+    },
   },
   data() {
     return {
@@ -170,6 +175,8 @@ export default {
       await this.addProduct(payload)
       this.isLoading = false
       this.toggleBlur(payload.product.identifier)
+
+      this.checkSendBtn()
     },
     async remove(payload) {
       this.toggleBlur(payload.product.identifier)
@@ -177,6 +184,8 @@ export default {
       await this.removeProduct(payload)
       this.isLoading = false
       this.toggleBlur(payload.product.identifier)
+
+      this.checkSendBtn()
     },
   },
 }
