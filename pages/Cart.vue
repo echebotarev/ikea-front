@@ -512,7 +512,7 @@ export default {
         const availableProduct =
           this.availabilityProduct(product.identifier).StockAvailability &&
           this.availabilityProduct(product.identifier).StockAvailability
-            .RetailItemAvailability.AvailableStock.$
+            .RetailItemAvailability.AvailableStock['@']
 
         availableProducts[product.identifier] = !!(
           availableProduct && parseInt(availableProduct) - product.qnt >= 0

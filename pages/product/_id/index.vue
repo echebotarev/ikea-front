@@ -286,7 +286,7 @@ export default {
           .RetailItemAvailability &&
         parseInt(
           this.availabilityProduct(this.product.identifier).StockAvailability
-            .RetailItemAvailability.AvailableStock.$
+            .RetailItemAvailability.AvailableStock['@']
         )
       )
     },

@@ -11,25 +11,25 @@
       <div
         :class="`status-dot__${
           availabilityProduct(identifier).StockAvailability
-            .RetailItemAvailability.InStockProbabilityCode.$
+            .RetailItemAvailability.InStockProbabilityCode['@']
         } ${withQnt ? 'with-qnt' : ''} pl-5`"
       >
         <span
           v-if="
             withQnt &&
             availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode.$ !== 'LOW'
+              .RetailItemAvailability.InStockProbabilityCode['@'] !== 'LOW'
           "
           >{{
             availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.AvailableStock.$
+              .RetailItemAvailability.AvailableStock['@']
           }}</span
         >
 
         <span
           v-if="
             availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode.$ === 'HIGH'
+              .RetailItemAvailability.InStockProbabilityCode['@'] === 'HIGH'
           "
           >В наличии</span
         >
@@ -37,11 +37,12 @@
         <span
           v-else-if="
             availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode.$ === 'MEDIUM' ||
+              .RetailItemAvailability.InStockProbabilityCode['@'] ===
+              'MEDIUM' ||
             (availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode.$ === 'LOW' &&
+              .RetailItemAvailability.InStockProbabilityCode['@'] === 'LOW' &&
               availabilityProduct(identifier).StockAvailability
-                .RetailItemAvailability.AvailableStock.$ !== 0)
+                .RetailItemAvailability.AvailableStock['@'] !== 0)
           "
           >Заканчивается</span
         >
@@ -49,7 +50,7 @@
         <span
           v-else-if="
             availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode.$ === 'LOW'
+              .RetailItemAvailability.InStockProbabilityCode['@'] === 'LOW'
           "
           >Нет в наличии</span
         >
