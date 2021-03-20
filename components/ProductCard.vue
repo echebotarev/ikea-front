@@ -85,6 +85,7 @@
         v-if="product.available === 0 && isOpenArrival"
         :id="product.identifier"
         :type="product.utag.product_type"
+        :close="() => (isOpenArrival = false)"
       />
     </div>
   </div>

@@ -1,5 +1,8 @@
 <template>
   <v-card>
+    <v-btn class="close-btn" icon @click="close">
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
     <v-card-subtitle v-if="isSent">
       Отлично! Мы скоро с вами свяжемся.
     </v-card-subtitle>
@@ -49,6 +52,10 @@ export default {
     type: {
       type: String,
       default: '',
+    },
+    close: {
+      type: Function,
+      default: () => () => {},
     },
   },
 
@@ -101,4 +108,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+</style>
