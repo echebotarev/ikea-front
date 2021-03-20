@@ -16,7 +16,7 @@ export default ({ app }) => {
     j.async = true
     j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
     f.parentNode.insertBefore(j, f)
-  })(window, document, 'script', 'dataLayer', 'GTM-P2K8RLJ')
+  })(window, document, 'script', 'dataLayer', 'UA-57263747-8')
 
   // window.dataLayer = window.dataLayer || []
   // function gtag() {
