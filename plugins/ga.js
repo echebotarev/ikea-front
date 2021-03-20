@@ -14,7 +14,7 @@ export default ({ app }) => {
     // eslint-disable-next-line eqeqeq
     const dl = l != 'dataLayer' ? '&l=' + l : ''
     j.async = true
-    j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
     f.parentNode.insertBefore(j, f)
   })(window, document, 'script', 'dataLayer', 'GTM-P2K8RLJ')
 
