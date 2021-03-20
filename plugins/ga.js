@@ -2,9 +2,9 @@ export default ({ app }) => {
   /*
    ** Будет работать только на стороне клиента и только когда режим разработки будет "production"
    */
-  if (process.env.NODE_ENV !== 'production') {
-    return
-  }
+  // if (process.env.NODE_ENV !== 'production') {
+  //   return
+  // }
 
   ;(function (w, d, s, l, i) {
     w[l] = w[l] || []
@@ -14,7 +14,7 @@ export default ({ app }) => {
     // eslint-disable-next-line eqeqeq
     const dl = l != 'dataLayer' ? '&l=' + l : ''
     j.async = true
-    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+    j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl
     f.parentNode.insertBefore(j, f)
   })(window, document, 'script', 'dataLayer', 'UA-57263747-8')
 
