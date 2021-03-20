@@ -2,9 +2,9 @@ export default ({ app }) => {
   /*
    ** Будет работать только на стороне клиента и только когда режим разработки будет "production"
    */
-  // if (process.env.NODE_ENV !== 'production') {
-  //   return
-  // }
+  if (process.env.NODE_ENV !== 'production') {
+    return
+  }
 
   ;(function (w, d, s, l, i) {
     w[l] = w[l] || []
@@ -16,7 +16,7 @@ export default ({ app }) => {
     j.async = true
     j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl
     f.parentNode.insertBefore(j, f)
-  })(window, document, 'script', 'dataLayer', 'UA-57263747-8')
+  })(window, document, 'script', 'dataLayer', 'GTM-P2K8RLJ')
 
   // window.dataLayer = window.dataLayer || []
   // function gtag() {
