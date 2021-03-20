@@ -112,6 +112,9 @@
 .text-weight-600 {
 	font-weight: 600 !important;
 }
+.text-nowrap {
+	white-space: nowrap;
+}
 
 .sm-and-down {
 	.v-input__prepend-inner {

@@ -51,7 +51,7 @@
             </div>
             <div>{{ product.display_identifier }}</div>
           </v-col>
-          <v-col class="cart-price text-right">
+          <v-col class="cart-price text-right" cols="5">
             <div class="main-price">
               <Price
                 :price="
@@ -116,7 +116,7 @@
               :with-qnt="true"
             />
           </v-col>
-          <v-col class="text-right">
+          <v-col class="text-right text-nowrap" cols="5">
             <v-btn icon @click="remove({ product, qnt: product.qnt })">
               <v-icon>mdi-trash-can-outline</v-icon>
             </v-btn>
