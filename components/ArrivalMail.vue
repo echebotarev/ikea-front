@@ -3,7 +3,7 @@
     <v-btn class="close-btn" icon @click="close">
       <v-icon>mdi-close</v-icon>
     </v-btn>
-    <v-card-subtitle v-if="isSent">
+    <v-card-subtitle v-if="isSent" class="product-description">
       Отлично! Мы скоро с вами свяжемся.
     </v-card-subtitle>
     <v-card-subtitle v-if="!isSent" class="product-description">
@@ -113,5 +113,8 @@ export default {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+.product-description {
+  width: 90%;
 }
 </style>
