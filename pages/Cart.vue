@@ -48,6 +48,7 @@
                 required
                 @keydown="checkSendBtn"
                 @change="checkSendBtn"
+                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -70,6 +71,7 @@
                 required
                 @keydown="checkSendBtn"
                 @change="checkSendBtn"
+                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -88,6 +90,7 @@
                 required
                 @keydown="checkSendBtn"
                 @change="checkSendBtn"
+                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -109,10 +112,10 @@
                 placeholder="Актау ..."
                 full-width
                 height="50"
-                :value="value"
                 prepend-inner-icon="mdi-map-marker"
                 @keydown="checkSendBtn"
                 @change="checkSendBtn"
+                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
