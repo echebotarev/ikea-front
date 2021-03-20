@@ -46,6 +46,7 @@
                 full-width
                 height="50"
                 required
+                @keydown="checkSendBtn"
                 @change="checkSendBtn"
               >
               </v-text-field>
@@ -67,6 +68,7 @@
                 full-width
                 height="50"
                 required
+                @keydown="checkSendBtn"
                 @change="checkSendBtn"
               >
               </v-text-field>
@@ -84,6 +86,7 @@
                 full-width
                 height="50"
                 required
+                @keydown="checkSendBtn"
                 @change="checkSendBtn"
               >
               </v-text-field>
@@ -108,6 +111,7 @@
                 height="50"
                 :value="value"
                 prepend-inner-icon="mdi-map-marker"
+                @keydown="checkSendBtn"
                 @change="checkSendBtn"
               >
               </v-text-field>
