@@ -12,7 +12,7 @@
         "
         class="status-dot__LOW pl-5"
       >
-        <span class="text-nowrap"> Информация о наличии не доступна.</span>
+        <span class="text-nowrap">Информация о наличии не доступна.</span>
       </div>
       <div
         v-else
