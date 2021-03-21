@@ -1,4 +1,4 @@
-export default ({ app }) => {
+export default ({ app }, inject) => {
   /*
    ** Будет работать только на стороне клиента и только когда режим разработки будет "production"
    */
@@ -24,12 +24,11 @@ export default ({ app }) => {
     dataLayer.push(arguments)
   }
   gtag('js', new Date())
-  //
-  // gtag('config', 'G-710S6RQJH7')
+  inject('gtag', gtag)
   /*
    ** Вызывается каждый раз после смены роута (при инициализации тоже)
    */
   app.router.afterEach((to, from) => {
-    gtag('event', 'browsingPage', { event_category: 'page' })
+    gtag('event', 'test', { event_category: 'events' })
   })
 }
