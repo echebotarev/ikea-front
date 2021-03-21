@@ -1,14 +1,21 @@
 <template>
   <div>
     <div
-      v-if="
-        availabilityProduct(identifier).StockAvailability &&
-        availabilityProduct(identifier).StockAvailability.RetailItemAvailability
-      "
+      v-if="availabilityProduct(identifier).StockAvailability"
       class="status"
     >
       <v-icon v-if="!$vuetify.breakpoint.mobile">mdi-store-outline</v-icon>
       <div
+        v-if="
+          !availabilityProduct(identifier).StockAvailability
+            .RetailItemAvailability
+        "
+        class="status-dot__LOW pl-5"
+      >
+        <span class="text-nowrap"> Информация о наличии не доступна.</span>
+      </div>
+      <div
+        v-else
         :class="`status-dot__${
           availabilityProduct(identifier).StockAvailability
             .RetailItemAvailability.InStockProbabilityCode['@']
