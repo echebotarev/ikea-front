@@ -18,16 +18,18 @@ export default ({ app }) => {
     f.parentNode.insertBefore(j, f)
   })(window, document, 'script', 'dataLayer', 'GTM-P2K8RLJ')
 
-  // window.dataLayer = window.dataLayer || []
-  // function gtag() {
-  //   // eslint-disable-next-line no-undef
-  //   dataLayer.push(arguments)
-  // }
-  // gtag('js', new Date())
+  window.dataLayer = window.dataLayer || []
+  function gtag() {
+    // eslint-disable-next-line no-undef
+    dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
   //
   // gtag('config', 'G-710S6RQJH7')
   /*
    ** Вызывается каждый раз после смены роута (при инициализации тоже)
    */
-  // app.router.afterEach((to, from) => {})
+  app.router.afterEach((to, from) => {
+    gtag('event', 'browsingPage', { event_category: 'page' })
+  })
 }
