@@ -64,6 +64,7 @@ export const actions = {
   },
 
   updateOrder({ commit }, payload) {
+    this.$gtag('event', 'purchase', { event_category: 'events' })
     this.$metrika(
       67230112,
       'reachGoal',
