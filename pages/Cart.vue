@@ -3,7 +3,7 @@
     <h1>Корзина</h1>
     <client-only>
       <div class="mb-16">
-        <CartProductCard :products="products" :check-send-btn="checkSendBtn" />
+        <CartProductCard :products="products" />
 
         <CartTotal
           text="Сумма:"
@@ -46,9 +46,6 @@
                 full-width
                 height="50"
                 required
-                @keydown="checkSendBtn"
-                @change="checkSendBtn"
-                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -69,9 +66,6 @@
                 full-width
                 height="50"
                 required
-                @keydown="checkSendBtn"
-                @change="checkSendBtn"
-                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -88,9 +82,6 @@
                 full-width
                 height="50"
                 required
-                @keydown="checkSendBtn"
-                @change="checkSendBtn"
-                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -113,9 +104,6 @@
                 full-width
                 height="50"
                 prepend-inner-icon="mdi-map-marker"
-                @keydown="checkSendBtn"
-                @change="checkSendBtn"
-                @blur="checkSendBtn"
               >
               </v-text-field>
             </v-col>
@@ -196,7 +184,6 @@
                 color="#0058a3"
                 min-height="50"
                 class="button purchase"
-                :disabled="isDisabledSendBtn"
                 @click="checkout"
               >
                 <template v-slot:default>
@@ -253,7 +240,6 @@ export default {
       name: '',
       mail: '',
       isAssembly: false,
-      isDisabledSendBtn: true,
       payMethod: 2,
       alert: {
         isShow: false,
@@ -547,13 +533,6 @@ export default {
       }
 
       return !text
-    },
-
-    checkSendBtn() {
-      const validateProducts = this.validateProducts()
-      const validateForm = this.validateForm(false)
-
-      this.isDisabledSendBtn = !(validateProducts && validateForm)
     },
 
     checkEmail(value) {

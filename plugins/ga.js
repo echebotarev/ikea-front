@@ -3,6 +3,7 @@ export default ({ app }, inject) => {
    ** Будет работать только на стороне клиента и только когда режим разработки будет "production"
    */
   if (process.env.NODE_ENV !== 'production') {
+    inject('gtag', function () {})
     return
   }
 
