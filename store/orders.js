@@ -3,6 +3,36 @@ import { KZT } from '@/constants'
 import OrdersService from '@/services/OrdersService.js'
 import ApiService from '@/services/ApiService.js'
 
+const getGaTransactionData = (payload) => {
+  console.log('Payload', payload)
+  const getCategory = (breadcrumbs) =>
+    breadcrumbs.reduce(
+      (acc, breadcrumb, index, arr) =>
+        index === 0 || arr.length - 1 === index
+          ? acc
+          : acc === ''
+          ? breadcrumb.name
+          : `${acc}/${breadcrumb.name}`,
+      ''
+    )
+  const getItems = (products) =>
+    products.map((product) => ({
+      id: product.identifier,
+      name: product.name,
+      brand: 'IKEA',
+      category: getCategory(product.breadcrumbs.itemListElement),
+      price: product.computedPrice / KZT,
+      quantity: product.qnt,
+    }))
+
+  return {
+    transaction_id: payload.orderId,
+    currency: 'RUB',
+    value: payload.payload.total / KZT,
+    items: getItems(payload.payload.products),
+  }
+}
+
 export const state = () => ({
   order: {},
   products: [],
@@ -64,7 +94,7 @@ export const actions = {
   },
 
   updateOrder({ commit }, payload) {
-    this.$gtag('event', 'purchase', { event_category: 'events' })
+    this.$gtag('event', 'purchase', getGaTransactionData(payload))
     this.$metrika(
       67230112,
       'reachGoal',
