@@ -3,8 +3,8 @@ import { KZT } from '@/constants'
 import OrdersService from '@/services/OrdersService.js'
 import ApiService from '@/services/ApiService.js'
 
+// eslint-disable-next-line no-unused-vars
 const getGaTransactionData = (payload) => {
-  console.log('Payload', payload)
   const getCategory = (breadcrumbs) =>
     breadcrumbs.reduce(
       (acc, breadcrumb, index, arr) =>
@@ -94,7 +94,7 @@ export const actions = {
   },
 
   updateOrder({ commit }, payload) {
-    this.$gtag('event', 'purchase', getGaTransactionData(payload))
+    this.$gtag('event', 'purchase', { event_category: 'events' })
     this.$metrika(
       67230112,
       'reachGoal',
