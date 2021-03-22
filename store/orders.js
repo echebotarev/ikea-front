@@ -40,6 +40,7 @@ export const actions = {
   addProduct({ commit }, payload) {
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
     this.$metrika(67230112, 'reachGoal', 'addToCart')
+    this.$gtag('event', 'addToCart', { event_category: 'events' })
 
     return OrdersService.addProduct(payload).then((response) => {
       if (response.data) {
