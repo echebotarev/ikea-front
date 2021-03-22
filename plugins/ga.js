@@ -28,7 +28,5 @@ export default ({ app }, inject) => {
   /*
    ** Вызывается каждый раз после смены роута (при инициализации тоже)
    */
-  app.router.afterEach((to, from) => {
-    gtag('event', 'test', { event_category: 'events' })
-  })
+  app.router.afterEach((to, from) => {})
 }
