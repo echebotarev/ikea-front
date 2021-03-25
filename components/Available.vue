@@ -49,7 +49,7 @@
             (availabilityProduct(identifier).StockAvailability
               .RetailItemAvailability.InStockProbabilityCode['@'] === 'LOW' &&
               availabilityProduct(identifier).StockAvailability
-                .RetailItemAvailability.AvailableStock['@'] !== 0)
+                .RetailItemAvailability.AvailableStock['@'] !== '0')
           "
           >Заканчивается</span
         >
