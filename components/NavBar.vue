@@ -2,8 +2,16 @@
   <v-app-bar color="transparent" elevation="0" class="mt-5">
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
+        <span class="logo-image-wrap">
+          <img
+            src="images/doma-logo.png"
+            alt="Сервис доставки товаров IKEA"
+            width="40"
+            height="40"
+          />
+        </span>
         <span class="logo-text ml-3 pl-3">
-          Доставка товаров IKEA <br />
+          Доставка IKEA <br />
           <span class="logo-text-mini">в Актау</span>
         </span>
       </nuxt-link>
@@ -74,6 +82,13 @@ export default {
   background: rgb(0, 88, 163);
   color: #fff;
   text-decoration: none !important;
+}
+.logo-image-wrap {
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
 }
 .logo-text {
   color: #0058a3;
