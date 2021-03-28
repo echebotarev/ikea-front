@@ -4,7 +4,7 @@
       <nuxt-link to="/" class="brand">
         <span class="logo-image-wrap">
           <img
-            src="images/doma-logo.png"
+            src="/images/doma-logo.png"
             alt="Сервис доставки товаров IKEA"
             width="40"
             height="40"
