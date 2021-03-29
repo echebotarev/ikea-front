@@ -6,7 +6,7 @@ export default {
 
     return process.server
       ? 'http://localhost:8080/api/v1'
-      : 'https://doma-doma.kz/api/v1'
+      : 'https://doma-doma.org/api/v1'
   },
 
   get ordersUrl() {
@@ -16,7 +16,7 @@ export default {
 
     return process.server
       ? 'http://localhost:7070'
-      : 'https://orders.doma-doma.kz'
+      : 'https://orders.doma-doma.org'
   },
 
   yandexApiKey: '042a2e05-86cf-4d8f-b283-ca17f9f5ddb5',

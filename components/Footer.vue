@@ -16,7 +16,9 @@
               <a class="tel" href="tel:+79111721308">+7 (911) 172-1308</a>
             </div>
             <br />
-            <a class="url" href="https://doma-doma.kz/">https://doma-doma.kz</a>
+            <a class="url" href="https://doma-doma.org/"
+              >https://doma-doma.org</a
+            >
           </div>
         </div>
       </v-col>

@@ -341,7 +341,7 @@ export default {
         'auth',
         {
           publicId: config.cloudPaymentsPublicKey, // id из личного кабинета
-          description: 'Оплата товаров в doma-doma.kz', // назначение
+          description: 'Оплата товаров в doma-doma.org', // назначение
           amount: this.getDiscountPrice(this.total), // сумма
           currency: 'KZT', // валюта
           invoiceId: this.order._id, // номер заказа  (необязательно)
