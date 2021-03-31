@@ -9,7 +9,7 @@ export default {
       : 'https://doma-doma.org/api/v1'
   },
 
-  geoUrl: 'http://ipwhois.app/json',
+  geoUrl: 'https://ipwhois.app/json',
 
   get ordersUrl() {
     if (process.env.NODE_ENV === 'development') {
