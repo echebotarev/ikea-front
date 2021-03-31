@@ -78,6 +78,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('orders/fetchProducts')
+    this.$store.dispatch('geo/fetchLocation')
   },
   methods: {
     ...mapActions({
