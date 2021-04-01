@@ -17,7 +17,6 @@ export const actions = {
     }
 
     return GeoService.getLocation().then((response) => {
-      console.log('Resp', response)
       response.data && commit('SET_DATA', response.data)
     })
   },

@@ -87,6 +87,13 @@ export default {
     }
 
     await this.$sentry.captureMessage(JSON.stringify(this.geo))
+
+    // проверка на будущее, на тот момент, когда достигнем более 10000 запросов
+    if (this.geo.success === false) {
+      await this.$sentry.captureMessage(
+        `Geo get limited requests: ${JSON.stringify(this.geo)}`
+      )
+    }
   },
   methods: {
     ...mapActions({
