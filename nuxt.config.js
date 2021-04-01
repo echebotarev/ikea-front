@@ -86,6 +86,15 @@ export default {
         disabled: process.env.NODE_ENV === 'development' || false,
       },
     ],
+    [
+      'nuxt-vuex-localstorage',
+      {
+        ...(process.env.NODE_ENV === 'development' && {
+          mode: 'debug',
+        }),
+        localStorage: ['geo'],
+      },
+    ],
   ],
   /*
    ** Axios module configuration

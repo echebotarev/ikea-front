@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import Message from '@/components/Message.vue'
 import NavBar from '@/components/NavBar.vue'
 import Search from '@/components/Search.vue'
@@ -75,10 +75,14 @@ export default {
         }
       },
     },
+
+    ...mapState({
+      geo: (state) => state.geo.data,
+    }),
   },
   mounted() {
     this.$store.dispatch('orders/fetchProducts')
-    this.$store.dispatch('geo/fetchLocation')
+    this.geo === null && this.$store.dispatch('geo/fetchLocation')
   },
   methods: {
     ...mapActions({
