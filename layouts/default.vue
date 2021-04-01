@@ -80,9 +80,13 @@ export default {
       geo: (state) => state.geo.data,
     }),
   },
-  mounted() {
+  async mounted() {
     this.$store.dispatch('orders/fetchProducts')
-    this.geo === null && this.$store.dispatch('geo/fetchLocation')
+    if (this.geo === null) {
+      await this.$store.dispatch('geo/fetchLocation')
+    }
+
+    await this.$sentry.captureMessage(JSON.stringify(this.geo))
   },
   methods: {
     ...mapActions({
