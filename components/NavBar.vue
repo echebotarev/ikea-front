@@ -10,11 +10,12 @@
             height="40"
           />
         </span>
-        <span class="logo-text ml-3 pl-3">
-          Доставка IKEA <br />
-          <span class="logo-text-mini">в Актау</span>
-        </span>
       </nuxt-link>
+
+      <span class="logo-text ml-3 pl-3">
+        Доставка IKEA <br />
+        <span class="logo-text-mini">в {{ shopDisplayName }}</span>
+      </span>
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -63,6 +64,7 @@ export default {
   computed: {
     ...mapGetters({
       countCart: 'orders/getCountCart',
+      shopDisplayName: 'geo/getDisplayName',
     }),
   },
   methods: {
