@@ -15,7 +15,7 @@
         </v-card-subtitle>
 
         <v-card-text class="inline-msg-text pl-2">
-          {{ message.body }}<br />
+          {{ message.body || message.text }}<br />
           <a
             v-if="message.link && message.link !== 'javascript:void(0)'"
             :href="message.link"
