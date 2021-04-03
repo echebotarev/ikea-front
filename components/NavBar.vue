@@ -17,7 +17,9 @@
         <span class="logo-text-mini">в {{ shopDisplayName }}</span>
       </span>
 
-      <ConfirmCity v-if="confirmedCity === false" />
+      <client-only>
+        <ConfirmCity v-if="confirmedCity === false" />
+      </client-only>
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
