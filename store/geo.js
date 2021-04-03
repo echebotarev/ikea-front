@@ -3,6 +3,8 @@ import GeoService from '@/services/GeoService.js'
 export const state = () => ({
   data: null,
   confirmedCity: false,
+  isOpenCities: false,
+
   shopId: '001',
   shopIds: {
     '001': ['Актау', 'Омирзак', 'Мунайши', 'Курык'],
@@ -18,6 +20,7 @@ export const state = () => ({
     // id Нижнего Новгорода
     '002': 437,
   },
+  version: 1,
 })
 
 export const mutations = {
@@ -25,8 +28,8 @@ export const mutations = {
     state.data = payload
   },
 
-  SET_SHOP_ID(state, payload) {
-    state.shopId = payload
+  SET_VALUE(state, { key, value }) {
+    state[key] = value
   },
 }
 
@@ -39,6 +42,27 @@ export const actions = {
     return GeoService.getLocation().then((response) => {
       response.data && commit('SET_DATA', response.data)
     })
+  },
+
+  setConfirmed({ commit }, payload) {
+    commit('SET_VALUE', { key: 'confirmedCity', value: payload })
+  },
+
+  checkCity({ commit, state }) {
+    const { city } = state.data
+    const [shopId] =
+      Object.entries(state.shopIds).find(([key, values]) =>
+        values.includes(city)
+      ) || []
+    console.log('ShopId', shopId)
+
+    if (shopId) {
+      commit('SET_VALUE', { key: 'shopId', value: shopId })
+      commit('SET_VALUE', { key: 'error', value: false })
+    } else {
+      // открываем окно с выбором города
+      commit('SET_VALUE', { key: 'isOpenCities', value: true })
+    }
   },
 }
 
