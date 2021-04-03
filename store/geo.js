@@ -24,6 +24,10 @@ export const mutations = {
   SET_DATA(state, payload) {
     state.data = payload
   },
+
+  SET_SHOP_ID(state, payload) {
+    state.shopId = payload
+  },
 }
 
 export const actions = {
@@ -35,5 +39,15 @@ export const actions = {
     return GeoService.getLocation().then((response) => {
       response.data && commit('SET_DATA', response.data)
     })
+  },
+}
+
+export const getters = {
+  getDisplayName(state) {
+    return state.shopDisplayNames[state.shopId]
+  },
+
+  getIkeaShopId(state) {
+    return state.ikeaShopIds[state.shopId]
   },
 }
