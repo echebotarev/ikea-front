@@ -86,8 +86,6 @@ export default {
       await this.$store.dispatch('geo/fetchLocation')
     }
 
-    await this.$sentry.captureMessage(JSON.stringify(this.geo))
-
     // проверка на будущее, на тот момент, когда достигнем более 10000 запросов
     if (this.geo.success === false) {
       await this.$sentry.captureMessage(
