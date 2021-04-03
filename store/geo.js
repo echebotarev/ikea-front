@@ -2,6 +2,22 @@ import GeoService from '@/services/GeoService.js'
 
 export const state = () => ({
   data: null,
+  confirmedCity: false,
+  shopId: '001',
+  shopIds: {
+    '001': ['Актау', 'Омирзак', 'Мунайши', 'Курык'],
+    '002': ['Саранск'],
+  },
+  shopDisplayNames: {
+    '001': 'Актау',
+    '002': 'Саранск',
+  },
+  ikeaShopIds: {
+    // id Самары
+    '001': 442,
+    // id Нижнего Новгорода
+    '002': 437,
+  },
 })
 
 export const mutations = {

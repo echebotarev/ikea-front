@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="transparent" elevation="0" class="mt-5">
+  <v-app-bar color="transparent" elevation="0" class="header mt-5">
     <v-toolbar-title>
       <nuxt-link to="/" class="brand">
         <span class="logo-image-wrap">
@@ -15,6 +15,13 @@
           <span class="logo-text-mini">в Актау</span>
         </span>
       </nuxt-link>
+
+      <span class="logo-text ml-3 pl-3">
+        Доставка IKEA <br />
+        <span class="logo-text-mini">в {{ shopDisplayName }}</span>
+      </span>
+
+      <ConfirmCity v-if="confirmedCity === false" />
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -48,12 +55,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import Search from '@/components/Search'
+import ConfirmCity from '@/components/Geo/ConfirmCity'
 
 export default {
   name: 'NavBar',
-  components: { Search },
+  components: { Search, ConfirmCity },
   props: {
     links: {
       type: Array,
@@ -63,6 +71,9 @@ export default {
   computed: {
     ...mapGetters({
       countCart: 'orders/getCountCart',
+    }),
+    ...mapState({
+      confirmedCity: (state) => state.geo.confirmedCity,
     }),
   },
   methods: {
@@ -74,6 +85,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.header {
+  z-index: 1;
+}
 .count {
   display: inline-block;
   padding: 3px;
