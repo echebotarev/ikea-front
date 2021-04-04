@@ -221,7 +221,6 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 import config from '@/config'
-import { assemblyPercent } from '@/constants'
 import CartProductCard from '@/components/CartProductCard'
 import CartTotal from '@/components/CartTotal'
 import Price from '@/components/Price'
@@ -235,7 +234,6 @@ export default {
       timer: null,
       errors: [],
       value: '',
-      assemblyPercent,
       phone: '',
       name: '',
       mail: '',
@@ -286,6 +284,7 @@ export default {
 
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
+      assemblyPercent: 'geo/assemblyPercent',
     }),
 
     getValue() {

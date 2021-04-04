@@ -11,7 +11,7 @@ export const state = () => ({
   },
   assemblyPercent: {
     '001': 10,
-    '002': 10,
+    '002': 5,
   },
   currencyCoefficient: {
     '001': 6,
@@ -37,7 +37,7 @@ export const state = () => ({
     // id Нижнего Новгорода
     '002': 437,
   },
-  version: 1,
+  version: 3,
 })
 
 export const mutations = {
