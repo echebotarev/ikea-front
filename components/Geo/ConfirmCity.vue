@@ -14,7 +14,7 @@
         elevation="0"
         width="100px"
         class="button button-black"
-        @click="unConfirm"
+        @click="confirm"
       >
         Нет
       </v-btn>
@@ -37,7 +37,6 @@ export default {
       this.setConfirmed(true)
       this.checkCity()
     },
-    unConfirm() {},
     ...mapActions({
       setConfirmed: 'geo/setConfirmed',
       checkCity: 'geo/checkCity',

@@ -16,7 +16,7 @@
         Доставка IKEA <br />
         <span class="logo-text-mini" @click="toggleDialog(true)">
           в {{ shopDisplayName }}
-          <v-icon class="chevron-icon">mdi-chevron-right</v-icon>
+          <v-icon class="logo-text-icon">mdi-google-maps</v-icon>
         </span>
       </span>
 
@@ -126,8 +126,9 @@ export default {
       border-bottom-color: transparent;
     }
 
-    .chevron-icon {
+    .logo-text-icon {
       position: absolute;
+      color: #023b78;
       bottom: -5px;
     }
   }

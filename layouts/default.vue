@@ -5,10 +5,6 @@
 
       <NavBar :links="links" />
 
-      <client-only>
-        <ChooseCity />
-      </client-only>
-
       <client-only v-if="$vuetify.breakpoint.smAndDown">
         <v-row no-gutters>
           <v-spacer></v-spacer>
@@ -41,6 +37,10 @@
       </v-main>
 
       <Footer />
+
+      <client-only>
+        <ChooseCity />
+      </client-only>
     </v-main>
 
     <portal-target name="modal"></portal-target>

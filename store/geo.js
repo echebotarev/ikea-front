@@ -69,11 +69,9 @@ export const actions = {
       Object.entries(state.shopIds).find(([key, values]) =>
         values.includes(city)
       ) || []
-    console.log('ShopId', shopId)
 
     if (shopId) {
       commit('SET_VALUE', { key: 'shopId', value: shopId })
-      commit('SET_VALUE', { key: 'error', value: false })
     } else {
       // открываем окно с выбором города
       commit('SET_VALUE', { key: 'isOpenCities', value: true })
