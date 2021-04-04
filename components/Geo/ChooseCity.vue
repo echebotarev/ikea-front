@@ -1,17 +1,16 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" scrollable max-width="300px">
+    <v-dialog v-model="isOpen" scrollable max-width="300px">
       <v-card>
         <v-card-title>Ваш город:</v-card-title>
         <v-divider></v-divider>
         <v-card-text class="content">
-          <v-radio-group v-model="shopId" column>
+          <v-radio-group v-model="id" column>
             <v-radio
               v-for="(city, shopId) in cities"
               :key="shopId"
               :label="city"
               :value="shopId"
-              @change="setShopId(shopId)"
             ></v-radio>
           </v-radio-group>
         </v-card-text>
@@ -26,6 +25,22 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'ChooseCity',
   computed: {
+    id: {
+      get() {
+        return this.shopId
+      },
+      set(shopId) {
+        return this.setShopId(shopId)
+      },
+    },
+    isOpen: {
+      get() {
+        return this.dialog
+      },
+      set(value) {
+        return this.toggleDialog(value)
+      },
+    },
     ...mapState({
       dialog: (state) => state.geo.isOpenCities,
       cities: (state) => state.geo.shopDisplayNames,
@@ -35,6 +50,7 @@ export default {
   methods: {
     ...mapActions({
       setShopId: 'geo/setShopId',
+      toggleDialog: 'geo/toggleDialog',
     }),
   },
 }

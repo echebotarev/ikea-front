@@ -52,6 +52,17 @@ export const actions = {
     commit('SET_VALUE', { key: 'shopId', value: payload })
   },
 
+  toggleDialog({ commit, state }, payload = null) {
+    if (payload === null) {
+      return commit('SET_VALUE', {
+        key: 'isOpenCities',
+        value: !state.isOpenCities,
+      })
+    }
+
+    return commit('SET_VALUE', { key: 'isOpenCities', value: payload })
+  },
+
   checkCity({ commit, state }) {
     const { city } = state.data
     const [shopId] =
