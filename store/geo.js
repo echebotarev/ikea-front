@@ -5,6 +5,23 @@ export const state = () => ({
   confirmedCity: false,
   isOpenCities: false,
 
+  percent: {
+    '001': 40,
+    '002': 30,
+  },
+  assemblyPercent: {
+    '001': 10,
+    '002': 10,
+  },
+  currencyCoefficient: {
+    '001': 6,
+    '002': 1,
+  },
+  currencySymbol: {
+    '001': '₸',
+    '002': '₽',
+  },
+
   shopId: '001',
   shopIds: {
     '001': ['Актау', 'Омирзак', 'Мунайши', 'Курык'],
@@ -91,5 +108,21 @@ export const getters = {
 
   getIkeaShopId(state) {
     return state.ikeaShopIds[state.shopId]
+  },
+
+  percent(state) {
+    return state.percent[state.shopId]
+  },
+
+  assemblyPercent(state) {
+    return state.assemblyPercent[state.shopId]
+  },
+
+  coefficient(state) {
+    return state.currencyCoefficient[state.shopId]
+  },
+
+  symbol(state) {
+    return state.currencySymbol[state.shopId]
   },
 }

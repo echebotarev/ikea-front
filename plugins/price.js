@@ -1,31 +1,32 @@
-import { percent, KZT } from '@/constants'
-
 import intl from 'intl'
 import locale from 'intl/locale-data/jsonp/en.js'
 
-const getPrice = (num) => {
-  if (typeof num === 'string') {
-    num = parseInt(num.replace(/ /g, ''))
+export default ({ store }, inject) => {
+  const getPrice = (num) => {
+    const percent = store.getters['geo/percent']
+    const coefficient = store.getters['geo/coefficient']
+
+    if (typeof num === 'string') {
+      num = parseInt(num.replace(/ /g, ''))
+    }
+
+    num = num * coefficient
+
+    return Math.ceil(num + (num * percent) / 100)
   }
 
-  num = num * KZT
+  const getDisplayPrice = (num, options = {}) => {
+    const { isOnlyFormatted } = options
 
-  return Math.ceil(num + (num * percent) / 100)
-}
+    if (isOnlyFormatted !== true) {
+      num = getPrice(num)
+    }
 
-const getDisplayPrice = (num, options = {}) => {
-  const { isOnlyFormatted } = options
-
-  if (isOnlyFormatted !== true) {
-    num = getPrice(num)
+    return global.Intl
+      ? new Intl.NumberFormat().format(num)
+      : new intl.NumberFormat(locale).format(num)
   }
 
-  return global.Intl
-    ? new Intl.NumberFormat().format(num)
-    : new intl.NumberFormat(locale).format(num)
-}
-
-export default (ctx, inject) => {
   inject('getPrice', getPrice)
   inject('getDisplayPrice', getDisplayPrice)
 }
