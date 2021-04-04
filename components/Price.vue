@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { currencySymbol } from '@/constants'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Price',
@@ -33,10 +33,6 @@ export default {
     isOnlyFormatted: {
       type: Boolean,
       default: () => false,
-    },
-    symbol: {
-      type: String,
-      default: () => currencySymbol,
     },
     prepend: {
       type: String,
@@ -54,6 +50,12 @@ export default {
       type: String,
       default: () => null,
     },
+  },
+
+  computed: {
+    ...mapGetters({
+      symbol: 'geo/symbol',
+    }),
   },
 
   methods: {
