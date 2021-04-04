@@ -3,6 +3,7 @@ import { KZT } from '@/constants'
 import OrdersService from '@/services/OrdersService.js'
 import ApiService from '@/services/ApiService.js'
 
+// Когда снова сядешь за эл-ную коммерцию обрати внимание, что KZT больше не используется
 // eslint-disable-next-line no-unused-vars
 const getGaTransactionData = (payload) => {
   const getCategory = (breadcrumbs) =>
