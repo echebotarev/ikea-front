@@ -14,7 +14,10 @@
 
       <span class="logo-text ml-3 pl-3">
         Доставка IKEA <br />
-        <span class="logo-text-mini">в {{ shopDisplayName }}</span>
+        <span class="logo-text-mini" @click="toggleDialog(true)">
+          в {{ shopDisplayName }}
+          <v-icon class="chevron-icon">mdi-chevron-right</v-icon>
+        </span>
       </span>
 
       <client-only>
@@ -78,6 +81,7 @@ export default {
   methods: {
     ...mapActions({
       toggleDrawer: 'page/toggleDrawer',
+      toggleDialog: 'geo/toggleDialog',
     }),
   },
 }
@@ -112,7 +116,20 @@ export default {
   transition: all 0.3s;
 
   .logo-text-mini {
+    position: relative;
+    display: inline-block;
     font-size: 1rem;
+    border-bottom: 1px dashed;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom-color: transparent;
+    }
+
+    .chevron-icon {
+      position: absolute;
+      bottom: -5px;
+    }
   }
 }
 a:hover {
