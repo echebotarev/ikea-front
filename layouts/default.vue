@@ -5,6 +5,10 @@
 
       <NavBar :links="links" />
 
+      <client-only>
+        <ChooseCity />
+      </client-only>
+
       <client-only v-if="$vuetify.breakpoint.smAndDown">
         <v-row no-gutters>
           <v-spacer></v-spacer>
@@ -53,6 +57,7 @@ import Message from '@/components/Message.vue'
 import NavBar from '@/components/NavBar.vue'
 import Search from '@/components/Search.vue'
 import Footer from '@/components/Footer.vue'
+import ChooseCity from '@/components/Geo/ChooseCity'
 import links from '@/assets/data/links'
 
 export default {
@@ -61,6 +66,7 @@ export default {
     NavBar,
     Search,
     Footer,
+    ChooseCity,
   },
   middleware: 'fetchOrders',
   computed: {

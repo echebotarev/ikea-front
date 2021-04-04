@@ -48,6 +48,10 @@ export const actions = {
     commit('SET_VALUE', { key: 'confirmedCity', value: payload })
   },
 
+  setShopId({ commit }, payload) {
+    commit('SET_VALUE', { key: 'shopId', value: payload })
+  },
+
   checkCity({ commit, state }) {
     const { city } = state.data
     const [shopId] =
