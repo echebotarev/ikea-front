@@ -14,6 +14,17 @@
             ></v-radio>
           </v-radio-group>
         </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn
+            elevation="0"
+            width="100px"
+            class="button button-black"
+            @click="() => toggleDialog(false)"
+          >
+            Закрыть
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-dialog>
   </v-row>
