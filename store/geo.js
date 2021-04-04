@@ -65,6 +65,11 @@ export const actions = {
 
   checkCity({ commit, state }) {
     const { city } = state.data
+    this.$gtag('event', 'countCities', {
+      event_category: 'Geo',
+      event_label: city,
+    })
+
     const [shopId] =
       Object.entries(state.shopIds).find(([key, values]) =>
         values.includes(city)
