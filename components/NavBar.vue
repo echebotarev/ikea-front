@@ -89,7 +89,7 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  z-index: 1;
+  z-index: 2;
 }
 .count {
   display: inline-block;
