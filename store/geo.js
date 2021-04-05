@@ -108,13 +108,19 @@ export const actions = {
       )
     }
 
-    recommendationTypes.forEach((type) =>
-      dispatch(
-        'products/fetchRecommendations',
-        { type, isCategory: false },
-        { root: true }
+    recommendationTypes
+      .filter(
+        (type) =>
+          (route.name === 'category-id' && type === 'trending') ||
+          route.name === 'product-id'
       )
-    )
+      .map((type) =>
+        dispatch(
+          'products/fetchRecommendations',
+          { type, isCategory: route.name === 'category-id' },
+          { root: true }
+        )
+      )
   },
 
   toggleDialog({ commit, state }, payload = null) {
