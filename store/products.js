@@ -46,7 +46,8 @@ export const mutations = {
 }
 export const actions = {
   fetchProductsByCategoryId({ commit }, payload) {
-    return ApiService.getProducts(payload).then((response) => {
+    const ikeaShopId = this.app.$cookies.get('ikeaShopId')
+    return ApiService.getProducts(payload, ikeaShopId).then((response) => {
       if (!response.data || response.data.code) {
         return false
       }

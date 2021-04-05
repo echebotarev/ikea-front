@@ -69,6 +69,7 @@ export default {
    */
   modules: [
     'portal-vue/nuxt',
+    'cookie-universal-nuxt',
     [
       '@nuxtjs/sentry',
       {

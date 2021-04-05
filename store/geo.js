@@ -65,8 +65,56 @@ export const actions = {
     commit('SET_VALUE', { key: 'confirmedCity', value: payload })
   },
 
-  setShopId({ commit }, payload) {
+  setShopId({ commit, dispatch, getters, rootState }, payload) {
+    const {
+      app: {
+        $cookies,
+        context: { route },
+      },
+    } = this
+    console.log('Router', route)
+
     commit('SET_VALUE', { key: 'shopId', value: payload })
+    $cookies.set('ikeaShopId', getters.getIkeaShopId, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+    })
+
+    const recommendationTypes = [
+      'same',
+      'similar',
+      'style',
+      'series',
+      'trending',
+    ]
+    if (route.name === 'product-id') {
+      const product = rootState.products.product
+      dispatch(
+        'availability/fetchAvailabilityProduct',
+        {
+          type: product.utag.product_type,
+          identifier: product.identifier,
+        },
+        { root: true }
+      )
+    } else if (route.name === 'category-id') {
+      dispatch(
+        'products/fetchProductsByCategoryId',
+        {
+          id: route.params.id,
+          ...route.query,
+        },
+        { root: true }
+      )
+    }
+
+    recommendationTypes.forEach((type) =>
+      dispatch(
+        'products/fetchRecommendations',
+        { type, isCategory: false },
+        { root: true }
+      )
+    )
   },
 
   toggleDialog({ commit, state }, payload = null) {
@@ -80,24 +128,25 @@ export const actions = {
     return commit('SET_VALUE', { key: 'isOpenCities', value: payload })
   },
 
-  checkCity({ commit, state }) {
+  checkCity({ dispatch, state }) {
     const { city } = state.data
     this.$gtag('event', 'countCities', {
       event_category: 'Geo',
       event_label: city,
     })
 
-    const [shopId] =
+    let [shopId] =
       Object.entries(state.shopIds).find(([key, values]) =>
         values.includes(city)
       ) || []
 
-    if (shopId) {
-      commit('SET_VALUE', { key: 'shopId', value: shopId })
-    } else {
-      // открываем окно с выбором города
-      commit('SET_VALUE', { key: 'isOpenCities', value: true })
-    }
+    shopId = shopId || state.shopId
+
+    console.log('Shopid', shopId)
+
+    dispatch('setShopId', shopId)
+    // открываем окно с выбором города
+    dispatch('toggleDialog', true)
   },
 }
 

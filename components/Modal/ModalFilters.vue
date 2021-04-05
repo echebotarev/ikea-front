@@ -198,7 +198,7 @@ export default {
       // проверяем есть ли установленные фильтры
       // если вызвать $router.replace, когда query уже null, вылетает ошибка
       if (Object.keys(this.$router.currentRoute.query).length) {
-        await this.$router.replace({ query: null })
+        await this.$router.replace({ query: {} })
       }
     },
 

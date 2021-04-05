@@ -3,7 +3,7 @@ import config from '@/config'
 
 const apiClient = axios.create({
   baseURL: config.apiUrl,
-  withCredentials: false,
+  withCredentials: true,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -21,11 +21,14 @@ export default {
     return apiClient.get(`/category/${id}`)
   },
 
-  getProducts(payload) {
+  getProducts(payload, ikeaShopId) {
     const { id } = payload
     const queries = encodeURI(getQueries(payload))
 
-    return apiClient.get(`/products/${id}?${queries}`)
+    return apiClient.get(`/products/${id}?${queries}`, {
+      // Когда запрос делается на сервере, cookie пусты
+      headers: { Cookie: `ikeaShopId=${ikeaShopId};` },
+    })
   },
 
   getProductsByIds(ids = []) {
@@ -44,10 +47,8 @@ export default {
     return apiClient.get(`/search/products/?q=${value}`)
   },
 
-  getAvailabilityProduct(payload) {
-    return apiClient.get(
-      `/available?type=${payload.type}&id=${payload.identifier}`
-    )
+  getAvailabilityProduct({ type, identifier }) {
+    return apiClient.get(`/available?type=${type}&id=${identifier}`)
   },
 
   getRecommendations({ id, categoryList = [], type = 'similar' }) {
