@@ -114,6 +114,7 @@ export default {
   float: right;
   border-left: thin solid #0058a3;
   transition: all 0.3s;
+  font-size: 1.15rem;
 
   .logo-text-mini {
     position: relative;

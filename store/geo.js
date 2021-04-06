@@ -72,7 +72,6 @@ export const actions = {
         context: { route },
       },
     } = this
-    console.log('Router', route)
 
     commit('SET_VALUE', { key: 'shopId', value: payload })
     $cookies.set('ikeaShopId', getters.getIkeaShopId, {

@@ -94,7 +94,7 @@ export const actions = {
     })
   },
 
-  updateOrder({ commit }, payload) {
+  updateOrder({ commit, rootState, rootGetters }, payload) {
     this.$gtag('event', 'purchase', { event_category: 'events' })
     this.$metrika(
       67230112,
@@ -107,7 +107,14 @@ export const actions = {
       paymentMethod: payload.payload.payMethod,
     })
 
-    return OrdersService.updateOrder(payload).then((response) => {
+    const shopId = rootState.geo.shopId
+    const shopDisplayName = rootGetters['geo/getDisplayName']
+
+    return OrdersService.updateOrder(
+      Object.assign({}, payload, {
+        payload: Object.assign(payload.payload, { shopId, shopDisplayName }),
+      })
+    ).then((response) => {
       const order = response.data
 
       if (order && order.checkout) {
