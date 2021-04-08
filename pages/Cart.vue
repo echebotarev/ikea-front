@@ -9,8 +9,12 @@
           text="Сумма:"
           :total="getDiscountPrice(sum)"
           :sale="
-            sale &&
-            Object.assign({}, sale, { absoluteValue: getDiscountValue(sum) })
+            getDiscountValue(sum) &&
+            Object.assign(
+              {},
+              { value: getDiscountSaleValue(sum) },
+              { absoluteValue: getDiscountValue(sum) }
+            )
           "
         />
 
@@ -158,8 +162,12 @@
           text="Итого:"
           :total="getDiscountPrice(total)"
           :sale="
-            sale &&
-            Object.assign({}, sale, { absoluteValue: getDiscountValue(total) })
+            getDiscountValue(sum) &&
+            Object.assign(
+              {},
+              { value: getDiscountSaleValue(sum) },
+              { absoluteValue: getDiscountValue(total) }
+            )
           "
         />
 
@@ -567,6 +575,7 @@ export default {
       return 0
     },
 
+    // стоимость со скидкой
     getDiscountPrice(price) {
       const saleForVolume = this.getSaleValueForVolume(price)
       const sale = saleForVolume + (this.sale ? this.sale.value : 0)
@@ -574,18 +583,20 @@ export default {
       return sale ? Math.ceil(price - (price * sale) / 100) : price
     },
 
-    getDiscountValue(price) {
+    // процентное значение скидки
+    getDiscountSaleValue(price) {
+      console.log('Price', price)
       const saleForVolume = this.getSaleValueForVolume(price)
-      // сумма скидки за объем
-      const saleValueForVolume = saleForVolume
-        ? Math.floor(price - (price * (100 - saleForVolume)) / 100)
-        : 0
-      // сумма скидки по акцие
-      const saleValue = this.sale
-        ? Math.floor(price - (price * (100 - this.sale.value)) / 100)
-        : 0
+      const sale = this.sale ? this.sale.value : 0
 
-      return saleValueForVolume + saleValue
+      console.log('Sale', saleForVolume, sale)
+      return saleForVolume + sale
+    },
+
+    // абсолютное значение скидки в валюте
+    getDiscountValue(price) {
+      const sale = this.getDiscountSaleValue(price)
+      return sale ? Math.floor(price - (price * (100 - sale)) / 100) : 0
     },
 
     ...mapActions({
