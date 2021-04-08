@@ -3,7 +3,7 @@
     <div v-if="saleForVolume" class="cart-total sale-for-volume mb-3 px-5 py-3">
       <v-row>
         <v-col>
-          <div>При заказе:</div>
+          <div>Скидка при заказе:</div>
           <div v-for="(item, i) in saleForVolume" :key="i" class="text-nowrap">
             <span>
               от

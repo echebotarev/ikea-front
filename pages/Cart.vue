@@ -285,6 +285,7 @@ export default {
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
       assemblyPercent: 'variables/assemblyPercent',
+      saleForVolume: 'variables/saleForVolume',
     }),
 
     getValue() {
@@ -554,6 +555,15 @@ export default {
     },
 
     getDiscountPrice(price) {
+      if (this.saleForVolume) {
+        const { sale } =
+          this.saleForVolume.find(
+            (item) => price > item.down && (item.up === null || price < item.up)
+          ) || {}
+
+        price = sale ? Math.ceil(price - (price * sale) / 100) : price
+      }
+
       return this.sale
         ? Math.ceil(price - (price * this.sale.value) / 100)
         : price
