@@ -363,7 +363,7 @@ export default {
             email: this.mail,
             phone: this.phone,
             total: this.getDiscountPrice(this.total),
-            sale: this.sale,
+            sale: { value: this.getDiscountSaleValue(this.total) },
           },
         },
         {
@@ -414,7 +414,7 @@ export default {
           payMethod: 'offline',
           products: this.getLetterProducts(),
           deliveryTime: this.deliveryTime,
-          sale: this.sale,
+          sale: { value: this.getDiscountSaleValue(this.total) },
         },
       }).then(() => {
         this.alert.success = !this.products.length
@@ -551,13 +551,12 @@ export default {
     getLetterProducts() {
       return this.products.map((product) => {
         return Object.assign({}, product, {
-          computedPrice: this.getDiscountPrice(
-            this.$getPrice(product.price.price.mainPriceProps.price.integer)
+          computedPrice: this.$getPrice(
+            product.price.price.mainPriceProps.price.integer
           ),
-          computedPriceTotal: this.getDiscountPrice(
+          computedPriceTotal:
             this.$getPrice(product.price.price.mainPriceProps.price.integer) *
-              product.qnt
-          ),
+            product.qnt,
         })
       })
     },
