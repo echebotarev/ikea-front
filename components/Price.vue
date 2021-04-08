@@ -54,7 +54,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      symbol: 'geo/symbol',
+      symbol: 'variables/symbol',
     }),
   },
 

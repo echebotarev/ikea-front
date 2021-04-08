@@ -5,33 +5,6 @@ export const state = () => ({
   confirmedCity: false,
   isOpenCities: false,
 
-  percent: {
-    '001': 40,
-    '002': 10,
-  },
-  saleForVolume: {
-    '001': null,
-    '002': [
-      {
-        down: 50000,
-        up: 100000,
-        sale: 2,
-      },
-      {
-        down: 100000,
-        up: Infinity,
-        sale: 2,
-      },
-    ],
-  },
-  assemblyPercent: {
-    '001': 10,
-    '002': 9,
-  },
-  currencyCoefficient: {
-    '001': 6,
-    '002': 1,
-  },
   currencySymbol: {
     '001': '₸',
     '002': '₽',
@@ -162,8 +135,6 @@ export const actions = {
 
     shopId = shopId || state.shopId
 
-    console.log('Shopid', shopId)
-
     dispatch('setShopId', shopId)
     // открываем окно с выбором города
     dispatch('toggleDialog', true)
@@ -177,21 +148,5 @@ export const getters = {
 
   getIkeaShopId(state) {
     return state.ikeaShopIds[state.shopId]
-  },
-
-  percent(state) {
-    return state.percent[state.shopId]
-  },
-
-  assemblyPercent(state) {
-    return state.assemblyPercent[state.shopId]
-  },
-
-  coefficient(state) {
-    return state.currencyCoefficient[state.shopId]
-  },
-
-  symbol(state) {
-    return state.currencySymbol[state.shopId]
   },
 }

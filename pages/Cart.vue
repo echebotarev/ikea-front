@@ -284,7 +284,7 @@ export default {
 
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
-      assemblyPercent: 'geo/assemblyPercent',
+      assemblyPercent: 'variables/assemblyPercent',
     }),
 
     getValue() {

@@ -44,6 +44,11 @@ export default {
       default: () => null,
     },
   },
+  computed: {
+    ...mapGetters({
+      saleForVolume: 'variables/saleForVolume',
+    }),
+  },
 }
 </script>
 

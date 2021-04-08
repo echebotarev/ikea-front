@@ -3,8 +3,8 @@ import locale from 'intl/locale-data/jsonp/en.js'
 
 export default ({ store }, inject) => {
   const getPrice = (num) => {
-    const percent = store.getters['geo/percent']
-    const coefficient = store.getters['geo/coefficient']
+    const percent = store.getters['variables/percent']
+    const coefficient = store.getters['variables/coefficient']
 
     if (typeof num === 'string') {
       num = parseInt(num.replace(/ /g, ''))
