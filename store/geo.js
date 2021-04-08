@@ -7,11 +7,26 @@ export const state = () => ({
 
   percent: {
     '001': 40,
-    '002': 30,
+    '002': 10,
+  },
+  saleForVolume: {
+    '001': null,
+    '002': [
+      {
+        down: 50000,
+        up: 100000,
+        sale: 2,
+      },
+      {
+        down: 100000,
+        up: Infinity,
+        sale: 2,
+      },
+    ],
   },
   assemblyPercent: {
     '001': 10,
-    '002': 5,
+    '002': 9,
   },
   currencyCoefficient: {
     '001': 6,
