@@ -584,11 +584,9 @@ export default {
 
     // процентное значение скидки
     getDiscountSaleValue(price) {
-      console.log('Price', price)
       const saleForVolume = this.getSaleValueForVolume(price)
       const sale = this.sale ? this.sale.value : 0
 
-      console.log('Sale', saleForVolume, sale)
       return saleForVolume + sale
     },
 
