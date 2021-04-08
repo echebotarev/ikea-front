@@ -554,25 +554,38 @@ export default {
       })
     },
 
-    getDiscountPrice(price) {
+    getSaleValueForVolume(price) {
       if (this.saleForVolume) {
         const { sale } =
           this.saleForVolume.find(
             (item) => price > item.down && (item.up === null || price < item.up)
           ) || {}
 
-        price = sale ? Math.ceil(price - (price * sale) / 100) : price
+        return sale || 0
       }
 
-      return this.sale
-        ? Math.ceil(price - (price * this.sale.value) / 100)
-        : price
+      return 0
+    },
+
+    getDiscountPrice(price) {
+      const saleForVolume = this.getSaleValueForVolume(price)
+      const sale = saleForVolume + (this.sale ? this.sale.value : 0)
+
+      return sale ? Math.ceil(price - (price * sale) / 100) : price
     },
 
     getDiscountValue(price) {
-      return this.sale
+      const saleForVolume = this.getSaleValueForVolume(price)
+      // сумма скидки за объем
+      const saleValueForVolume = saleForVolume
+        ? Math.floor(price - (price * (100 - saleForVolume)) / 100)
+        : 0
+      // сумма скидки по акцие
+      const saleValue = this.sale
         ? Math.floor(price - (price * (100 - this.sale.value)) / 100)
         : 0
+
+      return saleValueForVolume + saleValue
     },
 
     ...mapActions({
