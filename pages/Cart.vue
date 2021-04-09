@@ -140,7 +140,7 @@
                       <span
                         style="display: block; margin-top: -20px"
                         class="text-caption pl-9"
-                        >Стоимость сборки - {{ assemblyPercent }}%</span
+                        >Стоимость сборки - {{ assembly.percent }}%</span
                       >
                     </v-col>
 
@@ -292,7 +292,7 @@ export default {
 
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
-      assemblyPercent: 'variables/assemblyPercent',
+      assembly: 'variables/assembly',
       saleForVolume: 'variables/saleForVolume',
     }),
 
@@ -302,7 +302,7 @@ export default {
 
     getAssemblyValue() {
       if (this.isAssembly) {
-        return Math.ceil((this.assemblySum * this.assemblyPercent) / 100)
+        return Math.ceil((this.assemblySum * this.assembly.percent) / 100)
       }
 
       return 0

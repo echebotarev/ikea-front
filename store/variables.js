@@ -22,9 +22,15 @@ export const state = () => ({
       },
     ],
   },
-  assemblyPercent: {
-    '001': 10,
-    '002': 9,
+  assembly: {
+    '001': {
+      percent: 10,
+      down: 0,
+    },
+    '002': {
+      percent: 9,
+      down: 500,
+    },
   },
   currencyCoefficient: {
     '001': 6,
@@ -61,8 +67,8 @@ export const getters = {
     return state.saleForVolume[rootState.geo.shopId]
   },
 
-  assemblyPercent(state, getters, rootState) {
-    return state.assemblyPercent[rootState.geo.shopId]
+  assembly(state, getters, rootState) {
+    return state.assembly[rootState.geo.shopId]
   },
 
   coefficient(state, getters, rootState) {

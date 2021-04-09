@@ -70,8 +70,8 @@ export default {
       default: () => '',
     },
     sale: {
-      type: Object,
-      default: () => null,
+      type: [Object, Number],
+      default: () => 0,
     },
   },
   computed: {
