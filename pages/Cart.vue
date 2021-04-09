@@ -311,7 +311,10 @@ export default {
 
     getAssemblyValue() {
       if (this.isAssembly) {
-        return Math.ceil((this.assemblySum * this.assembly.percent) / 100)
+        const value = Math.ceil(
+          (this.assemblySum * this.assembly.percent) / 100
+        )
+        return value < this.assembly.lowPrice ? this.assembly.lowPrice : value
       }
 
       return 0
