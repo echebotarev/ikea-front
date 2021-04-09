@@ -142,6 +142,15 @@
                         class="text-caption pl-9"
                         >Стоимость сборки - {{ assembly.percent }}%</span
                       >
+                      <span v-if="assembly.lowPrice" class="text-caption pl-9">
+                        Но не менее
+                        <Price
+                          :price="assembly.lowPrice"
+                          :without-label="true"
+                          :is-only-formatted="true"
+                          class-name="f-size-4"
+                        />
+                      </span>
                     </v-col>
 
                     <v-col class="text-right">

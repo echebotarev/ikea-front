@@ -25,11 +25,11 @@ export const state = () => ({
   assembly: {
     '001': {
       percent: 10,
-      down: 0,
+      lowPrice: 0,
     },
     '002': {
       percent: 9,
-      down: 500,
+      lowPrice: 500,
     },
   },
   currencyCoefficient: {
