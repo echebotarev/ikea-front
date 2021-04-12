@@ -12,7 +12,7 @@ const apiClient = axios.create({
 export default {
   getLocation() {
     return apiClient.get(
-      `/?objects=country,city,message,success,latitude,longitude&lang=ru`
+      `/?key=UNi2JUR3ENbaflG2&objects=country,city,message,success,latitude,longitude&lang=ru`
     )
   },
 }
