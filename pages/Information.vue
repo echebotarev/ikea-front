@@ -4,8 +4,8 @@
       <h1>Doma-Doma – сервис по доставке товаров IKEA</h1>
     </v-col>
 
-    <v-col cols="6">
-      <v-card>
+    <v-col :cols="$vuetify.breakpoint.mobile ? 12 : 6">
+      <v-card class="pb-4">
         <v-card-title>Актау:</v-card-title>
         <v-card-subtitle>Услуги предоставляет:</v-card-subtitle>
         <v-card-text>
@@ -39,6 +39,8 @@
             >
           </p>
         </v-card-text>
+        <v-card-subtitle>Адрес:</v-card-subtitle>
+        <v-card-text> Казахстан, г. Актау, 10 микрорайон, 2 дом </v-card-text>
         <v-card-subtitle>Доставка:</v-card-subtitle>
         <v-card-text>
           В стоимость товаров включена доставка прямо до квартиры <br />
@@ -53,6 +55,23 @@
             Условия возврата
           </v-btn>
         </v-card-actions>
+      </v-card>
+    </v-col>
+
+    <v-col :cols="$vuetify.breakpoint.mobile ? 12 : 6">
+      <v-card class="pb-4">
+        <v-card-title>Саранск:</v-card-title>
+        <v-card-subtitle>Услуги предоставляет:</v-card-subtitle>
+        <v-card-text>
+          <p class="mb-2">ProIKEA</p>
+          <p class="mb-2">
+            Если у вас остались вопросы, или нужна помощь, звоните: <br />
+            <a href="tel:+79179922663">+7 (917) 992 2663</a><br />
+            <a href="tel:+78342342233">34 22 33</a>
+          </p>
+        </v-card-text>
+        <v-card-subtitle>Адрес:</v-card-subtitle>
+        <v-card-text> Россия, г.Саранск. ул.Большевистская 85 </v-card-text>
       </v-card>
     </v-col>
 
