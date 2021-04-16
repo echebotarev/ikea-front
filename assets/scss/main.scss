@@ -1,211 +1,248 @@
 .modal-substrate {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.15);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .v-main__wrap > .container {
-	max-width: calc(100% - 40px) !important;
+  max-width: calc(100% - 40px) !important;
 }
 
 .v-application {
-	a {
-		color: #111;
-		text-decoration: none;
+  a {
+    color: #111;
+    text-decoration: none;
 
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-	nav a {
-		font-weight: 700;
-	}
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  nav a {
+    font-weight: 700;
+  }
 
-	.product-identifier {
-		background: #111;
-		padding: 0.25rem 0.75rem;
-		font-size: 12px;
-		font-weight: 700;
-		color: #fff;
-	}
+  .product-identifier {
+    background: #111;
+    padding: 0.25rem 0.75rem;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
 
-	.product-variations, .product-information {
-		a:hover {
-			text-decoration: none;
+  .product-variations,
+  .product-information {
+    a:hover {
+      text-decoration: none;
 
-			.v-banner__text {
-				text-decoration: underline;
-			}
-		}
-	}
+      .v-banner__text {
+        text-decoration: underline;
+      }
+    }
+  }
 
-	.v-banner__wrapper {
-		border-top: thin solid rgba(0, 0, 0, 0.12);
-		border-bottom: 0 !important;
-		font-size: 0.975rem;
-		padding: 20px 0 !important;
+  .v-banner__wrapper {
+    border-top: thin solid rgba(0, 0, 0, 0.12);
+    border-bottom: 0 !important;
+    font-size: 0.975rem;
+    padding: 20px 0 !important;
 
-		.v-banner__text {
-			font-weight: 900;
-		}
-	}
+    .v-banner__text {
+      font-weight: 900;
+    }
+  }
 
-	.modal {
-		h2 {
-			margin-bottom: 1.875rem;
-		}
+  .modal {
+    h2 {
+      margin-bottom: 1.875rem;
+    }
 
-		.product-details-content {
-			overflow: hidden;
-			height: auto;
-			transition: all 0.2s;
-			margin-bottom: 1.875rem;
+    .product-details-content {
+      overflow: hidden;
+      height: auto;
+      transition: all 0.2s;
+      margin-bottom: 1.875rem;
 
-			p {
-				font-size: 14px;
-				color: #484848;
-			}
-		}
+      p {
+        font-size: 14px;
+        color: #484848;
+      }
+    }
 
-		.v-expansion-panel-header {
-			font-size: 14px;
-			font-weight: 800;
-			border-top: thin solid rgba(0, 0, 0, 0.12);
-		}
+    .v-expansion-panel-header {
+      font-size: 14px;
+      font-weight: 800;
+      border-top: thin solid rgba(0, 0, 0, 0.12);
+    }
 
-		.v-expansion-panel-content__wrap {
-			font-size: 14px;
-			color: #484848;
-		}
-	}
+    .v-expansion-panel-content__wrap {
+      font-size: 14px;
+      color: #484848;
+    }
+  }
 
-	.card-category a {
-		font-size: 14px;
-		color: #484848;
-	}
+  .card-category a {
+    font-size: 14px;
+    color: #484848;
+  }
 
-	.products {
-		a:hover {
-			text-decoration: none;
-		}
-	}
+  .products {
+    a:hover {
+      text-decoration: none;
+    }
+  }
 
-	.v-pagination button {
-		box-shadow: none;
-	}
+  .v-pagination button {
+    box-shadow: none;
+  }
 
-	.product-new,
-	.family-text {
-		font-size: 0.875rem;
-		font-weight: 600;
-	}
+  .product-new,
+  .family-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
 
-	.product-new {
-		color: #ca5008;
-	}
-
+  .product-new {
+    color: #ca5008;
+  }
 }
 .text-weight-500 {
-	font-weight: 500 !important;
+  font-weight: 500 !important;
 }
 .text-weight-600 {
-	font-weight: 600 !important;
+  font-weight: 600 !important;
 }
 .text-nowrap {
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .sm-and-down {
-	.v-input__prepend-inner {
-		margin-top: 9px !important;
-	}
+  .v-input__prepend-inner {
+    margin-top: 9px !important;
+  }
 
-	.products > div:nth-child(odd) {
-		border-right: 1px solid #f5f5f5;
-	}
+  .products > div:nth-child(odd) {
+    border-right: 1px solid #f5f5f5;
+  }
 
-	.products > div {
-		border-top: 1px solid #f5f5f5;
-	}
+  .products > div {
+    border-top: 1px solid #f5f5f5;
+  }
 }
 
 .v-slide-group__prev.v-slide-group__prev--disabled {
-	display: none !important;
+  display: none !important;
 }
 .theme--light.v-tabs .v-tab:hover::before {
-	opacity: 0 !important;
+  opacity: 0 !important;
 }
 
 .button {
-	color: #fff !important;
-	max-width: 100%;
+  color: #fff !important;
+  max-width: 100%;
 
-	span {
-		max-width: 100%;
-		white-space: normal;
-	}
+  span {
+    max-width: 100%;
+    white-space: normal;
+  }
 }
 
 .button-black {
-	background: #1d1d1d !important;
-	color: #fff !important;
-	font-size: 0.6rem !important;
+  background: #1d1d1d !important;
+  color: #fff !important;
+  font-size: 0.6rem !important;
 }
 
 .custom-loader {
-	animation: loader 1s infinite;
-	display: flex;
+  animation: loader 1s infinite;
+  display: flex;
 }
 @-moz-keyframes loader {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @-webkit-keyframes loader {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @-o-keyframes loader {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes loader {
-	from {
-		transform: rotate(0);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .v-skeleton-loader__image.v-skeleton-loader__bone {
-	height: 60%;
+  height: 60%;
 }
 
 main.v-main main.v-main {
-	min-height: 65vh;
+  min-height: 65vh;
 }
 
 .product-recommendations {
-	margin-top: 2.5rem;
+  margin-top: 2.5rem;
 }
 
 .family-text {
-	color: #0077c1;
+  color: #0077c1;
 }
 
 .f-size-4 {
-	font-size: 16px !important;
+  font-size: 16px !important;
+}
+
+.footer {
+  .vcard {
+    font-size: 14px;
+  }
+
+  .social-icons {
+    span {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 10px 5px 0 0;
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: #4f5a6b;
+        background: url('/images/social.png') -4px -4px no-repeat;
+
+        &.whatsapp {
+          background-position: -54px -104px;
+        }
+
+        &.telegram {
+          background-position: -153px -104px;
+        }
+
+        &.instagram {
+          background-position: -154px -4px;
+        }
+      }
+    }
+  }
 }
