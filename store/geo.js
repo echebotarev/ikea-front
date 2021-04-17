@@ -61,6 +61,7 @@ export const actions = {
       },
     } = this
 
+    window.SHOP_ID = payload
     commit('SET_VALUE', { key: 'shopId', value: payload })
     $cookies.set('ikeaShopId', getters.getIkeaShopId, {
       path: '/',
