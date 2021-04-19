@@ -68,10 +68,15 @@ export const actions = {
     })
   },
 
-  addProduct({ commit }, payload) {
+  addProduct({ commit, rootState }, payload) {
+    const shopId = rootState.geo.shopId
+
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
     this.$metrika(67230112, 'reachGoal', 'addToCart')
-    this.$gtag('event', 'addToCart', { event_category: 'events' })
+    this.$gtag('event', 'addToCart', {
+      event_category: 'events',
+      event_label: shopId,
+    })
 
     return OrdersService.addProduct(payload).then((response) => {
       if (response.data) {
@@ -95,7 +100,12 @@ export const actions = {
   },
 
   updateOrder({ commit, rootState, rootGetters }, payload) {
-    this.$gtag('event', 'purchase', { event_category: 'events' })
+    const shopId = rootState.geo.shopId
+
+    this.$gtag('event', 'purchase', {
+      event_category: 'events',
+      event_label: shopId,
+    })
     this.$metrika(
       67230112,
       'reachGoal',
@@ -107,7 +117,6 @@ export const actions = {
       paymentMethod: payload.payload.payMethod,
     })
 
-    const shopId = rootState.geo.shopId
     const shopDisplayName = rootGetters['geo/getDisplayName']
 
     return OrdersService.updateOrder(
