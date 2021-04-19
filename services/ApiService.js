@@ -25,10 +25,18 @@ export default {
     const { id } = payload
     const queries = encodeURI(getQueries(payload))
 
-    return apiClient.get(`/products/${id}?${queries}`, {
-      // Когда запрос делается на сервере, cookie пусты
-      headers: { Cookie: `ikeaShopId=${ikeaShopId};` },
-    })
+    return apiClient.get(
+      `/products/${id}?${queries}`,
+      Object.assign(
+        {},
+        process.server
+          ? {
+              // Когда запрос делается на сервере, cookie пусты
+              headers: { Cookie: `ikeaShopId=${ikeaShopId};` },
+            }
+          : {}
+      )
+    )
   },
 
   getProductsByIds(ids = []) {

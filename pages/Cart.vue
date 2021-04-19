@@ -1,5 +1,5 @@
 <template>
-  <div class="cart" ref="cart">
+  <div ref="cart" class="cart">
     <h1>Корзина</h1>
     <client-only>
       <div class="mb-16">
