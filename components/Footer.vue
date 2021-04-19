@@ -2,8 +2,10 @@
   <v-footer class="footer py-10 px-10 mt-10">
     <v-row class="footer-line">
       <v-col cols="6">
-        <FooterContactAktau v-if="shopId === '001'" />
-        <FooterContactSaransk v-if="shopId === '002'" />
+        <client-only>
+          <FooterContactAktau v-if="shopId === '001'" />
+          <FooterContactSaransk v-if="shopId === '002'" />
+        </client-only>
       </v-col>
 
       <v-col class="bottom-nav" cols="6">
