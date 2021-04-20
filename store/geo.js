@@ -67,6 +67,10 @@ export const actions = {
       path: '/',
       maxAge: 60 * 60 * 24 * 365,
     })
+    $cookies.set('domaDomaShopId', payload, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+    })
 
     const recommendationTypes = [
       'same',
@@ -85,6 +89,9 @@ export const actions = {
         },
         { root: true }
       )
+
+      // перезапрашиваем график поставок
+      dispatch('page/getDeliveryData', null, { root: true })
     } else if (route.name === 'category-id') {
       dispatch(
         'products/fetchProductsByCategoryId',
