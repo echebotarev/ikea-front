@@ -149,6 +149,9 @@ export default {
     font-weight: 500;
     text-align: center;
     margin: 0 5px;
+    width: 20%;
+    max-width: 60px;
+
     .format {
       font-weight: 300;
       font-size: 14px;
@@ -164,7 +167,7 @@ export default {
     padding: 0 5px;
     border-radius: 5px;
     display: inline-block;
-    width: 60px;
+    width: 100%;
     height: 40px;
     line-height: 40px;
     text-align: center;
