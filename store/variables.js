@@ -11,12 +11,12 @@ export const state = () => ({
     '001': null,
     '002': [
       {
-        down: 50000,
-        up: 100000,
+        down: 30000,
+        up: 50000,
         sale: 2,
       },
       {
-        down: 100000,
+        down: 50000,
         up: null,
         sale: 4,
       },
@@ -25,7 +25,7 @@ export const state = () => ({
   assembly: {
     '001': {
       percent: 10,
-      lowPrice: 0,
+      lowPrice: 5000,
     },
     '002': {
       percent: 9,
