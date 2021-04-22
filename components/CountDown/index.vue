@@ -54,4 +54,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.count-down {
+  .v-card__title {
+    word-break: normal;
+  }
+}
+</style>

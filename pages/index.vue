@@ -1,6 +1,11 @@
 <template>
   <v-main>
-    <CountDown />
+    <v-row no-gutters class="my-5">
+      <v-col cols="6"></v-col>
+      <v-col cols="6">
+        <CountDown />
+      </v-col>
+    </v-row>
 
     <h1>{{ category.title }}</h1>
 
