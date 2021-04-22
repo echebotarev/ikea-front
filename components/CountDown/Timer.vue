@@ -139,8 +139,6 @@ export default {
 <style scoped lang="scss">
 .timer {
   font-size: 20px;
-  text-align: center;
-  margin-top: 50px;
 
   .day,
   .hour,
@@ -167,6 +165,8 @@ export default {
     border-radius: 5px;
     display: inline-block;
     width: 60px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
   }
   .message {

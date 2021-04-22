@@ -1,11 +1,13 @@
 <template>
   <v-card v-if="delivery.lastOrderDayRawData" class="count-down">
     <v-card-title>До окончания приема заказов осталось:</v-card-title>
-    <Timer
-      :start="Date.now()"
-      :end="new Date(delivery.lastOrderDayRawData).getTime()"
-    />
-    <v-card-subtitle class="font-weight-bold">
+    <v-card-text>
+      <Timer
+        :start="Date.now()"
+        :end="new Date(delivery.lastOrderDayRawData).getTime()"
+      />
+    </v-card-text>
+    <v-card-subtitle class="font-weight-bold pt-0">
       Ближайшая поездка:
     </v-card-subtitle>
     <v-card-text>
