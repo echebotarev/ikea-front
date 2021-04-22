@@ -96,6 +96,15 @@ export default {
         localStorage: ['geo'],
       },
     ],
+    [
+      '@nuxtjs/dayjs',
+      {
+        locales: ['ru'],
+        defaultLocale: 'ru',
+        defaultTimeZone: 'Asia/Aqtau',
+        plugins: ['utc', 'timezone'],
+      },
+    ],
   ],
   /*
    ** Axios module configuration

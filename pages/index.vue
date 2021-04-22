@@ -1,5 +1,7 @@
 <template>
   <v-main>
+    <CountDown />
+
     <h1>{{ category.title }}</h1>
 
     <v-row v-if="$vuetify.breakpoint.smAndUp">
@@ -24,14 +26,19 @@
 
 <script>
 import { mapState } from 'vuex'
+
+import CountDown from '@/components/CountDown/index'
+
 import MainCategoryCard from '@/components/MainCategoryCard'
 import MainCategoryMobileCard from '@/components/MainCategoryMobileCard'
 
 export default {
   components: {
+    CountDown,
     MainCategoryCard,
     MainCategoryMobileCard,
   },
+
   async fetch({ store, error }) {
     try {
       await store.dispatch('category/fetchCategories')

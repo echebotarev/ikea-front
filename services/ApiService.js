@@ -69,8 +69,19 @@ export default {
     return apiClient.get(`/suggestion/${productId}`)
   },
 
-  getDeliveryData() {
-    return apiClient.get(`/time-to-delivery`)
+  getDeliveryData(domaDomaShopId) {
+    return apiClient.get(
+      `/time-to-delivery`,
+      Object.assign(
+        {},
+        process.server
+          ? {
+              // Когда запрос делается на сервере, cookie пусты
+              headers: { Cookie: `domaDomaShopId=${domaDomaShopId};` },
+            }
+          : {}
+      )
+    )
   },
 
   getSale({ campaign }) {

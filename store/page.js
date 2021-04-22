@@ -71,7 +71,8 @@ export const actions = {
   },
 
   getDeliveryData({ commit }) {
-    return ApiService.getDeliveryData().then((response) => {
+    const domaDomaShopId = this.app.$cookies.get('domaDomaShopId')
+    return ApiService.getDeliveryData(domaDomaShopId).then((response) => {
       commit('SET_DELIVERY_DATA', response.data)
     })
   },

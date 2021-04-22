@@ -19,13 +19,17 @@ export const state = () => ({
     '001': 'Актау',
     '002': 'Саранск',
   },
+  ikeaShopDisplayNames: {
+    '001': 'Самара',
+    '002': 'Нижний Новгород',
+  },
   ikeaShopIds: {
     // id Самары
     '001': 442,
     // id Нижнего Новгорода
     '002': 437,
   },
-  version: 3,
+  version: 4,
 })
 
 export const mutations = {
@@ -79,6 +83,10 @@ export const actions = {
       'series',
       'trending',
     ]
+
+    // перезапрашиваем график поставок
+    dispatch('page/getDeliveryData', null, { root: true })
+
     if (route.name === 'product-id') {
       const product = rootState.products.product
       dispatch(
@@ -89,9 +97,6 @@ export const actions = {
         },
         { root: true }
       )
-
-      // перезапрашиваем график поставок
-      dispatch('page/getDeliveryData', null, { root: true })
     } else if (route.name === 'category-id') {
       dispatch(
         'products/fetchProductsByCategoryId',
@@ -152,6 +157,10 @@ export const actions = {
 export const getters = {
   getDisplayName(state) {
     return state.shopDisplayNames[state.shopId]
+  },
+
+  getIkeaShopDisplayName(state) {
+    return state.ikeaShopDisplayNames[state.shopId]
   },
 
   getIkeaShopId(state) {
