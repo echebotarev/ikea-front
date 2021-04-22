@@ -66,7 +66,7 @@
                 hide-details
                 rounded
                 filled
-                placeholder="8 701 123 4567"
+                :placeholder="getPlaceholder('phone')"
                 full-width
                 height="50"
                 required
@@ -104,7 +104,7 @@
                 hide-details
                 rounded
                 filled
-                placeholder="Актау ..."
+                :placeholder="getPlaceholder('city')"
                 full-width
                 height="50"
                 prepend-inner-icon="mdi-map-marker"
@@ -265,6 +265,7 @@ export default {
 
   computed: {
     ...mapState({
+      shopId: (state) => state.geo.shopId,
       order: (state) => state.orders.order,
       products: (state) => state.orders.products,
 
@@ -606,6 +607,21 @@ export default {
     getDiscountValue(price) {
       const sale = this.getDiscountSaleValue(price)
       return sale ? Math.floor(price - (price * (100 - sale)) / 100) : 0
+    },
+
+    getPlaceholder(type) {
+      const placeholders = {
+        phone: {
+          '001': '8 701 123 4567',
+          '002': '8 999 123 4567',
+        },
+        city: {
+          '001': 'Актау...',
+          '002': 'Саранск...',
+        },
+      }
+
+      return placeholders[type][this.shopId]
     },
 
     ...mapActions({
