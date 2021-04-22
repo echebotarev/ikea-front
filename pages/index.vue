@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <v-row class="my-5">
-      <v-col :cols="shopId === '001' ? 'auto' : 7">
+      <v-col cols="12" :sm="shopId === '001' ? 'auto' : 7">
         <client-only>
           <v-card v-if="shopId === '002'">
             <v-card-title>Новые условия доставки:</v-card-title>
@@ -17,7 +17,7 @@
           </v-card>
         </client-only>
       </v-col>
-      <v-col :cols="shopId === '001' ? 'auto' : 5">
+      <v-col cols="12" :sm="shopId === '001' ? 'auto' : 5">
         <CountDown />
       </v-col>
     </v-row>
