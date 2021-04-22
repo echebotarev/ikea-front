@@ -1,8 +1,23 @@
 <template>
   <v-main>
-    <v-row no-gutters class="my-5">
-      <v-col cols="6"></v-col>
-      <v-col cols="6">
+    <v-row class="my-5">
+      <v-col :cols="shopId === '001' ? 'auto' : 7">
+        <client-only>
+          <v-card v-if="shopId === '002'">
+            <v-card-title>Новые условия доставки:</v-card-title>
+            <v-card-subtitle class="py-2 font-weight-bold">
+              От 0 до 30 тыс. - Стоимость доставки 10%
+            </v-card-subtitle>
+            <v-card-subtitle class="py-2 font-weight-bold">
+              От 30 до 50 тыс. - Стоимость доставки 8%
+            </v-card-subtitle>
+            <v-card-subtitle class="py-2 font-weight-bold">
+              От 50 тыс. и выше - Стоимость доставки 6%
+            </v-card-subtitle>
+          </v-card>
+        </client-only>
+      </v-col>
+      <v-col :cols="shopId === '001' ? 'auto' : 5">
         <CountDown />
       </v-col>
     </v-row>
@@ -55,6 +70,7 @@ export default {
     }
   },
   computed: mapState({
+    shopId: (state) => state.geo.shopId,
     category: (state) => state.category.category,
     categories: (state) => state.category.categories,
     cols: (state) => {
