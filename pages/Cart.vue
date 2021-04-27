@@ -357,6 +357,7 @@ export default {
       const getLetterProducts = this.getLetterProducts.bind(this)
       const closeDataArea = this.closeDataArea.bind(this)
       const deliveryTime = this.deliveryTime
+      const $router = this.$router
 
       this.widget.pay(
         'auth',
@@ -405,6 +406,8 @@ export default {
                   deliveryTime,
                 }),
               })
+
+              $router.push('/info/order-is-sent')
             }
           },
         }
@@ -434,6 +437,8 @@ export default {
         this.alert.isShow = true
 
         this.closeDataArea()
+
+        this.$router.push('/info/order-is-sent')
 
         setTimeout(() => {
           this.alert.isShow = false
