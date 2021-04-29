@@ -433,16 +433,8 @@ export default {
           sale: { value: this.getDiscountSaleValue(this.total) },
         },
       }).then(() => {
-        this.alert.success = !this.products.length
-        this.alert.isShow = true
-
         this.closeDataArea()
-
         this.$router.push('/info/order-is-sent')
-
-        setTimeout(() => {
-          this.alert.isShow = false
-        }, 10000)
       })
     },
 
