@@ -45,8 +45,10 @@ export const mutations = {
   },
 }
 export const actions = {
-  fetchProductsByCategoryId({ commit }, payload) {
+  fetchProductsByCategoryId({ commit, dispatch }, payload) {
     const ikeaShopId = this.app.$cookies.get('ikeaShopId')
+    dispatch('clearCategory')
+
     return ApiService.getProducts(payload, ikeaShopId).then((response) => {
       if (!response.data || response.data.code) {
         return false
@@ -128,5 +130,18 @@ export const actions = {
         commit(DICT_COMMIT[type], response.data)
       }
     })
+  },
+
+  clearCategory({ commit }) {
+    commit('SET_PRODUCTS', [])
+    commit('SET_PRODUCT_COUNT', 0)
+    commit('filters/SET_FILTERS', [], { root: true })
+    commit(
+      'filters/SET_SORT_ORDERS',
+      { values: [] },
+      {
+        root: true,
+      }
+    )
   },
 }

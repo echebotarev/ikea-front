@@ -40,6 +40,7 @@
 
 <script>
 import { mapState } from 'vuex'
+
 import InnerCategoryCard from '@/components/InnerCategoryCard'
 import ProductList from '@/components/ProductList'
 import Breadcrumbs from '@/components/Breadcrumbs'

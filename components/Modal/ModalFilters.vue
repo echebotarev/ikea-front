@@ -151,7 +151,7 @@ export default {
       productCount: (state) => state.products.productCount,
 
       currentSortFromState: (state) =>
-        state.filters.sortOrders.find((item) => item.selected),
+        state.filters.sortOrders.find((item) => item.selected) || {},
       openPanelsFromState: (state) => state.filters.openPanels,
       categoryId: (state) => state.category.category.identifier,
     }),
