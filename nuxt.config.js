@@ -41,6 +41,7 @@ export default {
     { src: '@plugins/ga.js', mode: 'client' },
     { src: '@plugins/ya.js', mode: 'client' },
     { src: '@plugins/filters.js', mode: 'client' },
+    { src: '@plugins/initJivosite.js', mode: 'client' },
   ],
   /*
    ** Auto import components

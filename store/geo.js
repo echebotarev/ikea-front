@@ -29,7 +29,12 @@ export const state = () => ({
     // id Нижнего Новгорода
     '002': 437,
   },
-  version: 4,
+  jivosite: {
+    baseUrl: '//code-ya.jivosite.com/widget',
+    '001': 'NApoQrzu9D',
+    '002': 'PoWbgP3IdQ',
+  },
+  version: 5,
 })
 
 export const mutations = {
@@ -57,12 +62,13 @@ export const actions = {
     commit('SET_VALUE', { key: 'confirmedCity', value: payload })
   },
 
-  setShopId({ commit, dispatch, getters, rootState }, payload) {
+  setShopId({ commit, dispatch, getters, state }, payload) {
+    if (payload === state.shopId) {
+      return false
+    }
+
     const {
-      app: {
-        $cookies,
-        context: { route },
-      },
+      app: { $cookies },
     } = this
 
     window.SHOP_ID = payload
@@ -76,51 +82,8 @@ export const actions = {
       maxAge: 60 * 60 * 24 * 365,
     })
 
-    const recommendationTypes = [
-      'same',
-      'similar',
-      'style',
-      'series',
-      'trending',
-    ]
-
-    // перезапрашиваем график поставок
-    dispatch('page/getDeliveryData', null, { root: true })
-
-    if (route.name === 'product-id') {
-      const product = rootState.products.product
-      dispatch(
-        'availability/fetchAvailabilityProduct',
-        {
-          type: product.utag.product_type,
-          identifier: product.identifier,
-        },
-        { root: true }
-      )
-    } else if (route.name === 'category-id') {
-      dispatch(
-        'products/fetchProductsByCategoryId',
-        {
-          id: route.params.id,
-          ...route.query,
-        },
-        { root: true }
-      )
-    }
-
-    recommendationTypes
-      .filter(
-        (type) =>
-          (route.name === 'category-id' && type === 'trending') ||
-          route.name === 'product-id'
-      )
-      .map((type) =>
-        dispatch(
-          'products/fetchRecommendations',
-          { type, isCategory: route.name === 'category-id' },
-          { root: true }
-        )
-      )
+    dispatch('toggleDialog', false)
+    document.location.reload()
   },
 
   toggleDialog({ commit, state }, payload = null) {
@@ -151,6 +114,20 @@ export const actions = {
     dispatch('setShopId', shopId)
     // открываем окно с выбором города
     dispatch('toggleDialog', true)
+  },
+
+  initJivosite({ dispatch, state }, shopId) {
+    shopId = shopId || state.shopId
+    const jivositeId = state.jivosite[shopId]
+    if (!jivositeId) {
+      return false
+    }
+
+    const script = document.createElement('script')
+    script.async = true
+    script.src = `${state.jivosite.baseUrl}/${jivositeId}`
+
+    document.head.appendChild(script)
   },
 }
 
