@@ -15,7 +15,7 @@ export default ({ app, $getCookie }, inject) => {
       // eslint-disable-next-line no-unused-expressions,no-sequences
       ;(k = e.createElement(t)),
         // (a = e.getElementsByTagName(t)[0]),
-        (k.async = true),
+        (k.defer = true),
         (k.src = r),
         // a.parentNode.insertBefore(k, a)
         e.body.appendChild(k)
