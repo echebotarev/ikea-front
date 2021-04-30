@@ -1,23 +1,23 @@
 <template>
-  <div class="timer">
-    <div class="day">
+  <v-row class="timer" no-gutters>
+    <v-col class="day px-1 pl-0" cols="3">
       <span class="number">{{ days }}</span>
       <div class="format">{{ settings.day }}</div>
-    </div>
-    <div class="hour">
+    </v-col>
+    <v-col class="hour px-1" cols="3">
       <span class="number">{{ hours }}</span>
       <div class="format">{{ settings.hours }}</div>
-    </div>
-    <div class="min">
+    </v-col>
+    <v-col class="min px-1" cols="3">
       <span class="number">{{ minutes }}</span>
       <div class="format">{{ settings.minutes }}</div>
-    </div>
-    <div class="sec">
+    </v-col>
+    <v-col class="sec px-1 pr-0" cols="3">
       <span class="number">{{ seconds }}</span>
       <div class="format">{{ settings.seconds }}</div>
-    </div>
+    </v-col>
     <div class="message">{{ message }}</div>
-  </div>
+  </v-row>
 </template>
 
 <script>
@@ -148,7 +148,6 @@ export default {
     display: inline-block;
     font-weight: 500;
     text-align: center;
-    margin: 0 5px;
     width: 20%;
     max-width: 60px;
 
@@ -158,7 +157,7 @@ export default {
       //@include margin-start(5);
       //display: inline-block;
       opacity: 0.8;
-      width: 60px;
+      width: 100%;
     }
   }
   .number {
