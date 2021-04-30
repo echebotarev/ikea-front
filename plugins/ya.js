@@ -14,10 +14,11 @@ export default ({ app, $getCookie }, inject) => {
       m[i].l = 1 * new Date()
       // eslint-disable-next-line no-unused-expressions,no-sequences
       ;(k = e.createElement(t)),
-        (a = e.getElementsByTagName(t)[0]),
-        (k.async = 1),
+        // (a = e.getElementsByTagName(t)[0]),
+        (k.async = true),
         (k.src = r),
-        a.parentNode.insertBefore(k, a)
+        // a.parentNode.insertBefore(k, a)
+        e.body.appendChild(k)
     })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
 
     // eslint-disable-next-line no-undef
