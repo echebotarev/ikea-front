@@ -4,7 +4,7 @@
       v-if="availabilityProduct(identifier).StockAvailability"
       class="status"
     >
-      <v-icon v-if="!$vuetify.breakpoint.mobile">mdi-store-outline</v-icon>
+      <v-icon v-if="!$vuetify.breakpoint.mobile">{{ mdiStoreOutline }}</v-icon>
       <div
         v-if="
           !availabilityProduct(identifier).StockAvailability
@@ -68,7 +68,7 @@
       v-if="!availabilityProduct(identifier).StockAvailability"
       class="status"
     >
-      <v-icon>mdi-clock-time-three-outline</v-icon>
+      <v-icon>{{ mdiClockTimeThreeOutline }}</v-icon>
       <div>Проверяем наличие</div>
     </div>
   </div>
@@ -76,6 +76,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+
+import { mdiStoreOutline, mdiClockTimeThreeOutline } from '@mdi/js'
 
 export default {
   name: 'Available',
@@ -92,6 +94,9 @@ export default {
       type: Boolean,
       default: () => false,
     },
+  },
+  data() {
+    return { mdiStoreOutline, mdiClockTimeThreeOutline }
   },
   computed: {
     ...mapGetters({

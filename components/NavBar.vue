@@ -16,7 +16,7 @@
         Доставка IKEA <br />
         <span class="logo-text-mini" @click="toggleDialog(true)">
           в {{ shopDisplayName }}
-          <v-icon class="logo-text-icon">mdi-google-maps</v-icon>
+          <v-icon class="logo-text-icon">{{ mdiGoogleMaps }}</v-icon>
         </span>
       </span>
 
@@ -57,6 +57,9 @@
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
+
+import { mdiGoogleMaps } from '@mdi/js'
+
 import Search from '@/components/Search'
 import ConfirmCity from '@/components/Geo/ConfirmCity'
 
@@ -68,6 +71,9 @@ export default {
       type: Array,
       default: null,
     },
+  },
+  data() {
+    return { mdiGoogleMaps }
   },
   computed: {
     ...mapGetters({

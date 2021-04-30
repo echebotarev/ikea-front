@@ -20,7 +20,7 @@
             >
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-icon x-large>mdi-image-multiple-outline</v-icon>
+                  <v-icon x-large>{{ mdiImageMultipleOutline }}</v-icon>
                 </v-row>
               </template>
             </v-img>
@@ -133,14 +133,14 @@
               <template v-slot:default>
                 <span class="add-to-cart">
                   <v-icon class="mr-2 add-to-cart-icon">
-                    mdi-basket-plus-outline
+                    {{ mdiBasketPlusOutline }}
                   </v-icon>
                   Добавить в корзину
                 </span>
               </template>
               <template v-slot:loader>
                 <span class="custom-loader">
-                  <v-icon light color="#fff">mdi-loading</v-icon>
+                  <v-icon light color="#fff">{{ mdiLoading }}</v-icon>
                 </span>
               </template>
             </v-btn>
@@ -165,7 +165,7 @@
               <v-card-text>
                 <v-row no-gutters>
                   <v-col class="pr-2" cols="auto">
-                    <v-icon color="#0a8a00">mdi-information-outline</v-icon>
+                    <v-icon color="#0a8a00">{{ mdiInformationOutline }}</v-icon>
                   </v-col>
                   <v-col>
                     Закажите до {{ delivery.lastOrderDay }} и мы привезем товар
@@ -209,6 +209,14 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
+
+import {
+  mdiImageMultipleOutline,
+  mdiBasketPlusOutline,
+  mdiLoading,
+  mdiInformationOutline,
+} from '@mdi/js'
+
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Modal from '@/components/Modal/index'
 import Variations from '@/components/Variations'
@@ -260,6 +268,10 @@ export default {
   data() {
     return {
       isLoading: false,
+      mdiImageMultipleOutline,
+      mdiBasketPlusOutline,
+      mdiLoading,
+      mdiInformationOutline,
     }
   },
 

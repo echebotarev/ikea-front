@@ -31,6 +31,12 @@
 </template>
 
 <script>
+import {
+  mdiAlertOutline,
+  mdiInformationOutline,
+  mdiCheckCircleOutline,
+} from '@mdi/js'
+
 export default {
   name: 'InlineMessage',
   props: {
@@ -39,14 +45,17 @@ export default {
       default: () => ({}),
     },
   },
+  data() {
+    return { mdiAlertOutline, mdiInformationOutline, mdiCheckCircleOutline }
+  },
   methods: {
     getIcon(type) {
       if (type.includes('cautionary')) {
-        return 'mdi-alert-outline'
+        return this.mdiAlertOutline
       } else if (type.includes('informative')) {
-        return 'mdi-information-outline'
+        return this.mdiInformationOutline
       } else if (type.includes('positive')) {
-        return 'mdi-check-circle-outline'
+        return this.mdiCheckCircleOutline
       }
     },
   },

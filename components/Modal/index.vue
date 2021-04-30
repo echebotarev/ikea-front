@@ -11,7 +11,7 @@
             <v-spacer></v-spacer>
             <v-col cols="2">
               <v-btn icon @click="hideModal">
-                <v-icon>mdi-close</v-icon>
+                <v-icon>{{ mdiClose }}</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -40,6 +40,9 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+
+import { mdiClose } from '@mdi/js'
+
 import Details from '@/components/Modal/Details'
 import Dimensions from '@/components/Modal/Dimensions'
 import Variations from '@/components/Modal/ModalVariations'
@@ -49,6 +52,9 @@ import Suggestion from '@/components/Modal/ModalSuggestion'
 export default {
   name: 'InfoModal',
   components: { Details, Dimensions, Variations, Filters, Suggestion },
+  data() {
+    return { mdiClose }
+  },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
     isOpenDetails: (state) => state.page.modal.isOpenDetails,

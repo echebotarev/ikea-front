@@ -6,7 +6,7 @@
       rounded
       filled
       placeholder="Что вы ищете?"
-      prepend-inner-icon="mdi-magnify"
+      :prepend-inner-icon="mdiMagnify"
       full-width
       :height="$vuetify.breakpoint.smAndUp ? '50' : ''"
       @focus="showModal({ type: 'search' })"
@@ -17,10 +17,18 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+
+import { mdiMagnify } from '@mdi/js'
 import SearchModal from '@/components/SearchModal'
+
 export default {
   name: 'Search',
   components: { SearchModal },
+  data() {
+    return {
+      mdiMagnify,
+    }
+  },
   computed: mapState({
     isFocus: (state) => state.search.isFocus,
   }),

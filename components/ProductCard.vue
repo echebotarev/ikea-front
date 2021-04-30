@@ -24,7 +24,7 @@
         >
           <template v-slot:placeholder>
             <v-row class="fill-height ma-0" align="center" justify="center">
-              <v-icon x-large>mdi-image-multiple-outline</v-icon>
+              <v-icon x-large>{{ mdiImageMultipleOutline }}</v-icon>
             </v-row>
           </template>
         </v-img>
@@ -92,11 +92,14 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
+import { mdiImageMultipleOutline } from '@mdi/js'
 import Price from '@/components/Price'
 import ArrivalMail from '@/components/ArrivalMail'
 import CircleBtn from '@/components/CircleBtn'
+
 import getImage from '@/assets/utils/getImage'
-import { mapActions } from 'vuex'
 
 export default {
   name: 'ProductCard',
@@ -111,6 +114,7 @@ export default {
   data() {
     return {
       isOpenArrival: false,
+      mdiImageMultipleOutline,
     }
   },
 

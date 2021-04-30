@@ -23,7 +23,7 @@
             {{ product.information.productDetailsProps.title }}
             <template v-slot:actions>
               <v-btn icon>
-                <v-icon>mdi-chevron-right</v-icon>
+                <v-icon>{{ mdiChevronRight }}</v-icon>
               </v-btn>
             </template>
           </v-banner>
@@ -46,7 +46,7 @@
             }}</v-subheader>
             <template v-slot:actions>
               <v-btn icon>
-                <v-icon>mdi-chevron-right</v-icon>
+                <v-icon>{{ mdiChevronRight }}</v-icon>
               </v-btn>
             </template>
           </v-banner>
@@ -58,6 +58,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { mdiChevronRight } from '@mdi/js'
 
 export default {
   name: 'ProductInformationButtons',
@@ -66,6 +67,9 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  data() {
+    return { mdiChevronRight }
   },
   methods: {
     ...mapActions({

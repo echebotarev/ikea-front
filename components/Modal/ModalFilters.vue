@@ -37,9 +37,9 @@
             :expand-icon="
               filter.type === 'BOOLEAN'
                 ? filter.selected
-                  ? 'mdi-checkbox-marked'
-                  : 'mdi-checkbox-blank-outline'
-                : 'mdi-chevron-down'
+                  ? mdiCheckboxMarked
+                  : mdiCheckboxBlankOutline
+                : mdiChevronDown
             "
             :disable-icon-rotate="filter.type === 'BOOLEAN'"
             @click="
@@ -117,8 +117,15 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import getFiltersData from 'assets/utils/getFiltersData'
+
+import {
+  mdiCheckboxMarked,
+  mdiCheckboxBlankOutline,
+  mdiChevronDown,
+} from '@mdi/js'
 import FilterRadioGroup from '@/components/Modal/FilterRadioGroup'
+
+import getFiltersData from 'assets/utils/getFiltersData'
 
 export default {
   name: 'Filters',
@@ -142,6 +149,9 @@ export default {
         LENGTH: 'Длина',
         DEPTH: 'Глубина',
       },
+      mdiCheckboxMarked,
+      mdiCheckboxBlankOutline,
+      mdiChevronDown,
     }
   },
 

@@ -107,7 +107,7 @@
                 :placeholder="getPlaceholder('city')"
                 full-width
                 height="50"
-                prepend-inner-icon="mdi-map-marker"
+                :prepend-inner-icon="mdiMapMarker"
               >
               </v-text-field>
             </v-col>
@@ -132,7 +132,7 @@
                     <v-col cols="8">
                       <v-checkbox
                         v-model="isAssembly"
-                        prepend-icon="mdi-tools"
+                        :prepend-icon="mdiTools"
                         label="Заказать сборку"
                         class="checkbox"
                       ></v-checkbox>
@@ -238,6 +238,8 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 import config from '@/config'
+
+import { mdiMapMarker, mdiTools } from '@mdi/js'
 import CartProductCard from '@/components/CartProductCard'
 import CartTotal from '@/components/CartTotal'
 import Price from '@/components/Price'
@@ -260,6 +262,8 @@ export default {
         isShow: false,
         success: true,
       },
+      mdiMapMarker,
+      mdiTools,
     }
   },
 

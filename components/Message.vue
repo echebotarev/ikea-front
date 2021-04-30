@@ -2,7 +2,7 @@
   <client-only>
     <v-row v-if="isOpen" class="message" no-gutters align="center">
       <v-col class="text-right" cols="2">
-        <v-icon color="#fff" small>mdi-store-outline</v-icon>
+        <v-icon color="#fff" small>{{ mdiStoreOutline }}</v-icon>
       </v-col>
 
       <v-col class="pl-2" cols="8">
@@ -24,7 +24,7 @@
 
       <v-col cols="2">
         <v-btn icon @click="close">
-          <v-icon color="#fff" small>mdi-close</v-icon>
+          <v-icon color="#fff" small>{{ mdiClose }}</v-icon>
         </v-btn>
       </v-col>
     </v-row>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { mdiStoreOutline, mdiClose } from '@mdi/js'
+
 export default {
   name: 'Message',
   data: () => ({
@@ -41,6 +43,8 @@ export default {
       'Привезем заказ через 2 недели',
       'Цены уже включают стоимость закупки, надежной упаковки и доставки',
     ],
+    mdiStoreOutline,
+    mdiClose,
   }),
   methods: {
     close() {

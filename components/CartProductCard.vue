@@ -2,7 +2,7 @@
   <div class="products-list">
     <div :class="`loader${isLoading ? ' d-block' : ''}`">
       <v-icon x-large color="#212121" class="custom-loader">
-        mdi-loading
+        {{ mdiLoading }}
       </v-icon>
     </div>
     <v-row
@@ -20,7 +20,7 @@
             >
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-icon x-large>mdi-image-multiple-outline</v-icon>
+                  <v-icon x-large>{{ mdiImageMultipleOutline }}</v-icon>
                 </v-row>
               </template>
             </v-img>
@@ -118,14 +118,14 @@
           </v-col>
           <v-col class="text-right text-nowrap" cols="5">
             <v-btn icon @click="remove({ product, qnt: product.qnt })">
-              <v-icon>mdi-trash-can-outline</v-icon>
+              <v-icon>{{ mdiTrashCanOutline }}</v-icon>
             </v-btn>
             <v-btn icon @click="remove({ product, qnt: 1 })">
-              <v-icon>mdi-minus</v-icon>
+              <v-icon>{{ mdiMinus }}</v-icon>
             </v-btn>
             <span class="amount">{{ product.qnt }}</span>
             <v-btn icon @click="add({ product, qnt: 1 })">
-              <v-icon>mdi-plus</v-icon>
+              <v-icon>{{ mdiPlus }}</v-icon>
             </v-btn>
           </v-col>
         </v-row>
@@ -135,10 +135,19 @@
 </template>
 
 <script>
-import getImage from 'assets/utils/getImage'
 import { mapActions } from 'vuex'
+
+import {
+  mdiLoading,
+  mdiImageMultipleOutline,
+  mdiTrashCanOutline,
+  mdiMinus,
+  mdiPlus,
+} from '@mdi/js'
 import Price from '@/components/Price'
 import Available from '@/components/Available'
+
+import getImage from 'assets/utils/getImage'
 
 export default {
   name: 'CartProductCard',
@@ -157,6 +166,11 @@ export default {
   data() {
     return {
       isLoading: false,
+      mdiLoading,
+      mdiImageMultipleOutline,
+      mdiTrashCanOutline,
+      mdiMinus,
+      mdiPlus,
     }
   },
   methods: {

@@ -10,7 +10,7 @@
         >
           <template v-slot:placeholder>
             <v-row class="fill-height ma-0" align="center" justify="center">
-              <v-icon x-large>mdi-image-multiple-outline</v-icon>
+              <v-icon x-large>{{ mdiImageMultipleOutline }}</v-icon>
             </v-row>
           </template>
         </v-img>
@@ -23,12 +23,16 @@
   </div>
 </template>
 <script>
+import { mdiImageMultipleOutline } from '@mdi/js'
 import CategoriesDict from '@/assets/data/categories'
 
 export default {
   name: 'MainCategoryCard',
   props: {
     category: { type: Object, default: () => {} },
+  },
+  data() {
+    return { mdiImageMultipleOutline }
   },
   computed: {
     CategoriesDict: () => CategoriesDict,

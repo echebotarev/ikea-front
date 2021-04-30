@@ -21,7 +21,7 @@
 
             <template v-slot:actions>
               <v-btn icon>
-                <v-icon>mdi-chevron-right</v-icon>
+                <v-icon>{{ mdiChevronRight }}</v-icon>
               </v-btn>
             </template>
           </v-banner>
@@ -52,6 +52,9 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+
+import { mdiChevronRight } from '@mdi/js'
+
 import getImage from '@/assets/utils/getImage'
 
 export default {
@@ -61,6 +64,9 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  data() {
+    return { mdiChevronRight }
   },
   computed: mapState({
     subtitle: (state) => state.displayVariations.subtitle,

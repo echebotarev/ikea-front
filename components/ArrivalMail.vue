@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-btn class="close-btn" icon @click="close">
-      <v-icon>mdi-close</v-icon>
+      <v-icon>{{ mdiClose }}</v-icon>
     </v-btn>
     <v-card-subtitle v-if="isSent" class="product-description">
       Отлично! Мы скоро с вами свяжемся.
@@ -41,6 +41,8 @@
 <script>
 import { mapState } from 'vuex'
 
+import { mdiClose } from '@mdi/js'
+
 export default {
   name: 'ArrivalMail',
 
@@ -64,6 +66,7 @@ export default {
       email: '',
       isLoading: false,
       isSent: false,
+      mdiClose,
     }
   },
 

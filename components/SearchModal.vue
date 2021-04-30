@@ -7,7 +7,7 @@
           <v-row>
             <v-col cols="1">
               <v-btn class="top-indent" icon @click="hideModal">
-                <v-icon>mdi-close</v-icon>
+                <v-icon>{{ mdiClose }}</v-icon>
               </v-btn>
             </v-col>
 
@@ -16,7 +16,7 @@
                 clearable
                 autofocus
                 placeholder="Что вы ищете?"
-                append-icon="mdi-arrow-right"
+                :append-icon="mdiArrowRight"
                 @input="setValue"
               ></v-text-field>
             </v-col>
@@ -32,7 +32,7 @@
                 >
                   <!-- <Искать> -->
                   <v-list-item-icon v-if="completion.label === 'Искать'">
-                    <v-icon>mdi-magnify</v-icon>
+                    <v-icon>{{ mdiMagnify }}</v-icon>
                   </v-list-item-icon>
 
                   <v-list-item-content v-if="completion.label === 'Искать'">
@@ -50,7 +50,7 @@
 
                   <!-- <Категория> -->
                   <v-list-item-icon v-if="completion.label === 'Категория'">
-                    <v-icon>mdi-apps</v-icon>
+                    <v-icon>{{ mdiApps }}</v-icon>
                   </v-list-item-icon>
 
                   <v-list-item-content
@@ -73,7 +73,7 @@
 
                   <!-- <Товар> -->
                   <v-list-item-icon v-if="completion.label === 'Товар'">
-                    <v-icon>mdi-chevron-right</v-icon>
+                    <v-icon>{{ mdiChevronRight }}</v-icon>
                   </v-list-item-icon>
 
                   <v-list-item-content
@@ -106,8 +106,20 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+
+import {
+  mdiClose,
+  mdiArrowRight,
+  mdiMagnify,
+  mdiApps,
+  mdiChevronRight,
+} from '@mdi/js'
+
 export default {
   name: 'SearchModal',
+  data() {
+    return { mdiClose, mdiArrowRight, mdiMagnify, mdiApps, mdiChevronRight }
+  },
   computed: mapState({
     isShow: (state) => state.page.modal.isShow,
     modalData: (state) => state.page.modal.data,

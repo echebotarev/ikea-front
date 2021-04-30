@@ -62,6 +62,12 @@ export default {
         breakpoint: {
           mobileBreakpoint: 600,
         },
+        defaultAssets: {
+          icons: false,
+        },
+        icons: {
+          iconfont: 'mdiSvg',
+        },
       },
     ],
   ],

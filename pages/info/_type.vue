@@ -5,7 +5,7 @@
       <v-col>
         <v-card color="#0058a3" class="py-5 px-15">
           <div class="text-center">
-            <v-icon x-large color="#fff">mdi-numeric-1-circle</v-icon>
+            <v-icon x-large color="#fff">{{ mdiNumeric1Circle }}</v-icon>
           </div>
           <v-card-title class="card-title text-center text-break">
             Заказ отправлен на указанную вами почту
@@ -15,7 +15,7 @@
       <v-col>
         <v-card color="#0058a3" class="py-5 px-15">
           <div class="text-center">
-            <v-icon x-large color="#fff">mdi-numeric-2-circle</v-icon>
+            <v-icon x-large color="#fff">{{ mdiNumeric2Circle }}</v-icon>
           </div>
           <v-card-title class="card-title text-center text-break">
             В ближайшее время мы с вами свяжемся
@@ -27,12 +27,16 @@
 </template>
 
 <script>
+import { mdiNumeric1Circle, mdiNumeric2Circle } from '@mdi/js'
+
 export default {
   name: 'Information',
 
   data() {
     return {
       page: {},
+      mdiNumeric1Circle,
+      mdiNumeric2Circle,
     }
   },
 

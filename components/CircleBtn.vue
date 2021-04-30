@@ -10,17 +10,19 @@
     @click.stop.prevent="add({ product, qnt: 1 })"
   >
     <v-icon color="#fff" class="add-to-cart-icon">
-      mdi-basket-plus-outline
+      {{ mdiBasketPlusOutline }}
     </v-icon>
     <template v-slot:loader>
       <span class="custom-loader">
-        <v-icon light color="#fff">mdi-loading</v-icon>
+        <v-icon light color="#fff">{{ mdiLoading }}</v-icon>
       </span>
     </template>
   </v-btn>
 </template>
 
 <script>
+import { mdiBasketPlusOutline, mdiLoading } from '@mdi/js'
+
 export default {
   name: 'CircleBtn',
   props: {
@@ -36,6 +38,8 @@ export default {
   data() {
     return {
       isLoading: false,
+      mdiBasketPlusOutline,
+      mdiLoading,
     }
   },
   methods: {

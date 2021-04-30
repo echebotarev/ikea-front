@@ -20,7 +20,7 @@
           >
             <template v-slot:placeholder>
               <v-row class="fill-height ma-0" align="center" justify="center">
-                <v-icon x-large>mdi-image-multiple-outline</v-icon>
+                <v-icon x-large>{{ mdiImageMultipleOutline }}</v-icon>
               </v-row>
             </template>
           </v-img>
@@ -32,6 +32,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import { mdiImageMultipleOutline } from '@mdi/js'
+
 import getImage from 'assets/utils/getImage'
 
 export default {
@@ -46,6 +48,10 @@ export default {
         message: 'Unable API server',
       })
     }
+  },
+
+  data() {
+    return { mdiImageMultipleOutline }
   },
 
   computed: {
