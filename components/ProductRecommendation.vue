@@ -34,7 +34,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import ProductCard from '@/components/ProductCard'
 
 const DICT_COMMIT = {
   same: 'products/SET_SAME_RECOMMENDATIONS',
@@ -46,7 +45,7 @@ const DICT_COMMIT = {
 
 export default {
   name: 'ProductRecommendation',
-  components: { ProductCard },
+  components: { ProductCard: () => import('@/components/ProductCard') },
   props: {
     type: {
       type: String,

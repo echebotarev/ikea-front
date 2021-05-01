@@ -144,14 +144,15 @@ import {
   mdiMinus,
   mdiPlus,
 } from '@mdi/js'
-import Price from '@/components/Price'
-import Available from '@/components/Available'
 
 import getImage from 'assets/utils/getImage'
 
 export default {
   name: 'CartProductCard',
-  components: { Price, Available },
+  components: {
+    Price: () => import('@/components/Price'),
+    Available: () => import('@/components/Available'),
+  },
   props: {
     products: {
       type: Array,

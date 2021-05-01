@@ -53,20 +53,17 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import Message from '@/components/Message.vue'
-import NavBar from '@/components/NavBar.vue'
-import Search from '@/components/Search.vue'
-import Footer from '@/components/Footer.vue'
-import ChooseCity from '@/components/Geo/ChooseCity'
 import links from '@/assets/data/links'
+
+import { hydrateWhenIdle, hydrateWhenVisible } from 'vue-lazy-hydration'
 
 export default {
   components: {
-    Message,
-    NavBar,
-    Search,
-    Footer,
-    ChooseCity,
+    Message: hydrateWhenIdle(() => import('@/components/Message.vue')),
+    NavBar: hydrateWhenIdle(() => import('@/components/NavBar.vue')),
+    Search: hydrateWhenIdle(() => import('@/components/Search.vue')),
+    Footer: hydrateWhenVisible(() => import('@/components/Footer.vue')),
+    ChooseCity: hydrateWhenVisible(() => import('@/components/Geo/ChooseCity')),
   },
   middleware: 'fetchOrders',
   computed: {

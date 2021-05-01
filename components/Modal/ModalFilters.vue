@@ -123,13 +123,12 @@ import {
   mdiCheckboxBlankOutline,
   mdiChevronDown,
 } from '@mdi/js'
-import FilterRadioGroup from '@/components/Modal/FilterRadioGroup'
 
 import getFiltersData from 'assets/utils/getFiltersData'
 
 export default {
   name: 'Filters',
-  components: { FilterRadioGroup },
+  components: { FilterRadioGroup: () => import('@/components/Modal/FilterRadioGroup') },
   props: {
     data: {
       type: Object,

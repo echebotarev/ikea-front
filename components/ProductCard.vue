@@ -95,15 +95,16 @@
 import { mapActions } from 'vuex'
 
 import { mdiImageMultipleOutline } from '@mdi/js'
-import Price from '@/components/Price'
-import ArrivalMail from '@/components/ArrivalMail'
-import CircleBtn from '@/components/CircleBtn'
 
 import getImage from '@/assets/utils/getImage'
 
 export default {
   name: 'ProductCard',
-  components: { Price, ArrivalMail, CircleBtn },
+  components: {
+    Price: () => import('@/components/Price'),
+    ArrivalMail: () => import('@/components/ArrivalMail'),
+    CircleBtn: () => import('@/components/CircleBtn'),
+  },
   props: {
     product: {
       type: Object,

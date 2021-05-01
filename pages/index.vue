@@ -47,16 +47,11 @@
 <script>
 import { mapState } from 'vuex'
 
-import CountDown from '@/components/CountDown/index'
-
-import MainCategoryCard from '@/components/MainCategoryCard'
-import MainCategoryMobileCard from '@/components/MainCategoryMobileCard'
-
 export default {
   components: {
-    CountDown,
-    MainCategoryCard,
-    MainCategoryMobileCard,
+    CountDown: () => import('@/components/CountDown/index'),
+    MainCategoryCard: () => import('@/components/MainCategoryCard'),
+    MainCategoryMobileCard: () => import('@/components/MainCategoryMobileCard'),
   },
 
   async fetch({ store, error }) {

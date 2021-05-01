@@ -240,13 +240,14 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import config from '@/config'
 
 import { mdiMapMarker, mdiTools } from '@mdi/js'
-import CartProductCard from '@/components/CartProductCard'
-import CartTotal from '@/components/CartTotal'
-import Price from '@/components/Price'
 
 export default {
   name: 'Cart',
-  components: { CartProductCard, CartTotal, Price },
+  components: {
+    CartProductCard: () => import('@/components/CartProductCard'),
+    CartTotal: () => import('@/components/CartTotal'),
+    Price: () => import('@/components/Price'),
+  },
 
   data() {
     return {

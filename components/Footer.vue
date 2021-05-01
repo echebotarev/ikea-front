@@ -40,14 +40,14 @@
 <script>
 import { mapState } from 'vuex'
 
-import FooterContactAktau from '@/components/FooterContactAktau'
-import FooterContactSaransk from '@/components/FooterContactSaransk'
-
 import links from '@/assets/data/links'
 
 export default {
   name: 'Footer',
-  components: { FooterContactAktau, FooterContactSaransk },
+  components: {
+    FooterContactAktau: () => import('@/components/FooterContactAktau'),
+    FooterContactSaransk: () => import('@/components/FooterContactSaransk'),
+  },
   computed: {
     links: () => links,
     ...mapState({

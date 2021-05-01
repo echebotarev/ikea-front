@@ -55,11 +55,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Price from '@/components/Price'
 
 export default {
   name: 'CartTotal',
-  components: { Price },
+  components: { Price: () => import('@/components/Price') },
   props: {
     total: {
       type: Number,

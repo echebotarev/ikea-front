@@ -60,12 +60,12 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 
 import { mdiGoogleMaps } from '@mdi/js'
 
-import Search from '@/components/Search'
-import ConfirmCity from '@/components/Geo/ConfirmCity'
-
 export default {
   name: 'NavBar',
-  components: { Search, ConfirmCity },
+  components: {
+    Search: () => import('@/components/Search'),
+    ConfirmCity: () => import('@/components/Geo/ConfirmCity'),
+  },
   props: {
     links: {
       type: Array,

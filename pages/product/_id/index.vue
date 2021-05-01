@@ -217,31 +217,21 @@ import {
   mdiInformationOutline,
 } from '@mdi/js'
 
-import Breadcrumbs from '@/components/Breadcrumbs'
-import Modal from '@/components/Modal/index'
-import Variations from '@/components/Variations'
-import DisplayVariations from '@/components/DisplayVariations'
-import InlineMessage from '@/components/InlineMessage'
-import Available from '@/components/Available'
-import ArrivalMail from '@/components/ArrivalMail'
-import Price from '@/components/Price'
-import ProductInformationButtons from '@/components/ProductInformationButtons'
-import ProductRecommendation from '@/components/ProductRecommendation'
-
 import getImage from '@/assets/utils/getImage'
 
 export default {
   components: {
-    Breadcrumbs,
-    Modal,
-    Available,
-    ArrivalMail,
-    Variations,
-    DisplayVariations,
-    InlineMessage,
-    Price,
-    ProductInformationButtons,
-    ProductRecommendation,
+    Breadcrumbs: () => import('@/components/Breadcrumbs'),
+    Modal: () => import('@/components/Modal/index'),
+    Available: () => import('@/components/Available'),
+    ArrivalMail: () => import('@/components/ArrivalMail'),
+    Variations: () => import('@/components/Variations'),
+    DisplayVariations: () => import('@/components/DisplayVariations'),
+    InlineMessage: () => import('@/components/InlineMessage'),
+    Price: () => import('@/components/Price'),
+    ProductInformationButtons: () =>
+      import('@/components/ProductInformationButtons'),
+    ProductRecommendation: () => import('@/components/ProductRecommendation'),
   },
 
   async fetch({ store, error, params }) {

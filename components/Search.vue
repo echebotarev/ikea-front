@@ -19,11 +19,10 @@
 import { mapActions, mapState } from 'vuex'
 
 import { mdiMagnify } from '@mdi/js'
-import SearchModal from '@/components/SearchModal'
 
 export default {
   name: 'Search',
-  components: { SearchModal },
+  components: { SearchModal: () => import('@/components/SearchModal') },
   data() {
     return {
       mdiMagnify,

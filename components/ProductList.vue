@@ -11,10 +11,9 @@
 </template>
 
 <script>
-import ProductCard from '@/components/ProductCard'
 export default {
   name: 'ProductList',
-  components: { ProductCard },
+  components: { ProductCard: () => import('@/components/ProductCard') },
   props: {
     products: {
       type: Array,
