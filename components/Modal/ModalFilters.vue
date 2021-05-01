@@ -128,7 +128,9 @@ import getFiltersData from 'assets/utils/getFiltersData'
 
 export default {
   name: 'Filters',
-  components: { FilterRadioGroup: () => import('@/components/Modal/FilterRadioGroup') },
+  components: {
+    FilterRadioGroup: () => import('@/components/Modal/FilterRadioGroup'),
+  },
   props: {
     data: {
       type: Object,
