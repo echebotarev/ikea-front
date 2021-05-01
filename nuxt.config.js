@@ -141,11 +141,20 @@ export default {
     html: {
       minify: { collapseWhitespace: true },
     },
+    filenames: {
+      chunk: ({ isDev }) => (isDev ? '[name].js' : '[id].[contenthash].js'),
+    },
     optimization: {
       splitChunks: {
         chunks: 'all',
         maxSize: 51200,
       },
+    },
+    babel: {
+      plugins: [
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-proposal-private-methods',
+      ],
     },
   },
 
