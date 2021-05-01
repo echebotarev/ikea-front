@@ -39,7 +39,7 @@ export default {
     { src: '@plugins/cookie.js', mode: 'client' },
     { src: '@/plugins/notifications', ssr: false },
     { src: '@plugins/ga.js', mode: 'client' },
-    { src: '@plugins/ya.js', mode: 'client' },
+    // { src: '@plugins/ya.js', mode: 'client' },
     { src: '@plugins/filters.js', mode: 'client' },
     { src: '@plugins/initJivosite.js', mode: 'client' },
   ],

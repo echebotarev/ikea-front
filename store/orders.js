@@ -72,7 +72,7 @@ export const actions = {
     const shopId = rootState.geo.shopId
 
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
-    this.$metrika(67230112, 'reachGoal', 'addToCart')
+    // this.$metrika(67230112, 'reachGoal', 'addToCart')
     this.$gtag('event', 'addToCart', {
       event_category: 'events',
       event_label: shopId,
@@ -106,11 +106,11 @@ export const actions = {
       event_category: 'events',
       event_label: shopId,
     })
-    this.$metrika(
-      67230112,
-      'reachGoal',
-      `purchase-${payload.payload.payMethod}`
-    )
+    // this.$metrika(
+    //   67230112,
+    //   'reachGoal',
+    //   `purchase-${payload.payload.payMethod}`
+    // )
     this.$fb.track('Purchase', {
       currency: 'RUB',
       value: payload.payload.total / KZT,
