@@ -113,6 +113,17 @@ export default {
         plugins: ['utc', 'timezone'],
       },
     ],
+    [
+      'nuxt-compress',
+      {
+        gzip: {
+          threshold: 8192,
+        },
+        brotli: {
+          threshold: 8192,
+        },
+      },
+    ],
   ],
   /*
    ** Axios module configuration
@@ -129,6 +140,12 @@ export default {
   build: {
     html: {
       minify: { collapseWhitespace: true },
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        maxSize: 51200,
+      },
     },
   },
 
