@@ -11,9 +11,13 @@
 </template>
 
 <script>
+import { hydrateWhenVisible } from 'vue-lazy-hydration'
+
 export default {
   name: 'ProductList',
-  components: { ProductCard: () => import('@/components/ProductCard') },
+  components: {
+    ProductCard: hydrateWhenVisible(() => import('@/components/ProductCard')),
+  },
   props: {
     products: {
       type: Array,
