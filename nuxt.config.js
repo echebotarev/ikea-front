@@ -158,5 +158,11 @@ export default {
     },
   },
 
+  render: {
+    static: {
+      maxAge: 60 * 60 * 24 * 7 * 1000,
+    },
+  },
+
   generate: {},
 }
