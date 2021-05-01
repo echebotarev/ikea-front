@@ -35,8 +35,6 @@
 <script>
 import { mapState } from 'vuex'
 
-import { hydrateWhenVisible } from 'vue-lazy-hydration'
-
 const DICT_COMMIT = {
   same: 'products/SET_SAME_RECOMMENDATIONS',
   similar: 'products/SET_SIMILAR_RECOMMENDATIONS',
@@ -48,7 +46,7 @@ const DICT_COMMIT = {
 export default {
   name: 'ProductRecommendation',
   components: {
-    ProductCard: hydrateWhenVisible(() => import('@/components/ProductCard')),
+    ProductCard: () => import('@/components/ProductCard'),
   },
   props: {
     type: {

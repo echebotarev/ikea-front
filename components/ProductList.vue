@@ -11,12 +11,10 @@
 </template>
 
 <script>
-import { hydrateWhenVisible } from 'vue-lazy-hydration'
-
 export default {
   name: 'ProductList',
   components: {
-    ProductCard: hydrateWhenVisible(() => import('@/components/ProductCard')),
+    ProductCard: () => import('@/components/ProductCard'),
   },
   props: {
     products: {

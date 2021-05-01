@@ -47,17 +47,11 @@
 <script>
 import { mapState } from 'vuex'
 
-import { hydrateWhenVisible } from 'vue-lazy-hydration'
-
 export default {
   components: {
     CountDown: () => import('@/components/CountDown/index'),
-    MainCategoryCard: hydrateWhenVisible(() =>
-      import('@/components/MainCategoryCard')
-    ),
-    MainCategoryMobileCard: hydrateWhenVisible(() =>
-      import('@/components/MainCategoryMobileCard')
-    ),
+    MainCategoryCard: () => import('@/components/MainCategoryCard'),
+    MainCategoryMobileCard: () => import('@/components/MainCategoryMobileCard'),
   },
 
   async fetch({ store, error }) {
