@@ -41,25 +41,16 @@
 <script>
 import { mapState } from 'vuex'
 
-import InnerCategoryCard from '@/components/InnerCategoryCard'
-import ProductList from '@/components/ProductList'
-import Breadcrumbs from '@/components/Breadcrumbs'
-import Filters from '@/components/Filters'
-import Pagination from '@/components/Pagination'
-import Modal from '@/components/Modal/index'
-import SkeletonItems from '@/components/SkeletonItems'
-import ProductRecommendation from '@/components/ProductRecommendation'
-
 export default {
   components: {
-    InnerCategoryCard,
-    Breadcrumbs,
-    ProductList,
-    Pagination,
-    Modal,
-    Filters,
-    SkeletonItems,
-    ProductRecommendation,
+    InnerCategoryCard: () => import('@/components/InnerCategoryCard'),
+    Breadcrumbs: () => import('@/components/Breadcrumbs'),
+    ProductList: () => import('@/components/ProductList'),
+    Pagination: () => import('@/components/Pagination'),
+    Modal: () => import('@/components/Modal/index'),
+    Filters: () => import('@/components/Filters'),
+    SkeletonItems: () => import('@/components/SkeletonItems'),
+    ProductRecommendation: () => import('@/components/ProductRecommendation'),
   },
 
   async fetch({ store, error, params, query }) {
