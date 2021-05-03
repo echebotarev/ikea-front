@@ -228,11 +228,14 @@ export default {
     Available: () => import('@/components/Available'),
     ArrivalMail: hydrateWhenVisible(() => import('@/components/ArrivalMail')),
     Variations: () => import('@/components/Variations'),
-    DisplayVariations: () => import('@/components/DisplayVariations'),
+    DisplayVariations: hydrateWhenVisible(() =>
+      import('@/components/DisplayVariations')
+    ),
     InlineMessage: () => import('@/components/InlineMessage'),
     Price: () => import('@/components/Price'),
-    ProductInformationButtons: () =>
-      import('@/components/ProductInformationButtons'),
+    ProductInformationButtons: hydrateWhenVisible(() =>
+      import('@/components/ProductInformationButtons')
+    ),
     ProductRecommendation: hydrateWhenVisible(() =>
       import('@/components/ProductRecommendation')
     ),
