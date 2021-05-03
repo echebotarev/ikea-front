@@ -210,6 +210,8 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 
+import { hydrateWhenVisible } from 'vue-lazy-hydration'
+
 import {
   mdiImageMultipleOutline,
   mdiBasketPlusOutline,
@@ -222,16 +224,18 @@ import getImage from '@/assets/utils/getImage'
 export default {
   components: {
     Breadcrumbs: () => import('@/components/Breadcrumbs'),
-    Modal: () => import('@/components/Modal/index'),
+    Modal: hydrateWhenVisible(() => import('@/components/Modal/index')),
     Available: () => import('@/components/Available'),
-    ArrivalMail: () => import('@/components/ArrivalMail'),
+    ArrivalMail: hydrateWhenVisible(() => import('@/components/ArrivalMail')),
     Variations: () => import('@/components/Variations'),
     DisplayVariations: () => import('@/components/DisplayVariations'),
     InlineMessage: () => import('@/components/InlineMessage'),
     Price: () => import('@/components/Price'),
     ProductInformationButtons: () =>
       import('@/components/ProductInformationButtons'),
-    ProductRecommendation: () => import('@/components/ProductRecommendation'),
+    ProductRecommendation: hydrateWhenVisible(() =>
+      import('@/components/ProductRecommendation')
+    ),
   },
 
   async fetch({ store, error, params }) {
