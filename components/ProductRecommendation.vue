@@ -22,7 +22,9 @@
             :key="item.identifier"
             class="slide-item"
           >
-            <ProductCard :product="item" />
+            <div>
+              <ProductCard :product="item" />
+            </div>
           </v-slide-item>
         </v-slide-group>
       </v-sheet>
