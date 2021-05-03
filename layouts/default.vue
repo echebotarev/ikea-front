@@ -55,13 +55,15 @@
 import { mapActions, mapState } from 'vuex'
 import links from '@/assets/data/links'
 
+import { hydrateWhenIdle, hydrateWhenVisible } from 'vue-lazy-hydration'
+
 export default {
   components: {
-    Message: () => import('@/components/Message.vue'),
-    NavBar: () => import('@/components/NavBar.vue'),
-    Search: () => import('@/components/Search.vue'),
-    Footer: () => import('@/components/Footer.vue'),
-    ChooseCity: () => import('@/components/Geo/ChooseCity'),
+    Message: hydrateWhenVisible(() => import('@/components/Message.vue')),
+    NavBar: hydrateWhenIdle(() => import('@/components/NavBar.vue')),
+    Search: hydrateWhenIdle(() => import('@/components/Search.vue')),
+    Footer: hydrateWhenVisible(() => import('@/components/Footer.vue')),
+    ChooseCity: hydrateWhenVisible(() => import('@/components/Geo/ChooseCity')),
   },
   middleware: 'fetchOrders',
   computed: {
