@@ -41,16 +41,20 @@
 <script>
 import { mapState } from 'vuex'
 
+import { hydrateWhenVisible } from 'vue-lazy-hydration'
+
 export default {
   components: {
     InnerCategoryCard: () => import('@/components/InnerCategoryCard'),
     Breadcrumbs: () => import('@/components/Breadcrumbs'),
     ProductList: () => import('@/components/ProductList'),
-    Pagination: () => import('@/components/Pagination'),
+    Pagination: hydrateWhenVisible(() => import('@/components/Pagination')),
     Modal: () => import('@/components/Modal/index'),
     Filters: () => import('@/components/Filters'),
     SkeletonItems: () => import('@/components/SkeletonItems'),
-    ProductRecommendation: () => import('@/components/ProductRecommendation'),
+    ProductRecommendation: hydrateWhenVisible(() =>
+      import('@/components/ProductRecommendation')
+    ),
   },
 
   async fetch({ store, error, params, query }) {
