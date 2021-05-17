@@ -33,7 +33,7 @@ export const state = () => ({
     },
   },
   currencyCoefficient: {
-    '001': 6,
+    '001': 6.2,
     '002': 1,
   },
   currencySymbol: {
