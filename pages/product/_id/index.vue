@@ -293,6 +293,8 @@ export default {
         this.availabilityProduct(this.product.identifier).StockAvailability &&
         this.availabilityProduct(this.product.identifier).StockAvailability
           .RetailItemAvailability &&
+        this.availabilityProduct(this.product.identifier).StockAvailability
+          .RetailItemAvailability.InStockProbabilityCode['@'] !== 'LOW' &&
         parseInt(
           this.availabilityProduct(this.product.identifier).StockAvailability
             .RetailItemAvailability.AvailableStock['@']
