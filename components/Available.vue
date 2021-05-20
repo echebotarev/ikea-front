@@ -34,33 +34,25 @@
         >
 
         <span
-          v-if="
-            availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode['@'] === 'HIGH'
+          @click="
+            showModal(
+              Object.assign(
+                { type: 'info' },
+                {
+                  forecast: availabilityProduct(identifier).StockAvailability
+                    .AvailableStockForecastList.AvailableStockForecast,
+                }
+              )
+            )
           "
-          >В наличии</span
         >
-
-        <span
-          v-else-if="
-            availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode['@'] ===
-              'MEDIUM' ||
-            (availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode['@'] === 'LOW' &&
+          {{
+            labels[
               availabilityProduct(identifier).StockAvailability
-                .RetailItemAvailability.AvailableStock['@'] !== '0')
-          "
-          >Заканчивается</span
-        >
-
-        <span
-          v-else-if="
-            availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode['@'] === 'LOW'
-          "
-          >Нет в наличии</span
-        >
+                .RetailItemAvailability.InStockProbabilityCode['@']
+            ]
+          }}
+        </span>
       </div>
     </div>
 
@@ -96,7 +88,15 @@ export default {
     },
   },
   data() {
-    return { mdiStoreOutline, mdiClockTimeThreeOutline }
+    return {
+      mdiStoreOutline,
+      mdiClockTimeThreeOutline,
+      labels: {
+        HIGH: 'В наличии',
+        MEDIUM: 'Заканчивается',
+        LOW: 'Нет в наличии',
+      },
+    }
   },
   computed: {
     ...mapGetters({
@@ -112,6 +112,7 @@ export default {
   methods: {
     ...mapActions({
       fetchAvailabilityProduct: 'availability/fetchAvailabilityProduct',
+      showModal: 'page/showModal',
     }),
   },
 }

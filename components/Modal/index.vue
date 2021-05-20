@@ -32,6 +32,8 @@
           <Filters v-if="data.filters || data.sortOrders" :data="data" />
 
           <Suggestion v-if="data.suggestion" :data="data" />
+
+          <Forecast v-if="data.forecast" :data="data" />
         </v-col>
       </v-row>
     </div>
@@ -48,10 +50,18 @@ import Dimensions from '@/components/Modal/Dimensions'
 import Variations from '@/components/Modal/ModalVariations'
 import Filters from '@/components/Modal/ModalFilters'
 import Suggestion from '@/components/Modal/ModalSuggestion'
+import Forecast from '@/components/Modal/Forecast'
 
 export default {
   name: 'InfoModal',
-  components: { Details, Dimensions, Variations, Filters, Suggestion },
+  components: {
+    Details,
+    Dimensions,
+    Variations,
+    Filters,
+    Suggestion,
+    Forecast,
+  },
   data() {
     return { mdiClose }
   },
