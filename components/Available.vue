@@ -47,10 +47,13 @@
           "
         >
           {{
-            labels[
-              availabilityProduct(identifier).StockAvailability
-                .RetailItemAvailability.InStockProbabilityCode['@']
-            ]
+            availabilityProduct(identifier).StockAvailability
+              .RetailItemAvailability.AvailableStock['@'] === '0'
+              ? labels['LOW']
+              : labels[
+                  availabilityProduct(identifier).StockAvailability
+                    .RetailItemAvailability.InStockProbabilityCode['@']
+                ]
           }}
         </span>
       </div>
