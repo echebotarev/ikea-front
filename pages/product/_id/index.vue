@@ -91,7 +91,7 @@
 
         <v-row
           v-if="product.sold_separately"
-          class="sold-separately"
+          class="sold-separately mb-3"
           no-gutters
         >
           <v-col cols="1">
