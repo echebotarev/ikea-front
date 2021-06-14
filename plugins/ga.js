@@ -26,4 +26,10 @@ export default ({ app }, inject) => {
   }
   gtag('js', new Date())
   inject('gtag', gtag)
+
+  app.router.afterEach((to, from) => {
+    gtag('event', 'page_view', {
+      page_path: to.fullPath,
+    })
+  })
 }

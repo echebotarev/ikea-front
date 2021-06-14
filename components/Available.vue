@@ -39,8 +39,9 @@
               Object.assign(
                 { type: 'info' },
                 {
-                  forecast: availabilityProduct(identifier).StockAvailability
-                    .AvailableStockForecastList.AvailableStockForecast,
+                  forecast:
+                    availabilityProduct(identifier).StockAvailability
+                      .AvailableStockForecastList.AvailableStockForecast,
                 }
               )
             )
