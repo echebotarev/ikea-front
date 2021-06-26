@@ -4,7 +4,7 @@ export const state = () => ({
   isOpenCities: false,
 
   percent: {
-    '001': 40,
+    '001': 45,
     '002': 10,
   },
   saleForVolume: {
