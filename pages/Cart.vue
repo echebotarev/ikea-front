@@ -204,7 +204,7 @@
                 @click="checkout"
               >
                 <template v-slot:default>
-                  <span class="purchase">Отправить</span>
+                  <span class="purchase">Отправить заявку</span>
                 </template>
               </v-btn>
             </v-card>
