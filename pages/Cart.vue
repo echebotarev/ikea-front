@@ -181,19 +181,19 @@
         />
 
         <v-row class="pay-area pt-5">
-          <v-col order-sm="2" sm>
+          <!--<v-col order-sm="2" sm>
             <v-card flat min-height="150" color="rgba(0, 0, 0, 0.06)">
               <h3>Способ оплаты:</h3>
               <v-radio-group v-model="payMethod">
-                <!--<v-radio
+                &lt;!&ndash;<v-radio
                   label="Оплатить онлайн с чеком на e-mail"
                   :value="1"
-                ></v-radio>-->
+                ></v-radio>&ndash;&gt;
                 <v-radio :label="`Оплатить на Каспий Голд`" :value="2">
                 </v-radio>
               </v-radio-group>
             </v-card>
-          </v-col>
+          </v-col>-->
           <v-col order-sm="1" sm>
             <v-card flat min-height="150" color="transparent" class="pt-0">
               <v-btn
@@ -676,11 +676,11 @@ export default {
     border-top: thin solid rgba(0, 0, 0, 0.12);
   }
 
-  .pay-area {
-    .v-card {
-      padding: 10px;
-    }
-  }
+  //.pay-area {
+  //  .v-card {
+  //    padding: 10px;
+  //  }
+  //}
 
   .data-area {
     display: none;
