@@ -344,7 +344,7 @@ export default {
 
     getMetaProduct() {
       const title = `${this.product.price.productName}, ${this.product.price.productDescription}, IKEA, ${this.product.price.measurementText}`
-      const description = `${this.product.price.productName}, ${this.product.price.productDescription}. ${this.product.information.productDetailsProps.productDescriptionProps.paragraphs[0]}`
+      const description = `${this.product.price.productName}, ${this.product.price.productDescription}, ${this.product.price.measurementText}. ${this.product.information.productDetailsProps.productDescriptionProps.paragraphs[0]}`
       const image =
         this.product.images.fullMediaList[0] &&
         this.product.images.fullMediaList[0].content.url
