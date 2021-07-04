@@ -112,7 +112,9 @@ export default {
 
   head() {
     return {
-      title: this.category.title,
+      title: `${this.breadcrumbs[this.breadcrumbs.length - 2].text}, ${
+        this.category.title
+      }`,
       meta: [
         {
           hid: 'description',
