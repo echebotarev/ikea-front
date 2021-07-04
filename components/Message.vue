@@ -16,7 +16,7 @@
         >
           <v-carousel-item v-for="message in messages" :key="message">
             <v-row class="fill-height pl-3" align="center" no-gutters>
-              <div>{{ message }}</div>
+              <div class="message-text">{{ message }}</div>
             </v-row>
           </v-carousel-item>
         </v-carousel>
@@ -59,5 +59,9 @@ export default {
   background-color: #3ba133;
   color: #fff;
   font-size: 0.8rem;
+
+  .message-text {
+    color: #fff;
+  }
 }
 </style>
