@@ -107,14 +107,20 @@ export default {
           return 4
       }
     },
+
+    getTitle() {
+      const title =
+        this.breadcrumbs && this.breadcrumbs[this.breadcrumbs.length - 2]
+          ? this.breadcrumbs[this.breadcrumbs.length - 2].text
+          : null
+      return `${title ? `${title}, ` : ''}${this.category.title}`
+    },
   },
   watchQuery: true,
 
   head() {
     return {
-      title: `${this.breadcrumbs[this.breadcrumbs.length - 2].text}, ${
-        this.category.title
-      }`,
+      title: this.getTitle(),
       meta: [
         {
           hid: 'description',
@@ -129,7 +135,7 @@ export default {
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.category.title,
+          content: this.getTitle(),
         },
         {
           hid: 'og:type',
@@ -144,7 +150,7 @@ export default {
         {
           hid: 'keywords',
           name: 'keywords',
-          content: `${this.category.title} - купить в интернет-магазине`,
+          content: `${this.getTitle()} - купить в интернет-магазине`,
         },
       ],
     }
