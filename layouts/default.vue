@@ -103,7 +103,7 @@ export default {
   },
   head() {
     return {
-      titleTemplate: '%s - DomaDoma. Доставка товаров IKEA в Актау',
+      titleTemplate: '%s - IKEA в Актау',
       htmlAttrs: {
         lang: 'ru',
       },
