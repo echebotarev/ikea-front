@@ -3,9 +3,7 @@ import { KZT } from '@/constants'
 import OrdersService from '@/services/OrdersService.js'
 import ApiService from '@/services/ApiService.js'
 
-// TODO: Когда снова сядешь за эл-ную коммерцию обрати внимание, что KZT больше не используется
-// eslint-disable-next-line no-unused-vars
-const getGaTransactionData = (payload) => {
+const getGaTransactionData = (payload, coef, shopId = '001') => {
   const getCategory = (breadcrumbs) =>
     breadcrumbs.reduce(
       (acc, breadcrumb, index, arr) =>
@@ -16,21 +14,21 @@ const getGaTransactionData = (payload) => {
           : `${acc}/${breadcrumb.name}`,
       ''
     )
-  const getItems = (products) =>
+  const getItems = (products, coef) =>
     products.map((product) => ({
       id: product.identifier,
-      name: product.name,
+      name: `${product.name}, ${product.display_identifier}`,
       brand: 'IKEA',
       category: getCategory(product.breadcrumbs.itemListElement),
-      price: product.computedPrice / KZT,
+      price: Math.round(product.computedPrice / coef),
       quantity: product.qnt,
     }))
-
   return {
+    affiliation: shopId,
     transaction_id: payload.orderId,
     currency: 'RUB',
-    value: payload.payload.total / KZT,
-    items: getItems(payload.payload.products),
+    value: Math.round(payload.payload.total / coef),
+    items: getItems(payload.payload.products, coef),
   }
 }
 
@@ -169,6 +167,16 @@ export const actions = {
       event_category: 'events',
       event_label: shopId,
     })
+
+    this.$gtag(
+      'event',
+      'purchase',
+      getGaTransactionData(
+        payload,
+        rootGetters['variables/coefficient'],
+        shopId
+      )
+    )
     // this.$metrika(
     //   67230112,
     //   'reachGoal',
