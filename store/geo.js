@@ -99,10 +99,10 @@ export const actions = {
 
   checkCity({ dispatch, state }) {
     const { city } = state.data
-    this.$gtag('event', 'countCities', {
-      event_category: 'Geo',
-      event_label: city,
-    })
+    // this.$gtag('event', 'countCities', {
+    //   event_category: 'Geo',
+    //   event_label: city,
+    // })
 
     let [shopId] =
       Object.entries(state.shopIds).find(([key, values]) =>

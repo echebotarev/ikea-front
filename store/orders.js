@@ -58,6 +58,23 @@ const getPrice = (payload) => {
   const value = payload.product.price.price.mainPriceProps.price.integer
   return parseInt(value.replace(/ /g, ''))
 }
+const getCategoryFromBreadcrumbs = (breadcrumbs) => {
+  return breadcrumbs.itemListElement.reduce((acc = '', item, index, arr) => {
+    if (index === 0) {
+      return acc
+    }
+
+    if (index === 1) {
+      return item.name
+    }
+
+    if (index === arr.length - 1) {
+      return acc
+    }
+
+    return `${acc}/${item.name}`
+  })
+}
 export const actions = {
   fetchProducts({ commit }) {
     return OrdersService.getOrder().then((response) => {
@@ -68,7 +85,7 @@ export const actions = {
     })
   },
 
-  addProduct({ commit, rootState }, payload) {
+  addProduct({ commit, rootGetters, rootState }, payload) {
     const shopId = rootState.geo.shopId
 
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
@@ -76,6 +93,29 @@ export const actions = {
     this.$gtag('event', 'addToCart', {
       event_category: 'events',
       event_label: shopId,
+    })
+
+    const { product, qnt } = payload
+    this.$gtag('event', 'add_to_cart', {
+      currency: 'RUB',
+      items: [
+        {
+          id: product.identifier,
+          name: `${product.name}, ${product.display_identifier}`,
+          brand: 'IKEA',
+          category: getCategoryFromBreadcrumbs(product.breadcrumbs),
+          price: Math.round(
+            this.$getPrice(getPrice(payload)) /
+              rootGetters['variables/coefficient']
+          ),
+          quantity: qnt,
+        },
+      ],
+      value:
+        Math.round(
+          this.$getPrice(getPrice(payload)) /
+            rootGetters['variables/coefficient']
+        ) * qnt,
     })
 
     return OrdersService.addProduct(payload).then((response) => {
