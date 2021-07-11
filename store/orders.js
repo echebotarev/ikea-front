@@ -130,7 +130,30 @@ export const actions = {
     })
   },
 
-  removeProduct({ commit }, payload) {
+  removeProduct({ commit, rootGetters }, payload) {
+    const { product, qnt } = payload
+    this.$gtag('event', 'add_to_cart', {
+      currency: 'RUB',
+      items: [
+        {
+          id: product.identifier,
+          name: `${product.name}, ${product.display_identifier}`,
+          brand: 'IKEA',
+          category: getCategoryFromBreadcrumbs(product.breadcrumbs),
+          price: Math.round(
+            this.$getPrice(getPrice(payload)) /
+              rootGetters['variables/coefficient']
+          ),
+          quantity: qnt,
+        },
+      ],
+      value:
+        Math.round(
+          this.$getPrice(getPrice(payload)) /
+            rootGetters['variables/coefficient']
+        ) * qnt,
+    })
+
     return OrdersService.removeProduct(payload).then((response) => {
       if (response.data) {
         commit('SET_ORDER', response.data)
