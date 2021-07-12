@@ -20,7 +20,7 @@ export default {
         content: 'Доставка товаров IKEA в Актау',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/ikea.favicon.svg' }],
   },
   loading: {
     color: '#0059aa',
