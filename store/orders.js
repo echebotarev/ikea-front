@@ -88,10 +88,10 @@ export const actions = {
 
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
     // this.$metrika(67230112, 'reachGoal', 'addToCart')
-    this.$gtag('event', 'addToCart', {
-      event_category: 'events',
-      event_label: shopId,
-    })
+    // this.$gtag('event', 'addToCart', {
+    //   event_category: 'events',
+    //   event_label: shopId,
+    // })
 
     const { product, qnt } = payload
     this.$gtag('event', 'add_to_cart', {
@@ -130,7 +130,7 @@ export const actions = {
 
   removeProduct({ commit, rootGetters }, payload) {
     const { product, qnt } = payload
-    this.$gtag('event', 'add_to_cart', {
+    this.$gtag('event', 'remove_from_cart', {
       currency: 'RUB',
       items: [
         {
@@ -163,10 +163,10 @@ export const actions = {
   updateOrder({ commit, rootState, rootGetters }, payload) {
     const shopId = rootState.geo.shopId
 
-    this.$gtag('event', 'purchase', {
-      event_category: 'events',
-      event_label: shopId,
-    })
+    // this.$gtag('event', 'purchase', {
+    //   event_category: 'events',
+    //   event_label: shopId,
+    // })
 
     this.$gtag(
       'event',
