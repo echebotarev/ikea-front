@@ -93,27 +93,47 @@ export const actions = {
     //   event_label: shopId,
     // })
 
+    // Тестовые данные. Удалить, если EC заработает
+    // currency: 'RUB',
+    //   items: [
+    //   {
+    //     id: product.identifier,
+    //     name: `${product.name}, ${product.display_identifier}`,
+    //     brand: 'IKEA',
+    //     category: getCategoryFromBreadcrumbs(product.breadcrumbs),
+    //     price: Math.round(
+    //       this.$getPrice(getPrice(payload)) /
+    //       rootGetters['variables/coefficient']
+    //     ),
+    //     quantity: qnt,
+    //   },
+    // ],
+    //   value:
+    // Math.round(
+    //   this.$getPrice(getPrice(payload)) /
+    //   rootGetters['variables/coefficient']
+    // ) * qnt,
+
     const { product, qnt } = payload
-    this.$gtag('event', 'add_to_cart', {
-      currency: 'RUB',
-      items: [
-        {
-          id: product.identifier,
-          name: `${product.name}, ${product.display_identifier}`,
-          brand: 'IKEA',
-          category: getCategoryFromBreadcrumbs(product.breadcrumbs),
-          price: Math.round(
-            this.$getPrice(getPrice(payload)) /
-              rootGetters['variables/coefficient']
-          ),
-          quantity: qnt,
+    this.$gtag('event', 'addToCart', {
+      ecommerce: {
+        currencyCode: 'RUB',
+        add: {
+          products: [
+            {
+              id: product.identifier,
+              name: `${product.name}, ${product.display_identifier}`,
+              brand: 'IKEA',
+              category: getCategoryFromBreadcrumbs(product.breadcrumbs),
+              price: Math.round(
+                this.$getPrice(getPrice(payload)) /
+                  rootGetters['variables/coefficient']
+              ),
+              quantity: qnt,
+            },
+          ],
         },
-      ],
-      value:
-        Math.round(
-          this.$getPrice(getPrice(payload)) /
-            rootGetters['variables/coefficient']
-        ) * qnt,
+      },
     })
 
     return OrdersService.addProduct(payload).then((response) => {
