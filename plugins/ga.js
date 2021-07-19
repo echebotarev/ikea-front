@@ -32,6 +32,7 @@ export default ({ app }, inject) => {
     dataLayer.push(data)
   }
 
+  gtag('require', 'ec')
   gtag('js', new Date())
   inject('gtag', gtag)
 
