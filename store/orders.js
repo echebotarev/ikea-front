@@ -84,7 +84,7 @@ export const actions = {
   },
 
   addProduct({ commit, rootGetters, rootState }, payload) {
-    const shopId = rootState.geo.shopId
+    // const shopId = rootState.geo.shopId
 
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
     // this.$metrika(67230112, 'reachGoal', 'addToCart')
@@ -115,7 +115,8 @@ export const actions = {
     // ) * qnt,
 
     const { product, qnt } = payload
-    this.$gtag('event', 'addToCart', {
+    this.$gtag.ec({
+      event: 'addToCart',
       ecommerce: {
         currencyCode: 'RUB',
         add: {

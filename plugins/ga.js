@@ -24,6 +24,14 @@ export default ({ app }, inject) => {
     // eslint-disable-next-line no-undef
     dataLayer.push(arguments)
   }
+
+  gtag.ec = function (data) {
+    // eslint-disable-next-line no-undef
+    dataLayer.push({ ecommerce: null })
+    // eslint-disable-next-line no-undef
+    dataLayer.push(data)
+  }
+
   gtag('js', new Date())
   inject('gtag', gtag)
 
