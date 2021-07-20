@@ -1,5 +1,3 @@
-import { KZT } from '@/constants'
-
 import OrdersService from '@/services/OrdersService.js'
 import ApiService from '@/services/ApiService.js'
 
@@ -84,35 +82,8 @@ export const actions = {
   },
 
   addProduct({ commit, rootGetters, rootState }, payload) {
-    // const shopId = rootState.geo.shopId
-
     this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
     // this.$metrika(67230112, 'reachGoal', 'addToCart')
-    // this.$gtag('event', 'addToCart', {
-    //   event_category: 'events',
-    //   event_label: shopId,
-    // })
-
-    // Тестовые данные. Удалить, если EC заработает
-    // currency: 'RUB',
-    //   items: [
-    //   {
-    //     id: product.identifier,
-    //     name: `${product.name}, ${product.display_identifier}`,
-    //     brand: 'IKEA',
-    //     category: getCategoryFromBreadcrumbs(product.breadcrumbs),
-    //     price: Math.round(
-    //       this.$getPrice(getPrice(payload)) /
-    //       rootGetters['variables/coefficient']
-    //     ),
-    //     quantity: qnt,
-    //   },
-    // ],
-    //   value:
-    // Math.round(
-    //   this.$getPrice(getPrice(payload)) /
-    //   rootGetters['variables/coefficient']
-    // ) * qnt,
 
     const { product, qnt } = payload
     this.$gtag.ec({
@@ -204,7 +175,7 @@ export const actions = {
     // )
     this.$fb.track('Purchase', {
       currency: 'RUB',
-      value: payload.payload.total / KZT,
+      value: payload.payload.total / rootGetters['variables/coefficient'],
       paymentMethod: payload.payload.payMethod,
     })
 
