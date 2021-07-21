@@ -1,6 +1,8 @@
 import OrdersService from '@/services/OrdersService.js'
 import ApiService from '@/services/ApiService.js'
 
+import ec from '@/utils/ec'
+
 const getGaTransactionData = (payload, coef, shopId = '001') => {
   const getCategory = (breadcrumbs) =>
     breadcrumbs.reduce(
@@ -54,23 +56,7 @@ const getPrice = (payload) => {
   const value = payload.product.price.price.mainPriceProps.price.integer
   return parseInt(value.replace(/ /g, ''))
 }
-const getCategoryFromBreadcrumbs = (breadcrumbs) => {
-  return breadcrumbs.itemListElement.reduce((acc = '', item, index, arr) => {
-    if (index === 0) {
-      return acc
-    }
 
-    if (index === 1) {
-      return item.name
-    }
-
-    if (index === arr.length - 1) {
-      return acc
-    }
-
-    return `${acc}/${item.name}`
-  })
-}
 export const actions = {
   fetchProducts({ commit }) {
     return OrdersService.getOrder().then((response) => {
@@ -96,7 +82,7 @@ export const actions = {
               id: product.identifier,
               name: `${product.name}, ${product.display_identifier}`,
               brand: 'IKEA',
-              category: getCategoryFromBreadcrumbs(product.breadcrumbs),
+              category: ec.getCategoryFromBreadcrumbs(product.breadcrumbs),
               price: Math.round(
                 this.$getPrice(getPrice(payload)) /
                   rootGetters['variables/coefficient']
@@ -131,7 +117,7 @@ export const actions = {
               id: product.identifier,
               name: `${product.name}, ${product.display_identifier}`,
               brand: 'IKEA',
-              category: getCategoryFromBreadcrumbs(product.breadcrumbs),
+              category: ec.getCategoryFromBreadcrumbs(product.breadcrumbs),
               price: Math.round(
                 this.$getPrice(getPrice(payload)) /
                   rootGetters['variables/coefficient']
