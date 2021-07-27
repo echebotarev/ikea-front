@@ -3,7 +3,7 @@ import ApiService from '@/services/ApiService.js'
 
 import ec from '@/utils/ec'
 
-const getGaTransactionData = (payload, coef, shopId = '001') => {
+const getGaTransactionData = (payload, coef) => {
   const getCategory = (breadcrumbs) =>
     breadcrumbs.reduce(
       (acc, breadcrumb, index, arr) =>
@@ -23,13 +23,8 @@ const getGaTransactionData = (payload, coef, shopId = '001') => {
       price: Math.round(product.computedPrice / coef),
       quantity: product.qnt,
     }))
-  return {
-    affiliation: shopId,
-    transaction_id: payload.orderId,
-    currency: 'RUB',
-    value: Math.round(payload.payload.total / coef),
-    items: getItems(payload.payload.products, coef),
-  }
+
+  return getItems(payload.payload.products, coef)
 }
 
 export const state = () => ({
@@ -139,21 +134,22 @@ export const actions = {
 
   updateOrder({ commit, rootState, rootGetters }, payload) {
     const shopId = rootState.geo.shopId
+    const coefficient = rootGetters['variables/coefficient']
 
-    // this.$gtag('event', 'purchase', {
-    //   event_category: 'events',
-    //   event_label: shopId,
-    // })
+    // eslint-disable-next-line no-unreachable
+    this.$gtag.ec({
+      ecommerce: {
+        purchase: {
+          actionField: {
+            id: payload.orderId,
+            affiliation: 'Online Store',
+            revenue: Math.round(payload.payload.total / coefficient),
+          },
+          products: getGaTransactionData(payload, coefficient),
+        },
+      },
+    })
 
-    this.$gtag(
-      'event',
-      'purchase',
-      getGaTransactionData(
-        payload,
-        rootGetters['variables/coefficient'],
-        shopId
-      )
-    )
     // this.$metrika(
     //   67230112,
     //   'reachGoal',
