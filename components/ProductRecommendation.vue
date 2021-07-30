@@ -18,12 +18,17 @@
       <v-sheet width="100%">
         <v-slide-group multiple show-arrows>
           <v-slide-item
-            v-for="item in recommendations[type]"
+            v-for="(item, index) in recommendations[type]"
             :key="item.identifier"
             class="slide-item"
           >
             <div>
-              <ProductCard :product="item" />
+              <ObserverVisibility
+                :product="Object.assign({ position: index + 1 }, item)"
+                :list-type="type"
+              >
+                <ProductCard :product="item" />
+              </ObserverVisibility>
             </div>
           </v-slide-item>
         </v-slide-group>

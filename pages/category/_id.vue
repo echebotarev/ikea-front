@@ -42,7 +42,6 @@
 import { mapGetters, mapState } from 'vuex'
 
 import { hydrateWhenVisible } from 'vue-lazy-hydration'
-import ec from '@/utils/ec'
 
 export default {
   components: {
@@ -56,35 +55,6 @@ export default {
     ProductRecommendation: hydrateWhenVisible(() =>
       import('@/components/ProductRecommendation')
     ),
-  },
-
-  beforeRouteEnter(to, from, next) {
-    next((vm) =>
-      vm.$gtag.ec({
-        ecommerce: {
-          currencyCode: 'RUB',
-          impressions: ec.getProductsViewed({
-            products: vm.products,
-            $getPrice: vm.$getPrice,
-            coefficient: vm.coefficient,
-          }),
-        },
-      })
-    )
-  },
-
-  beforeRouteUpdate(to, from, next) {
-    this.$gtag.ec({
-      ecommerce: {
-        currencyCode: 'RUB',
-        impressions: ec.getProductsViewed({
-          products: this.products,
-          $getPrice: this.$getPrice,
-          coefficient: this.coefficient,
-        }),
-      },
-    })
-    next()
   },
 
   async fetch({ store, error, params, query }) {

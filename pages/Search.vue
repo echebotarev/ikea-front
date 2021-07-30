@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>"{{ this.$route.query.q }}"</h1>
-    <ProductList :products="products" />
+    <ProductList :products="products" list-type="Search" />
   </div>
 </template>
 

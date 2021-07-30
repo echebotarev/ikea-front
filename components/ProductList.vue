@@ -1,11 +1,16 @@
 <template>
   <v-row class="products">
     <v-col
-      v-for="product in products"
+      v-for="(product, index) in products"
       :key="product.id"
       :cols="$vuetify.breakpoint.smAndDown ? 6 : 3"
     >
-      <ProductCard :product="product" />
+      <ObserverVisibility
+        :product="Object.assign({ position: index + 1 }, product)"
+        :list-type="listType"
+      >
+        <ProductCard :product="product" />
+      </ObserverVisibility>
     </v-col>
   </v-row>
 </template>
@@ -20,6 +25,10 @@ export default {
     products: {
       type: Array,
       default: () => [],
+    },
+    listType: {
+      type: String,
+      default: () => 'Category',
     },
   },
 }

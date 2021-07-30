@@ -9,7 +9,7 @@ export default {
       brand: 'IKEA',
       category: this.getCategoryFromBreadcrumbs(p.breadcrumbs),
       list,
-      position: i + 1,
+      position: p.position ? p.position : i + 1,
     }))
   },
 

@@ -42,6 +42,7 @@ export default {
     // { src: '@plugins/ya.js', mode: 'client' },
     { src: '@plugins/filters.js', mode: 'client' },
     { src: '@plugins/initJivosite.js', mode: 'client' },
+    { src: '@plugins/vue-observe-visibility.js', mode: 'client' },
   ],
   /*
    ** Auto import components
