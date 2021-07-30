@@ -154,6 +154,10 @@ export const actions = {
           products: getGaTransactionData(payload, coefficient),
         },
       },
+      event: 'gtm-ee-event',
+      'gtm-ee-event-category': 'Enhanced Ecommerce',
+      'gtm-ee-event-action': 'Purchase',
+      'gtm-ee-event-non-interaction': false,
     })
 
     // this.$metrika(
