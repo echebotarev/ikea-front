@@ -47,6 +47,10 @@ export default {
               list: this.listType,
             }),
           },
+          event: 'gtm-ee-event',
+          'gtm-ee-event-category': 'Enhanced Ecommerce',
+          'gtm-ee-event-action': 'Product Impressions',
+          'gtm-ee-event-non-interaction': true,
         })
     },
   },
