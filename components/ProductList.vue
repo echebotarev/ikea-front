@@ -9,13 +9,27 @@
         :product="Object.assign({ position: index + 1 }, product)"
         :list-type="listType"
       >
-        <ProductCard :product="product" />
+        <div
+          @click="
+            clickProduct({
+              products: [Object.assign({ position: index + 1 }, product)],
+              $getPrice,
+              coefficient,
+              list: listType,
+            })
+          "
+        >
+          <ProductCard :product="product" />
+        </div>
       </ObserverVisibility>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import ec from '@/utils/ec'
+
 export default {
   name: 'ProductList',
   components: {
@@ -29,6 +43,18 @@ export default {
     listType: {
       type: String,
       default: () => 'Category',
+    },
+  },
+
+  computed: {
+    ...mapGetters({
+      coefficient: 'variables/coefficient',
+    }),
+  },
+
+  methods: {
+    clickProduct(payload) {
+      this.$gtag.ec(ec.clickProduct(payload))
     },
   },
 }

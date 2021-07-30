@@ -27,7 +27,18 @@
                 :product="Object.assign({ position: index + 1 }, item)"
                 :list-type="type"
               >
-                <ProductCard :product="item" />
+                <div
+                  @click="
+                    clickProduct({
+                      products: [Object.assign({ position: index + 1 }, item)],
+                      $getPrice,
+                      coefficient,
+                      list: type,
+                    })
+                  "
+                >
+                  <ProductCard :product="item" />
+                </div>
               </ObserverVisibility>
             </div>
           </v-slide-item>
@@ -40,7 +51,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
+import ec from '@/utils/ec'
 
 const DICT_COMMIT = {
   same: 'products/SET_SAME_RECOMMENDATIONS',
@@ -69,15 +81,23 @@ export default {
       default: false,
     },
   },
-  computed: mapState({
-    recommendations: (state) => ({
-      same: state.products.sameRecommendations,
-      similar: state.products.similarRecommendations,
-      style: state.products.styleRecommendations,
-      series: state.products.seriesRecommendations,
-      trending: state.products.trendingRecommendations,
+
+  computed: {
+    ...mapState({
+      recommendations: (state) => ({
+        same: state.products.sameRecommendations,
+        similar: state.products.similarRecommendations,
+        style: state.products.styleRecommendations,
+        series: state.products.seriesRecommendations,
+        trending: state.products.trendingRecommendations,
+      }),
     }),
-  }),
+
+    ...mapGetters({
+      coefficient: 'variables/coefficient',
+    }),
+  },
+
   mounted() {
     this.$store.dispatch('products/fetchRecommendations', {
       type: this.type,
@@ -86,6 +106,12 @@ export default {
   },
   beforeDestroy() {
     this.$store.commit(DICT_COMMIT[this.type], [])
+  },
+
+  methods: {
+    clickProduct(payload) {
+      this.$gtag.ec(ec.clickProduct(payload))
+    },
   },
 }
 </script>
