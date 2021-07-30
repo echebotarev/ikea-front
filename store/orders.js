@@ -68,7 +68,6 @@ export const actions = {
 
     const { product, qnt } = payload
     this.$gtag.ec({
-      event: 'addToCart',
       ecommerce: {
         currencyCode: 'RUB',
         add: {
@@ -87,6 +86,10 @@ export const actions = {
           ],
         },
       },
+      event: 'gtm-ee-event',
+      'gtm-ee-event-category': 'Enhanced Ecommerce',
+      'gtm-ee-event-action': 'Adding a Product to a Shopping Cart',
+      'gtm-ee-event-non-interaction': false,
     })
 
     return OrdersService.addProduct(payload).then((response) => {
@@ -104,7 +107,6 @@ export const actions = {
   removeProduct({ commit, rootGetters }, payload) {
     const { product, qnt } = payload
     this.$gtag.ec({
-      event: 'removeFromCart',
       ecommerce: {
         remove: {
           products: [
@@ -122,6 +124,10 @@ export const actions = {
           ],
         },
       },
+      event: 'gtm-ee-event',
+      'gtm-ee-event-category': 'Enhanced Ecommerce',
+      'gtm-ee-event-action': 'Adding a Product to a Shopping Cart',
+      'gtm-ee-event-non-interaction': false,
     })
 
     return OrdersService.removeProduct(payload).then((response) => {
