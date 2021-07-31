@@ -377,8 +377,6 @@ export default {
   methods: {
     checkout() {
       if (this.validateProducts() && this.validateForm()) {
-        this.payMethod === 1 ? this.onlinePay() : this.offlinePay()
-
         this.$gtag.ec({
           ecommerce: {
             currencyCode: 'RUB',
@@ -396,6 +394,8 @@ export default {
           'gtm-ee-event-action': 'Подтверждение заказа. Step 4',
           'gtm-ee-event-non-interaction': false,
         })
+
+        this.payMethod === 1 ? this.onlinePay() : this.offlinePay()
       }
     },
 
