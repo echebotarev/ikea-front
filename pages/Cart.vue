@@ -50,6 +50,7 @@
                 full-width
                 height="50"
                 required
+                @blur="checkThirdStep"
               >
               </v-text-field>
             </v-col>
@@ -70,6 +71,7 @@
                 full-width
                 height="50"
                 required
+                @blur="checkThirdStep"
               >
               </v-text-field>
             </v-col>
@@ -86,6 +88,7 @@
                 full-width
                 height="50"
                 required
+                @blur="checkThirdStep"
               >
               </v-text-field>
             </v-col>
@@ -108,6 +111,7 @@
                 full-width
                 height="50"
                 :prepend-inner-icon="mdiMapMarker"
+                @blur="checkThirdStep"
               >
               </v-text-field>
             </v-col>
@@ -374,6 +378,24 @@ export default {
     checkout() {
       if (this.validateProducts() && this.validateForm()) {
         this.payMethod === 1 ? this.onlinePay() : this.offlinePay()
+
+        this.$gtag.ec({
+          ecommerce: {
+            currencyCode: 'RUB',
+            checkout: {
+              actionField: { step: 4 },
+              products: ec.getProductsForCheckout({
+                products: this.products,
+                $getPrice: this.$getPrice,
+                coefficient: this.coefficient,
+              }),
+            },
+          },
+          event: 'gtm-ee-event',
+          'gtm-ee-event-category': 'Enhanced Ecommerce',
+          'gtm-ee-event-action': 'Подтверждение заказа. Step 4',
+          'gtm-ee-event-non-interaction': false,
+        })
       }
     },
 
@@ -470,6 +492,45 @@ export default {
         duration: 500,
         easing: 'easeOutQuint',
       })
+
+      this.$gtag.ec({
+        ecommerce: {
+          currencyCode: 'RUB',
+          checkout: {
+            actionField: { step: 2 },
+            products: ec.getProductsForCheckout({
+              products: this.products,
+              $getPrice: this.$getPrice,
+              coefficient: this.coefficient,
+            }),
+          },
+        },
+        event: 'gtm-ee-event',
+        'gtm-ee-event-category': 'Enhanced Ecommerce',
+        'gtm-ee-event-action': 'Переход к заполнению данных. Step 2',
+        'gtm-ee-event-non-interaction': false,
+      })
+    },
+
+    checkThirdStep() {
+      this.validateForm(false) &&
+        this.$gtag.ec({
+          ecommerce: {
+            currencyCode: 'RUB',
+            checkout: {
+              actionField: { step: 3 },
+              products: ec.getProductsForCheckout({
+                products: this.products,
+                $getPrice: this.$getPrice,
+                coefficient: this.coefficient,
+              }),
+            },
+          },
+          event: 'gtm-ee-event',
+          'gtm-ee-event-category': 'Enhanced Ecommerce',
+          'gtm-ee-event-action': 'Форма заполнена. Step 3',
+          'gtm-ee-event-non-interaction': false,
+        })
     },
 
     closeDataArea() {
