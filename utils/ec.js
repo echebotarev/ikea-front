@@ -39,6 +39,21 @@ export default {
     )
   },
 
+  getProductsForCheckout({ products, $getPrice, coefficient }) {
+    return products.map((p, i) =>
+      Object.assign({
+        name: `${p.name}`,
+        id: p.identifier,
+        price: Math.round(
+          $getPrice(p.price.price.mainPriceProps.price.integer) / coefficient
+        ),
+        brand: 'IKEA',
+        category: this.getCategoryFromBreadcrumbs(p.breadcrumbs),
+        quantity: p.qnt,
+      })
+    )
+  },
+
   getCategoryFromBreadcrumbs(breadcrumbs) {
     return breadcrumbs.itemListElement.reduce((acc = '', item, index, arr) => {
       if (index === 0) {

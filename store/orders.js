@@ -148,7 +148,6 @@ export const actions = {
         purchase: {
           actionField: {
             id: payload.orderId,
-            affiliation: 'Online Store',
             revenue: Math.round(payload.payload.total / coefficient),
           },
           products: getGaTransactionData(payload, coefficient),

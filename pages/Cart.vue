@@ -238,6 +238,7 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 import config from '@/config'
+import ec from '@/utils/ec'
 
 import { mdiMapMarker, mdiTools } from '@mdi/js'
 
@@ -309,6 +310,7 @@ export default {
       availabilityProduct: 'availability/availabilityProduct',
       assembly: 'variables/assembly',
       saleForVolume: 'variables/saleForVolume',
+      coefficient: 'variables/coefficient',
     }),
 
     getValue() {
@@ -336,6 +338,24 @@ export default {
 
     this.initScripts('ymaps')
     this.getDeliveryData()
+
+    this.$gtag.ec({
+      ecommerce: {
+        currencyCode: 'RUB',
+        checkout: {
+          actionField: { step: 1 },
+          products: ec.getProductsForCheckout({
+            products: this.products,
+            $getPrice: this.$getPrice,
+            coefficient: this.coefficient,
+          }),
+        },
+      },
+      event: 'gtm-ee-event',
+      'gtm-ee-event-category': 'Enhanced Ecommerce',
+      'gtm-ee-event-action': 'Переход в корзину. Step 1',
+      'gtm-ee-event-non-interaction': false,
+    })
 
     // без этого ф-ия receiveMessage падает на JSON.parse
     // туда приходят данные от detector.js в виде объекта
