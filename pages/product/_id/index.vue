@@ -211,6 +211,7 @@
 import { mapState, mapActions, mapGetters } from 'vuex'
 
 import { hydrateWhenVisible } from 'vue-lazy-hydration'
+import ec from '@/utils/ec'
 
 import {
   mdiImageMultipleOutline,
@@ -287,6 +288,7 @@ export default {
     }),
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
+      coefficient: 'variables/coefficient',
     }),
     isDisabledOrderBtn() {
       return !(
@@ -307,6 +309,57 @@ export default {
     // Этот товар можно дополнить
     this.fetchSuggestionProducts(this.product.identifier)
     this.getDeliveryData()
+  },
+
+  beforeRouteEnter(to, from, next) {
+    const actionField = from.name
+      ? from.name === 'Search'
+        ? { list: 'Search', option: from.query.q }
+        : { list: 'Category' }
+      : { list: null }
+
+    next((vm) =>
+      vm.$gtag.ec({
+        ecommerce: {
+          currencyCode: 'RUB',
+          detail: {
+            actionField,
+            products: ec.getProductsViewed({
+              products: [vm.product],
+              $getPrice: vm.$getPrice,
+              coefficient: vm.coefficient,
+              list: null,
+            }),
+          },
+        },
+        event: 'gtm-ee-event',
+        'gtm-ee-event-category': 'Enhanced Ecommerce',
+        'gtm-ee-event-action': 'Product Details',
+        'gtm-ee-event-non-interaction': true,
+      })
+    )
+  },
+
+  beforeRouteUpdate(to, from, next) {
+    this.$gtag.ec({
+      ecommerce: {
+        currencyCode: 'RUB',
+        detail: {
+          actionField: { list: 'Recommendation from product' },
+          products: ec.getProductsViewed({
+            products: [this.product],
+            $getPrice: this.$getPrice,
+            coefficient: this.coefficient,
+            list: null,
+          }),
+        },
+      },
+      event: 'gtm-ee-event',
+      'gtm-ee-event-category': 'Enhanced Ecommerce',
+      'gtm-ee-event-action': 'Product Details',
+      'gtm-ee-event-non-interaction': true,
+    })
+    next()
   },
 
   beforeDestroy() {
