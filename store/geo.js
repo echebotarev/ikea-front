@@ -97,19 +97,20 @@ export const actions = {
     return commit('SET_VALUE', { key: 'isOpenCities', value: payload })
   },
 
-  checkCity({ dispatch, state }) {
+  checkCity({ dispatch, state }, isConfirmed) {
     const { city } = state.data
 
-    let [shopId] =
+    const [shopId] =
       Object.entries(state.shopIds).find(([key, values]) =>
         values.includes(city)
       ) || []
 
-    shopId = shopId || state.shopId
-
-    dispatch('setShopId', shopId)
-    // открываем окно с выбором города
-    dispatch('toggleDialog', true)
+    if (shopId && isConfirmed) {
+      dispatch('setShopId', shopId)
+    } else {
+      dispatch('setShopId', state.shopId)
+      dispatch('toggleDialog', true)
+    }
   },
 
   initJivosite({ dispatch, state }, shopId) {

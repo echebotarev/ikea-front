@@ -6,7 +6,7 @@
         elevation="0"
         width="100px"
         class="button button-black"
-        @click="confirm"
+        @click="() => confirm(true)"
       >
         Да
       </v-btn>
@@ -14,7 +14,7 @@
         elevation="0"
         width="100px"
         class="button button-black"
-        @click="confirm"
+        @click="() => confirm(false)"
       >
         Нет
       </v-btn>
@@ -33,9 +33,9 @@ export default {
     }),
   },
   methods: {
-    confirm() {
+    confirm(isConfirm) {
       this.setConfirmed(true)
-      this.checkCity()
+      this.checkCity(isConfirm)
     },
     ...mapActions({
       setConfirmed: 'geo/setConfirmed',
