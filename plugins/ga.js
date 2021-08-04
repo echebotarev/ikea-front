@@ -4,7 +4,7 @@ export default ({ app }, inject) => {
    */
   if (process.env.NODE_ENV !== 'production') {
     const fn = function () {}
-    fn.ec = (data) => console.log('Data', data)
+    fn.ec = (data) => {}
     inject('gtag', fn)
     return
   }

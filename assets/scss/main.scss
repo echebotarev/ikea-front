@@ -246,3 +246,10 @@ main.v-main main.v-main {
     }
   }
 }
+
+.video {
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

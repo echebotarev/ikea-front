@@ -11,6 +11,7 @@
             :cols="product.images.fullMediaList.length === 1 ? 12 : 6"
           >
             <v-img
+              v-if="img.type === 'image'"
               :src="
                 getImage(img.content.url, $vuetify.breakpoint.mobile ? 3 : 5)
               "
@@ -24,6 +25,11 @@
                 </v-row>
               </template>
             </v-img>
+            <VideoPlayer
+              v-else-if="img.type === 'video'"
+              :src="img.content.url"
+              :poster="img.content.poster.url"
+            />
           </v-col>
         </v-row>
 
@@ -278,10 +284,7 @@ export default {
       product: (state) => state.products.product,
       breadcrumbs: (state) => state.page.breadcrumbs,
       // TODO: убрать, когда реализую отображение видео
-      fullMediaList: (state) =>
-        state.products.product.images.fullMediaList.filter(
-          (img) => img.type === 'image'
-        ),
+      fullMediaList: (state) => state.products.product.images.fullMediaList,
       suggestionProducts: (state) => state.suggestion.suggestionProducts,
 
       delivery: (state) => state.page.delivery,
