@@ -11,19 +11,7 @@
       <v-col class="bottom-nav" cols="6">
         <b>Навигация:</b>
 
-        <v-list-item
-          v-for="link in links"
-          :key="link.url"
-          dense
-          nuxt
-          class="list-item"
-        >
-          <v-list-item-content class="py-0">
-            <v-list-item-subtitle class="list-item-subtitle">
-              <nuxt-link :to="link.url">{{ link.label }}</nuxt-link>
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+        <NavLinks place="footer" class="mt-2" />
       </v-col>
     </v-row>
     <v-row class="footer-line">
@@ -40,8 +28,6 @@
 <script>
 import { mapState } from 'vuex'
 
-import links from '@/assets/data/links'
-
 export default {
   name: 'Footer',
   components: {
@@ -49,7 +35,6 @@ export default {
     FooterContactSaransk: () => import('@/components/FooterContactSaransk'),
   },
   computed: {
-    links: () => links,
     ...mapState({
       shopId: (state) => state.geo.shopId,
     }),

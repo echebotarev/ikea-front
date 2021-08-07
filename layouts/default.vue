@@ -3,7 +3,7 @@
     <v-main>
       <Message />
 
-      <Header :links="links" />
+      <Header />
 
       <client-only v-if="$vuetify.breakpoint.smAndDown">
         <v-row no-gutters>
@@ -15,18 +15,7 @@
         </v-row>
 
         <v-navigation-drawer v-model="drawer" fixed temporary>
-          <v-list nav>
-            <v-list-item-group active-class="grey lighten-5">
-              <nuxt-link v-for="link in links" :key="link.label" :to="link.url">
-                <v-list-item>
-                  <v-list-item-icon v-if="link.icon">
-                    <v-icon>{{ link.icon }}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-title>{{ link.label }}</v-list-item-title>
-                </v-list-item>
-              </nuxt-link>
-            </v-list-item-group>
-          </v-list>
+          <NavLinks place="aside" />
         </v-navigation-drawer>
       </client-only>
 
@@ -53,7 +42,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import links from '@/assets/data/links'
 
 import { hydrateWhenIdle, hydrateWhenVisible } from 'vue-lazy-hydration'
 
@@ -63,10 +51,10 @@ export default {
     Search: hydrateWhenIdle(() => import('@/components/Search.vue')),
     Footer: hydrateWhenVisible(() => import('@/components/Footer.vue')),
     ChooseCity: hydrateWhenVisible(() => import('@/components/Geo/ChooseCity')),
+    NavLinks: hydrateWhenVisible(() => import('@/components/NavLinks')),
   },
   middleware: 'fetchOrders',
   computed: {
-    links: () => links,
     drawer: {
       get() {
         return this.$store.state.page.menuDrawer
