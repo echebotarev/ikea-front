@@ -1,6 +1,6 @@
 <template>
-  <v-app-bar color="transparent" elevation="0" class="header mt-5">
-    <v-toolbar-title>
+  <v-app-bar color="transparent" elevation="0" class="header my-5">
+    <v-toolbar-title class="pt-2">
       <nuxt-link to="/" class="brand">
         <span class="logo-image-wrap">
           <img
@@ -31,26 +31,9 @@
       <Search />
     </client-only>
 
-    <client-only v-if="$vuetify.breakpoint.smAndUp">
-      <nav>
-        <nuxt-link
-          v-for="link in links"
-          :key="link.url"
-          :to="link.url"
-          class="ml-5"
-          >{{ link.label }}</nuxt-link
-        >
-      </nav>
-    </client-only>
-
     <client-only v-if="!$vuetify.breakpoint.mdAndUp">
       <v-app-bar-nav-icon @click="toggleDrawer(true)"></v-app-bar-nav-icon>
-    </client-only>
-
-    <client-only v-if="countCart">
-      <nuxt-link to="/cart" class="count ml-2 text-center">
-        {{ countCart }}
-      </nuxt-link>
+      <Count class="ml-2" />
     </client-only>
   </v-app-bar>
 </template>
@@ -65,19 +48,13 @@ export default {
   components: {
     Search: () => import('@/components/Search'),
     ConfirmCity: () => import('@/components/Geo/ConfirmCity'),
-  },
-  props: {
-    links: {
-      type: Array,
-      default: null,
-    },
+    Count: () => import('@/components/Count'),
   },
   data() {
     return { mdiGoogleMaps }
   },
   computed: {
     ...mapGetters({
-      countCart: 'orders/getCountCart',
       shopDisplayName: 'geo/getDisplayName',
     }),
     ...mapState({
@@ -96,15 +73,6 @@ export default {
 <style scoped lang="scss">
 .header {
   z-index: 2;
-}
-.count {
-  display: inline-block;
-  padding: 3px;
-  width: 30px;
-  border-radius: 50%;
-  background: rgb(0, 88, 163);
-  color: #fff;
-  text-decoration: none !important;
 }
 .logo-image-wrap {
   border-radius: 50%;

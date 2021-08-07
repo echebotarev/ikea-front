@@ -3,7 +3,7 @@
     <v-main>
       <Message />
 
-      <NavBar :links="links" />
+      <Header :links="links" />
 
       <client-only v-if="$vuetify.breakpoint.smAndDown">
         <v-row no-gutters>
@@ -60,7 +60,6 @@ import { hydrateWhenIdle, hydrateWhenVisible } from 'vue-lazy-hydration'
 export default {
   components: {
     Message: hydrateWhenVisible(() => import('@/components/Message.vue')),
-    NavBar: hydrateWhenIdle(() => import('@/components/NavBar.vue')),
     Search: hydrateWhenIdle(() => import('@/components/Search.vue')),
     Footer: hydrateWhenVisible(() => import('@/components/Footer.vue')),
     ChooseCity: hydrateWhenVisible(() => import('@/components/Geo/ChooseCity')),

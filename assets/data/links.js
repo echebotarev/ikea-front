@@ -1,5 +1,6 @@
 export default [
-  { label: 'Все товары', url: '/' },
+  { label: 'Каталог IKEA', url: '/' },
+  { label: 'Акции', url: '/sales', className: 'sales' },
   { label: 'Контакты', url: '/information' },
   { label: 'Корзина', url: '/cart' },
 ]
