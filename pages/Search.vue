@@ -35,6 +35,11 @@ export default {
       },
     },
   },
+  head() {
+    return {
+      title: 'Поиск',
+    }
+  },
 }
 </script>
 
