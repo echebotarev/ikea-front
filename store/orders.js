@@ -34,16 +34,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_ORDER(state, payload) {
-    state.order = payload
-  },
-
-  SET_PRODUCTS(state, payload) {
-    state.products = payload
-  },
-
-  SET_SALE(state, payload) {
-    state.sale = payload
+  SET_DATA(state, { key, value }) {
+    state[key] = value
   },
 }
 
@@ -56,8 +48,8 @@ export const actions = {
   fetchProducts({ commit }) {
     return OrdersService.getOrder().then((response) => {
       if (response.data) {
-        commit('SET_ORDER', response.data)
-        commit('SET_PRODUCTS', response.data.products)
+        commit('SET_DATA', { key: 'order', value: response.data })
+        commit('SET_DATA', { key: 'products', value: response.data.products })
       }
     })
   },
@@ -94,8 +86,8 @@ export const actions = {
 
     return OrdersService.addProduct(payload).then((response) => {
       if (response.data) {
-        commit('SET_ORDER', response.data)
-        commit('SET_PRODUCTS', response.data.products)
+        commit('SET_DATA', { key: 'order', value: response.data })
+        commit('SET_DATA', { key: 'products', value: response.data.products })
 
         return true
       }
@@ -132,8 +124,8 @@ export const actions = {
 
     return OrdersService.removeProduct(payload).then((response) => {
       if (response.data) {
-        commit('SET_ORDER', response.data)
-        commit('SET_PRODUCTS', response.data.products)
+        commit('SET_DATA', { key: 'order', value: response.data })
+        commit('SET_DATA', { key: 'products', value: response.data.products })
       }
     })
   },
@@ -180,8 +172,8 @@ export const actions = {
       const order = response.data
 
       if (order && order.checkout) {
-        commit('SET_ORDER', {})
-        commit('SET_PRODUCTS', [])
+        commit('SET_DATA', { key: 'order', value: {} })
+        commit('SET_DATA', { key: 'products', value: [] })
       }
     })
   },
@@ -190,9 +182,10 @@ export const actions = {
   fetchSale({ commit }, { utm_campaign: campaign, utm_cause: cause }) {
     return cause === 'sale'
       ? ApiService.getSale({ campaign }).then((response) => {
-          response.data && commit('SET_SALE', response.data)
+          response.data &&
+            commit('SET_DATA', { key: 'sale', value: response.data })
         })
-      : commit('SET_SALE', null)
+      : commit('SET_DATA', { key: 'sale', value: null })
   },
 }
 
