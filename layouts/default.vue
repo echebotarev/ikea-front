@@ -70,21 +70,23 @@ export default {
       geo: (state) => state.geo.data,
     }),
   },
-  async mounted() {
-    this.$store.dispatch('orders/fetchProducts')
-    if (this.geo === null) {
-      await this.$store.dispatch('geo/fetchLocation')
-    }
+  mounted() {
+    this.fetchProducts()
+    this.fetchSaleProducts()
+    this.geo === null && this.fetchLocation()
 
     // проверка на будущее, на тот момент, когда достигнем более 10000 запросов
     if (this.geo.success === false) {
-      await this.$sentry.captureMessage(
+      this.$sentry.captureMessage(
         `Geo get limited requests: ${JSON.stringify(this.geo)}`
       )
     }
   },
   methods: {
     ...mapActions({
+      fetchProducts: 'orders/fetchProducts',
+      fetchSaleProducts: 'products/fetchSaleProducts',
+      fetchLocation: 'geo/fetchLocation',
       toggleDrawer: 'page/toggleDrawer',
     }),
   },

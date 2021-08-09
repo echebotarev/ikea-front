@@ -1,8 +1,11 @@
 import ApiService from '@/services/ApiService.js'
+import OrdersService from '@/services/OrdersService'
+
 import getAppliedFiltersFromQuery from 'assets/utils/getAppliedFiltersFromQuery'
 
 export const state = () => ({
   products: [],
+  saleProducts: [],
   sameRecommendations: [],
   similarRecommendations: [],
   styleRecommendations: [],
@@ -11,7 +14,12 @@ export const state = () => ({
   product: {},
   productCount: 0,
 })
+
 export const mutations = {
+  SET_DATA(state, { key, value }) {
+    state[key] = value
+  },
+
   SET_PRODUCTS(state, products) {
     state.products = products
   },
@@ -44,6 +52,7 @@ export const mutations = {
     state.trendingRecommendations = recommendations
   },
 }
+
 export const actions = {
   fetchProductsByCategoryId({ commit, dispatch }, payload) {
     const ikeaShopId = this.app.$cookies.get('ikeaShopId')
@@ -129,6 +138,13 @@ export const actions = {
       if (response.status === 200) {
         commit(DICT_COMMIT[type], response.data)
       }
+    })
+  },
+
+  fetchSaleProducts({ commit }) {
+    return OrdersService.getSaleProducts().then((response) => {
+      response.data &&
+        commit('SET_DATA', { key: 'saleProducts', value: response.data })
     })
   },
 

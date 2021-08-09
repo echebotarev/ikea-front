@@ -9,6 +9,12 @@ export const state = () => ({
   breadcrumbs: [],
   menuDrawer: false,
   delivery: {},
+  links: [
+    { label: 'Каталог IKEA', url: '/' },
+    { label: 'Акции', url: '/sales', icon: 'sale' },
+    { label: 'Контакты', url: '/information' },
+    { label: 'Корзина', url: '/cart' },
+  ],
 })
 
 export const mutations = {

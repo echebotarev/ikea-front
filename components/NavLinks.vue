@@ -17,8 +17,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import { mdiSale } from '@mdi/js'
-import links from '@/assets/data/links'
 
 export default {
   name: 'NavLinks',
@@ -30,11 +31,19 @@ export default {
   },
   data() {
     return {
-      links,
       icons: {
         sale: mdiSale,
       },
     }
+  },
+  computed: {
+    ...mapState({
+      saleProducts: (state) => state.products.saleProducts,
+      links: (state) =>
+        state.page.links.filter((link) =>
+          link.url === '/sales' ? state.products.saleProducts.length : true
+        ),
+    }),
   },
 }
 </script>

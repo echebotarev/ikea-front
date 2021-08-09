@@ -11,7 +11,9 @@
       <v-col class="bottom-nav" cols="6">
         <b>Навигация:</b>
 
-        <NavLinks place="footer" class="mt-2" />
+        <client-only>
+          <NavLinks place="footer" class="mt-2" />
+        </client-only>
       </v-col>
     </v-row>
     <v-row class="footer-line">
