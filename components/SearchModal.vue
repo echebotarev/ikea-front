@@ -37,13 +37,11 @@
 
                   <v-list-item-content v-if="completion.label === 'Искать'">
                     <span @click="hideModal">
-                      <nuxt-link
-                        :to="`/search/?q=${completion.completion.text}`"
-                      >
+                      <a :href="`/search/?q=${completion.completion.text}`">
                         <v-list-item-title
                           v-text="completion.completion.text"
                         ></v-list-item-title>
-                      </nuxt-link>
+                      </a>
                     </span>
                   </v-list-item-content>
                   <!-- /<Искать> -->

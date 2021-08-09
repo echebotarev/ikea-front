@@ -26,15 +26,6 @@ export default {
   computed: mapState({
     products: (state) => state.products.products,
   }),
-  watch: {
-    // TODO Hack. Обновляю страницу, т.к. при "'$route.query': '$fetch'" выскакивала ошибка
-    // Проблема в отсутствующем cb в ф-ии Watcher.prototype.run
-    '$route.query': {
-      handler() {
-        document.location.reload()
-      },
-    },
-  },
   head() {
     return {
       title: 'Поиск',
