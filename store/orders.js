@@ -55,7 +55,10 @@ export const actions = {
   },
 
   addProduct({ commit, rootGetters, rootState }, payload) {
-    this.$fb.track('AddToCart', { currency: 'KZT', value: getPrice(payload) })
+    this.$fb.track('AddToCart', {
+      currency: 'RUB',
+      value: getPrice(payload) / rootGetters['variables/coefficient'],
+    })
     // this.$metrika(67230112, 'reachGoal', 'addToCart')
 
     const { product, qnt } = payload
