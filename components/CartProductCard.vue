@@ -9,6 +9,7 @@
       v-for="product in products"
       :key="product.identifier"
       :ref="product.identifier"
+      class="py-6"
     >
       <v-col>
         <v-row>
@@ -53,35 +54,68 @@
           </v-col>
           <v-col class="cart-price text-right" cols="5">
             <div class="main-price">
-              <Price
-                :price="
-                  $getPrice(product.price.price.mainPriceProps.price.integer) *
-                  product.qnt
-                "
-                :without-label="true"
-                :is-only-formatted="true"
-                symbol=".–"
-                :class-name="
-                  product.price.price.mainPriceProps.hasHighlight &&
-                  product.qnt === 1
-                    ? 'highlight'
-                    : ''
-                "
-              />
+              <!-- Цена со скидкой -->
+              <div v-if="product.sales">
+                <Price
+                  :price="product.sales.price * product.qnt"
+                  :without-label="true"
+                  :is-only-formatted="true"
+                  symbol=".–"
+                  :class-name="'highlight'"
+                />
 
-              <Price
-                v-if="product.qnt > 1"
-                :price="product.price.price.mainPriceProps.price.integer"
-                :without-label="true"
-                symbol=".–"
-                :class-name="`light ${
-                  product.price.price.mainPriceProps.hasHighlight
-                    ? 'highlight'
-                    : ''
-                }`"
-              />
+                <Price
+                  v-if="product.qnt > 1"
+                  :price="product.sales.price"
+                  :is-only-formatted="true"
+                  :without-label="true"
+                  symbol=".–"
+                  :class-name="`light ${
+                    product.price.price.mainPriceProps.hasHighlight
+                      ? 'highlight'
+                      : ''
+                  }`"
+                />
+              </div>
+              <!-- Цена со скидкой -->
 
-              <div v-if="product.price.familyText" class="previous-price">
+              <!-- Основная цена -->
+              <div v-else>
+                <Price
+                  :price="
+                    $getPrice(
+                      product.price.price.mainPriceProps.price.integer
+                    ) * product.qnt
+                  "
+                  :without-label="true"
+                  :is-only-formatted="true"
+                  symbol=".–"
+                  :class-name="
+                    product.price.price.mainPriceProps.hasHighlight &&
+                    product.qnt === 1
+                      ? 'highlight'
+                      : ''
+                  "
+                />
+
+                <Price
+                  v-if="product.qnt > 1"
+                  :price="product.price.price.mainPriceProps.price.integer"
+                  :without-label="true"
+                  symbol=".–"
+                  :class-name="`light ${
+                    product.price.price.mainPriceProps.hasHighlight
+                      ? 'highlight'
+                      : ''
+                  }`"
+                />
+              </div>
+              <!-- Основная цена -->
+
+              <div
+                v-if="product.price.familyText && !product.sales"
+                class="previous-price"
+              >
                 <Price
                   :price="
                     $getPrice(
@@ -111,6 +145,7 @@
           <v-col cols="3"></v-col>
           <v-col cols="4">
             <Available
+              v-if="!product.sales"
               :type="product.utag.product_type"
               :identifier="product.identifier"
               :with-qnt="true"

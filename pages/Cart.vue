@@ -283,8 +283,11 @@ export default {
         let sum = 0
         state.orders.products.forEach((product) => {
           const price =
-            this.$getPrice(product.price.price.mainPriceProps.price.integer) *
-            product.qnt
+            (product.sales
+              ? product.sales.price
+              : this.$getPrice(
+                  product.price.price.mainPriceProps.price.integer
+                )) * product.qnt
           sum += price
         })
         return sum
@@ -298,8 +301,11 @@ export default {
               .assemblyAndDocuments
           ) {
             const price =
-              this.$getPrice(product.price.price.mainPriceProps.price.integer) *
-              product.qnt
+              (product.sales
+                ? product.sales.price
+                : this.$getPrice(
+                    product.price.price.mainPriceProps.price.integer
+                  )) * product.qnt
             sum += price
           }
         })
@@ -611,9 +617,9 @@ export default {
           this.availabilityProduct(product.identifier).StockAvailability
             .RetailItemAvailability.AvailableStock['@']
 
-        availableProducts[product.identifier] = !!(
-          availableProduct && parseInt(availableProduct) - product.qnt >= 0
-        )
+        availableProducts[product.identifier] =
+          !!product.sales ||
+          !!(availableProduct && parseInt(availableProduct) - product.qnt >= 0)
       })
 
       let text = ''
@@ -648,12 +654,15 @@ export default {
     getLetterProducts() {
       return this.products.map((product) => {
         return Object.assign({}, product, {
-          computedPrice: this.$getPrice(
-            product.price.price.mainPriceProps.price.integer
-          ),
+          computedPrice: product.sales
+            ? product.sales.price
+            : this.$getPrice(product.price.price.mainPriceProps.price.integer),
           computedPriceTotal:
-            this.$getPrice(product.price.price.mainPriceProps.price.integer) *
-            product.qnt,
+            (product.sales
+              ? product.sales.price
+              : this.$getPrice(
+                  product.price.price.mainPriceProps.price.integer
+                )) * product.qnt,
         })
       })
     },
