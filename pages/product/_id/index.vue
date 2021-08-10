@@ -248,12 +248,12 @@ export default {
     ),
   },
 
-  async fetch({ store, error, params }) {
+  async fetch({ store, error, route: { params, query } }) {
     try {
-      const result = await store.dispatch(
-        'products/fetchProductById',
-        params.id
-      )
+      const result = await store.dispatch('products/fetchProductById', {
+        id: params.id,
+        isSales: !!query.sales,
+      })
 
       if (result === false) {
         return error({
@@ -289,10 +289,12 @@ export default {
 
       delivery: (state) => state.page.delivery,
     }),
+
     ...mapGetters({
       availabilityProduct: 'availability/availabilityProduct',
       coefficient: 'variables/coefficient',
     }),
+
     isDisabledOrderBtn() {
       return !(
         this.availabilityProduct(this.product.identifier).StockAvailability &&
@@ -318,6 +320,8 @@ export default {
     const actionField = from.name
       ? from.name === 'Search'
         ? { list: 'Search', option: from.query.q }
+        : from.name === 'Sales'
+        ? { list: 'Sales' }
         : { list: 'Category' }
       : { list: null }
 

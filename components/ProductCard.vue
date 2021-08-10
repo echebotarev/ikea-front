@@ -5,7 +5,9 @@
       :class="`card-product ${product.available === 0 ? 'disabled' : ''}`"
     >
       <nuxt-link
-        :to="`/product/${product.id || product.item_id || product.identifier}`"
+        :to="`/product/${product.id || product.item_id || product.identifier}${
+          product.sales ? '?sales=true' : ''
+        }`"
       >
         <v-img
           :src="

@@ -88,13 +88,25 @@ export const actions = {
     })
   },
 
-  fetchProductById({ commit }, id) {
-    return ApiService.getProduct(id).then((response) => {
+  fetchProductById({ commit, dispatch, state }, { id, isSales = false }) {
+    return ApiService.getProduct(id).then(async (response) => {
       if (!response.data) {
         return false
       }
 
-      commit('SET_PRODUCT', response.data)
+      /* получение данных о скидках */
+      if (isSales && state.saleProducts.length === 0) {
+        await dispatch('fetchSaleProducts')
+      }
+      const salesProduct = isSales
+        ? state.saleProducts.find((sp) => sp.productId === id)
+        : {}
+      /* получение данных о скидках */
+
+      commit(
+        'SET_PRODUCT',
+        Object.assign(response.data, { sales: salesProduct })
+      )
 
       response.data.breadcrumbs &&
         commit('page/SET_BREADCRUMBS', response.data.breadcrumbs, {

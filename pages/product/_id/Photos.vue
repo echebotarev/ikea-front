@@ -41,7 +41,7 @@ export default {
 
   async fetch({ store, error, params }) {
     try {
-      await store.dispatch('products/fetchProductById', params.id)
+      await store.dispatch('products/fetchProductById', { id: params.id })
     } catch (e) {
       error({
         statusCode: 503,
