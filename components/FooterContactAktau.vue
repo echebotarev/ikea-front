@@ -6,7 +6,7 @@
       <div class="adr">
         <span class="country-name">Казахстан</span>,
         <span class="locality">г. Актау</span>,
-        <span class="street-address">10 микрорайон, 2 дом</span>
+        <span class="street-address">7–1–16</span>
         <div>
           <a class="tel" href="tel:+77017375736">+7 (701) 737-5736</a>
         </div>
