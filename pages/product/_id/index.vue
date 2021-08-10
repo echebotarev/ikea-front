@@ -176,6 +176,7 @@
         <v-row class="mt-2">
           <v-col class="pb-0" cols="12">
             <Available
+              v-if="!isSales"
               :type="product.utag.product_type"
               :identifier="product.identifier"
             />
@@ -312,6 +313,10 @@ export default {
     }),
 
     isDisabledOrderBtn() {
+      if (this.isSales) {
+        return false
+      }
+
       return !(
         this.availabilityProduct(this.product.identifier).StockAvailability &&
         this.availabilityProduct(this.product.identifier).StockAvailability
