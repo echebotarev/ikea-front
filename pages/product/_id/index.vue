@@ -64,7 +64,15 @@
                 {{ product.price.productDescription }},
                 {{ product.price.measurementText }}
                 <br />
-                <span v-if="product.price.price.previousPriceProps">
+                <br />
+                <span v-if="isSales">
+                  Предыдущая цена
+                  <Price
+                    :price="product.price.price.mainPriceProps.price.integer"
+                    :without-label="true"
+                  />
+                </span>
+                <span v-else-if="product.price.price.previousPriceProps">
                   {{ product.price.price.previousPriceText }}
                   <Price
                     :price="
@@ -84,10 +92,17 @@
           </v-col>
           <v-col class="text-right" cols="auto">
             <Price
-              :price="product.price.price.mainPriceProps.price.integer"
+              :price="
+                isSales
+                  ? product.sales.price
+                  : product.price.price.mainPriceProps.price.integer
+              "
+              :is-only-formatted="isSales"
               :unit="product.price.price.mainPriceProps.unit"
               :class="
                 product.price.price.mainPriceProps.hasHighlight
+                  ? 'highlight'
+                  : isSales
                   ? 'highlight'
                   : ''
               "
@@ -282,6 +297,7 @@ export default {
   computed: {
     ...mapState({
       product: (state) => state.products.product,
+      isSales: (state) => !!state.products.product.sales,
       breadcrumbs: (state) => state.page.breadcrumbs,
       // TODO: убрать, когда реализую отображение видео
       fullMediaList: (state) => state.products.product.images.fullMediaList,

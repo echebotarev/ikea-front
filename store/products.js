@@ -100,7 +100,7 @@ export const actions = {
       }
       const salesProduct = isSales
         ? state.saleProducts.find((sp) => sp.productId === id)
-        : {}
+        : null
       /* получение данных о скидках */
 
       commit(
