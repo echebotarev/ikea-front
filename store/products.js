@@ -105,6 +105,26 @@ export const actions = {
     })
   },
 
+  fetchProductsByIds({ commit, state }, { ids, isSaleProducts = false }) {
+    return ApiService.getProductsByIds(ids).then((response) => {
+      if (response.data) {
+        // мерджим товары с данными о скидке
+        isSaleProducts
+          ? commit(
+              'SET_PRODUCTS',
+              response.data.map((p) => {
+                p.sales = state.saleProducts.find(
+                  (sp) => sp.productId === p.identifier
+                )
+
+                return p
+              })
+            )
+          : commit('SET_PRODUCTS', response.data)
+      }
+    })
+  },
+
   fetchRecommendations(
     { commit, state, rootState },
     { type, isCategory = false }
