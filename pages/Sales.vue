@@ -34,7 +34,7 @@ export default {
   },
   head() {
     return {
-      title: 'Поиск',
+      title: 'Акции',
     }
   },
 }

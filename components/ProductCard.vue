@@ -50,13 +50,28 @@
           />
         </span>
 
-        <div class="card-product-price">
+        <!-- Блок исопльзуется на странице Sales для уцененных товаров -->
+        <span v-if="product.sales" class="card-product-previous-price-text">
+          Предыдущая цена
           <Price
             :price="
               product.priceNumeral ||
               product.price.RUB ||
               product.price.price.mainPriceProps.price.integer
             "
+            :without-label="true"
+          />
+        </span>
+
+        <div class="card-product-price">
+          <Price
+            :price="
+              (product.sales && product.sales.price) ||
+              product.priceNumeral ||
+              product.price.RUB ||
+              product.price.price.mainPriceProps.price.integer
+            "
+            :is-only-formatted="!!product.sales"
             :unit="
               product.price.price && product.price.price.mainPriceProps.unit
             "
