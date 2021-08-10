@@ -40,7 +40,7 @@
           </p>
         </v-card-text>
         <v-card-subtitle>Адрес:</v-card-subtitle>
-        <v-card-text> Казахстан, г. Актау, 10 микрорайон, 2 дом </v-card-text>
+        <v-card-text> Казахстан, г. Актау, 7-1-16</v-card-text>
         <v-card-subtitle>Доставка:</v-card-subtitle>
         <v-card-text>
           В стоимость товаров включена доставка прямо до квартиры <br />
