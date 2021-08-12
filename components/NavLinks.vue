@@ -13,6 +13,8 @@
       </v-icon>
       {{ link.label }}
     </nuxt-link>
+
+    <Count class="ml-2" />
   </div>
 </template>
 
@@ -51,6 +53,7 @@ export default {
 <style scoped lang="scss">
 .header-links {
   display: inline;
+  margin-right: 40px;
 }
 .aside-links {
   padding: 40px 20px;
