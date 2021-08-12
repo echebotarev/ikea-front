@@ -14,7 +14,7 @@
       {{ link.label }}
     </nuxt-link>
 
-    <Count class="ml-2" />
+    <Count v-if="place === 'header'" class="ml-2" />
   </div>
 </template>
 
