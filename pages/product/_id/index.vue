@@ -65,11 +65,12 @@
                 {{ product.price.measurementText }}
                 <br />
                 <br />
-                <span v-if="isSales">
+                <span v-if="isSales" class="font-weight-bold">
                   Предыдущая цена
                   <Price
                     :price="product.price.price.mainPriceProps.price.integer"
                     :without-label="true"
+                    class-name="font-weight-bold"
                   />
                 </span>
                 <span v-else-if="product.price.price.previousPriceProps">
@@ -112,7 +113,7 @@
 
         <v-row
           v-if="product.sold_separately"
-          class="sold-separately mb-3"
+          class="sold-separately my-3"
           no-gutters
         >
           <v-col cols="1">
