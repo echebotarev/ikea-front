@@ -44,6 +44,7 @@ export default {
     { src: '@plugins/initJivosite.js', mode: 'client' },
     { src: '@plugins/vue-observe-visibility.js', mode: 'client' },
   ],
+  serverMiddleware: ['@/serverMiddleware/setCity.js'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components

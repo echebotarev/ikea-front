@@ -14,18 +14,22 @@ export const state = () => ({
   shopIds: {
     '001': ['Актау', 'Омирзак', 'Мунайши', 'Курык'],
     '002': ['Саранск'],
+    '003': ['Уральск'],
   },
   shopDisplayNames: {
     '001': 'Актау',
     '002': 'Саранск',
+    '003': 'Уральск',
   },
   ikeaShopDisplayNames: {
     '001': 'Самара',
     '002': 'Нижний Новгород',
+    '003': 'Самара',
   },
   ikeaShopIds: {
     // id Самары
     '001': 442,
+    '003': 442,
     // id Нижнего Новгорода
     '002': 437,
   },
@@ -33,6 +37,7 @@ export const state = () => ({
     baseUrl: '//code-ya.jivosite.com/widget',
     '001': 'NApoQrzu9D',
     '002': 'PoWbgP3IdQ',
+    '003': 'NApoQrzu9D',
   },
   version: 6,
 })
@@ -73,7 +78,7 @@ export const actions = {
 
     window.SHOP_ID = payload
     commit('SET_VALUE', { key: 'shopId', value: payload })
-    $cookies.set('ikeaShopId', getters.getIkeaShopId, {
+    $cookies.set('ikeaShopId', getters.getIkeaShopId(), {
       path: '/',
       maxAge: 60 * 60 * 24 * 365,
     })
@@ -137,7 +142,6 @@ export const getters = {
     return state.ikeaShopDisplayNames[state.shopId]
   },
 
-  getIkeaShopId(state) {
-    return state.ikeaShopIds[state.shopId]
-  },
+  getIkeaShopId: (state) => (shopId) =>
+    shopId ? state.ikeaShopIds[shopId] : state.ikeaShopIds[state.shopId],
 }
