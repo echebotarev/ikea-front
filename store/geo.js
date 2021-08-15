@@ -1,7 +1,7 @@
 import GeoService from '@/services/GeoService.js'
 
 export const state = () => ({
-  data: null,
+  data: {},
   confirmedCity: false,
   isOpenCities: false,
 
@@ -34,7 +34,7 @@ export const state = () => ({
     '001': 'NApoQrzu9D',
     '002': 'PoWbgP3IdQ',
   },
-  version: 5,
+  version: 6,
 })
 
 export const mutations = {
@@ -49,7 +49,7 @@ export const mutations = {
 
 export const actions = {
   fetchLocation({ state, commit }) {
-    if (state.data) {
+    if (Object.keys(state.data).length !== 0) {
       return false
     }
 

@@ -73,7 +73,7 @@ export default {
   mounted() {
     this.fetchProducts()
     this.fetchSaleProducts()
-    this.geo === null && this.fetchLocation()
+    this.fetchLocation()
 
     // проверка на будущее, на тот момент, когда достигнем более 10000 запросов
     if (this.geo.success === false) {
