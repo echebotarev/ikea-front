@@ -29,6 +29,12 @@ export default {
   head() {
     return {
       title: 'Поиск',
+      meta: [
+        {
+          name: 'robots',
+          content: 'noindex',
+        },
+      ],
     }
   },
 }
