@@ -5,6 +5,14 @@ export const state = () => ({
   confirmedCity: false,
   isOpenCities: false,
 
+  get baseUrl() {
+    return process.env.NODE_ENV === 'development'
+      ? 'http://domain.doma-doma.dv:3333'
+      : 'https://domain.doma-doma.org'
+  },
+
+  set baseUrl(value) {},
+
   currencySymbol: {
     '001': '₸',
     '002': '₽',
@@ -72,8 +80,8 @@ export const actions = {
     commit('SET_VALUE', { key: 'confirmedCity', value: payload })
   },
 
-  setShopId({ commit, dispatch, getters, state }, payload) {
-    if (payload === state.shopId) {
+  setShopId({ commit, dispatch, getters, state }, shopId) {
+    if (shopId === state.shopId) {
       return false
     }
 
@@ -81,20 +89,29 @@ export const actions = {
       app: { $cookies },
     } = this
 
-    window.SHOP_ID = payload
-    commit('SET_VALUE', { key: 'shopId', value: payload })
+    window.SHOP_ID = shopId
+    commit('SET_VALUE', { key: 'shopId', value: shopId })
     $cookies.set('ikeaShopId', getters.getIkeaShopId(), {
       path: '/',
       maxAge: 60 * 60 * 24 * 365,
     })
-    $cookies.set('domaDomaShopId', payload, {
+    $cookies.set('domaDomaShopId', shopId, {
       path: '/',
       maxAge: 60 * 60 * 24 * 365,
     })
 
     dispatch('toggleDialog', false)
+    dispatch('setLocation', shopId)
+  },
 
-    document.location = `http://${state.domainNames[payload]}.doma-doma.dv:3333${this.app.context.route.path}`
+  setLocation({ state: { domainNames, baseUrl } }, shopId) {
+    const { hostname } = document.location
+    // меняем домен, только если это необходимо
+    if (hostname.includes(domainNames[shopId]) === false) {
+      document.location = `${baseUrl.replace('domain', domainNames[shopId])}${
+        this.app.context.route.path
+      }`
+    }
   },
 
   toggleDialog({ commit, state }, payload = null) {
