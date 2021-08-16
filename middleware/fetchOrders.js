@@ -1,3 +1,1 @@
-export default async ({ store }) => {
-  await store.dispatch('orders/fetchProducts')
-}
+export default ({ store }) => store.dispatch('orders/fetchProducts')

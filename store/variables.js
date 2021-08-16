@@ -6,6 +6,7 @@ export const state = () => ({
   percent: {
     '001': 45,
     '002': 10,
+    '003': 25,
   },
   saleForVolume: {
     '001': null,
@@ -21,6 +22,7 @@ export const state = () => ({
         sale: 4,
       },
     ],
+    '003': null,
   },
   assembly: {
     '001': {
@@ -31,30 +33,20 @@ export const state = () => ({
       percent: 9,
       lowPrice: 500,
     },
+    '003': {
+      percent: 10,
+      lowPrice: 5000,
+    },
   },
   currencyCoefficient: {
     '001': 6.2,
     '002': 1,
+    '003': 6.2,
   },
   currencySymbol: {
     '001': '₸',
     '002': '₽',
-  },
-
-  shopId: '001',
-  shopIds: {
-    '001': ['Актау', 'Омирзак', 'Мунайши', 'Курык'],
-    '002': ['Саранск'],
-  },
-  shopDisplayNames: {
-    '001': 'Актау',
-    '002': 'Саранск',
-  },
-  ikeaShopIds: {
-    // id Самары
-    '001': 442,
-    // id Нижнего Новгорода
-    '002': 437,
+    '003': '₸',
   },
 })
 

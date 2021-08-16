@@ -33,6 +33,11 @@ export const state = () => ({
     // id Нижнего Новгорода
     '002': 437,
   },
+  domainNames: {
+    '001': 'aktau',
+    '002': 'saransk',
+    '003': 'uralsk',
+  },
   jivosite: {
     baseUrl: '//code-ya.jivosite.com/widget',
     '001': 'NApoQrzu9D',
@@ -88,7 +93,8 @@ export const actions = {
     })
 
     dispatch('toggleDialog', false)
-    document.location.reload()
+
+    document.location = `http://${state.domainNames[payload]}.doma-doma.dv:3333${this.app.context.route.path}`
   },
 
   toggleDialog({ commit, state }, payload = null) {

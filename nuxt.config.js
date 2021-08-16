@@ -43,6 +43,7 @@ export default {
     { src: '@plugins/filters.js', mode: 'client' },
     { src: '@plugins/initJivosite.js', mode: 'client' },
     { src: '@plugins/vue-observe-visibility.js', mode: 'client' },
+    { src: '@plugins/domainHandler.js', mode: 'client' },
   ],
   serverMiddleware: ['@/serverMiddleware/setCity.js'],
   /*
