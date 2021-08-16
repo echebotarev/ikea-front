@@ -5,17 +5,9 @@ export const state = () => ({
   confirmedCity: false,
   isOpenCities: false,
 
-  get baseUrl() {
-    return process.env.NODE_ENV === 'development'
-      ? 'http://domain.doma-doma.dv:3333'
-      : 'https://domain.doma-doma.org'
-  },
-
-  set baseUrl(value) {},
-
-  currencySymbol: {
-    '001': '₸',
-    '002': '₽',
+  urls: {
+    development: 'http://domain.doma-doma.dv:3333',
+    production: 'https://domain.doma-doma.org',
   },
 
   shopId: '001',
@@ -104,13 +96,14 @@ export const actions = {
     dispatch('setLocation', shopId)
   },
 
-  setLocation({ state: { domainNames, baseUrl } }, shopId) {
+  setLocation({ state: { domainNames }, getters }, shopId) {
     const { hostname } = document.location
     // меняем домен, только если это необходимо
     if (hostname.includes(domainNames[shopId]) === false) {
-      document.location = `${baseUrl.replace('domain', domainNames[shopId])}${
-        this.app.context.route.path
-      }`
+      document.location = `${getters.getBaseUrl.replace(
+        'domain',
+        domainNames[shopId]
+      )}${this.app.context.route.path}`
     }
   },
 
@@ -167,4 +160,6 @@ export const getters = {
 
   getIkeaShopId: (state) => (shopId) =>
     shopId ? state.ikeaShopIds[shopId] : state.ikeaShopIds[state.shopId],
+
+  getBaseUrl: (state) => state.urls[process.env.NODE_ENV],
 }
