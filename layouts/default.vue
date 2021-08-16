@@ -44,6 +44,7 @@
 import { mapActions, mapState } from 'vuex'
 
 import { hydrateWhenIdle, hydrateWhenVisible } from 'vue-lazy-hydration'
+import getCanonicalUrl from '@/utils/getCanonicalUrl'
 
 export default {
   components: {
@@ -99,14 +100,14 @@ export default {
       link: [
         {
           rel: 'canonical',
-          href: `https://doma-doma.org${this.$route.path}`,
+          href: getCanonicalUrl(this),
         },
       ],
       meta: [
         {
           hid: 'og:url',
           property: 'og:url',
-          content: `https://doma-doma.org${this.$route.path}`,
+          content: getCanonicalUrl(this),
         },
         {
           hid: 'og:site_name',

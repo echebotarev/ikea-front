@@ -77,20 +77,8 @@ export const actions = {
       return false
     }
 
-    const {
-      app: { $cookies },
-    } = this
-
     window.SHOP_ID = shopId
     commit('SET_VALUE', { key: 'shopId', value: shopId })
-    $cookies.set('ikeaShopId', getters.getIkeaShopId(), {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 365,
-    })
-    $cookies.set('domaDomaShopId', shopId, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 365,
-    })
 
     dispatch('toggleDialog', false)
     dispatch('setLocation', shopId)
@@ -160,6 +148,9 @@ export const getters = {
 
   getIkeaShopId: (state) => (shopId) =>
     shopId ? state.ikeaShopIds[shopId] : state.ikeaShopIds[state.shopId],
+
+  getDomainName: (state) => (shopId) =>
+    shopId ? state.domainNames[shopId] : state.domainNames[state.shopId],
 
   getBaseUrl: (state) => state.urls[process.env.NODE_ENV],
 }
