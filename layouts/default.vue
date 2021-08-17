@@ -45,6 +45,7 @@ import { mapActions, mapState } from 'vuex'
 
 import { hydrateWhenIdle, hydrateWhenVisible } from 'vue-lazy-hydration'
 import getCanonicalUrl from '@/utils/getCanonicalUrl'
+import getCityName from '@/utils/getCityName'
 
 export default {
   components: {
@@ -93,7 +94,7 @@ export default {
   },
   head() {
     return {
-      titleTemplate: '%s - IKEA в Актау',
+      titleTemplate: `%s - IKEA-${getCityName(this)}`,
       htmlAttrs: {
         lang: 'ru',
       },

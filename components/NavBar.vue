@@ -14,10 +14,12 @@
 
       <span class="logo-text ml-3 pl-3">
         Доставка IKEA <br />
-        <span class="logo-text-mini" @click="toggleDialog(true)">
-          в {{ shopDisplayName }}
-          <v-icon class="logo-text-icon">{{ mdiGoogleMaps }}</v-icon>
-        </span>
+        <client-only>
+          <span class="logo-text-mini" @click="toggleDialog(true)">
+            в {{ shopDisplayName() }}
+            <v-icon class="logo-text-icon">{{ mdiGoogleMaps }}</v-icon>
+          </span>
+        </client-only>
       </span>
 
       <client-only>

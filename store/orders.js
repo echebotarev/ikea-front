@@ -165,7 +165,7 @@ export const actions = {
       paymentMethod: payload.payload.payMethod,
     })
 
-    const shopDisplayName = rootGetters['geo/getDisplayName']
+    const shopDisplayName = rootGetters['geo/getDisplayName']()
 
     return OrdersService.updateOrder(
       Object.assign({}, payload, {

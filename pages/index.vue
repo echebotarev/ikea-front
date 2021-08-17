@@ -46,6 +46,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import getCityName from '@/utils/getCityName'
 
 export default {
   components: {
@@ -88,13 +89,14 @@ export default {
     },
   }),
   head: () => ({
-    titleTemplate: 'DomaDoma - Доставка IKEA',
+    titleTemplate: 'DomaDoma - Доставка IKEA по Казахстану и России',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content:
-          'Доставка товаров IKEA. Сервис по доставке товаров IKEA в Актау прямо до двери',
+        content: `Доставка товаров IKEA. Сервис по доставке товаров IKEA в ${getCityName(
+          this
+        )} прямо до двери`,
       },
     ],
   }),

@@ -17,7 +17,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Доставка товаров IKEA в Актау',
+        content: 'Доставка товаров IKEA по Казахстану и России',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/ikea.favicon.svg' }],

@@ -138,9 +138,10 @@ export const actions = {
 }
 
 export const getters = {
-  getDisplayName(state) {
-    return state.shopDisplayNames[state.shopId]
-  },
+  getDisplayName: (state) => (shopId) =>
+    shopId
+      ? state.shopDisplayNames[shopId]
+      : state.shopDisplayNames[state.shopId],
 
   getIkeaShopDisplayName(state) {
     return state.ikeaShopDisplayNames[state.shopId]
