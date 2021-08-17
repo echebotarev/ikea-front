@@ -5,8 +5,15 @@
       <div class="fn org">ИП Чеботарева Дарья</div>
       <div class="adr">
         <span class="country-name">Казахстан</span>,
-        <span class="locality">г. Актау</span>,
-        <span class="street-address">7-1-16</span>
+
+        <span v-if="shopId === '001'" class="locality">г. Актау,</span>
+        <span v-if="shopId === '001'" class="street-address">7-1-16</span>
+
+        <span v-if="shopId === '003'" class="locality">г. Уральск,</span>
+        <span v-if="shopId === '003'" class="street-address">
+          ул. Ергалиевой, д. 48
+        </span>
+
         <div>
           <a class="tel" href="tel:+77017375736">+7 (701) 737-5736</a>
         </div>
@@ -59,6 +66,12 @@
 <script>
 export default {
   name: 'FooterContactAktau',
+  props: {
+    shopId: {
+      type: String,
+      default: () => '001',
+    },
+  },
 }
 </script>
 

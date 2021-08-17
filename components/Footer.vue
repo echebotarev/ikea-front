@@ -5,6 +5,7 @@
         <client-only>
           <FooterContactAktau v-if="shopId === '001'" />
           <FooterContactSaransk v-if="shopId === '002'" />
+          <FooterContactAktau v-if="shopId === '003'" shop-id="003" />
         </client-only>
       </v-col>
 
