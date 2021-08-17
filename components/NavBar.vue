@@ -14,12 +14,10 @@
 
       <span class="logo-text ml-3 pl-3">
         Доставка IKEA <br />
-        <client-only>
-          <span class="logo-text-mini" @click="toggleDialog(true)">
-            в {{ shopDisplayName() }}
-            <v-icon class="logo-text-icon">{{ mdiGoogleMaps }}</v-icon>
-          </span>
-        </client-only>
+        <span class="logo-text-mini" @click="toggleDialog(true)">
+          в {{ shopDisplayName }}
+          <v-icon class="logo-text-icon">{{ mdiGoogleMaps }}</v-icon>
+        </span>
       </span>
 
       <client-only>
@@ -57,7 +55,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      shopDisplayName: 'geo/getDisplayName',
+      shopDisplayName: 'getDisplayName',
     }),
     ...mapState({
       confirmedCity: (state) => state.geo.confirmedCity,
