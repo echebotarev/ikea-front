@@ -247,6 +247,28 @@ main.v-main main.v-main {
   }
 }
 
+.info-block {
+  a {
+    opacity: 0.6;
+  }
+}
+.social-link {
+  text-decoration: underline;
+  opacity: 1 !important;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.whatsapp {
+    color: #1cab13;
+  }
+
+  &.telegram {
+    color: #129bd0;
+  }
+}
+
 .video {
   -o-object-fit: cover;
   object-fit: cover;
