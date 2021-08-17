@@ -15,8 +15,8 @@ export default {
     return apiClient.get(`/orders`)
   },
 
-  getSaleProducts() {
-    return apiClient.get(`/sale/products`)
+  getSaleProducts(shopId) {
+    return apiClient.get(`/sale/products?shopId=${shopId}`)
   },
 
   updateOrder({ orderId, payload }) {

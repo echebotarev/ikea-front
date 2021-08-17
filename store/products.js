@@ -174,7 +174,8 @@ export const actions = {
   },
 
   fetchSaleProducts({ commit }) {
-    return OrdersService.getSaleProducts().then((response) => {
+    const domaDomaShopId = this.app.$cookies.get('domaDomaShopId')
+    return OrdersService.getSaleProducts(domaDomaShopId).then((response) => {
       response.data &&
         commit('SET_DATA', { key: 'saleProducts', value: response.data })
     })
