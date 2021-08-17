@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-row class="my-5">
+    <v-row v-if="shopId !== '003'" class="my-5">
       <v-col cols="12" :sm="shopId === '001' ? 'auto' : 7">
         <client-only>
           <v-card v-if="shopId === '002'">
@@ -18,7 +18,7 @@
         </client-only>
       </v-col>
       <v-col cols="12" :sm="shopId === '001' ? 'auto' : 5">
-        <CountDown />
+        <CountDown v-if="shopId !== '003'" />
       </v-col>
     </v-row>
 
