@@ -88,17 +88,20 @@ export default {
       return cols
     },
   }),
-  head: () => ({
-    titleTemplate: 'DomaDoma - Доставка IKEA по Казахстану и России',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: `Доставка товаров IKEA. Сервис по доставке товаров IKEA в ${getCityName(
-          this
-        )} прямо до двери`,
-      },
-    ],
-  }),
+
+  head() {
+    return {
+      titleTemplate: 'DomaDoma - Доставка IKEA по Казахстану и России',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Доставка товаров IKEA. Сервис по доставке товаров IKEA в ${getCityName(
+            this
+          )} прямо до двери`,
+        },
+      ],
+    }
+  },
 }
 </script>
