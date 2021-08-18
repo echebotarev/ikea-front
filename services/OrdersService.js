@@ -1,37 +1,35 @@
-import axios from 'axios'
 import config from '@/config'
 
-const apiClient = axios.create({
-  baseURL: config.ordersUrl,
-  withCredentials: true,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-})
+export default class OrdersService {
+  constructor({ $axios }) {
+    this.axios = $axios
+  }
 
-export default {
+  url = config.ordersUrl
+
   getOrder() {
-    return apiClient.get(`/orders`)
-  },
+    return this.axios.get(`${this.url}/orders`)
+  }
 
-  getSaleProducts(shopId) {
-    return apiClient.get(`/sale/products?shopId=${shopId}`)
-  },
+  getSaleProducts() {
+    return this.axios.get(`${this.url}/sale/products`)
+  }
 
   updateOrder({ orderId, payload }) {
-    return apiClient.put(`/orders/${orderId}`, payload)
-  },
+    return this.axios.put(`${this.url}/orders/${orderId}`, payload)
+  }
 
   addProduct(payload) {
-    return apiClient.post(`/orders`, payload)
-  },
+    return this.axios.post(`${this.url}/orders`, payload)
+  }
 
   removeProduct({ product, qnt }) {
-    return apiClient.delete(`/orders/${product.identifier}?qnt=${qnt}`)
-  },
+    return this.axios.delete(
+      `${this.url}/orders/${product.identifier}?qnt=${qnt}`
+    )
+  }
 
   setAvailabilityNotification(payload) {
-    return apiClient.put(`/available`, payload)
-  },
+    return this.axios.put(`${this.url}/available`, payload)
+  }
 }

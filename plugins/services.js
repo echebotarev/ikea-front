@@ -1,4 +1,5 @@
 import ApiService from '@/services/ApiService'
+import OrdersService from '@/services/OrdersService'
 
 const addShopData = ({ shopId, ikeaShopId, url }) =>
   url.includes('?')
@@ -33,5 +34,6 @@ export default (ctx, inject) => {
 
   inject('services', {
     api: new ApiService(ctx),
+    orders: new OrdersService(ctx),
   })
 }

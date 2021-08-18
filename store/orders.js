@@ -1,5 +1,3 @@
-import OrdersService from '@/services/OrdersService.js'
-
 import ec from '@/utils/ec'
 
 const getGaTransactionData = (payload, coef) => {
@@ -45,7 +43,7 @@ const getPrice = (payload) => {
 
 export const actions = {
   fetchProducts({ commit }) {
-    return OrdersService.getOrder().then((response) => {
+    return this.app.$services.orders.getOrder().then((response) => {
       if (response.data) {
         commit('SET_DATA', { key: 'order', value: response.data })
         commit('SET_DATA', { key: 'products', value: response.data.products })
@@ -86,7 +84,7 @@ export const actions = {
       'gtm-ee-event-non-interaction': false,
     })
 
-    return OrdersService.addProduct(payload).then((response) => {
+    return this.app.$services.orders.addProduct(payload).then((response) => {
       if (response.data) {
         commit('SET_DATA', { key: 'order', value: response.data })
         commit('SET_DATA', { key: 'products', value: response.data.products })
@@ -124,7 +122,7 @@ export const actions = {
       'gtm-ee-event-non-interaction': false,
     })
 
-    return OrdersService.removeProduct(payload).then((response) => {
+    return this.app.$services.orders.removeProduct(payload).then((response) => {
       if (response.data) {
         commit('SET_DATA', { key: 'order', value: response.data })
         commit('SET_DATA', { key: 'products', value: response.data.products })
@@ -166,18 +164,20 @@ export const actions = {
 
     const shopDisplayName = rootGetters.getDisplayName
 
-    return OrdersService.updateOrder(
-      Object.assign({}, payload, {
-        payload: Object.assign(payload.payload, { shopId, shopDisplayName }),
-      })
-    ).then((response) => {
-      const order = response.data
+    return this.app.$services.orders
+      .updateOrder(
+        Object.assign({}, payload, {
+          payload: Object.assign(payload.payload, { shopId, shopDisplayName }),
+        })
+      )
+      .then((response) => {
+        const order = response.data
 
-      if (order && order.checkout) {
-        commit('SET_DATA', { key: 'order', value: {} })
-        commit('SET_DATA', { key: 'products', value: [] })
-      }
-    })
+        if (order && order.checkout) {
+          commit('SET_DATA', { key: 'order', value: {} })
+          commit('SET_DATA', { key: 'products', value: [] })
+        }
+      })
   },
 
   // eslint-disable-next-line camelcase

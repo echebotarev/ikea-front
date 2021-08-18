@@ -1,5 +1,3 @@
-import OrdersService from '@/services/OrdersService'
-
 import getAppliedFiltersFromQuery from 'assets/utils/getAppliedFiltersFromQuery'
 
 export const state = () => ({
@@ -179,8 +177,7 @@ export const actions = {
   },
 
   fetchSaleProducts({ commit }) {
-    const domaDomaShopId = this.app.$cookies.get('domaDomaShopId')
-    return OrdersService.getSaleProducts(domaDomaShopId).then((response) => {
+    return this.app.$services.orders.getSaleProducts().then((response) => {
       response.data &&
         commit('SET_DATA', { key: 'saleProducts', value: response.data })
     })

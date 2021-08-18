@@ -1,5 +1,3 @@
-import OrderService from '@/services/OrdersService.js'
-
 export const state = () => ({
   products: [],
   email: null,
@@ -36,11 +34,11 @@ export const actions = {
     const { email } = payload
     commit('SET_EMAIL', email)
 
-    return OrderService.setAvailabilityNotification(payload).then(
-      (response) => {
+    return this.app.$services.orders
+      .setAvailabilityNotification(payload)
+      .then((response) => {
         return response.data
-      }
-    )
+      })
   },
 }
 
