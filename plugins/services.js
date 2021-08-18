@@ -1,5 +1,10 @@
 import ApiService from '@/services/ApiService'
 
+const addShopData = ({ shopId, ikeaShopId, url }) =>
+  url.includes('?')
+    ? `${url}&domaDomaShopId=${shopId}&ikeaShopId=${ikeaShopId}`
+    : `${url}?domaDomaShopId=${shopId}&ikeaShopId=${ikeaShopId}`
+
 export default (ctx, inject) => {
   const {
     $axios,
@@ -17,8 +22,14 @@ export default (ctx, inject) => {
     console.log('Store ShopId', getters.getShopId)
     console.log('Store IKEA ShopId', getters.getIkeaShopId)
 
-    $cookies.set('domaDomaShopId', getters.getShopId)
-    $cookies.set('ikeaShopId', getters.getIkeaShopId)
+    const shopId = $cookies.get('domaDomaShopId') || getters.getShopId
+    const ikeaShopId = $cookies.get('ikeaShopId') || getters.getIkeaShopId
+
+    config.url = addShopData({
+      url: config.url,
+      shopId,
+      ikeaShopId,
+    })
 
     console.log('=============')
     return config
