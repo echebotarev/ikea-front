@@ -1,11 +1,22 @@
 import ApiService from '@/services/ApiService'
 
 export default (ctx, inject) => {
-  const { $axios, $cookies } = ctx
+  const {
+    $axios,
+    $cookies,
+    store: { getters },
+  } = ctx
 
   $axios.onRequest((config) => {
+    console.log('=============')
+
     console.log('Axios onRequest: DomaDoma', $cookies.get('domaDomaShopId'))
     console.log('Axios onRequest: IkeaShopId', $cookies.get('ikeaShopId'))
+    console.log('Is Server', process.server)
+
+    console.log('Store ShopId', getters.getShopId)
+    console.log('Store IKEA ShopId', getters.getIkeaShopId)
+
     console.log('=============')
     return config
   })

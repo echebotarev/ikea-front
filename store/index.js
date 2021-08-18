@@ -7,6 +7,8 @@ const shopDisplayNames = {
 
 export const state = () => ({
   cityName: 'Актау',
+  shopId: '001',
+  ikeaShopId: '442',
 })
 
 export const mutations = {
@@ -37,11 +39,25 @@ export const actions = {
       key: 'cityName',
       value: shopDisplayNames[domaDomaShopId],
     })
+
+    commit('SET_DATA', { key: 'shopId', value: domaDomaShopId })
+    commit('SET_DATA', {
+      key: 'ikeaShopId',
+      value: rootGetters['geo/getIkeaShopId'](domaDomaShopId),
+    })
   },
 }
 
 export const getters = {
   getDisplayName(state) {
     return state.cityName
+  },
+
+  getShopId(state) {
+    return state.shopId
+  },
+
+  getIkeaShopId(state) {
+    return state.ikeaShopId
   },
 }

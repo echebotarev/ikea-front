@@ -17,22 +17,11 @@ export default class ApiService {
     return this.axios.get(`${this.url}/category/${id}`)
   }
 
-  getProducts(payload, ikeaShopId) {
+  getProducts(payload) {
     const { id } = payload
     const queries = encodeURI(getQueries(payload))
 
-    return this.axios.get(
-      `${this.url}/products/${id}?${queries}`
-      // Object.assign(
-      //   {},
-      //   process.server
-      //     ? {
-      //         // Когда запрос делается на сервере, cookie пусты
-      //         headers: { Cookie: `ikeaShopId=${ikeaShopId};` },
-      //       }
-      //     : {}
-      // )
-    )
+    return this.axios.get(`${this.url}/products/${id}?${queries}`)
   }
 
   getProductsByIds(ids = []) {
