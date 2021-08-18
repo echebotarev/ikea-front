@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService.js'
 import OrdersService from '@/services/OrdersService'
 
 import getAppliedFiltersFromQuery from 'assets/utils/getAppliedFiltersFromQuery'
@@ -58,38 +57,42 @@ export const actions = {
     const ikeaShopId = this.app.$cookies.get('ikeaShopId')
     dispatch('clearCategory')
 
-    return ApiService.getProducts(payload, ikeaShopId).then((response) => {
-      if (!response.data || response.data.code) {
-        return false
-      }
-
-      ;(response.data.productCount || response.data.productCount === 0) &&
-        commit('SET_PRODUCT_COUNT', response.data.productCount)
-
-      commit('SET_PRODUCTS', response.data.productWindow)
-
-      commit('filters/SET_FILTERS', response.data.filters2, { root: true })
-      commit('filters/SET_SORT_ORDERS', response.data.sortOrders, {
-        root: true,
-      })
-      commit(
-        'filters/SET_APPLIED_FILTERS',
-        getAppliedFiltersFromQuery(payload),
-        {
-          root: true,
+    return this.app.$services.api
+      .getProducts(payload, ikeaShopId)
+      .then((response) => {
+        if (!response.data || response.data.code) {
+          return false
         }
-      )
-    })
+
+        ;(response.data.productCount || response.data.productCount === 0) &&
+          commit('SET_PRODUCT_COUNT', response.data.productCount)
+
+        commit('SET_PRODUCTS', response.data.productWindow)
+
+        commit('filters/SET_FILTERS', response.data.filters2, { root: true })
+        commit('filters/SET_SORT_ORDERS', response.data.sortOrders, {
+          root: true,
+        })
+        commit(
+          'filters/SET_APPLIED_FILTERS',
+          getAppliedFiltersFromQuery(payload),
+          {
+            root: true,
+          }
+        )
+      })
   },
 
   fetchProductsByWord({ commit }, payload) {
-    return ApiService.getProductsByWord(encodeURI(payload)).then((response) => {
-      commit('SET_PRODUCTS', response.data)
-    })
+    return this.app.$services.api
+      .getProductsByWord(encodeURI(payload))
+      .then((response) => {
+        commit('SET_PRODUCTS', response.data)
+      })
   },
 
   fetchProductById({ commit, dispatch, state }, { id, isSales = false }) {
-    return ApiService.getProduct(id).then(async (response) => {
+    return this.app.$services.api.getProduct(id).then(async (response) => {
       if (!response.data) {
         return false
       }
@@ -118,7 +121,7 @@ export const actions = {
   },
 
   fetchProductsByIds({ commit, state }, { ids, isSaleProducts = false }) {
-    return ApiService.getProductsByIds(ids).then((response) => {
+    return this.app.$services.api.getProductsByIds(ids).then((response) => {
       if (response.data) {
         // мерджим товары с данными о скидке
         isSaleProducts
@@ -162,15 +165,17 @@ export const actions = {
       )
       .map((breadcrumb) => breadcrumb.text)
 
-    return ApiService.getRecommendations({
-      id,
-      type,
-      categoryList,
-    }).then((response) => {
-      if (response.status === 200) {
-        commit(DICT_COMMIT[type], response.data)
-      }
-    })
+    return this.app.$services.api
+      .getRecommendations({
+        id,
+        type,
+        categoryList,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          commit(DICT_COMMIT[type], response.data)
+        }
+      })
   },
 
   fetchSaleProducts({ commit }) {

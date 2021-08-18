@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService.js'
 export const state = () => ({
   isCategoryLoading: false,
   categories: [],
@@ -21,7 +20,7 @@ export const actions = {
   fetchCategories({ commit }, id) {
     commit('SET_CATEGORIES', [])
 
-    return ApiService.getCategories(id).then((response) => {
+    return this.app.$services.api.getCategories(id).then((response) => {
       if (!response.data) {
         return false
       }

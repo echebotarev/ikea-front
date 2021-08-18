@@ -1,5 +1,4 @@
 import OrdersService from '@/services/OrdersService.js'
-import ApiService from '@/services/ApiService.js'
 
 import ec from '@/utils/ec'
 
@@ -184,7 +183,7 @@ export const actions = {
   // eslint-disable-next-line camelcase
   fetchSale({ commit }, { utm_campaign: campaign, utm_cause: cause }) {
     return cause === 'sale'
-      ? ApiService.getSale({ campaign }).then((response) => {
+      ? this.app.$services.api.getSale({ campaign }).then((response) => {
           response.data &&
             commit('SET_DATA', { key: 'sale', value: response.data })
         })

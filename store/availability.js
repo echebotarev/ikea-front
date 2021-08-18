@@ -1,4 +1,3 @@
-import ApiService from '@/services/ApiService.js'
 import OrderService from '@/services/OrdersService.js'
 
 export const state = () => ({
@@ -21,14 +20,16 @@ export const mutations = {
 
 export const actions = {
   fetchAvailabilityProduct({ commit, state, getters }, payload) {
-    return ApiService.getAvailabilityProduct(payload).then((response) => {
-      commit(
-        'ADD_AVAILABILITY_PRODUCT',
-        Object.assign({}, payload, response.data, {
-          expires: Date.now() + 1000 * 60 * 60 * 24,
-        })
-      )
-    })
+    return this.app.$services.api
+      .getAvailabilityProduct(payload)
+      .then((response) => {
+        commit(
+          'ADD_AVAILABILITY_PRODUCT',
+          Object.assign({}, payload, response.data, {
+            expires: Date.now() + 1000 * 60 * 60 * 24,
+          })
+        )
+      })
   },
 
   setAvailabilityNotification({ commit }, payload) {

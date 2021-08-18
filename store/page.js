@@ -1,5 +1,3 @@
-import ApiService from '@/services/ApiService'
-
 export const state = () => ({
   modal: {
     isShow: false,
@@ -78,8 +76,10 @@ export const actions = {
 
   getDeliveryData({ commit }) {
     const domaDomaShopId = this.app.$cookies.get('domaDomaShopId')
-    return ApiService.getDeliveryData(domaDomaShopId).then((response) => {
-      commit('SET_DELIVERY_DATA', response.data)
-    })
+    return this.app.$services.api
+      .getDeliveryData(domaDomaShopId)
+      .then((response) => {
+        commit('SET_DELIVERY_DATA', response.data)
+      })
   },
 }

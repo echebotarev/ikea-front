@@ -1,5 +1,3 @@
-import ApiService from '@/services/ApiService.js'
-
 export const state = () => ({
   value: '',
   data: {},
@@ -19,7 +17,7 @@ export const actions = {
   setValue({ commit }, payload) {
     commit('SET_VALUE', payload)
 
-    ApiService.getSearch(payload).then((response) => {
+    this.app.$services.api.getSearch(payload).then((response) => {
       response.data &&
         response.data.searchBox &&
         commit('SET_DATA', response.data.searchBox)

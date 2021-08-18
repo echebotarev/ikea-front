@@ -1,14 +1,4 @@
-import axios from 'axios'
 import config from '@/config'
-
-const apiClient = axios.create({
-  baseURL: config.apiUrl,
-  withCredentials: true,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-})
 
 const getQueries = (payload) =>
   Object.entries(payload).reduce(
@@ -16,62 +6,70 @@ const getQueries = (payload) =>
     ''
   )
 
-export default {
+export default class ApiService {
+  constructor({ $axios }) {
+    this.axios = $axios
+  }
+
+  url = config.apiUrl
+
   getCategories(id = 'products') {
-    return apiClient.get(`/category/${id}`)
-  },
+    return this.axios.get(`${this.url}/category/${id}`)
+  }
 
   getProducts(payload, ikeaShopId) {
     const { id } = payload
     const queries = encodeURI(getQueries(payload))
 
-    return apiClient.get(
-      `/products/${id}?${queries}`,
-      Object.assign(
-        {},
-        process.server
-          ? {
-              // Когда запрос делается на сервере, cookie пусты
-              headers: { Cookie: `ikeaShopId=${ikeaShopId};` },
-            }
-          : {}
-      )
+    return this.axios.get(
+      `${this.url}/products/${id}?${queries}`
+      // Object.assign(
+      //   {},
+      //   process.server
+      //     ? {
+      //         // Когда запрос делается на сервере, cookie пусты
+      //         headers: { Cookie: `ikeaShopId=${ikeaShopId};` },
+      //       }
+      //     : {}
+      // )
     )
-  },
+  }
 
   getProductsByIds(ids = []) {
-    return apiClient.get(`/products/?ids=${ids}`)
-  },
+    return this.axios.get(`${this.url}/products/?ids=${ids}`)
+  }
 
   getProduct(id) {
-    return apiClient.get(`/product/${id}`)
-  },
+    return this.axios.get(`${this.url}/product/${id}`)
+  }
 
   getSearch(value) {
-    return apiClient.get(`/search/?q=${value}`)
-  },
+    return this.axios.get(`${this.url}/search/?q=${value}`)
+  }
 
   getProductsByWord(value) {
-    return apiClient.get(`/search/products/?q=${value}`)
-  },
+    return this.axios.get(`${this.url}/search/products/?q=${value}`)
+  }
 
   getAvailabilityProduct({ type, identifier }) {
-    return apiClient.get(`/available?type=${type}&id=${identifier}`)
-  },
+    return this.axios.get(`${this.url}/available?type=${type}&id=${identifier}`)
+  }
 
   getRecommendations({ id, categoryList = [], type = 'similar' }) {
-    return apiClient.get(
-      `/recommendation/${type}?id=${id}&categoryList=${encodeURI(categoryList)}`
+    return this.axios.get(
+      `${this.url}/recommendation/${type}?id=${id}&categoryList=${encodeURI(
+        categoryList
+      )}`
     )
-  },
+  }
 
   getSuggestionProducts(productId) {
-    return apiClient.get(`/suggestion/${productId}`)
-  },
+    return this.axios.get(`${this.url}/suggestion/${productId}`)
+  }
 
   getDeliveryData(domaDomaShopId) {
-    return apiClient.get(
-      `/time-to-delivery`,
+    return this.axios.get(
+      `${this.url}/time-to-delivery`,
       Object.assign(
         {},
         process.server
@@ -82,9 +80,9 @@ export default {
           : {}
       )
     )
-  },
+  }
 
   getSale({ campaign }) {
-    return apiClient.get(`/sale/${campaign}`)
-  },
+    return this.axios.get(`${this.url}/sale/${campaign}`)
+  }
 }

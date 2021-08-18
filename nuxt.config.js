@@ -36,7 +36,8 @@ export default {
   plugins: [
     '@/plugins/price',
     '@/plugins/vMask',
-    { src: '@plugins/cookie.js', mode: 'client' },
+    '@plugins/cookie.js',
+    '@/plugins/services.js',
     { src: '@plugins/domainHandler.js', mode: 'client' },
     { src: '@/plugins/notifications', ssr: false },
     { src: '@plugins/ga.js', mode: 'client' },
@@ -79,6 +80,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    '@nuxtjs/axios',
     'portal-vue/nuxt',
     'cookie-universal-nuxt',
     [
@@ -131,7 +133,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    credentials: true,
+  },
   router: {
     prefetchLinks: false,
   },

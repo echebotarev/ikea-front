@@ -52,9 +52,7 @@ export default {
     Modal: () => import('@/components/Modal/index'),
     Filters: () => import('@/components/Filters'),
     SkeletonItems: () => import('@/components/SkeletonItems'),
-    ProductRecommendation: hydrateWhenVisible(() =>
-      import('@/components/ProductRecommendation')
-    ),
+    ProductRecommendation: () => import('@/components/ProductRecommendation'),
   },
 
   async fetch({ store, error, params, query }) {
