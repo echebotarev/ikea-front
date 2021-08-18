@@ -13,15 +13,6 @@ export default (ctx, inject) => {
   } = ctx
 
   $axios.onRequest((config) => {
-    console.log('=============')
-
-    console.log('Axios onRequest: DomaDoma', $cookies.get('domaDomaShopId'))
-    console.log('Axios onRequest: IkeaShopId', $cookies.get('ikeaShopId'))
-    console.log('Is Server', process.server)
-
-    console.log('Store ShopId', getters.getShopId)
-    console.log('Store IKEA ShopId', getters.getIkeaShopId)
-
     const shopId = $cookies.get('domaDomaShopId') || getters.getShopId
     const ikeaShopId = $cookies.get('ikeaShopId') || getters.getIkeaShopId
 
@@ -31,7 +22,6 @@ export default (ctx, inject) => {
       ikeaShopId,
     })
 
-    console.log('=============')
     return config
   })
   $axios.onResponse((response) => {
