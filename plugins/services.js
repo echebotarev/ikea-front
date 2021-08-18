@@ -17,6 +17,9 @@ export default (ctx, inject) => {
     console.log('Store ShopId', getters.getShopId)
     console.log('Store IKEA ShopId', getters.getIkeaShopId)
 
+    $cookies.set('domaDomaShopId', getters.getShopId)
+    $cookies.set('ikeaShopId', getters.getIkeaShopId)
+
     console.log('=============')
     return config
   })
