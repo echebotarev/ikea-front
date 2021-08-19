@@ -51,7 +51,7 @@ export const actions = {
     })
   },
 
-  addProduct({ commit, rootGetters, rootState }, payload) {
+  addProduct({ commit, dispatch, rootGetters, rootState }, payload) {
     this.$fb.track('AddToCart', {
       currency: 'RUB',
       value: getPrice(payload) / rootGetters['variables/coefficient'],
@@ -86,6 +86,9 @@ export const actions = {
 
     return this.app.$services.orders.addProduct(payload).then((response) => {
       if (response.data) {
+        // записываем cookieId
+        dispatch('setCookieId', response.data.cookieId, { root: true })
+
         commit('SET_DATA', { key: 'order', value: response.data })
         commit('SET_DATA', { key: 'products', value: response.data.products })
 

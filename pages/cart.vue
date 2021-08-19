@@ -377,7 +377,7 @@ export default {
 
   beforeDestroy() {
     clearTimeout(this.timer)
-    this.$store.commit('orders/SET_SALE', null)
+    this.$store.commit('orders/SET_DATA', { key: 'sale', value: null })
   },
 
   methods: {

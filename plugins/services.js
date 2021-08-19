@@ -1,10 +1,10 @@
 import ApiService from '@/services/ApiService'
 import OrdersService from '@/services/OrdersService'
 
-const addShopData = ({ shopId, ikeaShopId, url }) =>
+const addShopData = ({ shopId, ikeaShopId, cookieId = '', url }) =>
   url.includes('?')
-    ? `${url}&domaDomaShopId=${shopId}&ikeaShopId=${ikeaShopId}`
-    : `${url}?domaDomaShopId=${shopId}&ikeaShopId=${ikeaShopId}`
+    ? `${url}&domaDomaShopId=${shopId}&ikeaShopId=${ikeaShopId}&cookieId=${cookieId}`
+    : `${url}?domaDomaShopId=${shopId}&ikeaShopId=${ikeaShopId}&cookieId=${cookieId}`
 
 export default (ctx, inject) => {
   const {
@@ -17,10 +17,13 @@ export default (ctx, inject) => {
     const shopId = $cookies.get('domaDomaShopId') || getters.getShopId
     const ikeaShopId = $cookies.get('ikeaShopId') || getters.getIkeaShopId
 
+    const cookieId = $cookies.get('cookieId') || getters.getCookieId
+
     config.url = addShopData({
       url: config.url,
       shopId,
       ikeaShopId,
+      cookieId: cookieId || '',
     })
 
     return config
