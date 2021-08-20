@@ -41,10 +41,14 @@ export default {
   methods: {
     async input(page) {
       // скроллинг до начала страницы
-      await this.$vuetify.goTo(`#${this.targetId}`, {
-        duration: 200,
-        easing: 'easeOutQuint',
-      })
+      try {
+        await this.$vuetify.goTo(`#${this.targetId}`, {
+          duration: 200,
+          easing: 'easeOutQuint',
+        })
+      } catch (e) {
+        this.$sentry.captureMessage(`Pagination - GoTo: ${this.$route}`)
+      }
 
       await this.$router.push({ query: { ...this.$route.query, page } })
     },

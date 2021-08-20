@@ -41,14 +41,14 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 
-import { hydrateWhenVisible } from 'vue-lazy-hydration'
+// import { hydrateWhenVisible } from 'vue-lazy-hydration'
 
 export default {
   components: {
     InnerCategoryCard: () => import('@/components/InnerCategoryCard'),
     Breadcrumbs: () => import('@/components/Breadcrumbs'),
     ProductList: () => import('@/components/ProductList'),
-    Pagination: hydrateWhenVisible(() => import('@/components/Pagination')),
+    Pagination: () => import('@/components/Pagination'),
     Modal: () => import('@/components/Modal/index'),
     Filters: () => import('@/components/Filters'),
     SkeletonItems: () => import('@/components/SkeletonItems'),
