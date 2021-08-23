@@ -72,10 +72,10 @@ export default {
       geo: (state) => state.geo.data,
     }),
   },
-  mounted() {
+  async mounted() {
     this.fetchProducts()
     this.fetchSaleProducts()
-    this.fetchLocation()
+    await this.fetchLocation()
 
     // проверка на будущее, на тот момент, когда достигнем более 10000 запросов
     if (this.geo.success === false) {
