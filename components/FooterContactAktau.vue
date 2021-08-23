@@ -11,7 +11,7 @@
 
         <span v-if="shopId === '003'" class="locality">г. Уральск,</span>
         <span v-if="shopId === '003'" class="street-address">
-          ул. Ергалиевой, д. 48
+          ул. Елизарова, д. 48
         </span>
 
         <div>
