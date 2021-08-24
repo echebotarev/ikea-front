@@ -36,6 +36,10 @@
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Адрес:</b></v-card-subtitle>
     <v-card-text>Казахстан, г. Уральск, ул. Елизарова, д. 48</v-card-text>
+    <v-card-subtitle class="py-0"><b>Телефон склада:</b></v-card-subtitle>
+    <v-card-text>
+      <a href="tel:+77761513968">+7 (776) 151 3968</a>
+    </v-card-text>
     <v-card-subtitle class="py-0"><b>Доставка:</b></v-card-subtitle>
     <v-card-text>
       Дотсавляем до склада по адресу ул. Елизарова, д. 48 <br />
