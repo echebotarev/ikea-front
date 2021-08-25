@@ -1,7 +1,7 @@
 <template>
   <v-app id="app" :class="$vuetify.breakpoint.smAndDown ? 'sm-and-down' : ''">
     <v-main>
-      <Message />
+      <Message v-if="shopId === '001'" />
 
       <Header />
 
@@ -69,6 +69,7 @@ export default {
     },
 
     ...mapState({
+      shopId: (state) => state.shopId,
       geo: (state) => state.geo.data,
     }),
   },
