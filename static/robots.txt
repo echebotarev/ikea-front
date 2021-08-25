@@ -2,4 +2,8 @@ User-agent: *
 Disallow: /cart/
 Disallow: /search/
 Disallow: /information/
+
+Disallow:
+Clean-param: page&sort&f-colors&f-typed-reference-measurement&f-subcategories&f-price-buckets&f-materials&f-feature&f-last-chance&f-series&f-special-price&f-more-sustainable-materials&f-new-product /category
+
 Sitemap: https://doma-doma.org/api/v1/static/sitemap.xml
