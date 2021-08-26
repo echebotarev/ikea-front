@@ -38,7 +38,6 @@ export default {
       )
     )
   },
-
   getProductsForCheckout({ products, $getPrice, coefficient }) {
     return products.map((p, i) =>
       Object.assign({
