@@ -6,7 +6,7 @@ export default function (req, res, next) {
   const city = headers.host.split('.')[0]
 
   // если есть домен 3го уровня, то выставляем имя города в env
-  // если нет, значит выставляем Актау
+  // если нет, значит редиректим на Актау
   if (domains[city]) {
     process.env.city = city
     next()
