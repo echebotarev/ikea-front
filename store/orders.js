@@ -86,9 +86,6 @@ export const actions = {
 
     return this.app.$services.orders.addProduct(payload).then((response) => {
       if (response.data) {
-        // записываем cookieId
-        dispatch('setCookieId', response.data.cookieId, { root: true })
-
         commit('SET_DATA', { key: 'order', value: response.data })
         commit('SET_DATA', { key: 'products', value: response.data.products })
 

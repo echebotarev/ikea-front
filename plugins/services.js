@@ -1,3 +1,5 @@
+import setCookieParser from 'set-cookie-parser'
+
 import ApiService from '@/services/ApiService'
 import OrdersService from '@/services/OrdersService'
 
@@ -29,6 +31,14 @@ export default (ctx, inject) => {
     return config
   })
   $axios.onResponse((response) => {
+    // так запросы мы шлем на разные url,
+    // то здесь собираем все Cookie в одном месте
+    const cookies = setCookieParser(response)
+    cookies.forEach((cookie) => {
+      const { name, value, ...options } = cookie
+      $cookies.set(name, value, options)
+    })
+
     return response
   })
   $axios.onError((error) => {

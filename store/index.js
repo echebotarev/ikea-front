@@ -9,8 +9,6 @@ export const state = () => ({
   cityName: 'Актау',
   shopId: '001',
   ikeaShopId: '442',
-
-  cookieId: null,
 })
 
 export const mutations = {
@@ -47,11 +45,6 @@ export const actions = {
       key: 'ikeaShopId',
       value: rootGetters['geo/getIkeaShopId'](domaDomaShopId),
     })
-  },
-
-  setCookieId({ commit }, cookieId) {
-    this.app.$cookies.set('cookieId', cookieId)
-    commit('SET_DATA', { key: 'cookieId', value: cookieId })
   },
 }
 
