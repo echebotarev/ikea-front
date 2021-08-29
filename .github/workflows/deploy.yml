@@ -40,4 +40,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: bash /var/www/move-folders-and-restart.sh
+          script: |
+            bash /var/www/move-folders-and-restart.sh
+            pm2 restart 2
