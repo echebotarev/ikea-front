@@ -44,7 +44,17 @@ export const state = () => ({
     '002': 'PoWbgP3IdQ',
     '003': 'NApoQrzu9D',
   },
-  version: 7,
+  pickupPoint: {
+    '001': null,
+    '002': null,
+    '003': 'г. Уральск, ул. Елизарова, д. 48',
+  },
+  deliveryCost: {
+    '001': 0,
+    '002': 0,
+    '003': 3000,
+  },
+  version: 9,
 })
 
 export const mutations = {
@@ -154,4 +164,12 @@ export const getters = {
     shopId ? state.domainNames[shopId] : state.domainNames[state.shopId],
 
   getBaseUrl: (state) => state.urls[process.env.NODE_ENV],
+
+  getPickupPoint(state) {
+    return state.pickupPoint[state.shopId]
+  },
+
+  getDeliveryCost(state) {
+    return state.deliveryCost[state.shopId]
+  },
 }

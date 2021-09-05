@@ -60,12 +60,37 @@
       </v-col>
     </v-row>
 
-    <v-row class="mb-10">
-      <v-col>
-        <span class="text-overline pl-5"
-          >Укажите полный адрес доставки (Город, микрорайон, дом,
-          квартира):</span
+    <v-row class="mb-10 pt-4">
+      <v-col v-if="shopId === '003'" cols="12" class="pb-0">
+        <span class="text-overline pl-5">Выберите способ доставки:</span>
+        <v-radio-group
+          class="ml-4 mt-0"
+          :value="deliveryMethod"
+          @change="
+            (v) => {
+              v === 1
+                ? setValue({ key: 'address', value: pickupPoint })
+                : setValue({ key: 'address', value: '' })
+              setValue({ key: 'deliveryMethod', value: v })
+            }
+          "
         >
+          <v-radio :label="`Самовывоз. ${pickupPoint}`" :value="1"></v-radio>
+          <v-radio
+            :label="`Доставка до квартиры, ${$getDisplayPrice(deliveryCost, {
+              isOnlyFormatted: true,
+            })} ${symbol}`"
+            :value="2"
+          ></v-radio>
+        </v-radio-group>
+      </v-col>
+
+      <v-col
+        cols="12"
+        class="pt-0"
+        :class="deliveryMethod === 1 ? 'opacity-05' : ''"
+      >
+        <span class="text-overline pl-5">Укажите полный адрес доставки:</span>
         <v-text-field
           id="address"
           flat
@@ -75,6 +100,7 @@
           :placeholder="getPlaceholder('city')"
           full-width
           height="50"
+          :disabled="pickupPoint && deliveryMethod === 1"
           :prepend-inner-icon="mdiMapMarker"
           :value="address"
           @change="(v) => setValue({ key: 'address', value: v })"
@@ -191,6 +217,10 @@ export default {
       coefficient: 'variables/coefficient',
       assemblySum: 'orders/getAssemblySum',
       assembly: 'variables/assembly',
+      deliveryMethod: 'cart/getDeliveryMethod',
+      pickupPoint: 'geo/getPickupPoint',
+      deliveryCost: 'geo/getDeliveryCost',
+      symbol: 'variables/symbol',
     }),
   },
 

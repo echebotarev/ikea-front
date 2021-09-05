@@ -4,6 +4,9 @@ export const state = () => ({
   phone: '',
   name: '',
   mail: '',
+  // 1 - Самовывоз
+  // 2 - Доставка
+  deliveryMethod: 1,
   isAssembly: false,
   assemblyValue: 0,
 
@@ -86,5 +89,15 @@ export const actions = {
   clearData({ commit }) {
     commit('SET_VALUE', { key: 'isAssembly', value: false })
     commit('SET_VALUE', { key: 'assemblyValue', value: 0 })
+  },
+}
+
+export const getters = {
+  getDeliveryMethod(state, getters, rootState) {
+    if (rootState.shopId !== '003') {
+      return 2
+    }
+
+    return state.deliveryMethod
   },
 }
