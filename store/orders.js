@@ -197,4 +197,23 @@ export const getters = {
     state.products.map((product) => (count += product.qnt))
     return count
   },
+
+  getAssemblySum: (state) => ($getPrice) => {
+    let sum = 0
+    state.products.forEach((product) => {
+      if (
+        product.information.productDetailsProps.accordionObject
+          .assemblyAndDocuments
+      ) {
+        const price =
+          (product.sales
+            ? product.sales.price
+            : $getPrice(product.price.price.mainPriceProps.price.integer)) *
+          product.qnt
+        sum += price
+      }
+    })
+
+    return sum
+  },
 }
