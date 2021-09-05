@@ -224,6 +224,12 @@ export default {
     }),
   },
 
+  mounted() {
+    // если страницу открыли в первый раз, то адрес пуст
+    this.deliveryMethod === 1 &&
+      this.setValue({ key: 'address', value: this.pickupPoint })
+  },
+
   methods: {
     async checkThirdStep() {
       const isValidForm = await this.validateForm(false)
