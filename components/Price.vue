@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'Price',
@@ -56,11 +56,16 @@ export default {
     ...mapGetters({
       symbol: 'variables/symbol',
     }),
+    ...mapState({
+      shopId: (state) => state.geo.shopId,
+    }),
   },
 
   methods: {
     getText() {
-      return this.text || 'Цена с учетом <br />доставки:'
+      return this.text || this.shopId !== '003'
+        ? 'Цена с учетом <br />доставки:'
+        : ''
     },
   },
 }
