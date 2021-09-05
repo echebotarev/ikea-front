@@ -27,6 +27,7 @@
         </v-col>
       </v-row>
     </div>
+
     <div class="cart-total mb-10 px-5 py-7">
       <v-row v-if="sale" class="cart-sale mb-3">
         <v-col class="font-weight-bold">Скидка:</v-col>
@@ -39,6 +40,17 @@
           />
         </v-col>
       </v-row>
+
+      <v-row v-if="shopId === '003'" no-gutters>
+        <v-col class="font-weight-bold">Доставка:</v-col>
+        <v-col class="text-right">
+          <Price
+            :price="deliveryMethod === 2 ? deliveryCost : 0"
+            :is-only-formatted="true"
+          />
+        </v-col>
+      </v-row>
+
       <v-row no-gutters>
         <v-col class="font-weight-bold">{{ text }}</v-col>
         <v-col class="text-right">
@@ -54,7 +66,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'CartTotal',
@@ -76,6 +88,11 @@ export default {
   computed: {
     ...mapGetters({
       saleForVolume: 'variables/saleForVolume',
+      deliveryCost: 'geo/getDeliveryCost',
+      deliveryMethod: 'cart/getDeliveryMethod',
+    }),
+    ...mapState({
+      shopId: (state) => state.geo.shopId,
     }),
   },
 }

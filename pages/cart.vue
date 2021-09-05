@@ -168,6 +168,8 @@ export default {
       assemblySum: 'orders/getAssemblySum',
       saleForVolume: 'variables/saleForVolume',
       coefficient: 'variables/coefficient',
+      deliveryCost: 'geo/getDeliveryCost',
+      deliveryMethod: 'cart/getDeliveryMethod',
     }),
 
     total() {
@@ -263,6 +265,10 @@ export default {
             email: this.mail,
             phone: this.phone,
             total: this.getDiscountPrice(this.total),
+            deliveryCost:
+              this.shopId === '003' && this.deliveryMethod === 2
+                ? this.deliveryCost
+                : 0,
             sale: { value: this.getDiscountSaleValue(this.total) },
           },
         },
@@ -311,6 +317,10 @@ export default {
           email: this.mail,
           phone: this.phone,
           total: this.getDiscountPrice(this.total),
+          deliveryCost:
+            this.shopId === '003' && this.deliveryMethod === 2
+              ? this.deliveryCost
+              : 0,
           paid: false,
           checkout: true,
           payMethod: 'offline',
@@ -451,7 +461,11 @@ export default {
       const saleForVolume = this.getSaleValueForVolume(price)
       const sale = saleForVolume + (this.sale ? this.sale.value : 0)
 
-      return sale ? Math.ceil(price - (price * sale) / 100) : price
+      const total = sale ? Math.ceil(price - (price * sale) / 100) : price
+
+      return this.shopId === '003' && this.deliveryMethod === 2
+        ? total + this.deliveryCost
+        : total
     },
 
     // процентное значение скидки

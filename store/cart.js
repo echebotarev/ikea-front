@@ -55,13 +55,6 @@ export const actions = {
       commit('ADD_ERROR', 'Укажите правильную почту')
     }
 
-    console.log('Form data', state.address)
-    console.log('Form data', state.phone)
-    console.log('Form data', state.name)
-    console.log('Form data', state.mail)
-    console.log('Form data', state.errors)
-    console.log('========================================')
-
     if (state.errors.length && notify) {
       state.errors.forEach((text) => {
         this.$notify({
