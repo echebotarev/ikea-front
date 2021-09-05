@@ -154,7 +154,7 @@ export default {
 
       sale: (state) => state.orders.sale,
 
-      value: (state) => state.cart.value,
+      address: (state) => state.cart.address,
       phone: (state) => state.cart.phone,
       name: (state) => state.cart.name,
       mail: (state) => state.cart.mail,
@@ -259,7 +259,7 @@ export default {
             isAssembly: this.isAssembly,
             assembly: this.isAssembly ? this.assemblyValue : 0,
             name: this.name,
-            address: this.value,
+            address: this.address,
             email: this.mail,
             phone: this.phone,
             total: this.getDiscountPrice(this.total),
@@ -307,7 +307,7 @@ export default {
           isAssembly: this.isAssembly,
           assembly: this.isAssembly ? this.assemblyValue : 0,
           name: this.name,
-          address: this.value,
+          address: this.address,
           email: this.mail,
           phone: this.phone,
           total: this.getDiscountPrice(this.total),
@@ -370,7 +370,7 @@ export default {
           })
 
           suggestView.events.add('select', (e) => {
-            this.value = e.get('item').displayName
+            this.setValue({ key: 'address', value: e.get('item').displayName })
           })
         })
       } else if (name === 'cp' && global.cp) {
@@ -474,6 +474,7 @@ export default {
       getDeliveryData: 'page/getDeliveryData',
       clearFormData: 'cart/clearData',
       validateForm: 'cart/validateForm',
+      setValue: 'cart/setValue',
     }),
   },
 

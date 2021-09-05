@@ -105,7 +105,7 @@ export default {
         ...(process.env.NODE_ENV === 'development' && {
           mode: 'debug',
         }),
-        localStorage: ['geo'],
+        localStorage: ['geo', 'cart'],
       },
     ],
     [

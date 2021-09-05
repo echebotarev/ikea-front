@@ -1,11 +1,13 @@
 export const state = () => ({
   errors: [],
-  value: '',
+  address: '',
   phone: '',
   name: '',
   mail: '',
   isAssembly: false,
   assemblyValue: 0,
+
+  version: 1,
 })
 
 export const mutations = {
@@ -24,8 +26,6 @@ export const mutations = {
 
 export const actions = {
   setValue({ commit }, payload) {
-    console.log('Set value', payload)
-
     commit('SET_VALUE', payload)
   },
 
@@ -36,7 +36,7 @@ export const actions = {
       return pattern.test(value.trim())
     }
 
-    if (!state.value) {
+    if (!state.address) {
       commit('ADD_ERROR', 'Укажите адрес')
     }
 
@@ -52,7 +52,7 @@ export const actions = {
       commit('ADD_ERROR', 'Укажите правильную почту')
     }
 
-    console.log('Form data', state.value)
+    console.log('Form data', state.address)
     console.log('Form data', state.phone)
     console.log('Form data', state.name)
     console.log('Form data', state.mail)

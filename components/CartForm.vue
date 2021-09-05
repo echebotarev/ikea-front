@@ -76,8 +76,8 @@
           full-width
           height="50"
           :prepend-inner-icon="mdiMapMarker"
-          :value="value"
-          @change="(v) => setValue({ key: 'value', value: v })"
+          :value="address"
+          @change="(v) => setValue({ key: 'address', value: v })"
           @blur="checkThirdStep"
         >
         </v-text-field>
@@ -175,7 +175,7 @@ export default {
   computed: {
     ...mapState({
       errors: (state) => state.cart.errors,
-      value: (state) => state.cart.value,
+      address: (state) => state.cart.address,
       phone: (state) => state.cart.phone,
       name: (state) => state.cart.name,
       mail: (state) => state.cart.mail,
