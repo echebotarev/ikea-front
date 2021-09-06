@@ -6,7 +6,10 @@
         {{ CategoriesDict[categories[0].identifier] }}
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <v-row v-for="category in categories" :key="category.url">
+        <v-row
+          v-for="(category, i) in categories"
+          :key="`${category.url}-${i}`"
+        >
           <v-col>
             <nuxt-link :to="`/category/${category.identifier}`">
               {{
