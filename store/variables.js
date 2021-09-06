@@ -6,7 +6,7 @@ export const state = () => ({
   percent: {
     '001': 45,
     '002': 10,
-    '003': 25,
+    '003': 35,
   },
   saleForVolume: {
     '001': null,
