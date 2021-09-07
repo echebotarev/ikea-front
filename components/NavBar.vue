@@ -33,6 +33,11 @@
 
     <client-only v-if="!$vuetify.breakpoint.mdAndUp">
       <v-app-bar-nav-icon @click="toggleDrawer(true)"></v-app-bar-nav-icon>
+      <nuxt-link v-if="haveSales" to="/sales">
+        <v-icon large color="rgb(0, 88, 163)">
+          {{ mdiSale }}
+        </v-icon>
+      </nuxt-link>
       <Count class="ml-2" />
     </client-only>
   </v-app-bar>
@@ -41,7 +46,7 @@
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
 
-import { mdiGoogleMaps } from '@mdi/js'
+import { mdiGoogleMaps, mdiSale } from '@mdi/js'
 
 export default {
   name: 'NavBar',
@@ -51,7 +56,7 @@ export default {
     Count: () => import('@/components/Count'),
   },
   data() {
-    return { mdiGoogleMaps }
+    return { mdiGoogleMaps, mdiSale }
   },
   computed: {
     ...mapGetters({
@@ -59,6 +64,7 @@ export default {
     }),
     ...mapState({
       confirmedCity: (state) => state.geo.confirmedCity,
+      haveSales: (state) => !!state.products.saleProducts.length,
     }),
   },
   methods: {

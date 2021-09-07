@@ -40,7 +40,6 @@ export default {
   },
   computed: {
     ...mapState({
-      saleProducts: (state) => state.products.saleProducts,
       links: (state) =>
         state.page.links.filter((link) =>
           link.url === '/sales' ? state.products.saleProducts.length : true
