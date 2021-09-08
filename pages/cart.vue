@@ -439,6 +439,7 @@ export default {
               : this.$getPrice(
                   product.price.price.mainPriceProps.price.integer
                 )) * product.qnt,
+          url: `${document.location.origin}/product/${product.identifier}`,
         })
       })
     },
