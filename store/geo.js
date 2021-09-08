@@ -52,7 +52,7 @@ export const state = () => ({
   deliveryCost: {
     '001': 0,
     '002': 0,
-    '003': 3000,
+    '003': 4000,
   },
   version: 9,
 })
