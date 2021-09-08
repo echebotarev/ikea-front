@@ -1,8 +1,12 @@
 <template>
   <v-main>
-    <v-row v-if="shopId !== '003'" class="my-5">
-      <v-col cols="12" :sm="shopId === '001' ? 'auto' : 7">
-        <client-only>
+    <client-only>
+      <v-row class="my-5">
+        <v-col
+          v-if="shopId === '002'"
+          cols="12"
+          :sm="shopId === '001' ? 'auto' : 7"
+        >
           <v-card v-if="shopId === '002'">
             <v-card-title>Новые условия доставки:</v-card-title>
             <v-card-subtitle class="py-2 font-weight-bold">
@@ -15,12 +19,12 @@
               От 50 тыс. и выше - Стоимость доставки 6%
             </v-card-subtitle>
           </v-card>
-        </client-only>
-      </v-col>
-      <v-col cols="12" :sm="shopId === '001' ? 'auto' : 5">
-        <CountDown v-if="shopId !== '003'" />
-      </v-col>
-    </v-row>
+        </v-col>
+        <v-col cols="12" :sm="shopId === '001' ? 'auto' : 5">
+          <CountDown />
+        </v-col>
+      </v-row>
+    </client-only>
 
     <h1>{{ category.title }}</h1>
 
