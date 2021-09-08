@@ -80,15 +80,21 @@
                   >
                     <span @click="hideModal">
                       <nuxt-link :to="`/product/${completion.product.id}`">
-                        <v-list-item-title
-                          v-text="completion.product.name"
-                        ></v-list-item-title>
+                        <v-list-item-title>{{
+                          completion.product.name
+                        }}</v-list-item-title>
                       </nuxt-link>
                     </span>
 
-                    <v-list-item-subtitle
-                      v-text="completion.product.typeName"
-                    ></v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                      {{
+                        `${completion.product.typeName}${
+                          completion.product.itemMeasureReferenceText
+                            ? `, ${completion.product.itemMeasureReferenceText}`
+                            : ''
+                        }`
+                      }}
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                   <!-- </Товар> -->
                 </v-list-item>
