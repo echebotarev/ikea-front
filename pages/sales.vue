@@ -1,6 +1,13 @@
 <template>
   <div>
     <h1 class="mb-5">Товары со скидкой</h1>
+    <v-row>
+      <v-col :cols="$vuetify.breakpoint.smAndDown ? 12 : 8">
+        <p>
+          Все товары в идеальном состоянии и находятся на складе в вашем городе.
+        </p>
+      </v-col>
+    </v-row>
     <ProductList :products="products" list-type="Sales" />
   </div>
 </template>
