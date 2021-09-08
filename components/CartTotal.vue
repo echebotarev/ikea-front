@@ -88,7 +88,7 @@ export default {
   computed: {
     ...mapGetters({
       saleForVolume: 'variables/saleForVolume',
-      deliveryCost: 'geo/getDeliveryCost',
+      deliveryCost: 'variables/getDeliveryCost',
       deliveryMethod: 'cart/getDeliveryMethod',
     }),
     ...mapState({

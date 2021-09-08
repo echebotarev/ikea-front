@@ -48,6 +48,16 @@ export const state = () => ({
     '002': '₽',
     '003': '₸',
   },
+  pickupPoint: {
+    '001': null,
+    '002': null,
+    '003': 'г. Уральск, ул. Елизарова, д. 48',
+  },
+  deliveryCost: {
+    '001': 0,
+    '002': 0,
+    '003': 4000,
+  },
 })
 
 export const getters = {
@@ -69,5 +79,13 @@ export const getters = {
 
   symbol(state, getters, rootState) {
     return state.currencySymbol[rootState.geo.shopId]
+  },
+
+  getPickupPoint(state, getters, rootState) {
+    return state.pickupPoint[rootState.shopId]
+  },
+
+  getDeliveryCost(state, getters, rootState) {
+    return state.deliveryCost[rootState.shopId]
   },
 }

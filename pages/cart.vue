@@ -168,7 +168,7 @@ export default {
       assemblySum: 'orders/getAssemblySum',
       saleForVolume: 'variables/saleForVolume',
       coefficient: 'variables/coefficient',
-      deliveryCost: 'geo/getDeliveryCost',
+      deliveryCost: 'variables/getDeliveryCost',
       deliveryMethod: 'cart/getDeliveryMethod',
     }),
 

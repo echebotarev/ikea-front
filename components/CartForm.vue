@@ -75,9 +75,9 @@
             }
           "
         >
-          <v-radio :label="`Самовывоз. ${pickupPoint}`" :value="1"></v-radio>
+          <v-radio :label="`Самовывоз: ${pickupPoint}`" :value="1"></v-radio>
           <v-radio
-            :label="`Доставка до квартиры, ${$getDisplayPrice(deliveryCost, {
+            :label="`Доставка до квартиры: ${$getDisplayPrice(deliveryCost, {
               isOnlyFormatted: true,
             })} ${symbol}`"
             :value="2"
@@ -218,8 +218,8 @@ export default {
       assemblySum: 'orders/getAssemblySum',
       assembly: 'variables/assembly',
       deliveryMethod: 'cart/getDeliveryMethod',
-      pickupPoint: 'geo/getPickupPoint',
-      deliveryCost: 'geo/getDeliveryCost',
+      pickupPoint: 'variables/getPickupPoint',
+      deliveryCost: 'variables/getDeliveryCost',
       symbol: 'variables/symbol',
     }),
   },
