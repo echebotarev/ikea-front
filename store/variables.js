@@ -82,10 +82,10 @@ export const getters = {
   },
 
   getPickupPoint(state, getters, rootState) {
-    return state.pickupPoint[rootState.shopId]
+    return state.pickupPoint[rootState.geo.shopId]
   },
 
   getDeliveryCost(state, getters, rootState) {
-    return state.deliveryCost[rootState.shopId]
+    return state.deliveryCost[rootState.geo.shopId]
   },
 }
