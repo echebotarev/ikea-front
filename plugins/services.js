@@ -16,12 +16,6 @@ export default (ctx, inject) => {
   } = ctx
 
   $axios.onRequest((config) => {
-    console.log(
-      'ShopId from Cookie | Index',
-      $cookies.get('domaDomaShopId'),
-      getters.getShopId
-    )
-
     const shopId = $cookies.get('domaDomaShopId') || getters.getShopId
     const ikeaShopId = $cookies.get('ikeaShopId') || getters.getIkeaShopId
 
