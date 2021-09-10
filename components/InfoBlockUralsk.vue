@@ -35,7 +35,11 @@
       </p>
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Адрес:</b></v-card-subtitle>
-    <v-card-text>Казахстан, г. Уральск, ул. Елизарова, д. 48</v-card-text>
+    <v-card-text>
+      Казахстан, г. Уральск, ул. Елизарова, д. 48 <br />
+      Пн-Пт: с 9.00 до 17.00 обед с 13.00 до 14.00 <br />
+      Сб: с 09.00 до 13.00
+    </v-card-text>
     <v-card-subtitle class="py-0"><b>Телефон склада:</b></v-card-subtitle>
     <v-card-text>
       <a href="tel:+77761513968">+7 (776) 151 3968</a>
@@ -43,7 +47,6 @@
     <v-card-subtitle class="py-0"><b>Доставка:</b></v-card-subtitle>
     <v-card-text>
       Дотсавляем до склада по адресу ул. Елизарова, д. 48 <br />
-      Стоимость доставки по городу - 3000 тенге <br />
       Привезем ваш заказ в течении 2х недель
     </v-card-text>
     <v-card-actions class="pl-4">
