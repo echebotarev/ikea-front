@@ -189,6 +189,16 @@ export const actions = {
         })
       : commit('SET_DATA', { key: 'sale', value: null })
   },
+
+  fetchDeliveryCost({ commit, dispatch }, orderIds) {
+    return this.$services.orders.getDeliveryCost(orderIds).then((response) => {
+      if (response.status === 200) {
+        dispatch('variables/setDeliveryCost', response.data.deliveryCost, {
+          root: true,
+        })
+      }
+    })
+  },
 }
 
 export const getters = {

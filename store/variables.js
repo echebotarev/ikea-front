@@ -60,6 +60,18 @@ export const state = () => ({
   },
 })
 
+export const mutations = {
+  SET_DELIVERY_COST(state, { shopId, price }) {
+    state.deliveryCost[shopId] = price
+  },
+}
+
+export const actions = {
+  setDeliveryCost({ commit, rootState }, price) {
+    commit('SET_DELIVERY_COST', { shopId: rootState.geo.shopId, price })
+  },
+}
+
 export const getters = {
   percent(state, getters, rootState) {
     return state.percent[rootState.geo.shopId]

@@ -15,6 +15,15 @@ export default class OrdersService {
     return this.axios.get(`${this.url}/sale/products`)
   }
 
+  getDeliveryCost(orderIds) {
+    return this.axios.get(
+      `${this.url}/panel/volume?orders=${orderIds.reduce(
+        (acc, v, i) => (i ? acc + `,${v}` : v),
+        ''
+      )}`
+    )
+  }
+
   updateOrder({ orderId, payload }) {
     return this.axios.put(`${this.url}/orders/${orderId}`, payload)
   }

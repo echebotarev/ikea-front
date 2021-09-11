@@ -179,6 +179,7 @@ export default {
 
   mounted() {
     this.fetchSale(this.$route.query)
+    this.fetchDeliveryCost([this.order.orderId])
 
     this.initScripts('ymaps')
     this.getDeliveryData()
@@ -207,6 +208,10 @@ export default {
     // this.timer = setTimeout(() => {
     //   this.initScripts('cp')
     // }, 5000)
+  },
+
+  updated() {
+    this.fetchDeliveryCost([this.order.orderId])
   },
 
   beforeDestroy() {
@@ -486,6 +491,7 @@ export default {
     ...mapActions({
       updateOrder: 'orders/updateOrder',
       fetchSale: 'orders/fetchSale',
+      fetchDeliveryCost: 'orders/fetchDeliveryCost',
       getDeliveryData: 'page/getDeliveryData',
       clearFormData: 'cart/clearData',
       validateForm: 'cart/validateForm',
