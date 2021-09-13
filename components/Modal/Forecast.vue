@@ -35,8 +35,8 @@
                 .availability.restocks"
               :key="i"
             >
-              Должен появится с {{ getFormatDate(item.earliestDate) }} по
-              {{ getFormatDate(item.latestDate) }} <br />
+              Должен появится с <b>{{ getFormatDate(item.earliestDate) }}</b> по
+              <b>{{ getFormatDate(item.latestDate) }}</b> <br />
               Надежность прогноза: {{ item.reliability }} <br />
               Количество: {{ item.quantity }}
             </span>
