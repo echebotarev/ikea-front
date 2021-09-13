@@ -44,6 +44,10 @@ export default class ApiService {
     return this.axios.get(`${this.url}/available?type=${type}&id=${identifier}`)
   }
 
+  getRestockProduct({ identifier }) {
+    return this.axios.get(`${this.url}/available/restock?id=${identifier}`)
+  }
+
   getRecommendations({ id, categoryList = [], type = 'similar' }) {
     return this.axios.get(
       `${this.url}/recommendation/${type}?id=${id}&categoryList=${encodeURI(

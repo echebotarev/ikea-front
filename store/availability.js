@@ -1,5 +1,6 @@
 export const state = () => ({
   products: [],
+  restockAvailabilities: [],
   email: null,
 })
 
@@ -9,6 +10,10 @@ export const mutations = {
       ...state.products.filter((p) => p.identifier !== payload.identifier),
       { ...payload },
     ]
+  },
+
+  SET_RESTOCK_PRODUCT(state, payload) {
+    state.restockAvailabilities = payload
   },
 
   SET_EMAIL(state, payload) {
@@ -30,6 +35,17 @@ export const actions = {
       })
   },
 
+  fetchRestockProduct({ commit }, payload) {
+    return this.app.$services.api
+      .getRestockProduct(payload)
+      .then((response) => {
+        console.log('Resp', response)
+        if (response.status === 200) {
+          commit('SET_RESTOCK_PRODUCT', response.data.availabilities)
+        }
+      })
+  },
+
   setAvailabilityNotification({ commit }, payload) {
     const { email } = payload
     commit('SET_EMAIL', email)
@@ -45,5 +61,12 @@ export const actions = {
 export const getters = {
   availabilityProduct: (state) => (id) => {
     return state.products.find((p) => p.identifier === id) || {}
+  },
+  restockForecast(state, getters, rootState, rootGetters) {
+    return state.restockAvailabilities.find(
+      (item) =>
+        item.classUnitKey.classUnitCode ===
+        rootGetters['geo/getIkeaShopId']().toString()
+    )
   },
 }

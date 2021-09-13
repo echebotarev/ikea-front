@@ -42,6 +42,7 @@
                   forecast:
                     availabilityProduct(identifier).StockAvailability
                       .AvailableStockForecastList.AvailableStockForecast,
+                  identifier,
                 }
               )
             )
