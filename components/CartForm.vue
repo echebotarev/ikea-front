@@ -22,7 +22,8 @@
       <v-col :cols="$vuetify.breakpoint.xs ? 12 : 6">
         <span class="text-overline pl-5">Телефон:</span>
         <v-text-field
-          v-mask="'# (###) ###-####'"
+          v-model="scopePhone"
+          v-mask="'8 (###) ###-####'"
           type="tel"
           pattern="[\d]*"
           novalidate
@@ -34,8 +35,6 @@
           full-width
           height="50"
           required
-          :value="phone"
-          @change="(v) => setValue({ key: 'phone', value: v })"
           @blur="checkThirdStep"
         >
         </v-text-field>
@@ -199,6 +198,16 @@ export default {
   },
 
   computed: {
+    // этот финт ушами необходим, чтобы работала v-mask
+    scopePhone: {
+      get() {
+        return this.phone
+      },
+      set(v) {
+        this.setValue({ key: 'phone', value: v })
+      },
+    },
+
     ...mapState({
       errors: (state) => state.cart.errors,
       address: (state) => state.cart.address,
