@@ -12,7 +12,7 @@
     </v-card-subtitle>
     <v-card-text v-if="!isSent">
       <v-text-field
-        v-model="email"
+        v-model="scopedEmail"
         flat
         hide-details
         rounded
@@ -21,15 +21,29 @@
         full-width
         height="50"
         required
+        class="mb-2"
       >
       </v-text-field>
+
+      <v-text-field
+        v-model="comment"
+        flat
+        hide-details
+        rounded
+        filled
+        placeholder="Комментарий..."
+        full-width
+        height="50"
+        class="mb-4"
+      ></v-text-field>
+
       <v-btn
         block
         rounded
         color="#111"
         min-height="50"
         :loading="isLoading"
-        class="button mt-2"
+        class="button"
         @click="send"
       >
         Отправить
@@ -64,6 +78,7 @@ export default {
   data() {
     return {
       email: '',
+      comment: '',
       isLoading: false,
       isSent: false,
       mdiClose,
@@ -71,13 +86,17 @@ export default {
   },
 
   computed: {
+    scopedEmail: {
+      get() {
+        return this.storagedMail || ''
+      },
+      set(v) {
+        this.email = v
+      },
+    },
     ...mapState({
       storagedMail: (state) => state.availability.email,
     }),
-  },
-
-  mounted() {
-    this.email = this.storagedMail || ''
   },
 
   methods: {
@@ -92,6 +111,7 @@ export default {
         this.isLoading = true
         await this.$store.dispatch('availability/setAvailabilityNotification', {
           email: this.email,
+          comment: this.comment,
           id: this.id,
           type: this.type,
         })
