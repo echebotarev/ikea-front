@@ -46,7 +46,7 @@
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Доставка:</b></v-card-subtitle>
     <v-card-text>
-      Дотсавляем до склада по адресу ул. Елизарова, д. 48 <br />
+      Доставляем до склада по адресу ул. Елизарова, д. 48 <br />
       Привезем ваш заказ в течении 2х недель
     </v-card-text>
     <v-card-actions class="pl-4">

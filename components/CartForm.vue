@@ -76,9 +76,12 @@
         >
           <v-radio :label="`Самовывоз: ${pickupPoint}`" :value="1"></v-radio>
           <v-radio
-            :label="`Доставка до квартиры: ${$getDisplayPrice(deliveryCost, {
-              isOnlyFormatted: true,
-            })} ${symbol}`"
+            :label="`Доставка прямо до квартиры: ${$getDisplayPrice(
+              deliveryCost,
+              {
+                isOnlyFormatted: true,
+              }
+            )} ${symbol}`"
             :value="2"
           ></v-radio>
         </v-radio-group>
