@@ -534,10 +534,4 @@ export default {
     height: 1rem;
   }
 }
-.product-summary p {
-  color: #666;
-  font-size: 0.875rem;
-  line-height: 1.71429;
-  padding-bottom: 1.25rem;
-}
 </style>

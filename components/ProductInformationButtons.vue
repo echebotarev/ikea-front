@@ -1,10 +1,11 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <div class="product-summary mb-10">
+      <div class="product-summary mt-6 mb-10">
         <p v-if="product.summary_description">
           {{ product.summary_description }}
         </p>
+        <span class="product-identifier-label">Артикул:</span><br />
         <span class="product-identifier">{{ product.display_identifier }}</span>
       </div>
 
@@ -79,4 +80,17 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.product-summary {
+  p {
+    color: rgb(72, 72, 72);
+    font-size: 1.25rem;
+    line-height: 1.71429;
+    padding-bottom: 1.25rem;
+  }
+
+  .product-identifier-label {
+    font-size: 0.875rem;
+  }
+}
+</style>

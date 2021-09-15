@@ -44,8 +44,12 @@
   .v-banner__wrapper {
     border-top: thin solid rgba(0, 0, 0, 0.12);
     border-bottom: 0 !important;
-    font-size: 0.975rem;
+    font-size: 1.5rem;
     padding: 20px 0 !important;
+
+    @media screen and (max-width: 600px) {
+      font-size: 0.975rem;
+    }
 
     .v-banner__text {
       font-weight: 900;
