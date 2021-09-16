@@ -318,7 +318,7 @@ export default {
         return false
       }
 
-      return !this.available(this.product.identifier)
+      return !this.available(this.product.identifier, 'qnt')
     },
   },
 
