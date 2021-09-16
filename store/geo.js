@@ -49,6 +49,9 @@ export const state = () => ({
 
 export const mutations = {
   SET_DATA(state, payload) {
+    console.log('Geo Set Data', payload)
+    console.trace()
+
     state.data = payload
   },
 
