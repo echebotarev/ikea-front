@@ -44,7 +44,7 @@ export const state = () => ({
     '002': 'PoWbgP3IdQ',
     '003': 'NApoQrzu9D',
   },
-  version: 10,
+  version: 11,
 })
 
 export const mutations = {
