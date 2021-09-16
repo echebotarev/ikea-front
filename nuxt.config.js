@@ -102,9 +102,10 @@ export default {
     [
       'nuxt-vuex-localstorage',
       {
-        ...(process.env.NODE_ENV === 'development' && {
-          mode: 'debug',
-        }),
+        // ...(process.env.NODE_ENV === 'development' && {
+        //   mode: 'debug',
+        // }),
+        mode: 'debug',
         localStorage: ['geo', 'cart'],
       },
     ],

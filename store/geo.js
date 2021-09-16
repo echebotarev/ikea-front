@@ -150,8 +150,11 @@ export const getters = {
   getIkeaShopId: (state) => (shopId) =>
     shopId ? state.ikeaShopIds[shopId] : state.ikeaShopIds[state.shopId],
 
-  getDomainName: (state) => (shopId) =>
-    shopId ? state.domainNames[shopId] : state.domainNames[state.shopId],
+  getDomainName: (state) => (shopId) => {
+    console.log('GetDomainName: domainNames - ', state.domainNames)
+
+    return shopId ? state.domainNames[shopId] : state.domainNames[state.shopId]
+  },
 
   getBaseUrl: (state) => state.urls[process.env.NODE_ENV],
 }
