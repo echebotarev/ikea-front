@@ -62,6 +62,50 @@ export const getters = {
   availabilityProduct: (state) => (id) => {
     return state.products.find((p) => p.identifier === id) || {}
   },
+
+  available: (state, getters) => (id, type) => {
+    const data = getters.availabilityProduct(id)
+
+    if (
+      (!data.StockAvailability ||
+        !data.StockAvailability.RetailItemAvailability) &&
+      !data.buyingOption
+    ) {
+      return null
+    }
+
+    switch (type) {
+      case 'code':
+        if (
+          data.buyingOption &&
+          data.buyingOption.cashCarry.availability.quantity > 10
+        ) {
+          return 'HIGH'
+        }
+
+        return data.StockAvailability.RetailItemAvailability
+          .InStockProbabilityCode['@']
+
+      case 'qnt':
+        if (data.buyingOption) {
+          return data.buyingOption.cashCarry.availability.quantity
+        }
+
+        return parseInt(
+          data.StockAvailability.RetailItemAvailability.AvailableStock['@']
+        )
+
+      case 'forecast':
+        return data.StockAvailability
+          ? data.StockAvailability.AvailableStockForecastList
+              .AvailableStockForecast
+          : []
+
+      default:
+        return data
+    }
+  },
+
   restockForecast(state, getters, rootState, rootGetters) {
     return state.restockAvailabilities.find(
       (item) =>

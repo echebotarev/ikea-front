@@ -1,37 +1,20 @@
 <template>
   <div>
-    <div
-      v-if="availabilityProduct(identifier).StockAvailability"
-      class="status"
-    >
+    <div v-if="available(identifier)" class="status">
       <v-icon v-if="!$vuetify.breakpoint.mobile">{{ mdiStoreOutline }}</v-icon>
-      <div
-        v-if="
-          !availabilityProduct(identifier).StockAvailability
-            .RetailItemAvailability
-        "
-        class="status-dot__LOW pl-5"
-      >
+      <div v-if="!available(identifier)" class="status-dot__LOW pl-5">
         <span class="text-nowrap">Информация о наличии не доступна.</span>
       </div>
+
       <div
         v-else
-        :class="`status-dot__${
-          availabilityProduct(identifier).StockAvailability
-            .RetailItemAvailability.InStockProbabilityCode['@']
-        } ${withQnt ? 'with-qnt' : ''} pl-5`"
+        :class="`status-dot__${available(identifier, 'code')} ${
+          withQnt ? 'with-qnt' : ''
+        } pl-5`"
       >
-        <span
-          v-if="
-            withQnt &&
-            availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.InStockProbabilityCode['@'] !== 'LOW'
-          "
-          >{{
-            availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.AvailableStock['@']
-          }}</span
-        >
+        <span v-if="withQnt && available(identifier, 'code') !== 'LOW'">{{
+          available(identifier, 'qnt')
+        }}</span>
 
         <span
           @click="
@@ -39,9 +22,7 @@
               Object.assign(
                 { type: 'info' },
                 {
-                  forecast:
-                    availabilityProduct(identifier).StockAvailability
-                      .AvailableStockForecastList.AvailableStockForecast,
+                  forecast: available(identifier, forecast),
                   identifier,
                 }
               )
@@ -49,22 +30,15 @@
           "
         >
           {{
-            availabilityProduct(identifier).StockAvailability
-              .RetailItemAvailability.AvailableStock['@'] === '0'
+            available(identifier, 'qnt') === '0'
               ? labels['LOW']
-              : labels[
-                  availabilityProduct(identifier).StockAvailability
-                    .RetailItemAvailability.InStockProbabilityCode['@']
-                ]
+              : labels[available(identifier, 'code')]
           }}
         </span>
       </div>
     </div>
 
-    <div
-      v-if="!availabilityProduct(identifier).StockAvailability"
-      class="status"
-    >
+    <div v-else class="status">
       <v-icon>{{ mdiClockTimeThreeOutline }}</v-icon>
       <div>Проверяем наличие</div>
     </div>
@@ -105,7 +79,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      availabilityProduct: 'availability/availabilityProduct',
+      available: 'availability/available',
     }),
   },
   mounted() {
