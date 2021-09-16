@@ -76,11 +76,14 @@ export const getters = {
 
     switch (type) {
       case 'code':
-        if (
-          data.buyingOption &&
-          data.buyingOption.cashCarry.availability.quantity > 10
-        ) {
-          return 'HIGH'
+        if (data.buyingOption) {
+          if (data.buyingOption.cashCarry.availability.quantity === 0) {
+            return 'LOW'
+          } else if (data.buyingOption.cashCarry.availability.quantity < 20) {
+            return 'MEDIUM'
+          } else {
+            return 'HIGH'
+          }
         }
 
         return data.StockAvailability.RetailItemAvailability

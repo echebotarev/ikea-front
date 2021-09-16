@@ -22,7 +22,7 @@
               Object.assign(
                 { type: 'info' },
                 {
-                  forecast: available(identifier, forecast),
+                  forecast: available(identifier, 'forecast'),
                   identifier,
                 }
               )

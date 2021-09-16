@@ -309,7 +309,7 @@ export default {
     }),
 
     ...mapGetters({
-      availabilityProduct: 'availability/availabilityProduct',
+      available: 'availability/available',
       coefficient: 'variables/coefficient',
     }),
 
@@ -318,17 +318,7 @@ export default {
         return false
       }
 
-      return !(
-        this.availabilityProduct(this.product.identifier).StockAvailability &&
-        this.availabilityProduct(this.product.identifier).StockAvailability
-          .RetailItemAvailability &&
-        this.availabilityProduct(this.product.identifier).StockAvailability
-          .RetailItemAvailability.InStockProbabilityCode['@'] !== 'LOW' &&
-        parseInt(
-          this.availabilityProduct(this.product.identifier).StockAvailability
-            .RetailItemAvailability.AvailableStock['@']
-        )
-      )
+      return !this.available(this.product.identifier)
     },
   },
 

@@ -163,7 +163,7 @@ export default {
     }),
 
     ...mapGetters({
-      availabilityProduct: 'availability/availabilityProduct',
+      available: 'availability/available',
       assembly: 'variables/assembly',
       assemblySum: 'orders/getAssemblySum',
       saleForVolume: 'variables/saleForVolume',
@@ -399,14 +399,11 @@ export default {
     validateProducts(notify = true) {
       const availableProducts = {}
       this.products.forEach((product) => {
-        const availableProduct =
-          this.availabilityProduct(product.identifier).StockAvailability &&
-          this.availabilityProduct(product.identifier).StockAvailability
-            .RetailItemAvailability.AvailableStock['@']
+        const availableProduct = this.available(product.identifier, 'qnt')
 
         availableProducts[product.identifier] =
           !!product.sales ||
-          !!(availableProduct && parseInt(availableProduct) - product.qnt >= 0)
+          !!(availableProduct && availableProduct - product.qnt >= 0)
       })
 
       let text = ''
