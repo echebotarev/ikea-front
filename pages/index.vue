@@ -26,7 +26,7 @@
       </v-row>
     </client-only>
 
-    <AttentionButton />
+    <AttentionButton v-if="saleProducts.length" />
 
     <h1>{{ category.title }}</h1>
 
@@ -94,6 +94,8 @@ export default {
 
       return cols
     },
+
+    saleProducts: (state) => state.products.saleProducts,
   }),
 
   head() {

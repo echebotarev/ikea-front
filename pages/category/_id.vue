@@ -1,5 +1,7 @@
 <template>
   <div>
+    <AttentionButton v-if="saleProducts.length" class="mt-5" />
+
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
     <h1>{{ category.title }}</h1>
 
@@ -53,6 +55,7 @@ export default {
     Filters: () => import('@/components/Filters'),
     SkeletonItems: () => import('@/components/SkeletonItems'),
     ProductRecommendation: () => import('@/components/ProductRecommendation'),
+    AttentionButton: () => import('@/components/AttentionButton'),
   },
 
   async fetch({ store, error, params, query }) {
@@ -94,6 +97,8 @@ export default {
       products: (state) => state.products.products,
 
       breadcrumbs: (state) => state.page.breadcrumbs,
+
+      saleProducts: (state) => state.products.saleProducts,
     }),
   },
 

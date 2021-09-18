@@ -1,7 +1,9 @@
 <template>
   <div class="attention-button mb-5">
     <div class="attention-button-info mb-5">Товары в наличии со скидкой!</div>
-    <div class="attention-button-action">Перейти</div>
+    <nuxt-link to="/sales">
+      <div class="attention-button-action">Перейти</div>
+    </nuxt-link>
   </div>
 </template>
 
