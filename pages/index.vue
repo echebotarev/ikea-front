@@ -26,6 +26,8 @@
       </v-row>
     </client-only>
 
+    <AttentionButton />
+
     <h1>{{ category.title }}</h1>
 
     <v-row v-if="$vuetify.breakpoint.smAndUp">
@@ -55,6 +57,7 @@ import getCityName from '@/utils/getCityName'
 export default {
   components: {
     CountDown: () => import('@/components/CountDown/index'),
+    AttentionButton: () => import('@/components/AttentionButton'),
     MainCategoryCard: () => import('@/components/MainCategoryCard'),
     MainCategoryMobileCard: () => import('@/components/MainCategoryMobileCard'),
   },
