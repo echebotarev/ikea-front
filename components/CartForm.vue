@@ -207,7 +207,7 @@ export default {
         return this.phone
       },
       set(v) {
-        this.setValue({ key: 'phone', value: v })
+        v !== this.phone && this.setValue({ key: 'phone', value: v })
       },
     },
 
