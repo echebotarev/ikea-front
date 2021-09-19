@@ -2,12 +2,8 @@
   <div>
     <div v-if="available(identifier)" class="status">
       <v-icon v-if="!$vuetify.breakpoint.mobile">{{ mdiStoreOutline }}</v-icon>
-      <div v-if="!available(identifier)" class="status-dot__LOW pl-5">
-        <span class="text-nowrap">Информация о наличии не доступна.</span>
-      </div>
 
       <div
-        v-else
         :class="`status-dot__${available(identifier, 'code')} ${
           withQnt ? 'with-qnt' : ''
         } pl-5`"
@@ -38,9 +34,9 @@
       </div>
     </div>
 
-    <div v-else class="status">
+    <div v-else class="status status-dot__LOW">
       <v-icon>{{ mdiClockTimeThreeOutline }}</v-icon>
-      <div>Проверяем наличие</div>
+      <div>Информация о наличии не доступна.</div>
     </div>
   </div>
 </template>
