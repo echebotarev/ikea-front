@@ -18,14 +18,14 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="category.description">
+    <v-row v-if="category.description" class="mb-5">
       <v-col :cols="$vuetify.breakpoint.smAndDown ? 12 : 8">{{
         category.description
       }}</v-col>
     </v-row>
 
     <client-only>
-      <Filters />
+      <Filters class="mb-5" />
     </client-only>
 
     <ProductList :products="products" />

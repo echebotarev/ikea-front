@@ -2,7 +2,7 @@
   <div class="card-container">
     <v-card
       elevation="0"
-      :class="`card-product ${product.available === 0 ? 'disabled' : ''}`"
+      :class="`card-product pb-2 ${product.available === 0 ? 'disabled' : ''}`"
     >
       <nuxt-link
         :to="`/product/${product.id || product.item_id || product.identifier}${
@@ -97,6 +97,15 @@
     >
       Узнать о поступлении
     </v-btn>
+
+    <ProductCardVariations
+      v-if="
+        product.display_variations &&
+        Object.keys(product.display_variations).length
+      "
+      :variations="product.display_variations"
+    />
+
     <div class="arrival-container">
       <ArrivalMail
         v-if="product.available === 0 && isOpenArrival"
@@ -120,6 +129,7 @@ export default {
   components: {
     Price: () => import('@/components/Price'),
     ArrivalMail: () => import('@/components/ArrivalMail'),
+    ProductCardVariations: () => import('@/components/ProductCardVariations'),
     CircleBtn: () => import('@/components/CircleBtn'),
   },
   props: {
@@ -227,6 +237,6 @@ p {
 .circle-btn-container {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 22px;
 }
 </style>

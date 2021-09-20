@@ -89,6 +89,18 @@ export const actions = {
       })
   },
 
+  // ф-ия используется для получения сырых данных о товаре
+  // для переключения между вариантами товара в категории
+  getProductById({ commit }, { id }) {
+    return this.app.$services.api.getProduct(id).then((response) => {
+      if (!response.data || response.status !== 200) {
+        return false
+      }
+
+      return response.data
+    })
+  },
+
   fetchProductById({ commit, dispatch, state }, { id, isSales = false }) {
     return this.app.$services.api.getProduct(id).then(async (response) => {
       if (!response.data) {
