@@ -125,6 +125,11 @@
   white-space: nowrap;
 }
 
+.products > div {
+  border-bottom: 1px solid #f5f5f5;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 .sm-and-down {
   .v-input__prepend-inner {
     margin-top: 9px !important;
@@ -133,9 +138,9 @@
   .products > div:nth-child(odd) {
     border-right: 1px solid #f5f5f5;
   }
-
   .products > div {
-    border-top: 1px solid #f5f5f5;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
 
