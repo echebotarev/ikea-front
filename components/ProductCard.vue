@@ -92,6 +92,7 @@
 
     <ProductCardVariations
       v-if="
+        $route.name === 'category-id' &&
         product.display_variations &&
         Object.keys(product.display_variations).length
       "
