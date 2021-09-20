@@ -89,6 +89,18 @@
         </div>
       </nuxt-link>
     </v-card>
+
+    <ProductCardVariations
+      v-if="
+        product.display_variations &&
+        Object.keys(product.display_variations).length
+      "
+      :current-id="product.identifier"
+      :current-type="product.utag.product_type"
+      :variations="product.display_variations"
+      class="mb-4"
+    />
+
     <v-btn
       v-if="product.available === 0 && !isOpenArrival"
       elevation="0"
@@ -97,15 +109,6 @@
     >
       Узнать о поступлении
     </v-btn>
-
-    <ProductCardVariations
-      v-if="
-        product.display_variations &&
-        Object.keys(product.display_variations).length
-      "
-      :current-id="product.identifier"
-      :variations="product.display_variations"
-    />
 
     <div class="arrival-container">
       <ArrivalMail
@@ -189,7 +192,7 @@ export default {
 }
 .card-product {
   &.disabled {
-    opacity: 0.5;
+    opacity: 0.3;
   }
 
   .card-product-name {

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 import getImage from '@/assets/utils/getImage'
 
@@ -31,10 +31,20 @@ export default {
       type: String,
       default: () => '',
     },
+    currentType: {
+      type: String,
+      default: () => '',
+    },
     variations: {
       type: Object,
       default: () => ({}),
     },
+  },
+
+  computed: {
+    ...mapGetters({
+      available: 'availability/available',
+    }),
   },
 
   methods: {
@@ -42,11 +52,20 @@ export default {
 
     async switchProduct(id) {
       const product = await this.getProductById({ id })
-      this.updateProductList({ id: this.currentId, newProduct: product })
+      await this.fetchAvailabilityProduct({
+        type: this.currentType,
+        identifier: id,
+      })
+      const available = this.available(id, 'qnt')
+      this.updateProductList({
+        id: this.currentId,
+        newProduct: Object.assign(product, { available }),
+      })
     },
 
     ...mapActions({
       getProductById: 'products/getProductById',
+      fetchAvailabilityProduct: 'availability/fetchAvailabilityProduct',
       updateProductList: 'products/updateProductList',
     }),
   },
