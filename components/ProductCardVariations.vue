@@ -27,6 +27,10 @@ import getImage from '@/assets/utils/getImage'
 export default {
   name: 'ProductCardVariations',
   props: {
+    currentId: {
+      type: String,
+      default: () => '',
+    },
     variations: {
       type: Object,
       default: () => ({}),
@@ -38,11 +42,12 @@ export default {
 
     async switchProduct(id) {
       const product = await this.getProductById({ id })
-      console.log('Product', product)
+      this.updateProductList({ id: this.currentId, newProduct: product })
     },
 
     ...mapActions({
       getProductById: 'products/getProductById',
+      updateProductList: 'products/updateProductList',
     }),
   },
 }

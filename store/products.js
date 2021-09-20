@@ -101,6 +101,13 @@ export const actions = {
     })
   },
 
+  updateProductList({ commit, state }, { id, newProduct }) {
+    commit(
+      'SET_PRODUCTS',
+      state.products.map((p) => (p.identifier === id ? newProduct : p))
+    )
+  },
+
   fetchProductById({ commit, dispatch, state }, { id, isSales = false }) {
     return this.app.$services.api.getProduct(id).then(async (response) => {
       if (!response.data) {

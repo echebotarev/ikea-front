@@ -103,6 +103,7 @@
         product.display_variations &&
         Object.keys(product.display_variations).length
       "
+      :current-id="product.identifier"
       :variations="product.display_variations"
     />
 
