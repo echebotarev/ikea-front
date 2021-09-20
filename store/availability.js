@@ -94,6 +94,14 @@ export const getters = {
           return data.buyingOption.cashCarry.availability.quantity
         }
 
+        if (
+          data.StockAvailability.RetailItemAvailability.InStockProbabilityCode[
+            '@'
+          ] === 'LOW'
+        ) {
+          return 0
+        }
+
         return parseInt(
           data.StockAvailability.RetailItemAvailability.AvailableStock['@']
         )
