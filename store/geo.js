@@ -62,7 +62,8 @@ export const mutations = {
 
 export const actions = {
   fetchLocation({ state, commit }) {
-    if (Object.keys(state.data).length !== 0) {
+    // данные уже получены и записаны
+    if (state.data.success) {
       return false
     }
 
