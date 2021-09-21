@@ -10,7 +10,7 @@ export const state = () => ({
   isAssembly: false,
   assemblyValue: 0,
 
-  version: 1,
+  version: 2,
 })
 
 export const mutations = {
