@@ -16,12 +16,13 @@ export default class OrdersService {
   }
 
   getDeliveryCost(orderIds) {
-    return this.axios.get(
-      `${this.url}/panel/volume?orders=${orderIds.reduce(
-        (acc, v, i) => (i ? acc + `,${v}` : v),
-        ''
-      )}`
-    )
+    console.log('GetDeliveryCost', orderIds)
+    const orders = orderIds.reduce((acc, v, i) => (i ? acc + `,${v}` : v), '')
+    if (!orders) {
+      console.trace()
+    }
+
+    return this.axios.get(`${this.url}/panel/volume?orders=${orders}`)
   }
 
   updateOrder({ orderId, payload }) {
