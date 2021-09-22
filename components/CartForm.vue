@@ -52,7 +52,7 @@
           height="50"
           required
           :value="mail"
-          @change="(v) => setValue({ key: 'mail', value: v })"
+          @change="(v) => setValue({ key: 'mail', value: v.trim() })"
           @blur="checkThirdStep"
         >
         </v-text-field>
