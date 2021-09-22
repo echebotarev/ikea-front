@@ -23,7 +23,7 @@
         <span class="text-overline pl-5">Телефон:</span>
         <v-text-field
           v-model="scopePhone"
-          v-mask="'8 (###) ###-####'"
+          v-mask="'# (###) ###-####'"
           type="tel"
           pattern="[\d]*"
           novalidate
