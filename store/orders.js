@@ -192,7 +192,7 @@ export const actions = {
 
   fetchDeliveryCost({ commit, dispatch }, orderIds) {
     return this.$services.orders.getDeliveryCost(orderIds).then((response) => {
-      if (response.status === 200) {
+      if (response.status === 200 && response.data.deliveryCost) {
         dispatch('variables/setDeliveryCost', response.data.deliveryCost, {
           root: true,
         })

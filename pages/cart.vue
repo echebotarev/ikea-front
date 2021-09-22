@@ -179,7 +179,7 @@ export default {
 
   mounted() {
     this.fetchSale(this.$route.query)
-    this.fetchDeliveryCost([this.order.orderId])
+    this.order.orderId && this.fetchDeliveryCost([this.order.orderId])
 
     this.initScripts('ymaps')
     this.getDeliveryData()
@@ -211,7 +211,7 @@ export default {
   },
 
   updated() {
-    this.fetchDeliveryCost([this.order.orderId])
+    this.order.orderId && this.fetchDeliveryCost([this.order.orderId])
   },
 
   beforeDestroy() {
