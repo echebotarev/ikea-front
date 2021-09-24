@@ -41,6 +41,7 @@ export default {
     { src: '@plugins/domainHandler.js', mode: 'client' },
     { src: '@/plugins/notifications', ssr: false },
     { src: '@plugins/ga.js', mode: 'client' },
+    // подключен через Google Tag Manager
     // { src: '@plugins/ya.js', mode: 'client' },
     { src: '@plugins/filters.js', mode: 'client' },
     { src: '@plugins/initJivosite.js', mode: 'client' },
