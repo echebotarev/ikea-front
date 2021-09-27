@@ -63,7 +63,11 @@ export default {
 
   methods: {
     getText() {
-      return this.text || this.shopId === '003'
+      if (this.text) {
+        return this.text
+      }
+
+      return this.shopId === '003'
         ? 'Доставим до склада<br />в Уральске'
         : 'Цена с учетом<br />доставки:'
     },

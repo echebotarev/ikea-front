@@ -26,6 +26,7 @@
                 color="#0058a3"
                 min-height="50"
                 class="button"
+                :disabled="!products.length"
                 @click="openDataArea"
               >
                 Оформить заказ

@@ -47,9 +47,12 @@
           <Price
             :price="deliveryMethod === 2 ? deliveryCost : 0"
             :is-only-formatted="true"
+            :without-label="true"
           />
         </v-col>
       </v-row>
+
+      <v-divider v-if="shopId === '003'" class="my-3"></v-divider>
 
       <v-row no-gutters>
         <v-col class="font-weight-bold">{{ text }}</v-col>
