@@ -14,7 +14,7 @@
       </p>
       <p class="mb-2">
         Если у вас остались вопросы, или нужна помощь, звоните: <br />
-        <a href="tel:+77017375736">+7 (701) 737 5736</a><br />
+        <!--<a href="tel:+77017375736">+7 (701) 737 5736</a><br />-->
         +7 (911) 172-1308 -
         <a
           href="https://api.whatsapp.com/send?phone=+79111721308&text=Привет"
@@ -42,7 +42,7 @@
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Телефон склада:</b></v-card-subtitle>
     <v-card-text>
-      <a href="tel:+77761513968">+7 (776) 151 3968</a>
+      <a href="tel:+77474067571">+7 (747) 406 7571</a>
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Доставка:</b></v-card-subtitle>
     <v-card-text>
