@@ -15,9 +15,6 @@
         </span>
 
         <div>
-          <!--<a class="tel" href="tel:+77017375736">+7 (701) 737-5736</a>-->
-        </div>
-        <div>
           <a class="tel" href="tel:+79111721308">+7 (911) 172-1308</a>
         </div>
         <br />
