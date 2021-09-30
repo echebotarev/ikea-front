@@ -8,7 +8,7 @@
           <v-col
             v-for="img in fullMediaList"
             :key="img.content.url"
-            :cols="product.images.fullMediaList.length === 1 ? 12 : 6"
+            :cols="fullMediaList.length === 1 ? 12 : 6"
           >
             <v-img
               v-if="img.type === 'image'"
@@ -301,8 +301,10 @@ export default {
       product: (state) => state.products.product,
       isSales: (state) => !!state.products.product.sales,
       breadcrumbs: (state) => state.page.breadcrumbs,
-      // TODO: убрать, когда реализую отображение видео
-      fullMediaList: (state) => state.products.product.images.fullMediaList,
+      fullMediaList: (state) =>
+        state.products.product.images
+          ? state.products.product.images.fullMediaList
+          : [],
       suggestionProducts: (state) => state.suggestion.suggestionProducts,
 
       delivery: (state) => state.page.delivery,
@@ -417,9 +419,7 @@ export default {
     getMetaProduct() {
       const title = `${this.product.price.productName}, ${this.product.display_identifier}, ${this.product.price.productDescription}`
       const description = `${this.product.price.productName}, ${this.product.display_identifier}, ${this.product.price.productDescription}, ${this.product.price.measurementText}. ${this.product.information.productDetailsProps.productDescriptionProps.paragraphs[0]}`
-      const image =
-        this.product.images.fullMediaList[0] &&
-        this.product.images.fullMediaList[0].content.url
+      const image = this.fullMediaList[0] && this.fullMediaList[0].content.url
       const keywords = `${this.product.price.productName}, ${this.product.price.productDescription}`
 
       return [

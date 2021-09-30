@@ -15,7 +15,12 @@
         <v-row>
           <v-col cols="3">
             <v-img
-              :src="getImage(product.images.fullMediaList[0].content.url, 3)"
+              :src="
+                getImage(
+                  product.images && product.images.fullMediaList[0].content.url,
+                  3
+                )
+              "
               lazy-src="/images/placeholder.png"
               aspect-ratio="1"
             >

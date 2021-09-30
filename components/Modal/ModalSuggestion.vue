@@ -98,7 +98,7 @@ export default {
     }),
     getImage,
     imgPreview(product) {
-      return product.images.fullMediaList[0]
+      return product.images && product.images.fullMediaList[0]
     },
     async add(payload) {
       await this.addProduct(payload)
