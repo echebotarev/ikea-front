@@ -63,13 +63,20 @@ export default {
 
   methods: {
     getText() {
-      if (this.text) {
+      if (this.text || this.text === '') {
         return this.text
       }
 
-      return this.shopId === '003'
-        ? 'Доставим до склада<br />в Уральске'
-        : 'Цена с учетом<br />доставки:'
+      switch (this.shopId) {
+        case '003':
+          return 'Доставим до склада<br />в Уральске'
+
+        case '004':
+          return 'Доставим до склада<br />в Атырау'
+
+        default:
+          return 'Цена с учетом<br />доставки:'
+      }
     },
   },
 }

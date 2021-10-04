@@ -37,7 +37,7 @@
       </div>
 
       <div id="data-area" ref="dataArea" class="data-area">
-        <CartForm></CartForm>
+        <CartForm />
 
         <CartTotal
           text="Итого:"
@@ -272,7 +272,8 @@ export default {
             phone: this.phone,
             total: this.getDiscountPrice(this.total),
             deliveryCost:
-              this.shopId === '003' && this.deliveryMethod === 2
+              (this.shopId === '003' || this.shopId === '004') &&
+              this.deliveryMethod === 2
                 ? this.deliveryCost
                 : 0,
             sale: { value: this.getDiscountSaleValue(this.total) },
@@ -324,7 +325,8 @@ export default {
           phone: this.phone,
           total: this.getDiscountPrice(this.total),
           deliveryCost:
-            this.shopId === '003' && this.deliveryMethod === 2
+            (this.shopId === '003' || this.shopId === '004') &&
+            this.deliveryMethod === 2
               ? this.deliveryCost
               : 0,
           paid: false,
@@ -467,7 +469,8 @@ export default {
 
       const total = sale ? Math.ceil(price - (price * sale) / 100) : price
 
-      return this.shopId === '003' && this.deliveryMethod === 2
+      return (this.shopId === '003' || this.shopId === '004') &&
+        this.deliveryMethod === 2
         ? total + this.deliveryCost
         : total
     },

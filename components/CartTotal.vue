@@ -41,8 +41,8 @@
         </v-col>
       </v-row>
 
-      <v-row v-if="shopId === '003'" no-gutters>
-        <v-col class="font-weight-bold">Доставка:</v-col>
+      <v-row v-if="shopId === '003' || shopId === '004'" no-gutters>
+        <v-col class="font-weight-bold">Доставка до квартиры:</v-col>
         <v-col class="text-right">
           <Price
             :price="deliveryMethod === 2 ? deliveryCost : 0"
@@ -52,7 +52,10 @@
         </v-col>
       </v-row>
 
-      <v-divider v-if="shopId === '003'" class="my-3"></v-divider>
+      <v-divider
+        v-if="shopId === '003' || shopId === '004'"
+        class="my-3"
+      ></v-divider>
 
       <v-row no-gutters>
         <v-col class="font-weight-bold">{{ text }}</v-col>
@@ -60,7 +63,13 @@
           <Price
             :price="total"
             :is-only-formatted="true"
-            :text="sale ? 'Цена с учетом<br /> скидки и доставки' : null"
+            :text="
+              sale
+                ? 'Цена с учетом<br /> скидки и доставки'
+                : deliveryMethod === 2 && (shopId === '003' || shopId === '004')
+                ? ''
+                : null
+            "
           />
         </v-col>
       </v-row>

@@ -3,6 +3,7 @@ const shopDisplayNames = {
   '001': 'Актау',
   '002': 'Саранск',
   '003': 'Уральск',
+  '004': 'Атырау',
 }
 
 export const state = () => ({

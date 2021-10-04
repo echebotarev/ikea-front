@@ -14,6 +14,11 @@
           ул. Елизарова, д. 48
         </span>
 
+        <span v-if="shopId === '004'" class="locality">г. Атырау,</span>
+        <span v-if="shopId === '004'" class="street-address">
+          ул. Азаттык 55 за ТД «Адал»
+        </span>
+
         <div>
           <a class="tel" href="tel:+79111721308">+7 (911) 172-1308</a>
         </div>

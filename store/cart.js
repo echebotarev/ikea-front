@@ -87,7 +87,7 @@ export const actions = {
 
 export const getters = {
   getDeliveryMethod(state, getters, rootState) {
-    if (rootState.shopId !== '003') {
+    if (rootState.shopId !== '003' && rootState.shopId !== '004') {
       return 2
     }
 

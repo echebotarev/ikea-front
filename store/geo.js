@@ -15,21 +15,25 @@ export const state = () => ({
     '001': ['Актау', 'Омирзак', 'Мунайши', 'Курык'],
     '002': ['Саранск'],
     '003': ['Уральск'],
+    '004': ['Атырау'],
   },
   shopDisplayNames: {
     '001': 'Актау',
     '002': 'Саранск',
     '003': 'Уральск',
+    '004': 'Атырау',
   },
   ikeaShopDisplayNames: {
     '001': 'Самара',
     '002': 'Нижний Новгород',
     '003': 'Самара',
+    '004': 'Атырау',
   },
   ikeaShopIds: {
     // id Самары
     '001': 442,
     '003': 442,
+    '004': 442,
     // id Нижнего Новгорода
     '002': 437,
   },
@@ -37,14 +41,16 @@ export const state = () => ({
     '001': 'aktau',
     '002': 'saransk',
     '003': 'uralsk',
+    '004': 'atyrau',
   },
   jivosite: {
     baseUrl: '//code-ya.jivosite.com/widget',
     '001': 'NApoQrzu9D',
     '002': 'PoWbgP3IdQ',
     '003': 'NApoQrzu9D',
+    '004': 'NApoQrzu9D',
   },
-  version: 11,
+  version: 12,
 })
 
 export const mutations = {

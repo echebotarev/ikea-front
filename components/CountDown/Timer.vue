@@ -69,6 +69,8 @@ export default {
       timezones: {
         '001': 'Asia/Aqtau',
         '002': 'Europe/Moscow',
+        '003': 'Asia/Oral',
+        '004': 'Asia/Atyrau',
       },
     }
   },
