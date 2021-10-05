@@ -186,6 +186,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import { mdiMapMarker, mdiTools } from '@mdi/js'
 import ec from '@/utils/ec'
 
+let phoneTimer = null
 export default {
   name: 'CartForm',
 
@@ -207,7 +208,14 @@ export default {
         return this.phone
       },
       set(v) {
-        v !== this.phone && this.setValue({ key: 'phone', value: v })
+        if (phoneTimer) {
+          return false
+        }
+
+        phoneTimer = setTimeout(() => {
+          v !== this.phone && this.setValue({ key: 'phone', value: v })
+          phoneTimer = null
+        }, 50)
       },
     },
 
