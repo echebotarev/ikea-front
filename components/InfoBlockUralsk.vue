@@ -41,7 +41,7 @@
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Телефон склада:</b></v-card-subtitle>
     <v-card-text>
-      <a href="tel:+77474067571">+7 (747) 406 7571</a>
+      <a href="tel:+77053351506">+7 (705) 335 1506</a>
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Доставка:</b></v-card-subtitle>
     <v-card-text>
