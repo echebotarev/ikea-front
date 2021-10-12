@@ -1,7 +1,7 @@
 <template>
-  <div class="attention-button mb-5">
-    <div class="attention-button-info mb-5">Товары в наличии со скидкой!</div>
-    <nuxt-link to="/sales">
+  <div :class="`attention-button mb-5 ${className}`">
+    <div class="attention-button-info mb-5" v-html="text"></div>
+    <nuxt-link v-if="hasButton" to="/sales">
       <div class="attention-button-action">Перейти</div>
     </nuxt-link>
   </div>
@@ -10,6 +10,20 @@
 <script>
 export default {
   name: 'AttentionButton',
+  props: {
+    text: {
+      type: String,
+      default: () => 'Товары в наличии со скидкой!',
+    },
+    hasButton: {
+      type: Boolean,
+      default: () => true,
+    },
+    className: {
+      type: String,
+      default: () => '',
+    },
+  },
 }
 </script>
 
@@ -17,6 +31,7 @@ export default {
 .attention-button {
   background-color: #c7391a;
   padding: 7%;
+  z-index: 3;
 
   .attention-button-info {
     color: #fff;
