@@ -3,13 +3,6 @@
     <v-main>
       <Message v-if="shopId === '001'" />
 
-      <AttentionButton
-        v-if="shopId === '003'"
-        :has-button="false"
-        class-name="sticky"
-        :text="`В данный момент мы не принимаем заказы в городе Уральск.<br />Приносим свои извинения<br />Команда doma-doma.org`"
-      />
-
       <Header />
 
       <client-only v-if="$vuetify.breakpoint.smAndDown">
@@ -61,7 +54,6 @@ export default {
     Footer: hydrateWhenVisible(() => import('@/components/Footer.vue')),
     ChooseCity: hydrateWhenVisible(() => import('@/components/Geo/ChooseCity')),
     NavLinks: hydrateWhenVisible(() => import('@/components/NavLinks')),
-    AttentionButton: () => import('@/components/AttentionButton'),
   },
   middleware: 'fetchOrders',
   computed: {

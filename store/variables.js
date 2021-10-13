@@ -37,7 +37,7 @@ export const state = () => ({
     },
     '003': {
       percent: 10,
-      lowPrice: 5000,
+      lowPrice: 10000,
     },
     '004': {
       percent: 10,
@@ -65,7 +65,7 @@ export const state = () => ({
   deliveryCost: {
     '001': 0,
     '002': 0,
-    '003': 3000,
+    '003': 5000,
     '004': 4000,
   },
 })
