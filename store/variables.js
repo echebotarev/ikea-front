@@ -4,7 +4,7 @@ export const state = () => ({
   isOpenCities: false,
 
   percent: {
-    '001': 45,
+    '001': 60,
     '002': 10,
     '003': 35,
     '004': 35,
