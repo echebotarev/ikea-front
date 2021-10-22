@@ -7,7 +7,7 @@
         v-if="shopId === '003'"
         :has-button="false"
         class-name="sticky"
-        :text="`В данный момент мы принимаем заказы на товары из раздела <a href='/sales' style='color: #ffdd52; text-decoration: underline;'>Акций</a><br />Команда doma-doma.org, Уральск.`"
+        :text="`В данный момент мы принимаем заказы на товары только из раздела <a href='/sales' style='color: #ffdd52; text-decoration: underline;'>Акций</a><br />Команда doma-doma.org, Уральск.`"
       />
 
       <Header />
