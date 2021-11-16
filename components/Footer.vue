@@ -6,7 +6,7 @@
           <FooterContactAktau v-if="shopId === '001'" />
           <FooterContactSaransk v-if="shopId === '002'" />
           <FooterContactAktau v-if="shopId === '003'" shop-id="003" />
-          <FooterContactAktau v-if="shopId === '004'" shop-id="004" />
+          <FooterContactAtyrau v-if="shopId === '004'" shop-id="004" />
         </client-only>
       </v-col>
 
@@ -36,6 +36,7 @@ export default {
   name: 'Footer',
   components: {
     FooterContactAktau: () => import('@/components/FooterContactAktau'),
+    FooterContactAtyrau: () => import('@/components/FooterContactAtyrau'),
     FooterContactSaransk: () => import('@/components/FooterContactSaransk'),
   },
   computed: {
