@@ -1,43 +1,33 @@
 <template>
   <v-card class="info-block pb-4">
-    <v-card-title>Актау:</v-card-title>
+    <v-card-title>Атырау:</v-card-title>
     <v-card-subtitle>Услуги предоставляет:</v-card-subtitle>
     <v-card-text>
       <p class="mb-2">
-        Казахстан - ИП Чеботарева Дарья Андреевна <br />
-        ИНН: 840721401346
-      </p>
-      <p class="mb-2">
-        Россия - ИП Чеботарев Егор Андреевич <br />
-        ИНН: 780262965912<br />
-        ОГРНИП: 320784700166917 <br />
+        Казахстан - ИП IDEA B DOM <br />
+        ИНН: 901003350618
       </p>
       <p class="mb-2">
         Если у вас остались вопросы, или нужна помощь, звоните: <br />
-        +7 (911) 172-1308 -
+        +7 (778) 248 9000 -
         <a
-          href="https://api.whatsapp.com/send?phone=+79111721308&text=Привет"
+          href="https://api.whatsapp.com/send?phone=+77782489000"
           class="social-link whatsapp"
           target="_blank"
           rel="nofollow"
           title="WhatsApp"
-          >WhatsApp</a
-        >,
-        <a
-          href="https://t.me/echebotarev"
-          class="social-link telegram"
-          target="_blank"
-          rel="nofollow"
-          title="Telegram"
-          >Telegram</a
         >
+          WhatsApp </a
+        >,
       </p>
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Адрес:</b></v-card-subtitle>
-    <v-card-text> Казахстан, г. Актау, 7-1-16</v-card-text>
+    <v-card-text>
+      Казахстан, г. Атырау, ул. Азаттык 55 за ТД «Адал»
+    </v-card-text>
     <v-card-subtitle class="py-0"><b>Доставка:</b></v-card-subtitle>
     <v-card-text>
-      В стоимость товаров включена доставка прямо до квартиры <br />
+      Доставляем до склада по адресу ул. Азаттык 55 за ТД «Адал» <br />
       <span
         v-html="
           delivery
@@ -50,7 +40,7 @@
       <v-btn
         elevation="0"
         class="button button-black"
-        @click="openReturn('001')"
+        @click="openReturn('004')"
       >
         Условия возврата
       </v-btn>
@@ -60,7 +50,7 @@
 
 <script>
 export default {
-  name: 'InfoBlockAktau',
+  name: 'InfoBlockAtyrau',
   props: {
     delivery: {
       type: Object,

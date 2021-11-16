@@ -5,7 +5,17 @@
     </v-col>
 
     <v-col :cols="$vuetify.breakpoint.mobile ? 12 : 6">
-      <InfoBlockAktau :open-return="openReturn" />
+      <InfoBlockAktau
+        :open-return="openReturn"
+        :delivery="shopId === '001' ? delivery : null"
+      />
+    </v-col>
+
+    <v-col :cols="$vuetify.breakpoint.mobile ? 12 : 6">
+      <InfoBlockAtyrau
+        :open-return="openReturn"
+        :delivery="shopId === '004' ? delivery : null"
+      />
     </v-col>
 
     <v-col :cols="$vuetify.breakpoint.mobile ? 12 : 6">
@@ -18,7 +28,7 @@
 
     <v-dialog v-model="isOpen" scrollable max-width="500px">
       <v-card>
-        <div v-if="shopId === '001'">
+        <div v-if="shopId === '001' || shopId === '004'">
           <v-card-title>Возврат:</v-card-title>
 
           <v-card-text>
@@ -46,8 +56,9 @@
               class="button button-black"
               width="150px"
               @click="closeReturn"
-              >Закрыть</v-btn
             >
+              Закрыть
+            </v-btn>
           </v-card-actions>
         </div>
       </v-card>
@@ -56,6 +67,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'Information',
 
@@ -66,7 +79,21 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState({
+      delivery: (state) => state.page.delivery,
+    }),
+  },
+
+  mounted() {
+    this.getDeliveryData()
+    this.shopId = this.$store.$cookies.get('domaDomaShopId')
+  },
+
   methods: {
+    ...mapActions({
+      getDeliveryData: 'page/getDeliveryData',
+    }),
     openReturn(shopId) {
       this.shopId = shopId
       this.isOpen = true
@@ -83,7 +110,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Doma-doma – сервис по доставке товаров из магазина IKEA в Самаре в Актау',
+          'Doma-doma – сервис по доставке IKEA в Актау, Уральск и Атырау',
       },
     ],
   }),
