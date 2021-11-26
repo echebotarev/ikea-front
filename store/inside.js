@@ -13,7 +13,7 @@ export const mutations = {
 let count = 0
 let timer = null
 export const actions = {
-  setAvailable({ commit, state }) {
+  setAvailable({ commit }) {
     clearTimeout(timer)
 
     count += 1
