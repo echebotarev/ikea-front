@@ -161,6 +161,8 @@ export default {
       mail: (state) => state.cart.mail,
       isAssembly: (state) => state.cart.isAssembly,
       assemblyValue: (state) => state.cart.assemblyValue,
+
+      isInsideAvailable: (state) => state.inside.isAvailable,
     }),
 
     ...mapGetters({
@@ -400,6 +402,12 @@ export default {
     },
 
     validateProducts(notify = true) {
+      // техническая возможность сделать заказ товаров
+      // которых нет
+      if (this.isInsideAvailable) {
+        return true
+      }
+
       const availableProducts = {}
       this.products.forEach((product) => {
         const availableProduct = this.available(product.identifier, 'qnt')

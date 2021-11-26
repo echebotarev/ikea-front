@@ -141,7 +141,7 @@
         <Variations v-if="product.variations" :product="product" />
 
         <v-row no-gutters class="mt-5">
-          <v-col>
+          <v-col @click="setInsideAvailable()">
             <v-btn
               block
               rounded
@@ -308,6 +308,8 @@ export default {
       suggestionProducts: (state) => state.suggestion.suggestionProducts,
 
       delivery: (state) => state.page.delivery,
+
+      isInsideAvailable: (state) => state.inside.isAvailable,
     }),
 
     ...mapGetters({
@@ -316,7 +318,7 @@ export default {
     }),
 
     isDisabledOrderBtn() {
-      if (this.isSales) {
+      if (this.isSales || this.isInsideAvailable) {
         return false
       }
 
@@ -394,6 +396,8 @@ export default {
       cleanSuggestionProducts: 'suggestion/cleanSuggestionProducts',
       showModal: 'page/showModal',
       getDeliveryData: 'page/getDeliveryData',
+
+      setInsideAvailable: 'inside/setAvailable',
     }),
 
     getImage,
