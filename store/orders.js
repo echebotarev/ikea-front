@@ -135,11 +135,7 @@ export const actions = {
     const shopId = rootState.geo.shopId
     const coefficient = rootGetters['variables/coefficient']
 
-    this.$gtag(
-      'event',
-      'purchase',
-      getGaTransactionData(payload, rootGetters['variables/coefficient'])
-    )
+    this.$gtag('event', 'purchase', { event_category: 'events' })
     // eslint-disable-next-line no-unreachable
     this.$gtag.ec({
       ecommerce: {
