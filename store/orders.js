@@ -59,7 +59,7 @@ export const actions = {
     // this.$metrika(67230112, 'reachGoal', 'addToCart')
 
     const { product, qnt } = payload
-    this.$gtag('event', 'addToCart')
+    this.$gtag('event', 'addToCart', { event_category: 'events' })
     this.$gtag.ec({
       ecommerce: {
         currencyCode: 'RUB',
@@ -135,7 +135,7 @@ export const actions = {
     const shopId = rootState.geo.shopId
     const coefficient = rootGetters['variables/coefficient']
 
-    this.$gtag('event', 'purchase')
+    this.$gtag('event', 'purchase', { event_category: 'events' })
     // eslint-disable-next-line no-unreachable
     this.$gtag.ec({
       ecommerce: {
