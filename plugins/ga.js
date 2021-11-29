@@ -24,7 +24,7 @@ export default ({ app }, inject) => {
   window.dataLayer = window.dataLayer || []
   function gtag() {
     // eslint-disable-next-line no-undef
-    dataLayer.push({ ecommerce: null })
+    dataLayer.push({ ecommerce: null, 'gtm-ee-event-non-interaction': false })
     // eslint-disable-next-line no-undef
     dataLayer.push(arguments)
   }
