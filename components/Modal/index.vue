@@ -23,7 +23,7 @@
           />
 
           <Dimensions
-            v-if="data.eventLabel === 'pip_dimensions'"
+            v-if="data.eventLabel === 'pip_measurements'"
             :data="data"
           />
 
