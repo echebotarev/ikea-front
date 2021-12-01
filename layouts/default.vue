@@ -3,12 +3,12 @@
     <v-main>
       <Message v-if="shopId === '001'" />
 
-      <AttentionButton
+      <!--<AttentionButton
         v-if="shopId === '003'"
         :has-button="false"
         class-name="sticky"
         :text="`В данный момент мы принимаем заказы на товары только из раздела <a href='/sales' style='color: #ffdd52; text-decoration: underline;'>Акций</a><br />Команда doma-doma.org, Уральск.`"
-      />
+      />-->
 
       <Header />
 
@@ -61,7 +61,7 @@ export default {
     Footer: hydrateWhenVisible(() => import('@/components/Footer.vue')),
     ChooseCity: hydrateWhenVisible(() => import('@/components/Geo/ChooseCity')),
     NavLinks: hydrateWhenVisible(() => import('@/components/NavLinks')),
-    AttentionButton: () => import('@/components/AttentionButton'),
+    // AttentionButton: () => import('@/components/AttentionButton'),
   },
   middleware: 'fetchOrders',
   computed: {
