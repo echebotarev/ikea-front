@@ -27,6 +27,11 @@
             :data="data"
           />
 
+          <TechnicalInformation
+            v-if="data.eventLabel === 'pip_technical-information'"
+            :data="data"
+          />
+
           <Variations v-if="data.options" :data="data" />
 
           <Filters v-if="data.filters || data.sortOrders" :data="data" />
@@ -47,6 +52,7 @@ import { mdiClose } from '@mdi/js'
 
 import Details from '@/components/Modal/Details'
 import Dimensions from '@/components/Modal/Dimensions'
+import TechnicalInformation from '@/components/Modal/TechnicalInformation'
 import Variations from '@/components/Modal/ModalVariations'
 import Filters from '@/components/Modal/ModalFilters'
 import Suggestion from '@/components/Modal/ModalSuggestion'
@@ -57,6 +63,7 @@ export default {
   components: {
     Details,
     Dimensions,
+    TechnicalInformation,
     Variations,
     Filters,
     Suggestion,

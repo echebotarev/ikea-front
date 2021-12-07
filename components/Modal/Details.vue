@@ -96,68 +96,6 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
 
-        <!-- Упаковка -->
-        <v-expansion-panel v-if="data.accordionObject.packaging">
-          <v-expansion-panel-header>
-            {{ data.accordionObject.packaging.title }}
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <div :id="data.accordionObject.packaging.id">
-              <div
-                v-if="
-                  data.accordionObject.packaging.contentProps
-                    .totalNoOfPackagesText
-                "
-                class="font-weight-bold mb-5"
-              >
-                {{
-                  data.accordionObject.packaging.contentProps
-                    .totalNoOfPackagesText
-                }}
-              </div>
-              <div v-if="data.accordionObject.packaging.contentProps.packages">
-                <div
-                  v-for="(packageItem, indexPackage) in data.accordionObject
-                    .packaging.contentProps.packages"
-                  :key="`${indexPackage}-package`"
-                  class="mb-10"
-                >
-                  <h4>{{ packageItem.name }}</h4>
-                  <div>{{ packageItem.typeName }}</div>
-                  <div v-if="packageItem.articleNumber" class="mb-5">
-                    <div>{{ packageItem.articleNumber.label }}</div>
-                    <span class="product-identifier">
-                      {{ packageItem.articleNumber.value }}
-                    </span>
-                  </div>
-                  <div v-if="packageItem.measurements">
-                    <div
-                      v-for="(
-                        measurements, indexMeasurements
-                      ) in packageItem.measurements"
-                      :key="`${indexMeasurements}-measurements`"
-                    >
-                      <div
-                        v-for="(measurement, indexMeasurement) in measurements"
-                        :key="`${indexMeasurement}-measurement`"
-                      >
-                        <div>
-                          <b>{{ measurement.label }}:</b>
-                          {{ measurement.value }}
-                        </div>
-                      </div>
-                      <div>
-                        <b>{{ packageItem.quantity.label }}:</b>
-                        {{ packageItem.quantity.value }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-
         <!-- Документы -->
         <v-expansion-panel v-if="data.accordionObject.assemblyAndDocuments">
           <v-expansion-panel-header>{{

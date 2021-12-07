@@ -30,6 +30,27 @@
           </v-banner>
         </a>
 
+        <!-- Техническая информация -->
+        <a
+          v-if="product.information.technicalInformationProps"
+          @click="
+            showModal(
+              Object.assign({}, product.information.technicalInformationProps, {
+                type: 'info',
+              })
+            )
+          "
+        >
+          <v-banner single-line>
+            {{ product.information.technicalInformationProps.title }}
+            <template v-slot:actions>
+              <v-btn icon>
+                <v-icon>{{ mdiChevronRight }}</v-icon>
+              </v-btn>
+            </template>
+          </v-banner>
+        </a>
+
         <a
           v-if="product.information.dimensionProps"
           @click="

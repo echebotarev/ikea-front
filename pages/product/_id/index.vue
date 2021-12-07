@@ -154,10 +154,17 @@
             >
               <template v-slot:default>
                 <span class="add-to-cart">
-                  <v-icon class="mr-2 add-to-cart-icon">
+                  <v-icon
+                    v-if="!isDisabledOrderBtn"
+                    class="mr-2 add-to-cart-icon"
+                  >
                     {{ mdiBasketPlusOutline }}
                   </v-icon>
-                  Добавить в корзину
+                  {{
+                    isDisabledOrderBtn
+                      ? 'Товар закончился'
+                      : 'Добавить в корзину'
+                  }}
                 </span>
               </template>
               <template v-slot:loader>
