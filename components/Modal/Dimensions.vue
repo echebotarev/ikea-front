@@ -58,6 +58,7 @@
                         measurements, indexMeasurements
                       ) in packageItem.measurements"
                       :key="`${indexMeasurements}-measurements`"
+                      class="mb-3"
                     >
                       <div
                         v-for="(measurement, indexMeasurement) in measurements"
