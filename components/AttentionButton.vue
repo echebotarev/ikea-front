@@ -1,5 +1,8 @@
 <template>
-  <div :class="`attention-button mb-5 ${className}`">
+  <div v-if="isShow" :class="`attention-button mb-5 ${className}`">
+    <div class="attention-button-close" @click="close">
+      <v-icon color="#fff">{{ mdiClose }}</v-icon>
+    </div>
     <div class="attention-button-info mb-5" v-html="text"></div>
     <nuxt-link v-if="hasButton" to="/sales">
       <div class="attention-button-action">Перейти</div>
@@ -8,6 +11,8 @@
 </template>
 
 <script>
+import { mdiClose } from '@mdi/js'
+
 export default {
   name: 'AttentionButton',
   props: {
@@ -24,6 +29,17 @@ export default {
       default: () => '',
     },
   },
+  data() {
+    return {
+      mdiClose,
+      isShow: true,
+    }
+  },
+  methods: {
+    close() {
+      this.isShow = false
+    },
+  },
 }
 </script>
 
@@ -33,10 +49,24 @@ export default {
   padding: 7%;
   z-index: 3;
 
+  &.success {
+    background-color: #3ba133;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+
+  .attention-button-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+  }
+
   .attention-button-info {
     color: #fff;
     font-size: 1.35rem;
     font-weight: bold;
+    padding-top: 20px;
   }
 
   .attention-button-action {
