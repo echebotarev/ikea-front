@@ -26,7 +26,10 @@
       </v-row>
     </client-only>
 
-    <AttentionButton v-if="saleProducts.length" />
+    <AttentionButton
+      v-if="saleProducts.length"
+      :button="{ title: 'Перейти', to: '/sales' }"
+    />
 
     <h1>{{ category.title }}</h1>
 

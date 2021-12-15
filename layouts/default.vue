@@ -5,21 +5,33 @@
 
       <AttentionButton
         v-if="shopId === '001'"
-        :has-button="false"
+        :has-button="true"
         class-name="sticky success"
         :text="`Новогодние каникулы:<br /><br />Заказы оформленные <span style='text-decoration: underline'>с 19 декабря по 8 января</span> будут доставлены <span style='text-decoration: underline'>14-15 января</span><br /><br />Команда doma-doma.org, Актау.`"
+        :button="{
+          title: 'Закрыть',
+          action: true,
+        }"
       />
       <AttentionButton
         v-if="shopId === '003'"
-        :has-button="false"
+        :has-button="true"
         class-name="sticky success"
         :text="`Новогодние каникулы:<br /><br />Заказы оформленные <span style='text-decoration: underline'>с 26 декабря по 8 января</span> будут доставлены в город <span style='text-decoration: underline'>12-13 января</span><br /><br />Команда doma-doma.org, Уральск.`"
+        :button="{
+          title: 'Закрыть',
+          action: true,
+        }"
       />
       <AttentionButton
         v-if="shopId === '004'"
-        :has-button="false"
+        :has-button="true"
         class-name="sticky success"
         :text="`Новогодние каникулы:<br /><br />Заказы оформленные <span style='text-decoration: underline'>с 26 декабря по 8 января</span> будут доставлены в город <span style='text-decoration: underline'>12-13 января</span><br /><br />Команда doma-doma.org, Атырау.`"
+        :button="{
+          title: 'Закрыть',
+          action: true,
+        }"
       />
 
       <Header />

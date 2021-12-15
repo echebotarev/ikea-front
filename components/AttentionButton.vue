@@ -4,9 +4,15 @@
       <v-icon color="#fff">{{ mdiClose }}</v-icon>
     </div>
     <div class="attention-button-info mb-5" v-html="text"></div>
-    <nuxt-link v-if="hasButton" to="/sales">
-      <div class="attention-button-action">Перейти</div>
-    </nuxt-link>
+
+    <div v-if="hasButton">
+      <div v-if="button.action" class="attention-button-action" @click="close">
+        {{ button.title }}
+      </div>
+      <nuxt-link v-else :to="button.to">
+        <div class="attention-button-action">{{ button.title }}</div>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -23,6 +29,10 @@ export default {
     hasButton: {
       type: Boolean,
       default: () => true,
+    },
+    button: {
+      type: Object,
+      default: () => ({}),
     },
     className: {
       type: String,
@@ -75,6 +85,7 @@ export default {
     border-radius: 30px;
     background: #000;
     color: #fff;
+    cursor: pointer;
   }
 }
 </style>

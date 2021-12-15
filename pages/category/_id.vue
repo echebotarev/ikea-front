@@ -1,6 +1,10 @@
 <template>
   <div>
-    <AttentionButton v-if="saleProducts.length" class="mt-5" />
+    <AttentionButton
+      v-if="saleProducts.length"
+      class="mt-5"
+      :button="{ title: 'Перейти', to: '/sales' }"
+    />
 
     <Breadcrumbs :breadcrumbs="breadcrumbs" />
     <h1>{{ category.title }}</h1>
