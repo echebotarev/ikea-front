@@ -14,9 +14,9 @@
       </p>
       <p class="mb-2">
         Если у вас остались вопросы, или нужна помощь, звоните: <br />
-        +7 (911) 172-1308 -
+        +7 (776) 014-9480 -
         <a
-          href="https://api.whatsapp.com/send?phone=+79111721308&text=Привет"
+          href="https://api.whatsapp.com/send?phone=+77760149480&text=Привет"
           class="social-link whatsapp"
           target="_blank"
           rel="nofollow"

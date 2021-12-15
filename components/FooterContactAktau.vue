@@ -20,7 +20,7 @@
         </span>
 
         <div>
-          <a class="tel" href="tel:+79111721308">+7 (911) 172-1308</a>
+          <a class="tel" href="tel:+77760149480">+7 (776) 014-9480</a>
         </div>
         <br />
         <a class="url" href="https://doma-doma.org/">https://doma-doma.org</a>
@@ -34,7 +34,7 @@
         <span>
           <a
             class="whatsapp"
-            href="https://api.whatsapp.com/send?phone=79111721308"
+            href="https://api.whatsapp.com/send?phone=77760149480"
             target="_blank"
             rel="nofollow"
             title="WhatsApp"
