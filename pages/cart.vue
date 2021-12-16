@@ -278,7 +278,10 @@ export default {
               this.deliveryMethod === 2
                 ? this.deliveryCost
                 : 0,
-            sale: { value: this.getDiscountSaleValue(this.total) },
+            sale: {
+              type: 'percent',
+              value: this.getDiscountSaleValue(this.total),
+            },
           },
         },
         {
@@ -336,7 +339,10 @@ export default {
           payMethod: 'offline',
           products: this.getLetterProducts(),
           deliveryTime: this.deliveryTime,
-          sale: { value: this.getDiscountSaleValue(this.total) },
+          sale: {
+            type: 'percent',
+            value: this.getDiscountSaleValue(this.total),
+          },
         },
       }).then(() => {
         this.closeDataArea()

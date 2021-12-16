@@ -34,6 +34,10 @@ export const mutations = {
   SET_DATA(state, { key, value }) {
     state[key] = value
   },
+
+  SET_SALE(state, payload) {
+    state.sale = payload
+  },
 }
 
 const getPrice = (payload) => {
@@ -186,10 +190,9 @@ export const actions = {
   fetchSale({ commit }, { utm_campaign: campaign, utm_cause: cause }) {
     return cause === 'sale'
       ? this.app.$services.api.getSale({ campaign }).then((response) => {
-          response.data &&
-            commit('SET_DATA', { key: 'sale', value: response.data })
+          response.data && commit('SET_SALE', response.data)
         })
-      : commit('SET_DATA', { key: 'sale', value: null })
+      : commit('SET_SALE', null)
   },
 
   fetchDeliveryCost({ commit, dispatch }, orderIds) {
