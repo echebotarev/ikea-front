@@ -273,6 +273,7 @@ export default {
             email: this.mail,
             phone: this.phone,
             total: this.getDiscountPrice(this.total),
+            isDelivery: this.deliveryMethod === 2,
             deliveryCost:
               (this.shopId === '003' || this.shopId === '004') &&
               this.deliveryMethod === 2
@@ -329,6 +330,7 @@ export default {
           email: this.mail,
           phone: this.phone,
           total: this.getDiscountPrice(this.total),
+          isDelivery: this.deliveryMethod === 2,
           deliveryCost:
             (this.shopId === '003' || this.shopId === '004') &&
             this.deliveryMethod === 2
