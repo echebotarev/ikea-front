@@ -3,7 +3,7 @@
     <v-main>
       <Message v-if="shopId === '001'" />
 
-      <AttentionButton
+      <!--      <AttentionButton
         v-if="shopId === '001'"
         :has-button="true"
         class-name="sticky success"
@@ -32,7 +32,7 @@
           title: 'Закрыть',
           action: true,
         }"
-      />
+      />-->
 
       <Header />
 
