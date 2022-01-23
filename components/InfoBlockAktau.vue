@@ -34,7 +34,9 @@
       </p>
     </v-card-text>
     <v-card-subtitle class="py-0"><b>Адрес:</b></v-card-subtitle>
-    <v-card-text> Казахстан, г. Актау, 7-1-16</v-card-text>
+    <v-card-text>
+      Казахстан, г. Актау, 6А мкр., Меловая, СФЕРА, 14 д.
+    </v-card-text>
     <v-card-subtitle class="py-0"><b>Доставка:</b></v-card-subtitle>
     <v-card-text>
       В стоимость товаров включена доставка прямо до квартиры <br />
