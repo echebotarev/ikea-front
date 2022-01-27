@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row class="variationStyle-variations">
+    <v-row class="product-variations">
       <v-col>
         <a
           @click="
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 import { mdiChevronRight } from '@mdi/js'
 
@@ -64,27 +64,26 @@ export default {
     },
   },
   data() {
-    return { mdiChevronRight }
+    return {
+      mdiChevronRight,
+      subtitle: '',
+    }
   },
-  computed: mapState({
-    subtitle: (state) => state.displayVariations.subtitle,
-  }),
   mounted() {
-    this.setSubtitle(this.variationStyle.selectedOption)
+    this.subtitle = this.variationStyle.selectedOption
   },
   methods: {
     ...mapActions({
       showModal: 'page/showModal',
-      setSubtitle: 'displayVariations/setSubtitle',
     }),
     currentVariation(options) {
       return options.find((option) => option.isSelected)
     },
     mouseOver(subtitle) {
-      this.setSubtitle(subtitle)
+      this.subtitle = subtitle
     },
     mouseLeave() {
-      this.setSubtitle(this.variationStyle.selectedOption)
+      this.subtitle = this.variationStyle.selectedOption
     },
     getImage,
   },
@@ -92,6 +91,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.product-variations + .row {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
 .selectable {
   cursor: pointer;
   border: 1px solid transparent;
