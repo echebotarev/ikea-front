@@ -85,7 +85,7 @@ export default {
     Footer: hydrateWhenVisible(() => import('@/components/Footer.vue')),
     ChooseCity: hydrateWhenVisible(() => import('@/components/Geo/ChooseCity')),
     NavLinks: hydrateWhenVisible(() => import('@/components/NavLinks')),
-    AttentionButton: () => import('@/components/AttentionButton'),
+    // AttentionButton: () => import('@/components/AttentionButton'),
   },
   middleware: 'fetchOrders',
   computed: {

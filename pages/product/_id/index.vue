@@ -133,10 +133,14 @@
           <v-col>{{ product.sold_separately }}</v-col>
         </v-row>
 
-        <DisplayVariations
-          v-if="product.display_variations"
-          :product="product"
-        />
+        <div v-if="product.display_variations">
+          <DisplayVariations
+            v-for="(variationStyle, i) in product.display_variations
+              .variationStyles"
+            :key="i"
+            :variation-style="variationStyle"
+          />
+        </div>
 
         <Variations v-if="product.variations" :product="product" />
 

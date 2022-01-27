@@ -1,21 +1,19 @@
 <template>
   <div>
-    <v-row class="product-variations">
+    <v-row class="variationStyle-variations">
       <v-col>
         <a
           @click="
             showModal(
-              Object.assign({}, product.display_variations, {
+              Object.assign({}, variationStyle, {
                 type: 'info',
-                currentVariation: currentVariation(
-                  product.display_variations.allOptions
-                ),
+                currentVariation: currentVariation(variationStyle.allOptions),
               })
             )
           "
         >
           <v-banner single-line>
-            {{ product.display_variations.title }}
+            {{ variationStyle.title }}
 
             <v-subheader>{{ subtitle }}</v-subheader>
 
@@ -31,7 +29,7 @@
 
     <v-row>
       <v-col
-        v-for="productVariant in product.display_variations.options"
+        v-for="productVariant in variationStyle.options"
         :key="productVariant.linkId"
         cols="3"
       >
@@ -60,7 +58,7 @@ import getImage from '@/assets/utils/getImage'
 export default {
   name: 'DisplayVariations',
   props: {
-    product: {
+    variationStyle: {
       type: Object,
       default: () => {},
     },
@@ -72,7 +70,7 @@ export default {
     subtitle: (state) => state.displayVariations.subtitle,
   }),
   mounted() {
-    this.setSubtitle(this.product.display_variations.selectedOption)
+    this.setSubtitle(this.variationStyle.selectedOption)
   },
   methods: {
     ...mapActions({
@@ -86,7 +84,7 @@ export default {
       this.setSubtitle(subtitle)
     },
     mouseLeave() {
-      this.setSubtitle(this.product.display_variations.selectedOption)
+      this.setSubtitle(this.variationStyle.selectedOption)
     },
     getImage,
   },
