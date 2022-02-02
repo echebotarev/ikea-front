@@ -41,6 +41,11 @@
     }
   }
 
+  .product-information .v-banner__wrapper {
+    font-size: 1.5rem;
+    padding: 20px 0 !important;
+  }
+
   .v-banner__wrapper {
     border-top: thin solid rgba(0, 0, 0, 0.12);
     border-bottom: 0 !important;
@@ -48,7 +53,7 @@
     padding: 20px 0 0 !important;
 
     @media screen and (max-width: 600px) {
-      font-size: 0.975rem;
+      font-size: 0.975rem !important;
     }
 
     .v-banner__content {
