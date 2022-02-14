@@ -98,7 +98,11 @@
       "
       :current-id="product.identifier"
       :current-type="product.utag.product_type"
-      :variations="product.display_variations"
+      :variations="
+        product.display_variations.variationStyles.find(
+          (v) => v.code === 'COLOUR'
+        )
+      "
       class="mb-4"
     />
 

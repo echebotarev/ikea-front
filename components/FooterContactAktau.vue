@@ -7,7 +7,9 @@
         <span class="country-name">Казахстан</span>,
 
         <span v-if="shopId === '001'" class="locality">г. Актау,</span>
-        <span v-if="shopId === '001'" class="street-address">6а микрорайон, 14д (Меловая, СФЕРА)</span>
+        <span v-if="shopId === '001'" class="street-address">
+          6а микрорайон, 14д (Меловая, СФЕРА)
+        </span>
 
         <span v-if="shopId === '003'" class="locality">г. Уральск,</span>
         <span v-if="shopId === '003'" class="street-address">
