@@ -3,7 +3,7 @@
     <div class="product-thumbnail-label">Больше вариантов</div>
     <v-row>
       <v-col
-        v-for="productVariant in variations.options"
+        v-for="productVariant in getDisplayVariations(variations)"
         :key="productVariant.linkId"
         :cols="$vuetify.breakpoint.mobile ? 4 : 3"
         @click="switchProduct(productVariant.linkId)"
@@ -36,8 +36,8 @@ export default {
       default: () => '',
     },
     variations: {
-      type: Object,
-      default: () => ({}),
+      type: Array,
+      default: () => [],
     },
   },
 
@@ -49,6 +49,30 @@ export default {
 
   methods: {
     getImage,
+
+    /**
+     * В структуре могут повторяться одинаковые id, потому что добавляются
+     * id: 123,
+     * type: "Размер"
+     *
+     * и
+     *
+     * id: 123,
+     * type: "Цвет"
+     * */
+    getDisplayVariations(variations) {
+      let wasSelectedItem = false
+      return variations.filter((variant) => {
+        if (wasSelectedItem && variant.isSelected) {
+          return false
+        }
+
+        if (wasSelectedItem === false) {
+          wasSelectedItem = variant.isSelected
+        }
+        return true
+      })
+    },
 
     async switchProduct(id) {
       const product = await this.getProductById({ id })

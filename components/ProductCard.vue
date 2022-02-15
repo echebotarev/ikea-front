@@ -99,8 +99,9 @@
       :current-id="product.identifier"
       :current-type="product.utag.product_type"
       :variations="
-        product.display_variations.variationStyles.find(
-          (v) => v.code === 'COLOUR'
+        product.display_variations.variationStyles.reduce(
+          (acc, variationStyle) => acc.concat(variationStyle.options),
+          []
         )
       "
       class="mb-4"
