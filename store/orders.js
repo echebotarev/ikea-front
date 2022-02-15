@@ -56,11 +56,16 @@ export const actions = {
   },
 
   addProduct({ commit, dispatch, rootGetters, rootState }, payload) {
-    this.$fb.track('AddToCart', {
-      currency: 'RUB',
-      value: getPrice(payload) / rootGetters['variables/coefficient'],
-    })
-    // this.$metrika(67230112, 'reachGoal', 'addToCart')
+    try {
+      this.$fb.track('AddToCart', {
+        currency: 'RUB',
+        value: getPrice(payload) / rootGetters['variables/coefficient'],
+      })
+    } catch (e) {
+      this.$sentry.captureMessage(
+        `FB Pixel is not defined: ${JSON.stringify(e)}`
+      )
+    }
 
     const { product, qnt } = payload
     this.$gtag('event', 'addToCart', { event_category: 'events' })
@@ -157,16 +162,17 @@ export const actions = {
       'gtm-ee-event-non-interaction': false,
     })
 
-    // this.$metrika(
-    //   67230112,
-    //   'reachGoal',
-    //   `purchase-${payload.payload.payMethod}`
-    // )
-    this.$fb.track('Purchase', {
-      currency: 'RUB',
-      value: payload.payload.total / rootGetters['variables/coefficient'],
-      paymentMethod: payload.payload.payMethod,
-    })
+    try {
+      this.$fb.track('Purchase', {
+        currency: 'RUB',
+        value: payload.payload.total / rootGetters['variables/coefficient'],
+        paymentMethod: payload.payload.payMethod,
+      })
+    } catch (e) {
+      this.$sentry.captureMessage(
+        `FB Pixel is not defined: ${JSON.stringify(e)}`
+      )
+    }
 
     const shopDisplayName = rootGetters.getDisplayName
 
