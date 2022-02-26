@@ -1,5 +1,5 @@
 export default {
-  clickProduct({ products, $getPrice, coefficient, list = 'Category' }) {
+  clickProduct({ products, shopId, coefficient, list = 'Category' }) {
     return {
       ecommerce: {
         currencyCode: 'RUB',
@@ -7,7 +7,7 @@ export default {
           actionField: { list },
           products: this.getProductsViewed({
             products,
-            $getPrice,
+            shopId,
             coefficient,
             list: null,
           }),
@@ -20,15 +20,13 @@ export default {
     }
   },
 
-  getProductsViewed({ products, $getPrice, coefficient, list = 'Category' }) {
+  getProductsViewed({ products, shopId, coefficient, list = 'Category' }) {
     return products.map((p, i) =>
       Object.assign(
         {
           name: `${p.name}`,
           id: p.identifier,
-          price: Math.round(
-            $getPrice(p.price.price.mainPriceProps.price.integer) / coefficient
-          ),
+          price: Math.round(p.kaspiPrices[shopId] / coefficient),
           brand: 'IKEA',
           category: this.getCategoryFromBreadcrumbs(p.breadcrumbs),
           position: p.position ? p.position : i + 1,
@@ -39,14 +37,12 @@ export default {
     )
   },
 
-  getProductsForCheckout({ products, $getPrice, coefficient }) {
+  getProductsForCheckout({ products, shopId, coefficient }) {
     return products.map((p, i) =>
       Object.assign({
         name: `${p.name}`,
         id: p.identifier,
-        price: Math.round(
-          $getPrice(p.price.price.mainPriceProps.price.integer) / coefficient
-        ),
+        price: Math.round(p.kaspiPrices[shopId] / coefficient),
         brand: 'IKEA',
         category: this.getCategoryFromBreadcrumbs(p.breadcrumbs),
         quantity: p.qnt,

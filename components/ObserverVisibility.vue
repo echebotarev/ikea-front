@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import ec from '@/utils/ec'
 
 export default {
@@ -32,6 +32,9 @@ export default {
     ...mapGetters({
       coefficient: 'variables/coefficient',
     }),
+    ...mapState({
+      shopId: (state) => state.geo.shopId,
+    }),
   },
 
   methods: {
@@ -42,7 +45,7 @@ export default {
             currencyCode: 'RUB',
             impressions: ec.getProductsViewed({
               products: [this.product],
-              $getPrice: this.$getPrice,
+              shopId: this.shopId,
               coefficient: this.coefficient,
               list: this.listType,
             }),

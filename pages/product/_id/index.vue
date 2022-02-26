@@ -360,7 +360,7 @@ export default {
             actionField,
             products: ec.getProductsViewed({
               products: [vm.product],
-              $getPrice: vm.$getPrice,
+              shopId: vm.shopId,
               coefficient: vm.coefficient,
               list: null,
             }),
@@ -382,7 +382,7 @@ export default {
           actionField: { list: 'Recommendation from product' },
           products: ec.getProductsViewed({
             products: [this.product],
-            $getPrice: this.$getPrice,
+            shopId: this.shopId,
             coefficient: this.coefficient,
             list: null,
           }),

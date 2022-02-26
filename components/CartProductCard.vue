@@ -87,7 +87,7 @@
               <!-- Основная цена -->
               <div v-else>
                 <Price
-                  :price="$getPrice(product.kaspiPrices[shopId]) * product.qnt"
+                  :price="product.kaspiPrices[shopId] * product.qnt"
                   :without-label="true"
                   :is-only-formatted="true"
                   symbol=".–"

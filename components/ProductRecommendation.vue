@@ -31,7 +31,7 @@
                   @click="
                     clickProduct({
                       products: [Object.assign({ position: index + 1 }, item)],
-                      $getPrice,
+                      shopId,
                       coefficient,
                       list: type,
                     })
@@ -84,6 +84,7 @@ export default {
 
   computed: {
     ...mapState({
+      shopId: (state) => state.geo.shopId,
       recommendations: (state) => ({
         same: state.products.sameRecommendations,
         similar: state.products.similarRecommendations,

@@ -112,7 +112,7 @@
       </v-col>
     </v-row>
 
-    <v-row v-if="assemblySum($getPrice)" no-gutters class="mb-10">
+    <v-row v-if="assemblySum(shopId)" no-gutters class="mb-10">
       <v-col>
         <v-row class="pr-5 pl-5">
           <v-col :cols="$vuetify.breakpoint.xs ? 12 : 7">
@@ -261,7 +261,7 @@ export default {
               actionField: { step: 3 },
               products: ec.getProductsForCheckout({
                 products: this.products,
-                $getPrice: this.$getPrice,
+                shopId: this.shopId,
                 coefficient: this.coefficient,
               }),
             },
@@ -295,7 +295,7 @@ export default {
     getAssemblyValue() {
       if (this.isAssembly) {
         const value = Math.ceil(
-          (this.assemblySum(this.$getPrice) * this.assembly.percent) / 100
+          (this.assemblySum(this.shopId) * this.assembly.percent) / 100
         )
         return value < this.assembly.lowPrice ? this.assembly.lowPrice : value
       }

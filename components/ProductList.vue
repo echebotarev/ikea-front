@@ -13,7 +13,7 @@
           @click="
             clickProduct({
               products: [Object.assign({ position: index + 1 }, product)],
-              $getPrice,
+              shopId,
               coefficient,
               list: listType,
             })
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import ec from '@/utils/ec'
 
 export default {
@@ -49,6 +49,9 @@ export default {
   computed: {
     ...mapGetters({
       coefficient: 'variables/coefficient',
+    }),
+    ...mapState({
+      shopId: (state) => state.geo.shopId,
     }),
   },
 

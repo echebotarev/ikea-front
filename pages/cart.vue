@@ -143,9 +143,7 @@ export default {
           const price =
             (product.sales
               ? product.sales.price
-              : this.$getPrice(
-                  product.price.price.mainPriceProps.price.integer
-                )) * product.qnt
+              : product.kaspiPrices[this.shopId]) * product.qnt
           sum += price
         })
         return sum
@@ -194,7 +192,7 @@ export default {
           actionField: { step: 1 },
           products: ec.getProductsForCheckout({
             products: this.products,
-            $getPrice: this.$getPrice,
+            shopId: this.shopId,
             coefficient: this.coefficient,
           }),
         },
@@ -233,7 +231,7 @@ export default {
               actionField: { step: 4 },
               products: ec.getProductsForCheckout({
                 products: this.products,
-                $getPrice: this.$getPrice,
+                shopId: this.shopId,
                 coefficient: this.coefficient,
               }),
             },
@@ -367,7 +365,7 @@ export default {
             actionField: { step: 2 },
             products: ec.getProductsForCheckout({
               products: this.products,
-              $getPrice: this.$getPrice,
+              shopId: this.shopId,
               coefficient: this.coefficient,
             }),
           },
@@ -453,13 +451,10 @@ export default {
         return Object.assign({}, product, {
           computedPrice: product.sales
             ? product.sales.price
-            : this.$getPrice(product.price.price.mainPriceProps.price.integer),
-          computedPriceTotal:
-            (product.sales
-              ? product.sales.price
-              : this.$getPrice(
-                  product.price.price.mainPriceProps.price.integer
-                )) * product.qnt,
+            : product.kaspiPrices[this.shopId],
+          computedPriceTotal: product.sales
+            ? product.sales.price
+            : product.kaspiPrices[this.shopId] * product.qnt,
           url: `${document.location.origin}/product/${product.identifier}`,
         })
       })

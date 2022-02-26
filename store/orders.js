@@ -40,11 +40,6 @@ export const mutations = {
   },
 }
 
-const getPrice = (payload) => {
-  const value = payload.product.price.price.mainPriceProps.price.integer
-  return parseInt(value.replace(/ /g, ''))
-}
-
 export const actions = {
   fetchProducts({ commit }) {
     return this.app.$services.orders.getOrder().then((response) => {
@@ -56,10 +51,13 @@ export const actions = {
   },
 
   addProduct({ commit, dispatch, rootGetters, rootState }, payload) {
+    const { shopId } = rootState.geo
     try {
       this.$fb.track('AddToCart', {
         currency: 'RUB',
-        value: getPrice(payload) / rootGetters['variables/coefficient'],
+        value:
+          payload.product.kaspiPrices[shopId] /
+          rootGetters['variables/coefficient'],
       })
     } catch (e) {
       this.$sentry.captureMessage(
@@ -80,7 +78,7 @@ export const actions = {
               brand: 'IKEA',
               category: ec.getCategoryFromBreadcrumbs(product.breadcrumbs),
               price: Math.round(
-                this.$getPrice(getPrice(payload)) /
+                payload.product.kaspiPrices[shopId] /
                   rootGetters['variables/coefficient']
               ),
               quantity: qnt,
@@ -106,7 +104,8 @@ export const actions = {
     })
   },
 
-  removeProduct({ commit, rootGetters }, payload) {
+  removeProduct({ commit, rootGetters, rootState }, payload) {
+    const { shopId } = rootState.geo
     const { product, qnt } = payload
     this.$gtag.ec({
       ecommerce: {
@@ -118,7 +117,7 @@ export const actions = {
               brand: 'IKEA',
               category: ec.getCategoryFromBreadcrumbs(product.breadcrumbs),
               price: Math.round(
-                this.$getPrice(getPrice(payload)) /
+                payload.product.kaspiPrices[shopId] /
                   rootGetters['variables/coefficient']
               ),
               quantity: qnt,
@@ -219,7 +218,7 @@ export const getters = {
     return count
   },
 
-  getAssemblySum: (state) => ($getPrice) => {
+  getAssemblySum: (state) => (shopId) => {
     let sum = 0
     state.products.forEach((product) => {
       if (
@@ -227,9 +226,7 @@ export const getters = {
           .assemblyAndDocuments
       ) {
         const price =
-          (product.sales
-            ? product.sales.price
-            : $getPrice(product.price.price.mainPriceProps.price.integer)) *
+          (product.sales ? product.sales.price : product.kaspiPrices[shopId]) *
           product.qnt
         sum += price
       }
