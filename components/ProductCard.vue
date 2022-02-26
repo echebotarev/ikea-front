@@ -100,6 +100,7 @@
           []
         )
       "
+      :place="place"
       class="mb-4"
     />
 
@@ -124,7 +125,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 import { mdiImageMultipleOutline } from '@mdi/js'
 
@@ -143,6 +144,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    place: {
+      type: String,
+      default: () => '',
+    },
   },
 
   data() {
@@ -150,6 +155,12 @@ export default {
       isOpenArrival: false,
       mdiImageMultipleOutline,
     }
+  },
+
+  computed: {
+    ...mapState({
+      shopId: (state) => state.geo.shopId,
+    }),
   },
 
   methods: {

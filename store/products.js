@@ -101,11 +101,18 @@ export const actions = {
     })
   },
 
-  updateProductList({ commit, state }, { id, newProduct }) {
-    commit(
-      'SET_PRODUCTS',
-      state.products.map((p) => (p.identifier === id ? newProduct : p))
-    )
+  updateProductList({ commit, state }, { id, newProduct, place }) {
+    place === ''
+      ? commit(
+          'SET_PRODUCTS',
+          state.products.map((p) => (p.identifier === id ? newProduct : p))
+        )
+      : commit('SET_DATA', {
+          key: `${place}Recommendations`,
+          value: state[`${place}Recommendations`].map((p) =>
+            p.identifier === id ? newProduct : p
+          ),
+        })
   },
 
   fetchProductById({ commit, dispatch, state }, { id, isSales = false }) {

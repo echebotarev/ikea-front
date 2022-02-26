@@ -37,7 +37,7 @@
                     })
                   "
                 >
-                  <ProductCard :product="item" />
+                  <ProductCard :product="item" :place="type" />
                 </div>
               </ObserverVisibility>
             </div>

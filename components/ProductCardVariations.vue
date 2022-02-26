@@ -39,6 +39,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    place: {
+      type: String,
+      default: () => '',
+    },
   },
 
   computed: {
@@ -84,6 +88,7 @@ export default {
       this.updateProductList({
         id: this.currentId,
         newProduct: Object.assign(product, { available }),
+        place: this.place,
       })
     },
 
