@@ -25,11 +25,7 @@
                       <div class="product-description mb-5">
                         {{ product.price.productDescription }}
                       </div>
-                      <Price
-                        :price="
-                          product.price.price.mainPriceProps.price.integer
-                        "
-                      />
+                      <Price :price="product.kaspiPrices[shopId]" />
                     </v-col>
                   </v-row>
                 </nuxt-link>
@@ -73,7 +69,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import Price from '@/components/Price'
 import CircleBtn from '@/components/CircleBtn'
 import getImage from '@/assets/utils/getImage'
@@ -90,6 +86,9 @@ export default {
   computed: {
     ...mapGetters({
       countCart: 'orders/getCountCart',
+    }),
+    ...mapState({
+      shopId: (state) => state.geo.shopId,
     }),
   },
   methods: {

@@ -47,8 +47,9 @@
         >
           {{ product.price.price.previousPriceText }}
           <Price
-            :price="product.price.price.previousPriceProps.price.integer"
+            :price="product.kaspiPrices[shopId]"
             :without-label="true"
+            :is-only-formatted="true"
           />
         </span>
 
@@ -56,12 +57,9 @@
         <span v-if="product.sales" class="card-product-previous-price-text">
           Предыдущая цена
           <Price
-            :price="
-              product.priceNumeral ||
-              product.price.RUB ||
-              product.price.price.mainPriceProps.price.integer
-            "
+            :price="product.kaspiPrices[shopId]"
             :without-label="true"
+            :is-only-formatted="true"
           />
         </span>
 
@@ -69,11 +67,9 @@
           <Price
             :price="
               (product.sales && product.sales.price) ||
-              product.priceNumeral ||
-              product.price.RUB ||
-              product.price.price.mainPriceProps.price.integer
+              product.kaspiPrices[shopId]
             "
-            :is-only-formatted="!!product.sales"
+            :is-only-formatted="true"
             :unit="
               product.price.price && product.price.price.mainPriceProps.unit
             "

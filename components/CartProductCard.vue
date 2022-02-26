@@ -87,11 +87,7 @@
               <!-- Основная цена -->
               <div v-else>
                 <Price
-                  :price="
-                    $getPrice(
-                      product.price.price.mainPriceProps.price.integer
-                    ) * product.qnt
-                  "
+                  :price="$getPrice(product.kaspiPrices[shopId]) * product.qnt"
                   :without-label="true"
                   :is-only-formatted="true"
                   symbol=".–"
@@ -105,8 +101,9 @@
 
                 <Price
                   v-if="product.qnt > 1"
-                  :price="product.price.price.mainPriceProps.price.integer"
+                  :price="product.kaspiPrices[shopId]"
                   :without-label="true"
+                  :is-only-formatted="true"
                   symbol=".–"
                   :class-name="`light ${
                     product.price.price.mainPriceProps.hasHighlight
@@ -117,16 +114,12 @@
               </div>
               <!-- Основная цена -->
 
-              <div
+              <!--<div
                 v-if="product.price.familyText && !product.sales"
                 class="previous-price"
               >
                 <Price
-                  :price="
-                    $getPrice(
-                      product.price.price.previousPriceProps.price.integer
-                    ) * product.qnt
-                  "
+                  :price="$getPrice(product.kaspiPrices[shopId]) * product.qnt"
                   :without-label="true"
                   :is-only-formatted="true"
                   :prepend="`${product.price.price.previousPriceText}:`"
@@ -141,7 +134,7 @@
                   symbol=".–"
                   class-name="light"
                 />
-              </div>
+              </div>-->
             </div>
           </v-col>
         </v-row>
@@ -175,7 +168,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 import {
   mdiLoading,
@@ -213,6 +206,11 @@ export default {
       mdiMinus,
       mdiPlus,
     }
+  },
+  computed: {
+    ...mapState({
+      shopId: (state) => state.geo.shopId,
+    }),
   },
   methods: {
     ...mapActions({

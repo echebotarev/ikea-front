@@ -18,21 +18,26 @@
               </v-avatar>
             </v-col>
 
-            <v-col cols="7">
+            <v-col cols="6">
               <v-card-subtitle>{{ option.title }}</v-card-subtitle>
             </v-col>
 
             <v-col
               v-if="getPriceDifference(data.currentVariation, option).price"
+              cols="auto"
               class="text-right"
             >
-              <Price
+              <v-card-subtitle>{{
+                getPriceDifference(data.currentVariation, option).text
+              }}</v-card-subtitle>
+              <!--<Price
                 :price="getPriceDifference(data.currentVariation, option).price"
                 :prepend="
                   getPriceDifference(data.currentVariation, option).sign
                 "
+                :without-label="true"
                 class="light"
-              />
+              />-->
             </v-col>
           </v-row>
         </nuxt-link>
@@ -44,12 +49,12 @@
 
 <script>
 import { mapActions } from 'vuex'
-import Price from '@/components/Price'
+// import Price from '@/components/Price'
 import getImage from '@/assets/utils/getImage'
 
 export default {
   name: 'Variations',
-  components: { Price },
+  // components: { Price },
   props: {
     data: {
       type: Object,
@@ -79,6 +84,7 @@ export default {
           price:
             currentVariation.priceProps.priceNumeral -
             option.priceProps.priceNumeral,
+          text: 'Дешевле',
         }
       } else if (
         currentVariation.priceProps.priceNumeral <
@@ -89,6 +95,7 @@ export default {
           price:
             option.priceProps.priceNumeral -
             currentVariation.priceProps.priceNumeral,
+          text: 'Дороже',
         }
       } else {
         return {}

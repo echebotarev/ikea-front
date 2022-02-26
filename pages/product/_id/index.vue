@@ -68,12 +68,13 @@
                 <span v-if="isSales" class="font-weight-bold">
                   Предыдущая цена
                   <Price
-                    :price="product.price.price.mainPriceProps.price.integer"
+                    :price="product.kaspiPrices[shopId]"
                     :without-label="true"
+                    :is-only-formatted="true"
                     class-name="font-weight-bold"
                   />
                 </span>
-                <span v-else-if="product.price.price.previousPriceProps">
+                <!--<span v-else-if="product.price.price.previousPriceProps">
                   {{ product.price.price.previousPriceText }}
                   <Price
                     :price="
@@ -83,7 +84,7 @@
                   />
                   <br />
                   {{ product.price.validToFromAndWhileSupplyLastText }}
-                </span>
+                </span>-->
               </div>
             </h1>
 
@@ -94,11 +95,9 @@
           <v-col class="text-right" cols="auto">
             <Price
               :price="
-                isSales
-                  ? product.sales.price
-                  : product.price.price.mainPriceProps.price.integer
+                isSales ? product.sales.price : product.kaspiPrices[shopId]
               "
-              :is-only-formatted="isSales"
+              :is-only-formatted="true"
               :unit="product.price.price.mainPriceProps.unit"
               :class="
                 product.price.price.mainPriceProps.hasHighlight
@@ -309,6 +308,7 @@ export default {
 
   computed: {
     ...mapState({
+      shopId: (state) => state.geo.shopId,
       product: (state) => state.products.product,
       isSales: (state) => !!state.products.product.sales,
       breadcrumbs: (state) => state.page.breadcrumbs,
