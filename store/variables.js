@@ -45,10 +45,10 @@ export const state = () => ({
     },
   },
   currencyCoefficient: {
-    '001': 6,
+    '001': 6.2,
     '002': 1,
-    '003': 6,
-    '004': 6,
+    '003': 6.2,
+    '004': 6.2,
   },
   currencySymbol: {
     '001': '₸',
