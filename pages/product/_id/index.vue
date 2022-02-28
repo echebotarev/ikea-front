@@ -144,7 +144,7 @@
         <Variations v-if="product.variations" :product="product" />
 
         <v-row no-gutters class="mt-5">
-          <v-col @click="setInsideAvailable()">
+          <v-col cols="12" @click="setInsideAvailable()">
             <v-btn
               block
               rounded
@@ -176,6 +176,21 @@
                 </span>
               </template>
             </v-btn>
+          </v-col>
+
+          <v-col
+            v-if="shopId !== '002' && !isDisabledOrderBtn"
+            cols="12"
+            class="pt-4"
+          >
+            <div
+              class="ks-widget"
+              data-template="flatButton"
+              :data-merchant-sku="product.identifier"
+              :data-merchant-code="capitalize(kaspiMerchantIds[shopId])"
+              :data-city="kaspiCityIds[shopId]"
+              data-style="mobile"
+            ></div>
           </v-col>
         </v-row>
 
@@ -243,6 +258,8 @@
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
 
+import capitalize from '@/utils/capitalize'
+
 import { hydrateWhenVisible } from 'vue-lazy-hydration'
 import ec from '@/utils/ec'
 
@@ -309,6 +326,8 @@ export default {
   computed: {
     ...mapState({
       shopId: (state) => state.geo.shopId,
+      kaspiCityIds: (state) => state.geo.kaspiCityIds,
+      kaspiMerchantIds: (state) => state.geo.kaspiMerchantIds,
       product: (state) => state.products.product,
       isSales: (state) => !!state.products.product.sales,
       breadcrumbs: (state) => state.page.breadcrumbs,
@@ -341,6 +360,8 @@ export default {
     // Этот товар можно дополнить
     this.fetchSuggestionProducts(this.product.identifier)
     this.getDeliveryData()
+
+    this.initKaspiCredit()
   },
 
   beforeRouteEnter(to, from, next) {
@@ -411,6 +432,7 @@ export default {
       setInsideAvailable: 'inside/setAvailable',
     }),
 
+    capitalize,
     getImage,
 
     async add(payload) {
@@ -429,6 +451,23 @@ export default {
             { type: 'info' }
           )
         )
+    },
+
+    initKaspiCredit() {
+      setTimeout(() => {
+        let script = document.getElementById('KS-Widget')
+        if (script) {
+          global.ksWidgetInitializer.reinit()
+        } else {
+          script = document.createElement('script')
+          script.src = 'https://kaspi.kz/kaspibutton/widget/ks-wi_ext.js'
+          script.id = 'KS-Widget'
+          script.defer = true
+          script.type = 'text/javascript'
+
+          document.head.appendChild(script)
+        }
+      }, 500)
     },
 
     getMetaProduct() {

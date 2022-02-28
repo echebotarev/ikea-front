@@ -43,6 +43,16 @@ export const state = () => ({
     '003': 'uralsk',
     '004': 'atyrau',
   },
+  kaspiCityIds: {
+    '001': '471010000',
+    '003': '271010000',
+    '004': '231010000',
+  },
+  kaspiMerchantIds: {
+    '001': 'Domadoma',
+    '003': 'Domadoma',
+    '004': '4876008',
+  },
   jivosite: {
     baseUrl: '//code-ya.jivosite.com/widget',
     '001': 'NApoQrzu9D',
@@ -50,7 +60,7 @@ export const state = () => ({
     '003': 'NApoQrzu9D',
     '004': 'NApoQrzu9D',
   },
-  version: 12,
+  version: 13,
 })
 
 export const mutations = {
