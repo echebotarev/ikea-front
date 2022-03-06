@@ -3,17 +3,17 @@
     <v-main>
       <Message v-if="shopId === '001'" />
 
-      <!--      <AttentionButton
+      <AttentionButton
         v-if="shopId === '001'"
         :has-button="true"
-        class-name="sticky success"
-        :text="`Новогодние каникулы:<br /><br />Заказы оформленные <span style='text-decoration: underline'>с 19 декабря по 8 января</span> будут доставлены <span style='text-decoration: underline'>14-15 января</span><br /><br />Команда doma-doma.org, Актау.`"
+        class-name="sticky"
+        :text="`Мы временно приостанавливаем работу из-за закрытия магазинов IKEA в России<br />В ближайшее время мы добавим на сайт товары производства компании Hoff и снова продолжим работать.<br /><br />Команда doma-doma.org, Актау.`"
         :button="{
           title: 'Закрыть',
           action: true,
         }"
       />
-      <AttentionButton
+      <!--      <AttentionButton
         v-if="shopId === '003'"
         :has-button="true"
         class-name="sticky success"
