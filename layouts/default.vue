@@ -4,10 +4,10 @@
       <Message v-if="shopId === '001'" />
 
       <AttentionButton
-        v-if="shopId === '001'"
+        v-if="$route.name !== 'sales' && $route.name !== 'cart'"
         :has-button="true"
         class-name="sticky"
-        :text="`Мы временно приостанавливаем работу из-за закрытия магазинов IKEA в России<br />В ближайшее время мы добавим на сайт товары производства компании Hoff и снова продолжим работать.<br /><br />Команда doma-doma.org, Актау.`"
+        :text="`Мы временно приостанавливаем работу из-за закрытия магазинов IKEA в России<br />В ближайшее время мы добавим на сайт товары производства компании Hoff и снова продолжим работать.<br />Здесь вы можете посмотреть товары, которые еще есть в наличии - <a style='color: #fff; text-decoration: underline;' href='/sales'>Акции</a><br />Команда doma-doma.org, Актау.`"
         :button="{
           title: 'Закрыть',
           action: true,
